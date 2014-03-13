@@ -174,3 +174,51 @@ For all $m, n \in \mathbb{N}, $m + n = n + m$.
 
     *Proof:* By induction, since $m$ was arbitrary.
 
+
+## Definition of positive naturals
+
+A number $n \in \mathbb{N}$ is said to be **positive** iff it isn't equal to $0$. The positive natural numbers are denoted $\mathbb{N}^+$
+
+## Positives are closed under addition of naturals
+If $m \in \mathbb{N}^+$ and $n \in \mathbb{N}, then $(m + n) \in \mathbb{N}^+$.
+
+ 1. $m + 0 \in \mathbb{N}^+$
+
+    *Proof:* $m + 0 = m$.
+
+ 2. If $(m + n) \in \mathbb{N}^+$, then $(m + n++) \in \mathbb{N}^+$.
+
+    *Proof:* $(m + n++) = (m + n)++$, which must be in $\mathbb{N}^+$ since it is the successor of another natural number, and zero is not the successor of any natural number.
+
+ 3. Q.E.D.
+
+    *Proof:* By induction.
+
+
+*Corollary:* If $m, n \in \mathbb{N}$ and $m + n = 0$, then $m = 0 = n$.
+
+ 1. It suffices to assume $m \neq 0$ and prove that $m + n \neq 0$.
+
+    *Proof:* There is no loss of generality by commutativity.
+
+ 2. Q.E.D.
+
+    *Proof:* By the previous proposition, $m + n \neq 0$.
+
+
+## Uniqueness of predecessor
+If $m \neq 0$, then there is a unique $b \in \mathbb{N}$ such that $b++ = m$.
+
+ 1. It suffices to assume that $S$ is the set of all $n \in \mathbb{N}$ such that ($n = 0$ or ($n \neq 0$ and there's a unique $b$ such that $b++ = n$)).
+
+ 2. $0 \in S$
+
+    *Proof:* By definition.
+
+ 3. If $n \in S$, then $n++ \in S$
+
+    *Proof: $n$ is the predecessor of $n++$, and it must be unique by injectivity of the successor operation. Also, $n++ \neq 0$  since $0$ is not the successor of any element.
+
+ 4. Q.E.D.
+
+    *Proof:* $S = \mathbb{N}$ by induction, so all nonzero elements have a unique predecessor by construction of $S$.
