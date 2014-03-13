@@ -21,9 +21,11 @@ Dependencies: Symmetricity of set equality
 If $A$ and $B$ are both empty sets, then $A = B$.
 
  1. It suffices to prove that $x \notin B$ implies $x \notin A$.
+
     *Proof:* Proof by contrapositive. Symmetry of set equality establishes the other direction of implication.
 
  1. Q.E.D.
+
     *Proof:* For every object $x$, by definition of $B$, $x \notin B$ and $x \notin A$.
 
 
@@ -66,12 +68,15 @@ For all sets $A$, $B$ and $C$, ($A = B$ and $B = C$) imply $A = C$.
     and prove $A = C$.
 
  2. $x \in A$ implies $x \in C$
+
     *Proof:* If $x \in A$, then $x \in B$ by (1.1). But $x \in B$ implies $x \in C$ by (1.2).
 
  3. $x \in C$ implies $x \in A$.
+
     *Proof:* By applying symmetricity to $A = B$ and $B = C$, we use (2).
 
  4. Q.E.D.
+
     *Proof:* By the definition of $A = C$.
 
 
