@@ -222,3 +222,104 @@ If $m \neq 0$, then there is a unique $b \in \mathbb{N}$ such that $b++ = m$.
  4. Q.E.D.
 
     *Proof:* $S = \mathbb{N}$ by induction, so all nonzero elements have a unique predecessor by construction of $S$.
+
+
+## Definition of $\leq$ on $\mathbb{N}$
+For all $m, n \in \mathbb{N}$, we define $m \leq n$ iff $\exists a \in \mathbb{N}$ such that $m + a = n$. We also define $m < n$ iff $m \leq n$ and $m \neq n$. These relations are called **inequality** and **strict inequality**, respectively.
+
+## Inequality is a partial order on $\mathbb{N}$
+### Reflexive
+For all $m \in \mathbb{N}$, $m \leq m$.
+
+*Proof:* $m + 0 = m$.
+
+
+### Antisymmetric
+For all $m, n \in \mathbb{N}$, if both $m \leq n$ and $n \leq m$, then $m = n$.
+
+ 1. There exist $a, b \in \mathbb{N}$ such that $m + a = n$ and $n + b = m$.
+
+    *Proof:* Definition of $\leq$
+
+ 2. $m + (a + b) = m$
+
+    *Proof:* Substituting equation one equation from (1) into the other.
+
+ 3.  $a + b = 0$
+
+    *Proof:* Cancellation law, since $m + 0 = m$.
+
+ 4. Q.E.D.
+
+    *Proof:* By the corollary to "Positives are closed under addition of naturals", both $a = 0$ and $b = 0$. So $m = n$.
+
+
+### Transitive
+For all $k, m, n \in \mathbb{N}$, if $k \leq m$ and $m \leq n$, then $k \leq n$.
+
+ 1. There exist $a, b \in \mathbb{N}$ such that $k + a = m$ and $m + b = n$.
+
+    *Proof:* Definition of $\leq$
+
+ 2. Q.E.D.
+
+    *Proof:* $k + a + b = n$ by substitution of equations in (1), and (a + b) \in \mathbb{N}.
+
+
+## Addition preserves order
+For any $m, n, k \in \mathbb{N}$, then $m \leq n$ iff $m + k \leq n + k$
+
+ 1. $m \leq n$ implies $m + k \leq n + k$
+
+    *Proof:*  By definition there is some $a$ such that $m + a = n$. So $m + k + a = n + k$.
+
+ 2. $m + k \leq n + k$ implies $m \leq n$.
+
+    *Proof:* There is some $a$ such that $m + k + a = n + k$. We can reorder the additions (by commutativity and associativity) and use the cancellation law to obtain $m + a = n$.
+
+ 3. Q.E.D.
+
+    *Proof:* (1) and (2) imply the statement.
+
+
+
+## Trichotomy law for inequality on naturals
+For any $m, m \in \mathbb{N}$, exactly one of these is true:
+
+ - $m < n$
+ - $m = n$
+ - $n < m$
+
+ 1. If $m = n$, then neither $m < n$ or $n < m$
+
+    *Proof:* Immediate from the definition of strict inequality
+
+ 2. For any $a, b \in \mathbb{N}$, $a < b$ implies that $b < a$ is not true
+
+    1. There is some $c \neq 0$ is such that $a + c = b$
+
+       *Proof:* From the definition of $a < b$.
+
+    2. Q.E.D.
+
+       *Proof:* If $b < a$ were true, then there would be a $d$ such that $b + d = a + c + d = a$, implying that $c + d = 0$ by the cancellation law, which by a previous proposition implies $c = 0$, a contradiction.
+
+ 3. $m < n$ implies $\not (n < m)$ and $n < m$ implies $\not (m < n)$
+
+    *Proof:* Use (2) twice.
+
+
+ 4. At most one of the 3 conditions is true
+
+    *Proof:* Established by (1) and (3)
+
+
+ 5. At least one of the 3 conditions is true
+
+    *Proof:* Either $m = n$ or $m \neq n$. If $m \neq n$
+    TODO. If we're going to induct here, we might need to restructure the proof.
+
+
+ 6. Q.E.D.
+
+    *Proof:* (4) and (5)
