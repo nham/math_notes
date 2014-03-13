@@ -25,15 +25,20 @@ If $(f_n)$ is a sequence of functions $f_n: \mathbb{N} \to \mathbb{N}$ and $c \i
  1. It suffices to assume $X$ is the collection of all sets $S \subseteq \mathbb{N} \times \mathbb{N}$ such that $(0, c) \in S$ and for all elements $(n, x) \in S$, $(n++, f_n(x)) \in S$ as well, and to prove that $\bigcap X$ is a function.
 
  2. $X$ is non-empty.
+
     *Proof:* $\mathbb{N} \times \mathbb{N}$ is one set in $X$.
 
  3. For every $n \in \mathbb{N}$, there is a $x_n \in \mathbb{N}$ such that $(n, x_n) \in \bigcap X$.
 
      1. It suffices to assume $S$ is the set of $n \in \mathbb{N}$ such that there is an $x_n$ such that $(n, x_n) \in S$ and prove $S = \mathbb{N}$.
      2. $0 \in S$
+
         *Proof:* By definition of $X$, $(0, c)$ is an element of every set in $X$.
+
      3. If $n \in S$, then $n++ \in S$.
+
         *Proof:* There is some $x_n$ such that $(n, x_n) \in \bigcap X$. So $(n, x_n)$ is an element of every set in $X$. By the definition of $X$, $(n++, f_n(x))$ is an element of every set in $X$, hence is also an element of \bigcap X$.
+
      4. Q.E.D.
         *Proof:* $S = \mathbb{N}$ by induction.
 
@@ -42,17 +47,25 @@ If $(f_n)$ is a sequence of functions $f_n: \mathbb{N} \to \mathbb{N}$ and $c \i
      1. It suffices to assume $T$ is the set of all $n \in \mathbb{N}$ such that there is a unique $x_n \in \mathbb{N}$ such that $(n, x_n) \in \bigcap X$ and prove $T = \mathbb{N}$
      2. $0 \in T$
         1. It suffices to assume that there is some $y \in \mathbb{N}$ such that $y \neq c$ but $(0, y) \in \bigcap X$, and then establish a contradiction.
+
            *Proof:* We know $(0, c) \in \bigcap X$, so such a $y$ is the only way $0$ coul fail to be in $T$.
+
         2. $\bigcap X \ {(0, y)}$ is an element of $X$
            TODO
+
         3. Q.E.D.
+
            *Proof:* (2) contradicts the definition of $\bigcap X$, since we found an element of $X$ that doesn't contain $\bigcap X$.
+
      3. If $n \in T$, then $n++ \in T$.
         TODO
+
      4. Q.E.D.
+
         *Proof:* $T = \mathbb{N}$ by induction.
 
  5. Q.E.D.
+
     *Proof:* (3) and (4) establish that $\bigcap X$ is a function. So $g = \bigcap X$.
 
 
@@ -71,9 +84,11 @@ There is a binary operation $+: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ suc
     We then define $n + m := g_m(n)$.
 
  2. Each such function $g_m$ can be established via recursive definition.
+
     *Proof:* Recursively define $g_m$ by $g_m(0) = m$ and, for all $n \in \mathbb{N}$, $f_n = ++$.
 
  3. Q.E.D.
+
     *Proof:* Immediate from (2).
 
 
@@ -81,12 +96,15 @@ There is a binary operation $+: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ suc
 For all $k, m, n \in \mathbb{N}$, $(k + m) + n = k + (m + n)$.
 
  1. $(0 + m) + n = 0 + (m + n)$
+
     *Proof:* $(0 + m) + n = m + n = 0 + (m + n)$ by the definition of addition.
 
  2. if $(k + m) + n = k + (m + n)$, then $(k++ + m) + n = k++ + (m + n)$.
+
     *Proof:* $(k++ + m) + n = (k + m)++ + n = ((k + m) + n)++ = (k + (m + n))++ = k++ + (m + n)$ by definition of addition twice, the induction hypothesis, and the definition of addition once more.
 
  3. Q.E.D.
+
     *Proof:* By induction on $k$.
 
 
@@ -94,24 +112,30 @@ For all $k, m, n \in \mathbb{N}$, $(k + m) + n = k + (m + n)$.
 *Commutativity lemma 1:* For all $m \in \mathbb{N}$, $m + 0 = m$.
 
  1. $0 + 0 = 0$
+
     *Proof:* Immediate from definition of addition.
 
  2. if $n + 0 = n$, then $n++ + 0 = n++$
+
     *Proof:* $n++ + 0 = (n + 0)++ = n++$ by definition of addition and the induction hypothesis, respectively.
 
  3. Q.E.D.
+
     *Proof:* By induction.
 
 
 *Commutativity lemma 2:* For all $m, n \in \mathbb{N}$, $n + (m++) = (n + m)++$.
 
  1. $0 + (m++) = (0 + m)++$
+
     *Proof: $0 + (m++) = m++ = (0 + m)++$ because left addition by zero leaves the element unchanged.
 
  2. If $n + (m++) = (n + m)++$, then $(n++) + (m++) = (n++ + m)++$.
+
     *Proof:* $(n++ + m++) = (n + m++)++ = ((n + m)++)++ = (n++ + m)++ by definition of addition, induction hypothesis, definition of addition, respectively.
 
  3. Q.E.D.
+
     *Proof:* By induction.
 
 ### A corollary of the previous two
@@ -124,11 +148,14 @@ For all $n \in \mathbb{N}$, $n++ = n + 1$.
 For all $m, n \in \mathbb{N}, $m + n = n + m$.
 
  1. $0 + m = m + 0$
+
     *Proof:* Immediately from the definition of addition and commutativity lemma 1.
 
  2. If $n + m = m + n$, then $n++ + m = m + n++$.
+
     *Proof:* $(n++ + m) = (n + m)++ = (m + n)++ = m + n++$ by definition, induction hypothesis, commutativity lemma 2, respectively.
 
  3. Q.E.D.
+
     *Proof:* By induction, since $m$ was arbitrary.
 
