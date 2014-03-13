@@ -107,6 +107,21 @@ For all $k, m, n \in \mathbb{N}$, $(k + m) + n = k + (m + n)$.
 
     *Proof:* By induction on $k$.
 
+## Addition obeys the cancellation law
+For all $k, m, n \in \mathbb{N}$, $k + m = k + n$ implies $m = n$.
+
+ 1. ($0 + m = 0 + n$) implies $m + n$.
+
+    *Proof: Immediate from definition of addition.
+
+ 2. If ($k + m = k + n$) implies $m = n$, then ($k++ + m = k++ + n$) implies $m + n$.
+
+     *Proof:* $(k++ + m) = (k + m)++$, and also $(k++ + n) = (k + n)++$ by definition. So we have $(k + m)++ = (k + n)$, which implies $k + m = k + n$ by injectivity of the increment operator, and hence $m = n$ by the induction hypothesis.
+
+ 3. Q.E.D.
+
+    *Proof:* By induction.
+
 
 ## Lemmas for proving addition commutativity.
 *Commutativity lemma 1:* For all $m \in \mathbb{N}$, $m + 0 = m$.
