@@ -46,16 +46,16 @@ If $(f_n)$ is a sequence of functions $f_n: \mathbb{N} \to \mathbb{N}$ and $c \i
 
      1. It suffices to assume $T$ is the set of all $n \in \mathbb{N}$ such that there is a unique $x_n \in \mathbb{N}$ such that $(n, x_n) \in \bigcap X$ and prove $T = \mathbb{N}$
      2. $0 \in T$
-        1. It suffices to assume that there is some $y \in \mathbb{N}$ such that $y \neq c$ but $(0, y) \in \bigcap X$, and then establish a contradiction.
+         1. It suffices to assume that there is some $y \in \mathbb{N}$ such that $y \neq c$ but $(0, y) \in \bigcap X$, and then establish a contradiction.
 
-           *Proof:* We know $(0, c) \in \bigcap X$, so such a $y$ is the only way $0$ coul fail to be in $T$.
+            *Proof:* We know $(0, c) \in \bigcap X$, so such a $y$ is the only way $0$ coul fail to be in $T$.
 
-        2. $\bigcap X \ {(0, y)}$ is an element of $X$
-           TODO
+         2. $\bigcap X \ {(0, y)}$ is an element of $X$
+            TODO
 
-        3. Q.E.D.
+         3. Q.E.D.
 
-           *Proof:* (2) contradicts the definition of $\bigcap X$, since we found an element of $X$ that doesn't contain $\bigcap X$.
+            *Proof:* (2) contradicts the definition of $\bigcap X$, since we found an element of $X$ that doesn't contain $\bigcap X$.
 
      3. If $n \in T$, then $n++ \in T$.
         TODO
@@ -156,7 +156,7 @@ For all $k, m, n \in \mathbb{N}$, $k + m = k + n$ implies $m = n$.
 ### A corollary of the previous two
 For all $n \in \mathbb{N}$, $n++ = n + 1$.
 
-*Proof:* $n++ = (n + 0)++ = n + 0++ = 1$.
+*Proof:* $n++ = (n + 0)++ = n + 0++ = n + 1$.
 
 
 ## Addition is commutative.
@@ -179,6 +179,12 @@ For all $m, n \in \mathbb{N}, $m + n = n + m$.
 
 A number $n \in \mathbb{N}$ is said to be **positive** iff it isn't equal to $0$. The positive natural numbers are denoted $\mathbb{N}^+$
 
+## Successor is strictly greater
+If $n \in \mathbb{N}$, then $n < n++$.
+
+*Proof:* n++ = n + 1.
+
+
 ## Positives are closed under addition of naturals
 If $m \in \mathbb{N}^+$ and $n \in \mathbb{N}, then $(m + n) \in \mathbb{N}^+$.
 
@@ -195,7 +201,8 @@ If $m \in \mathbb{N}^+$ and $n \in \mathbb{N}, then $(m + n) \in \mathbb{N}^+$.
     *Proof:* By induction.
 
 
-*Corollary:* If $m, n \in \mathbb{N}$ and $m + n = 0$, then $m = 0 = n$.
+### Corollary: only two zeroes can sum to zero
+If $m, n \in \mathbb{N}$ and $m + n = 0$, then $m = 0 = n$.
 
  1. It suffices to assume $m \neq 0$ and prove that $m + n \neq 0$.
 
@@ -226,6 +233,7 @@ If $m \neq 0$, then there is a unique $b \in \mathbb{N}$ such that $b++ = m$.
 
 ## Definition of $\leq$ on $\mathbb{N}$
 For all $m, n \in \mathbb{N}$, we define $m \leq n$ iff $\exists a \in \mathbb{N}$ such that $m + a = n$. We also define $m < n$ iff $m \leq n$ and $m \neq n$. These relations are called **inequality** and **strict inequality**, respectively.
+
 
 ## Inequality is a partial order on $\mathbb{N}$
 ### Reflexive
@@ -282,44 +290,111 @@ For any $m, n, k \in \mathbb{N}$, then $m \leq n$ iff $m + k \leq n + k$
     *Proof:* (1) and (2) imply the statement.
 
 
+## Strict inequality equivalents
+## A positive gap
+$m < n$ iff there is a $b \in \mathbb{N}^+$ such that $m + b = n$.
+
+*Proof:* If $m < n$, then $m \leq n$ so there is some $b$ such that $m + b = n$. Also, $b \neq 0$ since $m \neq n$. Conversely, if $m + b = n$ for positive $b$, then $m \leq n$ by definition. We must have $m \neq n$, because otherwise $b = 0$ by the cancellation law, a contradiction.
+
+
+### Room to grow
+$m < n$ iff $m++ \leq n$
+
+ 1. It suffices to prove $m++ \leq n$ iff there's a $b \in \mathbb{N}^+$ with $m + b = n$.
+
+    *Proof:* See the previous proposition, "A positive gap".
+
+ 2. $m++ \leq n$ implies that there's a $b \in \mathbb{N}^+$ with $m + b = n$
+
+    *Proof:* $m++ \leq n$ implies $m + 1 \leq n$, which implies there is some $a \in \mathbb{N}$ with $m + 1 + a = n$, which implies that $m + a++ = n$. $a++$ is positive by the axioms of $\mathbb{N}$.
+
+ 3. If there's a $b \in \mathbb{N}^+$ with $m + b = n$, then  $m++ \leq n$
+
+    *Proof:* If $m + b = n$ for positive $b$, then by the unique predecessor proposition, there's an $a \in \mathbb{N}$ such that $a++ = b$. So $n = m + a++ = m++ + a$, which is the definition of $m++ \leq n$.
+
+ 4. Q.E.D.
+
+    *Proof:* (2) and (3).
+
+
+## Transitivity of strict inequality
+If $m < n$ and $n < k$ then $m < k$.
+
+*Proof:* There are $a, b \in \mathbb{N}^+$ such that $m + a = n$ and $n + b = k$. So $m + a + b = k$. $(a + b) \in \mathbb{N}^+$ by closure of positives under addition. This establishes the statement.
+
 
 ## Trichotomy law for inequality on naturals
 For any $m, m \in \mathbb{N}$, exactly one of these is true:
 
- - $m < n$
- - $m = n$
- - $n < m$
+ A.  $m < n$
+ B.  $m = n$
+ C.  $n < m$
 
- 1. If $m = n$, then neither $m < n$ or $n < m$
+ 1. For all $m, n \in \mathbb{N}, at most one of the 3 conditions is true.
+    1. It suffices to assume that $m, n \in \mathbb{N}$ and prove that
 
-    *Proof:* Immediate from the definition of strict inequality
+       $$(m = n) \implies \not (m < n \or n < m)$$
 
- 2. For any $a, b \in \mathbb{N}$, $a < b$ implies that $b < a$ is not true
+       and
+    
+       $$(m < n) \implies \not (n < m)$$
 
-    1. There is some $c \neq 0$ is such that $a + c = b$
+       *Proof:* The first statement implies both that when (B) holds, neither (A) nor (C) could hold, and that when (A) or (C) hold, (B) could not hold. The only thing that remains is to establish that (A) and (C) cannot hold simultaneously. But the second statement establishes both that (A) implies not (C) and that (C) implies not (A).
 
-       *Proof:* From the definition of $a < b$.
+    2. $(m = n) \implies \not (m < n \or n < m)$
 
-    2. Q.E.D.
+       *Proof:* Immediate from the definition of strict inequality
 
-       *Proof:* If $b < a$ were true, then there would be a $d$ such that $b + d = a + c + d = a$, implying that $c + d = 0$ by the cancellation law, which by a previous proposition implies $c = 0$, a contradiction.
+    3. $(m < n) \implies \not (n < m)$
 
- 3. $m < n$ implies $\not (n < m)$ and $n < m$ implies $\not (m < n)$
+       1. It suffices to assume both $m < n$ and $n < m$ are true and derive a contradiction.
 
-    *Proof:* Use (2) twice.
+       2. There is some $c \neq 0$ is such that $m + c = n$
 
+          *Proof:* Because $m < n$, by the "A positive gap" proposition.
 
- 4. At most one of the 3 conditions is true
+       3. There is some $d \in \mathbb{N}$ such that $n + d = m$
 
-    *Proof:* Established by (1) and (3)
+          *Proof:* From the definition of $n < m$.
 
+       4. $c + d = 0$
+          *Proof:* Substitution of (1.3.2) into (1.3.3) yields $m + c + d = m$. The cancellation law implies the statement.
 
- 5. At least one of the 3 conditions is true
+       5. Q.E.D.
 
-    *Proof:* Either $m = n$ or $m \neq n$. If $m \neq n$
-    TODO. If we're going to induct here, we might need to restructure the proof.
+          *Proof:* (4) implies $c = 0$ via "Only two zeroes can sum to zero." corollary, which contradicts (1)..
 
+ 2. For all $m, n \in \mathbb{N}$, at least one of the 3 conditions is true
 
- 6. Q.E.D.
+    1. It suffices to assume that $n \in \mathbb{N}$ and prove that for all $m \in \mathbb{N}$, at least one of the 3 conditions is true.
 
-    *Proof:* (4) and (5)
+    2. $0 < n$ or $0 = n$
+
+       *Proof:* $0 \leq n$ since $0 + n = n$. We also must have either $n = 0$ or $n \neq 0$. In either case, the statement follows.
+
+    3. If there's an $m \in \mathbb{N}$ such that one of the three conditions is true for $m$ and $n, then the same is true for $m++$ and $n$.
+
+       1. It suffices to prove the statement for each of these cases:
+
+           - $m < n$
+           - $m = n$
+           - $n < m$
+
+       2. Case $m < n$
+
+          *Proof:* $m++ \leq n$, so either $m++ < n$ or $m++ = n$.
+
+       3. Case $m = n$
+
+          *Proof:* $n < m++$ because the successor is strictly greater.
+
+       4. Case $n < m$
+
+         *Proof:* $n < m++$ by transitivity of strict inequality.
+
+    4. Q.E.D.
+       *Proof:* (2) and (3) establish an induction on $n$.
+
+ 3. Q.E.D.
+
+    *Proof:* (1) and (2)
