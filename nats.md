@@ -553,4 +553,75 @@ If $m \cdot n = 0$, then $m = 0$ or $n = 0$.
 
     *Proof:* (2) and (3) establish, by "induction above", every positive $n$ has $m \cdot n > 0$.
 
- 4. TODO
+
+## Multiplication distributes over addition in $\mathbb{N}$
+For all $k, m, n \in \mathbb{N}$, $k \cdot (m + n) = k \cdot m + k \cdot n$.
+
+ 1. It suffices to assume $m, n \in \mathbb{N}$ and to prove, for all $k \in \mathbb{N}$ that the statement holds.
+
+ 2. $0 \cdot (m + n) = 0 \cdot m + 0 \cdot n$
+
+    *Proof:* Both sides equal $0$ by definition.
+
+ 3. If $k \cdot (m +n) = k \cdot m + k \cdot n$, then $k++ \cdot (m + n) = k++ \cdot m + k++ \cdot n$.
+
+    *Proof:*  $k++ \cdot (m + n) = k \cdot (m + n) + (m + n) = k \cdot m + k \cdot n + m + n = k++ \cdot m + k++ \cdot n$, by definition, induction hypothesis, and definition, respectively.
+
+ 4. Q.E.D.
+
+    *Proof:* Induction via (2) and (3).
+
+## Multiplication is associative
+For all $k, m, n \in \mathbb{N}$, $(k \cdot m) \cdot n = k \cdot (m \cdot n)$.
+
+ 1. It suffices to assume $m , n \in \mathbb{N}$ and prove the statement for all $k \in \mathbb{N}$.
+
+ 2. $(0 \cdot m) \cdot n = 0 \cdot (m \cdot n)$
+
+    *Proof:* Both sides equal $0$ by definition.
+
+ 3. if $(k \cdot m) \cdot n = k \cdot (m \cdot n)$, then $(k++ \cdot m) \cdot n = k++ \cdot (m \cdot n)$.
+
+    *Proof:* $(k++ \cdot m) \cdot n = ((k \cdot m) + m) \cdot n = (k \cdot m) \cdot n + m \cdot n = k \cdot (m \cdot n) + m \cdot n = k++ \cdot (m \cdot n)$ by definition, distributivity, induction hypothesis and definition, respectively.
+
+ 4. Q.E.D.
+
+    *Proof:* Induction via (2) and (3)
+
+
+## Multiplication preserves order
+For $k, m, n \in \mathbb{N}$, if $m \leq n$, then $k \cdot m \leq k \cdot n$.
+
+*Proof:* Since $m \leq n$, there is a $b \in \mathbb{N}$ with $m + b = n$. So $k \cdot n = k \cdot (m + b) = k \cdot m + k \cdot b$. This establishes that $k \cdot m \leq k \cdot n$.
+
+
+## Multiplication preserves strict order
+For $m, n \in \mathbb{N}$ and positive $k$, if $m < n$, then $k \cdot m < k \cdot n$.
+
+*Proof:* There is a positive $d$ such that $m + d = n$, so $km + kd = kn$ by distributivity. Neither $k$ nor $d$ are zero, so $kd > 0$. So $km < kn$.
+
+
+### Corollary: Cancellation law for multiplication
+For all $m, n \in \mathbb{N}$ and $k \in \mathbb{N}^+$, if $k \cdot m = k \cdot n$, then $m = n$.
+
+ 1. It suffices to assume
+
+     - $m, n \in \mathbb{N}$
+     - $k \in \mathbb{N}^+$
+     - $k \cdot m = k \cdot n$
+
+    and prove that both $m < n$ and $m > n$ lead to contradiction
+
+    *Proof:* By Trichotomy law.
+
+ 2. Case $m < n$
+
+    *Proof:* This implies $km < kn$, contradicting (1)
+
+ 3. Case $m > n$
+
+    *Proof:* This implies $km > kn$, contradicting (1)
+
+ 4. Q.E.D.
+
+    *Proof:* (2) and (3) establish the statement.
