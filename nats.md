@@ -627,38 +627,38 @@ For all $m, n \in \mathbb{N}$ and $k \in \mathbb{N}^+$, if $k \cdot m = k \cdot 
     *Proof:* (2) and (3) establish the statement.
 
 
-### Euclidean algorithm for $\mathbb{N}$
-For any $n \in \mathbb{N}$, $q \in \mathbb{N}^+$, there exist unique $k, r \in \mathbb{N}$ with $0 \leq r < q$ such that
+### Euclidean division theorem for $\mathbb{N}$
+For any $n \in \mathbb{N}$, $d \in \mathbb{N}^+$, there exist unique $k, r \in \mathbb{N}$ with $0 \leq r < d$ such that
 
-$$n = k \ cdot q + r$$
+$$n = k \ cdot d + r$$
 
 
  1. It suffices to assume $q \in \mathbb{N}^+$ and prove for all $n \in \mathbb{N}$ that the statement is true.
 
  2. The statement is true for $n = 0$.
 
-    *Proof:* We need to prove that there exist unique $k, r$ such that $k \cdot q + r = 0$. We must have $r = 0$ since otherwise the left hand side would be positive. So k \cdot q = 0$. But this implies $k = 0$, since by hypothesis $q \neq 0$.
+    *Proof:* We need to prove that there exist unique $k, r$ such that $k \cdot d + r = 0$. We must have $r = 0$ since otherwise the left hand side would be positive. So k \cdot d = 0$. But this implies $k = 0$, since by hypothesis $q \neq 0$.
 
  3. If the statement is true for $n$, it is true for $n++$.
 
-    1. It suffices to assume $k_0, r_0$ are the unique naturals such that $n = k_0 \cdot q + r_0$ (with $0 \leq r_0 < q$) and to assume $r_0++ \neq q$.
+    1. It suffices to assume $k_0, r_0$ are the unique naturals such that $n = k_0 \cdot d + r_0$ (with $0 \leq r_0 < d$) and to assume $r_0++ \neq d$.
 
 
-        - $r_0++ = q$
-        - $r_0++ \neq q$
+        - $r_0++ = d$
+        - $r_0++ \neq d$
 
 
-    2. Case $r_0++ = q$
+    2. Case $r_0++ = d$
 
-       1. $n++ = k_0++ \cdot q$
+       1. $n++ = k_0++ \cdot d$
 
-          *Proof:* $n++ = k_0 \cdot q + r_0++ = k_0 \cdot q + q = k_0++ \cdot q$
+          *Proof:* $n++ = k_0 \cdot d + r_0++ = k_0 \cdot d + d = k_0++ \cdot d$
 
-       2. If $n++ = k \cdot q + r$ for some $k$ and $r$ with $0 \leq r < q$, then $k = k_0++$ and $r = 0$.
+       2. If $n++ = k \cdot d + r$ for some $k$ and $r$ with $0 \leq r < d$, then $k = k_0++$ and $r = 0$.
 
           1. If $r = 0$, then $k = k_0++$
 
-             *Proof:* $n++ = k \cdot q = k_0++ \cdot q$. $q > 0$, so by cancellation $k = k_0++$.
+             *Proof:* $n++ = k \cdot d = k_0++ \cdot d$. $q > 0$, so by cancellation $k = k_0++$.
 
           2. It is not the case that $r \neq 0$
              1. It suffices to assume $r \neq 0$ and derive a contradiction.
@@ -667,49 +667,49 @@ $$n = k \ cdot q + r$$
 
                 *Proof:* $r$ is positive, so it has a predecessor.
 
-             3. $n = k \cdot q + s$
+             3. $n = k \cdot d + s$
 
-                *Proof:* $n++ = k \cdot q + r = k \cdot q + s++$, implying $n = k \cdot q + s$. 
+                *Proof:* $n++ = k \cdot d + r = k \cdot d + s++$, implying $n = k \cdot d + s$. 
 
              4. Q.E.D.
 
-                *Proof:* By the induction hypothesis (3), $k = k_0$ and $s = r_0$, so $r = s++ = r_0++ = q$. This contradicts the assumption that $r < q$.
+                *Proof:* By the induction hypothesis (3), $k = k_0$ and $s = r_0$, so $r = s++ = r_0++ = d$. This contradicts the assumption that $r < d$.
 
        3. Q.E.D.
 
           *Proof:* (3.2.1) and (3.2.2) prove existence and uniqueness of the solution pair.
 
 
-    3. Case $r_0++ \neq q$
-       1. $n++ = k_0 \cdot q + r_0++$
+    3. Case $r_0++ \neq d$
+       1. $n++ = k_0 \cdot d + r_0++$
 
-          *Proof:* This solution clearly works since $0 \leq r_0++ < q$.
+          *Proof:* This solution clearly works since $0 \leq r_0++ < d$.
 
-       2. If $n++ = k \cdot q + r$ for some $k$ and $r$ with $0 \leq r < q$, then $k = k_0$ and $r = r_0++$.
+       2. If $n++ = k \cdot d + r$ for some $k$ and $r$ with $0 \leq r < d$, then $k = k_0$ and $r = r_0++$.
 
           1. If $r = 0$ then a contradiction follows.
 
-             1. There exists $p \in \mathbb{N}$ with $p++ = q$
+             1. There exists $p \in \mathbb{N}$ with $p++ = d$
 
                 *Proof:* $q > 0$ by hypothesis, so it has a predecessor.
 
              2. There exists $j in \mathbb{N}$ with $j++ = k$.
 
-                *Proof:* $n++ = k \cdot q, so $k > 0$ since $n++ > 0$, so it has a predecessor.
+                *Proof:* $n++ = k \cdot d, so $k > 0$ since $n++ > 0$, so it has a predecessor.
 
-             3. $n = j \cdot q + p$
-                *Proof:* n++ = j++ \cdot q = j \cdot q + q = j \cdot q + p++$ by (3.3.2.1.1) and (3.3.2.1.2) The statement follows.
+             3. $n = j \cdot d + p$
+                *Proof:* n++ = j++ \cdot d = j \cdot d + d = j \cdot d + p++$ by (3.3.2.1.1) and (3.3.2.1.2) The statement follows.
 
              4. Q.E.D.
 
-                *Proof:* The induction hypotheses and (3) imply $j = k_0$ and $p = r_0$, so $r_0++ = q$, contradicting our assumption.
+                *Proof:* The induction hypotheses and (3) imply $j = k_0$ and $p = r_0$, so $r_0++ = d$, contradicting our assumption.
 
           2. There is an $s \in \mathbb{N}$ such that $s++ = r$.
 
              *Proof:* (3.3.2.1) proves that $r$ is positive, so it has a predecessor.
 
           3. $k = k_0$ and $s = r_0$
-             *Proof:* $n++ = k \cdot q + r_0++$, so $n = k \cdot q + s$. The statement follows from the induction hypothesis.
+             *Proof:* $n++ = k \cdot d + r_0++$, so $n = k \cdot d + s$. The statement follows from the induction hypothesis.
 
 
           4. Q.E.D.
