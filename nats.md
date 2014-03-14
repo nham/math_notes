@@ -69,7 +69,7 @@ If $(f_n)$ is a sequence of functions $f_n: \mathbb{N} \to \mathbb{N}$ and $c \i
     *Proof:* (3) and (4) establish that $\bigcap X$ is a function. So $g = \bigcap X$.
 
 
-## Addition in $\mathbb{N}$
+## Definition of addition in $\mathbb{N}$
 
 There is a binary operation $+: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ such that
 
@@ -398,3 +398,93 @@ For any $m, m \in \mathbb{N}$, exactly one of these is true:
  3. Q.E.D.
 
     *Proof:* (1) and (2)
+
+## Strong induction for $\mathbb{N}$
+TODO
+
+## Definition of multiplication in $\mathbb{N}$
+
+There is a binary operation $\cdot: \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ such that
+
+ - $0 \cdot m = 0$
+ - $(n++) \cdot m = (n \cdot m) + m$
+
+ 1. It suffices to assume $m \in \mathbb{N}$ and prove the existence of a function $g_m : \mathbb{N} \to \mathbb{N}$ such that
+
+     - $g_m(0) = 0$
+     - for all $n \in \mathbb{N}$, $g_m(n++) = g_m(n) + m$
+
+    *Proof:* Given such functions $g_m$, we define $n \cdot m := g_m(n)$.
+
+ 2. Q.E.D.
+
+    *Proof:* Recursively define $g_m$ by $g_m(0) = 0$ and, for all $n \in \mathbb{N}$, $f_n(x) := x + m$.
+
+
+## Lemmas for proving multiplication commutativity
+*Commutativity lemma 1:* For all $m \in \mathbb{N}$, $m \cdot 0 = 0$.
+
+ 1. $0 \cdot 0 = 0$
+
+    *Proof:* Immediate from definition of addition.
+
+ 2. if $n \cdot 0 = 0$, then $n++ \cdot 0 = 0$
+
+    *Proof:* $n++ \cdot 0 = (n \cdot 0) + 0 = 0 + 0 = 0$ by definition of addition, the induction hypothesis, and (1),  respectively.
+
+ 3. Q.E.D.
+
+    *Proof:* By induction.
+
+
+*Commutativity lemma 2:* For all $m, n \in \mathbb{N}$, $n \cdot (m++) = (n \cdot m) + n$.
+
+ 1. $0 \cdot (m++) = (0 \cdot m) + 0$
+
+    *Proof: $0 + (m++) = 0 = (0 \cdot m) + 0$ by commutativity lemma 1.
+
+ 2. If $n \cdot (m++) = (n \cdot m) + n$, then $(n++) \cdot (m++) = (n++ \cdot m) + n++$.
+
+    *Proof:* $(n++ \cdot m++) = (n \cdot m++) + m++ = (n \cdot m + n) + m++ = n \cdot m + (n++) + m = (n++ \cdot m) + n++$ by definition, induction hypothesis, properties of addition and definition, respectively.
+
+ 3. Q.E.D.
+
+    *Proof:* By induction.
+
+
+## Multiplication is commutative.
+For all $m, n \in \mathbb{N}, $m \cdot n = n \cdot m$.
+
+ 1. $0 \cdot m = m \cdot 0$
+
+    *Proof:* Immediately from the definition of multiplication and commutativity lemma 1.
+
+ 2. If $n \cdot m = m \cdot n$, then $n++ \cdot m = m \cdot n++$.
+
+    *Proof:* $(n++ \cdot m) = (n \cdot m) + m = (m \cdot n) + m = m \cdot n++$ by definition, induction hypothesis, commutativity lemma 2, respectively.
+
+ 3. Q.E.D.
+
+    *Proof:* By induction, since $m$ was arbitrary.
+
+
+## Multiplication in $\mathbb{N}$ has no zero divisors
+If $m \cdot n = 0$, then $m = 0$ or $n = 0$.
+
+ 1. It suffices to assume $m \in \mathbbb{N}$ is positive and prove
+
+    $$m \cdot n > 0$$
+ 
+    for all positive $n \in \mathbb{N}$.
+
+    *Proof:* This is the contrapositive.
+
+ 2. $m \cdot 1 > 0$
+    
+    *Proof:* $m \cdot 1 = m$
+
+ 3. If $m \cdot n > 0$, then $m \cdot n++ > 0$
+
+    *Proof:* TODO
+
+ 4. TODO
