@@ -18,6 +18,7 @@ A sequence in a set $X$ is any function $\mathbb{N} \to X$. Each natural number 
 ## One is the loneliest number
 We define $1 := 0++$.
 
+
 ## Recursive definitions in $\mathbb{N}$
 
 If $(f_n)$ is a sequence of functions $f_n: \mathbb{N} \to \mathbb{N}$ and $c \in \mathbb{N}$, then there is a unique function $g: \mathbb{N} \to \mathbb{N}$ assigning $g(0) = c$ and $g(n++) = f_n(g(n))$.
@@ -399,6 +400,67 @@ For any $m, m \in \mathbb{N}$, exactly one of these is true:
 
     *Proof:* (1) and (2)
 
+
+## Induction above
+For any $k \in \mathbb{N}$, if $S$ is a set such that $k \in S$ and $n \in S$ implies $n++ \in S$, then all $x \in \mathbb{N}$ such that $k \leq x$ have $x \in S$.
+
+ 1. It suffices to assume 
+
+     - $k > 0$
+     - $T$ is the set of $n \in \mathbb{N}$ such that $n < k$ or $n \in S$.
+
+    and prove $T = \mathbb{N}$.
+
+    *Proof:* If $k = 0$, then $S = \mathbb{N}$ by regular induction. Also, if such a set $T$ is established, then all $n \geq k$ must lie in $S$.
+
+ 2. $0 \in T$
+
+    *Proof:* It follows from the assumption in (1) that $k > 0$.
+
+ 3. If $n \in T$, then $n++ \in T$.
+ 
+    1. It suffices to prove the statement for each case:
+
+        - $n++ < k$
+        - $n++ = k$
+        - $n++ > k$
+
+       *Proof:* Trichotomy law for $\mathbb{N}$
+
+    2. Case $n++ < k$ 
+
+       *Proof:* $n++ \in T$ by definition.
+
+    3. Case $n++ = k$
+
+       *Proof:* $n++ \in S$ by definition, so $n++ \in T$.
+
+    4. Case $n++ > k$
+
+       1. There is a positive $d$ such that $k + d = n++$
+
+          *Proof:* By "A positive gap" proposition.
+
+       2. There is a $c \in \mathbb{N}$ such that $c++ = d$
+
+          *Proof:* Positive naturals have unique predecessors.
+
+       3. $(k + c)++ = n++$
+         
+          *Proof:* Substitution of (2) into (1) yields $(k + c)++ = k + c++ = n++$.
+
+       4. $k \leq n$
+
+          *Proof:* (3) implies $k + c = n$
+
+       5. Q.E.D.
+
+          *Proof:* $n \in S$ by definition of $S$, so $n++ \in S$ as well.
+
+ 4. Q.E.D.
+    *Proof:* (2) and (3) establish the induction.
+
+
 ## Strong induction for $\mathbb{N}$
 TODO
 
@@ -481,10 +543,14 @@ If $m \cdot n = 0$, then $m = 0$ or $n = 0$.
 
  2. $m \cdot 1 > 0$
     
-    *Proof:* $m \cdot 1 = m$
+    *Proof:* $m \cdot 1 = m \cdot 0 + m = 0 + m = m$
 
  3. If $m \cdot n > 0$, then $m \cdot n++ > 0$
 
-    *Proof:* TODO
+    *Proof:* $m \cdot n++ = m \cdot n + m$, which implies $ m \cdot n++ > m \cdot n > 0$.
+
+ 4. Q.E.D.
+
+    *Proof:* (2) and (3) establish, by "induction above", every positive $n$ has $m \cdot n > 0$.
 
  4. TODO
