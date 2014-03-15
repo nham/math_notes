@@ -1,4 +1,4 @@
-# Vector spaces and finite dimension
+# Finite dimensional vector spaces
 
 ## Definition of a group
 A **group** is a tuple $(G, \circ, e)$ where $G$ is a set and $\circ: G \times G \to G$ such that
@@ -51,11 +51,6 @@ An **abelian group** is a group with a commutative group operation.
 ## Definition of a subgroup
 A **subgroup** of a group $G$ is a subset $S$ which is a group when the group operation is restricted to $S$. 
 
-## Equivalent condition for a subgroup
-A subset is a subgroup iff it's closed under the group product and under inverses.
-
-TODO: prove it
-
 ## Definition of a field
 TODO
 
@@ -84,6 +79,87 @@ For all $v \in V$, $0 \cdot v = 0 \in V$.
 For all $v \in V$, $-1 \cdot v = -v \in V$.
 
 *Proof:* $v + -1 \cdot v = 1 \cdot v + -1 \cdot v = (1 + -1) \cdot v = 0 \cdot v = 0$ by distributivity and the previous proposition. The additive inverse of any group is unique, so $-v = -1 \cdot v$.
+
+
+## Definition of linear combinations
+Let $S$ be some finite set of vectors in a vector space $(V, \mathbb{F})$. A **scaling** of $S$ is a mapping $s: S \rightarrow \mathbb{F}$ assigning to every vector in $S$ some scalar. Then a **linear combination** is the vector $\sum{v \in S} s(v) \cdot v$. 
+
+If the scaling assigns all zero scalars, then it is called a **trivial scaling**.
+
+## Definition of a basis
+A **basis** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is a unique scaling whose linear combination is $v$.
+
+A basis is very often represented in ordered form $(v_1, \ldots, v_n)$, so that a scaling can be specified by $(a_1, \ldots, a_n)$. The scaling of a basis that represents a vector $v$ is often instead called the **coordinates** of $v$ with respect to the basis.
+
+## Definition of a generating or spanning set
+A **generating** set or **spanning** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is some scaling whose linear combination is $v$.
+
+More generally, the **span** of a set $S$, denoted $span S$, is the set of vectors in $v \in V$ for which there exist scalings of $S$ that combine to $v$. So a set $S$ is a spanning set for vector space $V$ if $V = span S$.
+
+## Definition of an independent set
+An **independent** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is at most one scaling whose linear combination is $v$.
+
+A set of vectors is **dependent** if it is not independent.
+
+
+## A basis is an independent spanning set
+$B$ is a basis iff it is an independent spanning set.
+
+*Proof:* immediately from the definitions.
+
+## The standard definition of independence
+A set $S$ is linearly independent iff the zero vector has a unique representation as the trivial scaling of $S$.
+
+*Proof:* Clearly if $S$ is independent then zero is uniquely obtained as a linear combination of a trivial scaling of $S$. Conversely, if some vector $v$ has two distinct scalings $f$ and $g$, then 
+
+$$v = \sum_{x \in S) f(x) \cdot x = \sum_{x \in S} g(x) \cdot x$$
+
+Then we must have
+
+$$ 0 = v - v = \sum_{x \in S} h(x) \cdot x$$
+
+for the scaling defined by $h(x) = f(x) - g(x)$. $h(x)$ is non-trivial since $f$ and $g$ are distinct by hypothesis, so the zero vector does not have a unique scaling.
+
+### Remark
+This is a more convenient way of determining when some set is independent.
+
+
+## Necessary and sufficient condition for dependence
+A set $S$ is dependent iff some $v \in S$ is in the span of the others
+
+ 1. If $S$ is dependent, then some $v \in S$ is in the span of the others.
+
+    1. There is some $v \in S$ and some scaling $f$ of $S$ such that $f(v) \neq 0$ and $0 = \sum_{x \in S} f(x) \cdot x$
+
+    *Proof:* By the standard definition for independence.
+
+    2. $0 = f(v) \cdot v + \sum_{x \in S, x \neq v} f(x) \cdot x$
+
+       *Proof:* Rearrangement of (1)
+
+    3. Q.E.D.
+
+       *Proof:* (2) implies that $v = \sum_{x \in S, x \neq v} g(x) \cdot x$ for $g(x) := f(x) / f(v)$. So $v \in span(S - v)$.
+
+     
+ 2. If some $v \in S$ is in the span of the others, then $S$ is dependent
+
+    *Proof:* If $v = \sum_{x \in S, x \neq v} f(x) \cdot x$, then 
+
+    $$
+    g(x) = 
+    \cases{
+    f(x)  & \text{if } x \neq v\cr
+    -1 & \text{o.w.}
+    }
+    $$
+
+    is a non-trivial scaling of $S$ that combines to $0$, so $S$ is dependent.
+
+ 3. Q.E.D.
+
+    *Proof:* By (1) and (2)
+
 
 
 
