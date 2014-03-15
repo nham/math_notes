@@ -10,6 +10,8 @@ Sets satisfy the following axioms:
  3b. For any objects $a$ and $b$, there is a set $C$ such that $a \in C$, $b \in C$, and if $x \in C$, then ($x = a$ or $x = b$).
  4. For any two sets $A$ and $B$, there is a set $A \cup B$ called the **union** of $A$ and $B$ such that $x \in A \cup B$ iff ($x \in A$ or $x \in B$).
  5. (Axiom of specification) For any set $A$ and property $P$ defined over all $x \in A$, there is a set $B$ whose elements are exactly the $x \in A$ such that $P(x)$ is true. This is often written $B := \{x \in A : P(x) \}$.
+ 6. (Axiom of replacement) For any set $A$ and any property $P$ such that for any $x \in A$, there is at most one object $y$ for which $P(x, y)$ is true. Then there is a set $B$ that contains exactly the $y$ such that $P(x, y)$ is true for some $x \in A$.
+ 7. (Axiom of infinity) There exists a set $\mathbb{N}$ that satisfies the Peano axioms (see the page on the natural numbers).
 
 ## Definition of set equality
 
@@ -90,6 +92,31 @@ If $A$ and $B$ are sets, then $A$ is a **subset** of $B$, denoted $A \subseteq B
 $A$ is a **proper subset** of $B$, denoted $A \subset B$, if $A \subseteq B$ and $A \neq B$.
 
 
+## A lemma about subsets
+For any sets $A$ and $B$, 
+
+ 1. $A \subseteq A \cup B$
+ 2. $A \cap B \subseteq A$
+
+*Proof:* If $x \in A, then clearly ($x \in A$ or $x \in B$), establishing (1). If ($x \in A$ and $x \in B$), then $x \in A$, establishing (2)
+
+
+## Equivalent definitions for subsets
+For any sets $A$ and $B$, $A \subseteq B$ iff $A \cup B = B$ iff $A \cap B = A$
+
+ 1. $A \subseteq B$ implies $A \cup B = B$
+
+    *Proof:* From the previous lemma we have B \subseteq A \cup B$. If $x \in A \cup B$, $x$ must also be in $B$ since $x \in A$ implies $x \in B$ via the hypothesis.
+
+ 2. $A \cup B = B$ implies $A \cap B = A$
+
+    *Proof:* The previous lemma proves $A \cap B \subseteq A$. Conversely, If $x \in $A$, $x$ must be in $B$ as well since by hypothesis $A \cup B = B$, so if $x \notin B$ it's not in $A \cup B$, implying it's not in $A$ either. This proves $x \in A \cap B$.
+
+ 3. $A \cap B = A$ implies $A \subseteq B$
+
+    *Proof:* If there were an element of $x \in A$ that wasn't in $B$, then $A$ would not be a subset of $A \cap B$, a contradiction.
+
+
 ## Set inclusion is a partial order
 ### Reflexivity
 For any set $A$, $A \subseteq A$.
@@ -122,13 +149,41 @@ Sets $A$ and $B$ are **disjoint** if $A \cap B = \emptyset$
 If $X$ and $Y$ are sets, the set $X\Y$ is defined by $X\Y := \{x \in X : x \notin Y\}$. This is also denoted $X - Y$.
 
 
-## A lemma about subsets
-For any sets $A$ and $B$, 
+## Another lemma about subsets
+For any sets $A, B, C$, 
 
- 1. $A \subseteq A \cup B$
- 2. $A \cap B \subseteq A$
+ - if $C \subseteq A$ and $C \subseteq B$, then $C \subseteq A \cap B$
 
-*Proof:* If $x \in A, then clearly ($x \in A$ or $x \in B$), establishing (1). If ($x \in A$ and $x \in B$), then $x \in A$, establishing (2)
+ - if $A \subseteq C$ and $B \subseteq C$, then $A \cup B \subseteq C$.
+
+
+ 1. if $C \subseteq A$ and $C \subseteq B$, then $C \subseteq A \cap B$
+
+    *Proof:* Every element of $C$ is an element of both $A$ and $B$, so it must be an element of $A \cap B$ as well.
+
+ 2. if $A \subseteq C$ and $B \subseteq C$, then $A \cup B \subseteq C$.
+
+    *Proof:* If every element of $A$ is an element of $C$ and every element of $B$ is an element of $C$, then every element of $A \cup B$ is an element of $C$.
+
+
+## Absorption laws
+If $A$ and $B$ are sets, then $A \cap (A \cup B) = A = A \cup (A \cap B)$
+
+ 1. $A \cap (A \cup B) \subseteq A$ and $A \subseteq A \cup (A \cap B)$
+
+   *Proof:* "A lemma about subsets"
+
+ 2. $A \subseteq A \cap (A \cup B)$
+
+    *Proof:* If $x \in A$, then ($x \in A$ and $x \in B$).
+
+ 3. $(A \cap B) \subseteq A \cap (A \cup B)$
+
+    *Proof:* If ($x \in A$ and $x in B$), then ($x \in A$ and $x \in A \cup B$).
+
+ 4. $A \cup (A \cap B) \subseteq A \cap (A \cup B)$
+
+    *Proof:* (2) and (3) and "Another lemma about subsets" imply the statement.
 
 
 ## Sets form a boolean algebra
@@ -188,7 +243,9 @@ For any set $X$, if $A, B, C$ are any subsets of $X$, then the following propert
 
 *Proof (h):*
  1. $X - A \cup B$ = (X - A) \cap (X - B)$ 
+
     *Proof:* For all $x \in X$, $x$ is not in $A \cup B$ implies it is neither in $A$ nor in $B$. Conversely, if $x$ is not in $A$ and not in $B$, it must not be in $A \cup B$ either.
 
  2. $X - A \cap B = (X - A) \cup (X - B)$
+
     *Proof:* If $x \in X$ isn't in $A \cap B$, it is either not in $A$ or not in $B$. If $x$ is in $A \cap B$, then $x$ is both in $A$ and in $B$.
