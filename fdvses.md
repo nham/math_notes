@@ -160,4 +160,23 @@ A set $S$ is dependent iff some $v \in S$ is in the span of the others
 
     *Proof:* By (1) and (2)
 
+## Removing dependent vectors doesn't change the span
+If $S$ is a set of vectors and $u \in S$ with $u \in span(S - u)$, then $span S = span(S - u)$.
 
+ 1. It suffices to assume $v \in V$ and that $g$ is a scaling of $S$ that combines to $v$, and prove there exists a scaling of $S - u$ that combines to $v$.
+
+   *Proof:* We already have $span(S - u) \subseteq span S$.
+
+ 2. There is a scaling $f$ of $S - u$ such that $u = \sum_{x \in S - u} f(x) \cdot x$.
+
+    *Proof:* By assumption that $u \in span(S - u)$.
+
+ 3. Q.E.D.
+
+    *Proof:* $v = \sum_{x \in S} g(x) \cdot x = g(u) \cdot u + \sum_{x \in S - u} g(x) \cdot x$ by (1). The scaling of $S - u$ defined by $h(x) := g(u) f(x) + g(x)$ combines to $v$.
+
+
+## A finite spanning set contains a basis
+If $S$ is a finite spanning set for a vector space $V$, then there is a $B \subseteq S$ which is a basis for $V$.
+
+*Proof:* If $S$ is independent, then it is a basis. Otherwise it is dependent and one element $x \in S$ is in the span of the others, so remove $x$ from $S$. The new set $S - x$ still spans $V$ because removing dependent vectors doesn't change the span. Repeat this process until an independent set is obtained. It must terminate eventually since we started with a finite set.
