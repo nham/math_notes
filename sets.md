@@ -186,6 +186,11 @@ If $A$ and $B$ are sets, then $A \cap (A \cup B) = A = A \cup (A \cap B)$
     *Proof:* (2) and (3) and "Another lemma about subsets" imply the statement.
 
 
+## Partition of the union
+For any sets $A$ and $B$, $A - B$, $A \cap B$ and $B - A$ are pairwise disjoint and $(A - B) \cup (A \cap B) \cup (B - A) = A \cup B$
+
+*Proof:* If $x \in A \cap B$, $x$ could not be in either $A - B$ or $B - A$ by definition (since $x$ is in both $A$ and $B$). If $x \in A - B$, $x$ is not in $B - A$ since $x \notin B$. The rest follow from contrapositives of the above.
+
 ## Sets form a boolean algebra
 For any set $X$, if $A, B, C$ are any subsets of $X$, then the following properties hold:
 
