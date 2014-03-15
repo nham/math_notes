@@ -45,6 +45,13 @@ For any $g, h \in G$, there is a unique $x \in G$ such that $g x = h$ and a uniq
 
 For the second equation, $h g^{-1}$ is a solution for $y g = h$. If some $z$ also solves it, again by cancellation $z = h g^{-1}$.
 
+
+## Inverse of the inverse
+For any $g \in G$, $(g^{-1})^{-1} = g$
+
+*Proof:* $g^{-1} (g^{-1})^{-1} = e = g^{-1} g$, so the statement is established via unique solvability.
+
+
 ## Definition of an abelian group
 An **abelian group** is a group with a commutative group operation.
 
