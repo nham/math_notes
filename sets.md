@@ -62,8 +62,6 @@ For all sets $A$ and $B$, $A = B$ implies $B = A$
     *Proof:* ($\forall x$, $x \in A$ iff $x \in B$) is just a restatement of the definition of $A = B$.
 
 ### Transitivity
-Dependencies: Symmetricity of set equality
-
 For all sets $A$, $B$ and $C$, ($A = B$ and $B = C$) imply $A = C$.
 
  1. It suffices to assume
@@ -254,3 +252,95 @@ For any set $X$, if $A, B, C$ are any subsets of $X$, then the following propert
  2. $X - A \cap B = (X - A) \cup (X - B)$
 
     *Proof:* If $x \in X$ isn't in $A \cap B$, it is either not in $A$ or not in $B$. If $x$ is in $A \cap B$, then $x$ is both in $A$ and in $B$.
+
+
+## Definition of functions
+For any sets $X$ and $Y$, let $P$ be a property such that for every $x \in X$ there is exactly one $y \in Y$ such that $P(x,y)$ is true. Then a **function** $f: X \to Y$ is defined to be an object which gives for every $x \in X$, the unique element $f(x) \in Y$ such that $P(x, f(x))$ is true.
+
+
+## Definition of function equality
+If $f$ and $g$ are two functions $X \to Y$ for some sets $X$ and $Y$, then $f$ and $g$ are **equal** ($f = g$) iff for every $x \in X$, $f(x) = g(x)$.
+
+
+## Function equality is an equivalence relation
+### Reflexivity
+For all sets $X$ and $Y$ and every function $f: X \to Y$, $f = f$.
+
+### Symmetricity
+For all sets $X$ and $Y$ and all functions $f: X \to Y$, and $g: X \to Y$, if $f = g$.
+
+### Transitivity
+For all sets $X, Y, Z$ and all functions $f: X \to Y$, $g: X \to Y$, $h: X \to Y$, if $f = g$ and $g = h$, then $f = h$.
+
+*Proof:* All of the above follow from the equality relation on objects that can be elements of sets. Tao really doesn't seem to define or axiomatize this, but I have to assume it is there, otherwise this doesn't make any sense.
+
+## Definition of function composition
+If $f: X \to Y$ and $g: Y \to Z$ for sets $X, Y, Z$, then the **composition** of $f$ and $g$ is defined to be a function $g \circ f: X \to Z$ such that for all $x \in X$, $(g \circ f)(x) := g(f(x))$.
+
+The range of $f$ must match the domain of $g$ for $g \circ f$ to be defined.
+
+
+## Composition is associative
+For functions $f: X \to Y$, $g: Y \to Z$, $h: Z \to W$, we have
+
+$$h \circ (g \circ f) = (h \circ g) \circ f$$
+
+*Proof:* $(h \circ (g \circ f))(x) = h((g \circ f)(x)) = h(g(f(x)) = (h \circ g)(f(x)) = ((h \circ g) \circ f)(x)$
+
+## Definition of injective functions
+A function $f: X \to Y$ is **injective** iff for any $a, b \in X$, $f(a) = f(b)$ implies $a = b$
+
+## Definition of surjective functions
+A function $f: X \to Y$ is **surjective** iff for any $y \in Y$ there is an $x \in X$ such that $f(x) = y$.
+
+## Definition of bijective functions
+A function $f: X \to Y$ is **bijective** iff it is both injective and surjective.
+
+Equivalently, $f$ is bijective iff for every $y \in Y$ there is exactly one $x \in X$ such that $f(x) = y$.
+
+
+## Bijections have inverses
+If $f: X \to Y$ is a bijection, then there is a unique function $f^{-1}: Y \to X$ such that $(f \circ f^{-1})(y) = y$ and $(f^{-1} \circ f)(x) = x$ for all $x \in X$ and $y \in Y$.
+
+ 1. If such a function exists, it is unique.
+
+    *Proof:* Assume $g$ and $h$ are inverses for $f$. Then for all $y \in Y$, $g(y) = g(f(h(y))) = (g \circ f)(h(y)) = h(y)$.
+
+ 2. Such a function exists.
+
+    *Proof:* We define the property $P(y, x)$ to be true exactly when $y \in Y$ and $x \in X$ is the unique element of $X$ such that $f(x) = y$, which is possible by the definition of bijective functions. Then $f^{-1}: Y \to X$ is defined to be the function associated with $P$.
+
+ 3. Q.E.D.
+
+    *Proof:* (2) and (1) establish existence and uniqueness
+
+## Composition of injective/surjective functions is injective/surjective
+If $f: X \to Y$ and $g: Y \to Z$ are functions then
+
+ - $f$ and $g$ injective implies $g \circ f$ injective
+ - $f$ and $g$ surjective implies $g \circ f$ surjective
+
+ 1. $f$ and $g$ injective implies $g \circ f$ injective
+
+    *Proof:* $g(f(a)) = g(f(b))$ implies $f(a) = f(b)$ by $g$'s injectivity, which implies $a = b$ by $f$'s injectivity.
+
+ 2. $f$ and $g$ surjective implies $g \circ f$ surjective
+
+    *Proof:* Every $z \in Z$ has a $y$ such that $g(y) = z$ by $g$'s surjectivity. There is an $x$ such that $f(x) = y$ by $f$'s surjectivity. so $z = g(f(x))$.
+
+
+## Cancellation laws for function composition
+If $f, \tilde{f} : X \to Y$ and $g, \tilde{g} : Y \to Z$, then
+
+ - if $g$ injective, then $g \circ f = g \circ \tilde{f}$ implies $f = \tilde{f}$
+ - if $f$ surjective, then $g \circ f = \tilde{g} \circ f$ implies $g = \tilde{g}$
+
+ 1. if $g$ injective, then $g \circ f = g \circ \tilde{f}$ implies $f = \tilde{f}$
+
+    *Proof:* By assumption, For all $x \in X$, $g(f(x)) = g(\tilde{f}(x))$, so $f(x) = \tilde{f}(x)$ by $g$'s injectivity, which proves $f = \tilde{f}$.
+
+
+ 2. if $f$ surjective, then $g \circ f = \tilde{g} \circ f$ implies $g = \tilde{g}$
+
+    *Proof:* For all $y \in Y$, there is an $x \in X$ such that $f(x) = y$, by $f$'s surjectivity, so $g(y) = $g(f(x)) = \tilde{g}(f(x)) = \tilde{g}(y)$.
+
