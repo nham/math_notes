@@ -187,3 +187,28 @@ If $S$ is a set of vectors and $u \in S$ with $u \in span(S - u)$, then $span S 
 If $S$ is a finite spanning set for a vector space $V$, then there is a $B \subseteq S$ which is a basis for $V$.
 
 *Proof:* If $S$ is independent, then it is a basis. Otherwise it is dependent and one element $x \in S$ is in the span of the others, so remove $x$ from $S$. The new set $S - x$ still spans $V$ because removing dependent vectors doesn't change the span. Repeat this process until an independent set is obtained. It must terminate eventually since we started with a finite set.
+
+
+## Definition of a linear map
+If $(V, \mathbb{F})$ and $(W, \mathbb{F})$ are vector spaces, a linear map is a function $T: V \to W$ such that
+
+ - for all vectors $u, v \in V$, T(u + v) = T(u) + T(v)$
+ - $for any vector $v \in V$ and any scalar $a \in \mathbb{F}$, $T(a \cdot v) = a \cdot T(v)$
+
+Note: by induction we can extend the linearity properties to any finite linear combination: $T(\sum_{v \in S} a_v \cdot v) = \sum_{v \in S} a_v \cdot T(v)$.
+
+## Assigning map values for a basis determines the map
+If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then assigning values $T(v)$ for all $v \in B$ completely determines the rest of the map.
+
+*Proof:* Every $v \in V$ is a linear combination of the $B$, so $T(v) = \sum_{b \in B} a_b \cdot T(b)$.
+
+
+## Invertibility
+A linear map $T: V \to W$ is **left invertible** if there is a linear map $U: W \to V$ such that $U \circ T = id_V$. It is called **right invertible** if there is a linear map $S: W \to V$ such that $T \circ S = id_W$. $T$ is called **invertible** if it is both left- and right-invertible.
+
+## Definition of an isomorphism
+An **isomorphism** is a bijective linear map.
+
+
+## Invertible linear maps are isomorphisms.
+TODO
