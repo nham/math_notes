@@ -15,3 +15,10 @@ all:
 			--include-after-body ${include_dir}/footer.html \
 			--smart \
 			--mathjax
+
+	pandoc -s ints.md -t html5 -o ${out_dir}/ints.html \
+			--include-in-header ${include_dir}/header.html \
+			--include-before-body ${include_dir}/before_body.html \
+			--include-after-body ${include_dir}/footer.html \
+			--smart \
+			--mathjax
