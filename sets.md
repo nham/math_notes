@@ -8,10 +8,12 @@ Sets satisfy the following axioms:
  2. There exists a set, denoted $\emptyset$, called the **empty set**, such that for every object $x$, $x \notin \emptyset$.
  3a. For every object $a$, there is a set $A$ such that $a \in A$ and for all $x \in A$, $x = a$. Such sets are called **singleton** sets.
  3b. For any objects $a$ and $b$, there is a set $C$ such that $a \in C$, $b \in C$, and if $x \in C$, then ($x = a$ or $x = b$).
- 4. For any two sets $A$ and $B$, there is a set $A \cup B$ called the **union** of $A$ and $B$ such that $x \in A \cup B$ iff ($x \in A$ or $x \in B$).
+ 4. (Axiom of pairwise union) For any two sets $A$ and $B$, there is a set $A \cup B$ called the **union** of $A$ and $B$ such that $x \in A \cup B$ iff ($x \in A$ or $x \in B$).
  5. (Axiom of specification) For any set $A$ and property $P$ defined over all $x \in A$, there is a set $B$ whose elements are exactly the $x \in A$ such that $P(x)$ is true. This is often written $B := \{x \in A : P(x) \}$.
  6. (Axiom of replacement) For any set $A$ and any property $P$ such that for any $x \in A$, there is at most one object $y$ for which $P(x, y)$ is true. Then there is a set $B$ that contains exactly the $y$ such that $P(x, y)$ is true for some $x \in A$.
  7. (Axiom of infinity) There exists a set $\mathbb{N}$ that satisfies the Peano axioms (see the page on the natural numbers).
+ 8. (Power set axiom) For any sets $X$ and $Y$, there is a set $Y^X$ of all functions (to be defined below) from $X$ to $Y$.
+ 9. (Axiom of union) If $A$ is a set whose elements are all sets, then there is a set $\bigcup A$ whose elements are exactly those elements in one of the sets in $A$. ($x \in \bigcup A$ iff $\exists S \in A$ such that $x \in S$)
 
 ## Definition of set equality
 
@@ -314,6 +316,9 @@ If $f: X \to Y$ is a bijection, then there is a unique function $f^{-1}: Y \to X
 
     *Proof:* (2) and (1) establish existence and uniqueness
 
+### Corollary
+$f^{-1}$'s inverse is $f$
+
 ## Composition of injective/surjective functions is injective/surjective
 If $f: X \to Y$ and $g: Y \to Z$ are functions then
 
@@ -327,6 +332,12 @@ If $f: X \to Y$ and $g: Y \to Z$ are functions then
  2. $f$ and $g$ surjective implies $g \circ f$ surjective
 
     *Proof:* Every $z \in Z$ has a $y$ such that $g(y) = z$ by $g$'s surjectivity. There is an $x$ such that $f(x) = y$ by $f$'s surjectivity. so $z = g(f(x))$.
+
+
+### Corollary
+If $f: X \to Y$ and $g: Y \to Z$ are bijective, then $g \circ f$ is too and $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$
+
+*Proof:* It follows that $g \circ f$ is bijective since bijections are both injective and surjective. By associativity, $f^{-1} \circ g^{-1}$ is the inverse.
 
 
 ## Cancellation laws for function composition
@@ -344,3 +355,114 @@ If $f, \tilde{f} : X \to Y$ and $g, \tilde{g} : Y \to Z$, then
 
     *Proof:* For all $y \in Y$, there is an $x \in X$ such that $f(x) = y$, by $f$'s surjectivity, so $g(y) = $g(f(x)) = \tilde{g}(f(x)) = \tilde{g}(y)$.
 
+
+## Definition of inclusion and identity maps
+If $X \subseteq Y$, the **inclusion** $\iota_{X \to Y}$ is defined by $\iota_{X \to Y}(x) = x$ for all $x \in X$. It is an **identity** map when $X = Y$.
+
+## Hashtag inclusionfacts
+If $A$, $B$ and $C$ are sets, then:
+
+ - $A \subseteq B \subseteq C$ implies that $\iota_{B \to C} \circ \iota_{A \to B} = \iota_{A \to C}$
+ - if $f: A \to B$ then $f = f \circ \iota_{A \to A} = \iota_{B \to B} \circ f$
+ - if $f: A \to B$ is bijective, then $f^{-1} \circ f = \iota_{A \to A}$ and $f \circ f^{-1} = \iota_{B \to B}$
+ - If $A$ and $B$ are disjoint and $f: A \to C$ and $g: B \to C$ are functions then there is a unique $h: A \cup B \to C$ such that $h \circ \iota_{A \to A \cup B} = f$ and $h \circ \iota_{B \to A \cup B} = g$
+
+
+ 1. $A \subseteq B \subseteq C$ implies that $\iota_{B \to C} \circ \iota_{A \to B} = \iota_{A \to C}$
+
+    *Proof:* First note that $\iota_{B \to C} \circ \iota_{A \to B} : A \to C$. For all $a \in A$, $(\iota_{B \to C} \circ \iota_{A \to B})(a) = \iota_{B \to C} (\iota_{A \to B}(a)) = a = \iota_{A \to C}(a)$.
+
+ 2. If $f: A \to B$ then $f = f \circ \iota_{A \to A} = \iota_{B \to B} \circ f$
+
+    *Proof:* For all $a \in A$, $f(a) = f(\iota_{A \to A}(a)) = (f \circ \iota_{A \to A})(a)$ and $f(a) = \iota_{B \to B}(f(a)) = (\iota_{B \to B} \circ f)(a)$.
+
+ 3. If $f: A \to B$ is bijective, then $f^{-1} \circ f = \iota_{A \to A}$ and $f \circ f^{-1} = \iota_{B \to B}$
+
+    *Proof:* Since the domains and ranges agree, this follows from "Bijections have inverses".
+
+ 4. If $A$ and $B$ are disjoint and $f: A \to C$ and $g: B \to C$ are functions then there is a unique $h: A \cup B \to C$ such that $h \circ \iota_{A \to A \cup B} = f$ and $h \circ \iota_{B \to A \cup B} = g$
+
+    *Proof:* We define a property $P(x,y)$ to be true exactly when $x \in A$ and $y = f(x)$ or $x \in B$ and $y = g(x)$. This property is suitable for defining a function since for all $x \in A \cup B$, there is exactly one $y$ (either $f(x)$ or $g(x)$, depending on whether $a \in A$ or $x \in B$) such that $P(x, y)$ is true. The resulting function $h$ has, for all $x \in A$,  $h(\iota_{A \to A \cup B}(x)) = h(x) = f(x)$, where the latter holds by definition of $h$ since $x \in A$. Also, for all $y \in B$, $h(\iota_{B \to A \cup B}(y)) = h(y) = g(y)$, where the latter holds once again since $y \in B$.
+
+
+## Definition of function images
+If $X$ and $Y$ are sets and $f: X \to Y$ is a function, then for any set $S \subseteq X$, we define a new set 
+
+$$f(S) := \{y \in Y : \exists x \in S, f(x) = y\}$$
+
+This set is well-defined via the axiom of replacement by using a property $P(x,y)$ which is only true when $x \in S$ and $y = f(x)$.
+
+$f(S) \subseteq Y$, by definition, and is called the **image** of $f$ under $S$.
+
+## Definition of function pre-image
+If $X$ and $Y$ are sets and $f: X \to Y$ is a function, then for any $T \subseteq Y$, we define a new set
+
+$$f^{pre}(T) := \{ x \in X : $f(x) \in T$ \}$$
+
+This set is well-defined, via the axiom of specification via a property $P(x)$ which is only true when $x \in X$ and $f(x) \in T$.
+
+$f^{pre}(T)$ is called the pre-image of $T$.
+
+
+## Power sets exist.
+If $X$ is a set, then the set $\{Y: Y \subseteq X\}$ exists. This set is called the **power set**, and is denoted $2^X$.
+
+*Proof:* The set $\{0, 1\}^X$ of all functions $X \to \{0, 1\}$, exists by the power set axiom. TODO
+
+
+## Definition of an index set
+A set $I$ is called an **index set** if for every $x \in I$ there is some unique set $S_x$. 
+
+### Union of an indexed family
+For any such index set, there is a set $\mathcal{A}$ of all the indexed sets: use the axiom of replacement on set $I$ along with a property $P(x,A)$ which is true exactly when $x \in I$ and $A$ is the unique set $S_x$ indexed by $x$. This new set is the $\mathcal{A}$ previously mentioned. We can now use the axiom of union to obtain a set that contains exactly the elements of the sets that are indexed by $I$.
+
+### Intersection of a non-empty indexed family
+If $I$ is non-empty, some $x \in I$ exists. Via the axiom of specification we construct the set
+
+$$S_x = \{a \in A_x : \forall y \in I, a \in A_y\}$$
+
+We define the **intersection** of the family of sets indexed by $I$ to be $S_x$.
+
+Note that if $z \in S_x$, then $z \in A_y$ for all $y \in I$. Conversely, if $z \in A_y$ for all $y \in I$, then it's in $A_x$ in particular, and so in $S_x$. This establishes that for any $x, y \in I$, $S_x = \{a \in \bigcup_{\alpha in I} A_{\alpha} : \forall \alpha \in I a \in A_{\alpha} \} = S_y$. In other words, the definition of intersection is independent of the choice of $x \in I$.
+
+
+## Pre-image and image
+For any function $f: X \to Y$ and any set $S \subseteq X$, $f^{pre}(f(S)) \subseteq S$. For any set $T \subseteq Y$, $f(f^{pre}(T)) = T$.
+
+*Proof (sketch):* In the former case, more elements than what's in $S$ may map into the elements that $S$ maps into, whereas the elements in $Y$ that are mapped to by elements that map to $T$ is exactly $T$. TODO: clean up.
+
+
+## Definition of ordered pairs
+If $a$ and $b$ are objects, we define a set $\{\{a\}, \{a, b\}\}$ by 3 invocations of the pair axiom (3b). Notate this set $(a, b)$. Then for two more objects $c$ and $d$, we can prove:
+
+$$(a,b) = (x, y) iff (a = x \and b = y)$$
+
+*Proof:* If $a = b$, then $(a, b) = \{\{a\}\}$, so if $x \neq y$ then $(a, b) \neq (x ,y)$ (the latter has two elements). So we have $x = y$. By set equality, $\{a\} = \{x\}$, implying $a = x$. This implies $b = y$ as well. Conversely, if $a = x$ and $b = y$, then $(a, b) = \{\{a\}\} = \{\{x\}\} = (x, y)$.
+
+The above can be said for $x = y$.
+
+We now assume $a \neq b$ and $x \neq y$. If $(a, b) = \{\{a\}, \{a, b\}\}$ = \{\{x\}, \{x, y\}\} = (x, y)$, then $\{a\} \neq \{x, y\}$ and $\{x\} \neq \{a, b\}$ since the number of elements differ. So we must have $a = x$. This implies $b = y$ as well. Conversely if $a = x$ and $b = y$, then the two sets are clearly equal. $\Box$
+
+The set defined above is called an **ordered pair**.
+
+
+## Definition of Cartesian product
+For sets $X$ and $Y$, the set $X \times Y := \{(x, y) : x \in X, y \in Y\}$ exists.
+
+*Proof:* I haven't carefully thought this out, but I believe you can use, for every $y \in Y$, the axiom of replacement on set $X$ to construct a set $S_y = \{(x,y) : x \in X\}$. This is an indexed family of sets, so you can create a set containing all of these sets. Then uset he axiom of union to bring them all into a single set.
+
+To be honest, while it's nice to know that you can build these things out of sets, including $n$-tuples and $n$-fold Cartesian products, I am much more willing to just lay down an axiom that says that they exist exactly like we expect they do.
+
+
+## Definition of $n$-tuples and $n$-fold Cartesian products
+This is a new axiom or whatever. For any sets $A_1, \ldots, A_n$, $n$-tuples $(x_1, \ldots, x_n)$ with $x_i \in A_i$ exist, and you can use these to define $n$-fold cartesian products notated
+
+$$\Prod_{i = 1}^n A_i$$
+
+$n$-tuple equality behaves like you'd expect it to: $(x_1, \ldots, x_n) = (y_1, \ldots, y_m)$ iff $n = m$ and $x_i = y_i$ for all $i$.
+
+
+## Finite choice
+Let $n \in \mathbb{N}^+$. For each $i$ with $1 \leq i \leq n$, let $X_i$ be a non-empty set. Then there is a tuple $(x_i)_{1 \leq i \leq n}$ such that $x_i \in X_i$ for all $i$.
+
+*Proof:* Blugh, too burned out to do this. TODO
