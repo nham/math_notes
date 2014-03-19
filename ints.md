@@ -242,3 +242,49 @@ If $x, y \in \mathbb{Z}$, and $x y = 0$, then $x = 0$ or $y = 0$.
 If $x, y \in \mathbb{Z}$ and $z \neq 0$, then $xz = yz$ implies $x = y$.
 
 *Proof:* $xz = yz$ implies that $xz - yz = (x - y)z = 0$, and $z \neq 0$, so $x - y$ must be zero due to no zero divisors. This implies $x = y$.
+
+
+## Ordering on the integers
+We define, for any $a, b \in \mathbb{Z}$, the relation $a \leq b$ to be true if there is an $n \in \mathbb{Z}$ such that $a + n = b$. We say $a < b$ if $n > 0$.
+
+
+### Equivalent characterization
+$a < b$ iff $b - a$ is positive.
+
+ 1. $a < b$ implies $b - a$ is positive
+
+    *Proof:* We have $a + n = b$ for some $n > 0$,  so we subtract $a$ from both sides.
+
+ 2. $b - a$ being positive implies $a < b$
+
+    *Proof:* $b - a = n$ for $n > 0$, so $a + b = n$ by adding $a$.
+
+
+## Facts about order in $\mathbb{Z}$.
+For any $a, b, c \in \mathbb{Z}$,
+
+ - if $a < b$ then $a + c < b + c$
+ - if $a < b$ and $c > 0$, then $ac < bc$
+ - if $a < b$ then $-b < -a$
+ - If $a < b$ and $b < c$ then $a < c$
+ - Exactly one holds: $a < b$, $a = b$, $b < a$.
+
+ 1. if $a < b$ then $a + c < b + c$
+
+    *Proof:* $a + n = b$ implies $a + c + n = b + c$, certainly.
+
+ 2. if $a < b$ and $c > 0$, then $ac < bc$
+
+    *Proof:* $a + n = b$ for $n > 0$, so $ac + nc = bc$
+
+ 3. if $a < b$ then $-b < -a$
+
+    *Proof:* $a + n = b$, so adding $-a - b$ to both sides proves the claim.
+
+ 4. If $a < b$ and $b < c$ then $a < c$
+
+    *Proof:* This means $a + m = b$ and $b + n = c$ for $m, n > 0$. So $a + m + n = c$. This proves it since $n > 0$ and $m > 0$ imply $m + n > 0$ by (1).
+
+ 5. Exactly one holds: $a < b$, $a = b$, $b < a$.
+
+    *Proof:* By the integer trichotomy, exactly one of $(a - b) > 0$, $a - b = 0$, or $-(a - b) > 0$. In the first case we have $a < b$, in the second case we have $a = b$, and in the third case we have $b < a$ since $(a - b) + -(a - b) = (a - b) + (b - a) = 0$, so $-(a - b) = (b - a) > 0$.
