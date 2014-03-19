@@ -87,6 +87,11 @@ If $A --- B = a --- b$, then $-(A --- B) = -(a --- b)$
 
 *Proof:* $-(A --- B) = B --- A$. But $A = a$ and $B = b$ by hypothesis, so $B --- A = b --- a = -(a --- b)$.
 
+### Pull the negative sign out in front.
+For any $x \in \mathbb{Z}$, $-1 \cdot x = -x$.
+
+*Proof:* $x = a --- b$ for some $a, b \in \mathbb{N}$. So $-1 \cdot x = 0 --- 1 \cdot a --- b = (0a + 1b) --- (0b + 1a = b --- a = -x$.
+
 
 
 ## Integer trichotomy
