@@ -1,6 +1,27 @@
 ## Definition of rationals
 A **rational number** is an expression $a // b$ for $a,b \in \mathbb{Z}$, $b \neq 0$. The set of all rationals is denoted $\mathbb{Q}$. Equality in $\mathbb{Q}$ is defined by $a // b = c // d$ iff $ad = cb$.
 
+### Equality is an equivalence relation.
+Equality amongst rationals is an equivalence relation.
+
+ 1. Assume $x, y, z \in \mathbb{Q}$ and that $x = a // b$, $y = c // d$, $z = e // f$.
+
+ 2. $x = x$
+
+    *Proof:* $ab = ba$.
+
+ 3. $x = y$ implies $y = x$
+
+    *Proof:* We assumed $ad = cb$, so $cb = ad$ by symmetry of integer equality.
+
+ 4. $x = y$ and $y = z$ implies $x = z$.
+
+    *Proof:* By hypothesis $ad = cb$ and $cf = ed$, so $af(cd) = adcf = cbed = eb(cd)$. We know $b \neq 0$, $d \neq 0$, $f \neq 0$. If any one of $a$, $c$ or $e$ is zero, then all of them are zero.  If none are zero, then $af(cd) \neq 0 \neq eb(cd)$, so by cancellation $af = eb$, which implies $x = z$.
+
+ 5. Q.E.D.
+
+    *Proof:* (2), (3), (4)
+
 ## Addition, multiplication, negation
 We define $a // b + c // d$ by $(ad + cb) // bd$ and $a // b \ast c // d$ by $ac // bd$. Also, define negation by $-(a // b) = (-a) // b$.
 
@@ -82,40 +103,109 @@ and for $x \neq 0$,
 
  3. $x + (y + z) = (x + y) + z$
 
-    *Proof:* We must prove $(a + (c + e)) // (b + (d + f)) = ((a + c) + e) // ((b + d) + f)$. This follows immediately from associativity of addition in $\mathbb{N}$.
+    *Proof:* We must prove $a // b + (cf + ed)) // (df) = (adf + (cf + ed)b) // bdf$ is equal to $(ad + cb) // bd + e // f = ((ad + cb)f + ebd) // bdf$. This follows from distributivity in $\mathbb{Z}$.
 
  4. $x + 0 = 0 + x = x$
 
-    *Proof:* We have $x + 0 = x$ since $a + 0 = a$ and $b + 0 = 0$ in $\mathbb{N}$. The other equality follows from commutativity in (2).
+    *Proof:* $x + 0 = a // b + 0 // 1 = (a1 + 0b) // (b1) = a // b = x$. The other equality follows from commutativity in (2).
 
  5. $x + (-x) = (-x) + x = 0$
 
-    *Proof:* We must prove $(a + b) // (b + a) = 0 // 0$. The other equality follows from commutativity in (2). But this statement follows from commutativity in $\mathbb{N}$.
+    *Proof:* $x + (-x) = a // b + (-a) // b = (ab + (-a)b) // bb = (ab - ab) // bb) = 0$. The other equality follows from commutativity in (2).
 
  6. $x y = y x$
 
-    *Proof:* We must prove $(ac + bd) // (ad + bc) = (ca + db) // (cb + da)$. This follows from the definition of equality in $\mathbb{Z}$ and commutativity of multiplication in $\mathbb{N}$.
+    *Proof:* This follows directly from commutativity in $\mathbb{Z}$.
 
  7. $x (y z) = (x y) z$
 
-    1. It suffices to prove that
-     
-       $$a(ce + df) + b(cf + de) + (ac + bd)f + (ad + bc)e = (ac + bd)e + (ad + bc)f + a(cf + de) + b(ce + df)$$
-
-       *Proof:* $x (y z) = $x \cdot (ce + df) // (cf + de) = (a(ce + df) + b(cf + de)) // (a(cf + de) + b(ce + df))$ and $(x y) z = (ac + bd) // (ad + bc) \cdot z = $((ac + bd)e + (ad + bc)f) // ((ac + bd)f + (ad + bc)e)$
-
-    2. Q.E.D.
-
-       *Proof:* Distributivity in $\mathbb{N}$ and carefully checking both sides proves the statement.
+    *Proof:* This follows directly from associativity in $\mathbb{Z}$.
 
  8. $x 1 = 1 x = x$
 
-    *Proof:* We must prove $a1 + b0 // a0 + b1 = a // b$, which is true. The other equality follows from commutativity in (1)$.
+    *Proof:* This follows from $1$ being a multiplicative identity for $\mathbb{Z}$.
 
  9. $x (y + z) = x y + x z$
 
-    *Proof:* We must prove $(a(c + e) + b(d + f)) // (a(d + f) + b(c + e))$ is equal to $(ac + bd) // (ad + bc) + (ae + bf) // (af + be)$, which is true by the definition of addition in $\mathbb{Z}$ and the distributive law in $\mathbb{N}$.
+    *Proof:*  $x (y + z) = $(a (cf + ed)) // bdf$, which equals
+     $((ad + cb)bf + (af + eb)bd) // bdbf = (ad + cb) // bd + (af + eb) // bf$
 
  10. $(x + y) z = x z + y z$
 
      *Proof:* This follows from (9) and (2), but can also be proved directly in a manner similar to (9).
+
+ 11. if $x \neq 0 $, then $x^{-1} x = x x^{-1} = 1$.
+
+     *Proof:* $x^{-1} x = b // a \ast a // b = ba // ab$, which equals $1$ since $ba = ab$. The other equality holds by commutativity in (2).
+
+
+## Definition of the quotient operation in $\mathbb{Q}$
+For $x, y \in \mathbb{Q}$, $y \neq 0$, we define $x / y := x y^{-1}$.
+
+## Definition of positive/negative
+$x \in \mathbb{Q}$ is **positive** iff $x = a / b$ for some $a, b$ that are both positive in $\mathbb{Z}$. $x$ is **negative** iff $-x$ is positive.
+
+## Trichotomy of rationals
+For any $x \in \mathbb{Q}$, exactly one holds:
+
+ - $x = 0$
+ - $x$ is positive
+ - $x$ is negative
+
+ 1. Assume $x = a / b$ for some $a, b \in \mathbb{Z}$ and $b \neq 0$
+
+ 2. At least one is true
+
+    1. $a = 0$ iff $x = 0$
+
+    2. If $a \neq 0$, then $x$ is positive or $x$ is negative
+
+        *Proof:* We have $a \neq 0$ and $b \neq 0$, so if both are positive as integers or both are negative as integers, $x$ is positive (in the first case by definition, in the second case by representing $x$ as $-a / -b$. Otherwise $x$ is negative.
+
+ 3. At most one is true.
+
+    *Proof:* By the trichotomy of integers, exactly one holds:
+
+     - $a = 0$
+     - $a > 0$
+     - $a < 0$
+
+    $x = 0$ implies $a = 0$. $x$ being positive implies $a > 0$. $x$ being negative implies $-x$ is positive, or $-a > 0$, so $a$ is negative. So by the trichotomy of integers, we could not have more than one.
+
+ 4. Q.E.D.
+
+    *Proof:* (2) and (3)
+
+## Definition of order on $\mathbb{Q}$
+For any $x, y \in \mathbb{Q}$, we define $x > y$ to be true iff $x - y$ is positive and $x < y$ iff $x - y$ is negative. $x \leq y$ iff $x < y$ or $x = y$.
+
+
+## An ordered field appears.
+For any $x, y, z \in \mathbb{Q}$, we have:
+
+ - Exactly one of these holds: a) $x < y$, b) $x = y$, c) $x > y$.
+ - $x < y$ iff $y > x$.
+ - If $x < y$ and $y < z$ then $x < z$.
+ - if $x < y$ then $x + z < y + z$
+ - if $x < y$ and $z$ is positive, then $xz < yz$.
+
+ 1. Exactly one of these holds: a) $x < y$, b) $x = y$, c) $x > y$.
+
+    *Proof:* By the trichotomy of rationals $x - y$ is either negative, zero or positive, which correspond to (a), (b) and (c), respectively.
+
+ 2. $x < y$ iff $y > x$.
+
+    *Proof:* $x < y$ iff $x - y$ is negative iff $-(x - y)$ is positive. $y > x$ iff $y - x$ is positive. $(y - x) + (x - y) = 0$, so $(y - x) = -(x - y)$ by cancellation in $\mathbb{Q}$'s addition.
+
+ 3. If $x < y$ and $y < z$ then $x < z$.
+
+    *Proof:* By hypothesis and (2), $y - x$ and $z - y$ are positive, so $y - x = a / b$ and $z - y = c / d$ for positive $a, b, c, d \in \mathbb{Z}$. So $z - x = z - y + y - x = (cb + ad) / bd. By order properties of the integers, $cb$, $ad$ and $bd are all positive, so $z - x$ is positive too, implying $x < z$ by definition and (2).
+
+ 4. if $x < y$ then $x + z < y + z$
+
+    *Proof:* $x < y$ implies $y - x$ is positive by (2), so $(y+z) - (x + z) = (y - x)$ is positive.
+
+ 5. if $x < y$ and $z$ is positive, then $xz < yz$.
+
+    *Proof:* We must prove $yz - xz$ is positive, but we know $y - x$ is positive (by (2)) and thus $(y - x)z$ is positive also by order properties of the integers.
+
