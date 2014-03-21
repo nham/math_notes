@@ -139,6 +139,11 @@ and for $x \neq 0$,
      *Proof:* $x^{-1} x = b // a \ast a // b = ba // ab$, which equals $1$ since $ba = ab$. The other equality holds by commutativity in (2).
 
 
+## No zero divisors for the rationals
+If $x, y \in \mathbb{Q}$, and $x y = 0$, then $x = 0$ or $y = 0$.
+
+*Proof:* If $x \neq 0$, then $y = x^{-1} x y = x^{-1} 0 = 0$.
+
 ## Cancellation of addition
 For any $x, y, z \in \mathbb{Q}$, $x + y = x + z$ implies $y = z$ and $x + z = y + z$ implies $x = y$.
 
@@ -333,6 +338,7 @@ For $x,y,z,w \in \mathbb{Q}$
  - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close, then they are also $\eta$-close for every $\eta > \epsilon$.
  - for $\epsilon > 0$, if $y$ and $z$ are both $\epsilon$-close to $x$ and $y \leq w \leq z$ or $z \leq w \leq y$, then $w$ is $\epsilon$-close to $x$.
  - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \new 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+ - for $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close, and $z$ and $w $ are $\delta$ close, then $xz$ and $yw$ are $(\epsilon |z| + \delta |x| + \epsilon \delta)$-close.
 
 
  1. $x = y$ iff $\forall \epsilon > 0$, $x is $\epsilon$-close to $y$.
@@ -357,8 +363,103 @@ For $x,y,z,w \in \mathbb{Q}$
 
  6. for $\epsilon > 0$, if $y$ and $z$ are both $\epsilon$-close to $x$ and $y \leq w \leq z$ or $z \leq w \leq y$, then $w$ is $\epsilon$-close to $x$.
 
-    *Proof:* By hypothesis, $d(x,y) \leq $\epsilon$ and $d(x,z) \leq \epsilon$. If $y \leq w \leq z$, then TODO
+    1. Case $w < x$.
 
- 7. for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \new 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+       *Proof:* We have $x - y = x - w + w - y$ and $x - w$ and $w - y$ are both positive, so $|x - y| = |x - w| + |w - y|$. So $|x - w| = |x - y| - |w - y| \leq \epsilon - |w - y| < \epsilon$.
 
-    *Proof:*
+    2. Case $w = x$.
+
+       *Proof:* Immediate.
+
+    3. Case $w > x$
+
+       *Proof:* $z - x = z - w + w - x$ and $z - w$ and $w - x$ are both positive, so $|z - x| = |z - w| + |w - x|$, so $|w - x| = |z - x| - |z - w| \leq \epsilon - |z - w| < \epsilon$.
+
+ 7. for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \neq 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+
+    *Proof:* By hypothesis $|x - y| \leq \epsilon$, so $|zx - zy| = |z||x - y| \leq |z| \epsilon$, which establishes the statement.
+
+ 8. For $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close, and $z$ and $w $ are $\delta$ close, then $xz$ and $yw$ are $(\epsilon |z| + \delta |x| + \epsilon \delta)$-close.
+
+    *Proof:* $xz - yw = xz - yz + yz - yw$, so $|xz - yw| \leq |z(x - y)| + |y(z - w)| = |z| |x - y| + |y| |z - w| \leq |z| \epsilon + |y| \delta$. But $|y| = |y - x + x| \leq \epsilon + |x|$, so $|xz - yw| \leq |z| \epsilon + (\epsilon + |x|) \delta$, which proves the statement.
+
+## Definition of exponentiation of rationals by naturals
+For rational $x$, define $x^0 = 1$ and, for any $n \in \mathbb{N}$ such that $x^n$ is defined, define $x^{n+1} = x^n x$.
+
+## Natural exponentiation facts
+For any $x, y \in \mathbb{Q}$ and $n \in \mathbb{N}$
+
+ - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
+ - $(xy)^n = x^n y^n$
+ - For all $n \neq 0$, $x^n = 0$ iff $x = 0$
+ - If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$. If $0 \leq y < x$ and $n > 0$, then $0 \leq y^n < x^n$
+ - |x^n| = |x|^n
+
+ 1. $(xy)^n = x^n y^n$
+
+    *Proof:* $(xy)^0 = 1 = 1 1 = x^0 y^0$. If $(xy)^n = x^n y^n$, then $(xy)^{n+1} = (xy)^n (xy) = x^n y^n (xy) = x^{n+1} y^{n+1}$.
+
+ 2. For all $n, m \in \mathbb{N}, $x^n x^m = x^{n+m}$
+
+    1. It suffices to assume $m \in \mathbb{N}$ and prove it for every $n \in \mathbb{N}$.
+
+    2. $x^0 x^m = x{0+m}$
+
+       *Proof:* $x^0 = 1$, so this holds.
+
+    3. If $x^n x^m = x^{n+m}$, then $x^{n+1} x^m = x{n+1+m}$
+
+       *Proof:* $x^{n+m+1} = x^{n+m} x = x^n x^m x = $x^{n+1} x^m$.
+
+    4. Q.E.D.
+
+       *Proof:* The induction is completed by (2) and (3)
+
+ 3. For all $n, m \in \mathbb{N}, $(x^n)^m = x^{nm}$
+
+    1. It suffices to assume $m \in \mathbb{N}$ and prove it for every $n \in \mathbb{N}$.
+
+    2. $(x^0)^m = x^{0 m}$
+
+       *Proof:* We must prove $1^m = 1$. But this is an easy proof by induction on $m$ due to algebraic properties of the rationals.
+
+    3. If $(x^n)^m = x^{n m}$, then $(x^{n+1})^m = $x^{(n+1)m}$.
+
+       *Proof:* $(x^{n+1})^m = (x^n x)^m$, which equals $(x^n)^m x^m$ by (1). By the induction hypothesis, this is $x^{nm} x^m$, which equals $x^{nm + m}$ by (2), proving the statement.
+
+    4. Q.E.D.
+
+       *Proof:* The induction is completed by (2) and (3)
+
+ 4. For all $n \neq 0$, $x^n = 0$ iff $x = 0$
+
+    *Proof:* $x^1 = x 1 = x$, so clearly $x^1 = 0$ iff $x = 0$. Suppose it's true for $n$. Then $x^{n+1} = x^n x$. On the one hand, $x = 0$ clearly implies $x^{n+1} = 0$. On the other hand, if $x^{n+1} = 0$, then either $x^{n} = 0$ or $x = 0$ (since the rationals have no zero divisors). But by the induction hypothesis, $x^{n} = 0$ implies $x = 0$.
+
+ 5. If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$. If $0 \leq y < x$ and $n > 0$, then $0 \leq y^n < x^n$
+
+    1. If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$. 
+
+       *Proof:* We assume that $0 \leq y \leq x$. Then $0 \leq y^0 \leq x^0$ since $x^0 = y^0 = 1$. Now if $0 \leq y^n \leq x^n$, then $x^{n+1}$ and $y^{n+1}$ must both be non-negative since $x$ and $y$ are both non-negative. Also we have $y^{n+1} = y^n y \leq x^n x$ since both $y^n \leq x^n$ and $y \leq x$.
+
+    2. If $0 \leq y < x$ and $n > 0$, then $0 \leq y^n < x^n$
+
+       *Proof:* It's clearly true for $n = 1$. If true for $n$, then $y^{n+1} < x^{n+1}$ since $y^n < x^n$ and $y < x$. Also, $0 < y^{n+1}$ since, again, $0 < y^n$ and $0 < y$.
+
+ 6. |x^n| = |x|^n
+
+    *Proof:* $|x^1| = |x| = |x|^1$. If $|x^n| = |x|^n$ for some $n$, then $|x^{n+1}| = |x^n x| = |x^n| |x| = |x|^n |x| = |x|^{n+1}$.
+
+
+## Definition of integer exponentiation
+If $z \in \mathbb{Z}$, then if $z \geq 0$, $x^z$ is already defined. If $z < 0$, then define $x^z$ by $1 / x^z$. In other words, for any $n \in \mathbb{N}$, define $x^{-n} = (x^n)^{-1}$.
+
+
+## Integer exponentiation facts
+For any $x, y \in \mathbb{Q}$ and $n \in \mathbb{N}$
+
+ - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
+ - $(xy)^n = x^n y^n$
+ - If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$ if $n$ is positive and $0 \leq x^n \leq y^n$ if $n$ is negative.
+ - |x^n| = |x|^n
+
+TODO
