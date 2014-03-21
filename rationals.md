@@ -308,9 +308,57 @@ For any $x, y, z \in \mathbb{Q}$,
 
     *Proof:* Holds from (5) because $|-1| = 1$.
 
- 7. $d(x,y) > \geq 0$ and $d(x,y) = 0$ iff $x = y$
+ 7. $d(x,y) \geq 0$ and $d(x,y) = 0$ iff $x = y$
+
+    *Proof:* $d(x,y) \geq 0$ by (1). If $d(x,y) = 0$, then $(x-y) = 0$, so $x = y$. Conversely, $x = y$ implies $|x-y| = 0$.
+
  8. $d(x,y) = d(y, x)$
+
+    *Proof:* By (6), $d(x,y) = |x - y| = |-(x-y)| = |y - x| = d(y, x)$
+
  9. $d(x,z) \leq d(x,y) + d(y,z)$
 
-## Definition of episilon-closeness
+    *Proof:*  $d(x,z) = |x - z| = |(x - y) + (y - z)| \leq |x - y| + |y - z| = d(x,y) + d(y,z)$ by (4)
+
+## Definition of epsilon-closeness
 For $\epsilon \in \mathbb{Q}$, $\epsilon > 0$ and any rationals $x, y$, say $y$ is $\epsilon$-close to $x$ iff $d(x,y) \leq \epsilon$.
+
+## Facts about epsilon-closeness
+For $x,y,z,w \in \mathbb{Q}$
+
+ - $x = y$ iff $\forall \epsilon > 0$, $x is $\epsilon$-close to $y$.
+ - for all $\epsilon > 0$ if $x$ is $\epsilon$-close to $y$, then $y is $\epsilon$-close to $x$
+ - if $x$ is $\epsilon$-close to $y$ and $y$ is $\delta$-close to $z$ for $\epsilon, \delta > 0$, then $x$ is $(\epsilon+\delta)$-close to $z$.
+ - for $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close and $z$ and $w$ are $\delta$-close, then $x+z$ and $y+w$ are $(\epsilon+\delta)$-close, as are $(x-z)$ and $(y-w)$
+ - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close, then they are also $\eta$-close for every $\eta > \epsilon$.
+ - for $\epsilon > 0$, if $y$ and $z$ are both $\epsilon$-close to $x$ and $y \leq w \leq z$ or $z \leq w \leq y$, then $w$ is $\epsilon$-close to $x$.
+ - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \new 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+
+
+ 1. $x = y$ iff $\forall \epsilon > 0$, $x is $\epsilon$-close to $y$.
+
+    *Proof:* If $x = y$ iff $d(x,y) = 0$, so for all $\epsilon > 0$, $d(x,y) < \epsilon$. Conversely if $d(x,y) < \epsilon$ for all $\epsilon > 0$, then $d(x,y)$ could not be positive, and it is by basic properties of absolute value not negative. So $d(x,y) = 0$.
+
+ 2. for all $\epsilon > 0$ if $x$ is $\epsilon$-close to $y$, then $y is $\epsilon$-close to $x$
+
+    *Proof:* This holds immediately from symmetricity of the distance function.
+
+ 3. if $x$ is $\epsilon$-close to $y$ and $y$ is $\delta$-close to $z$ for $\epsilon, \delta > 0$, then $x$ is $(\epsilon+\delta)$-close to $z$.
+
+    *Proof:* By hypothesis, $d(x,y) \leq \epsilon$ and $d(y, z) \leq \delta$. so $d(x, z) \leq d(x, y) + d(y, z) = \epsilon + \delta$.
+
+ 4. For $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close and $z$ and $w$ are $\delta$-close, then $x+z$ and $y+w$ are $(\epsilon+\delta)$-close, as are $(x-z)$ and $(y-w)$
+
+    *Proof:* We know $d(x,y) \leq \epsilon$ and $d(z, w) \leq \delta$, so $d(x+z, y+w) = |x+z -(y+w)| \leq |x-y| + |z-w| = d(x,y) + d(z,w) = \epsilon + \delta$, which establishes the first statement. $d(x-z, y-w) = |(x-z) - (y-w)| = |x+w -(y+z)| \leq |x-y| + |w-z| = \epsilon + \delta$.
+
+ 5. for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close, then they are also $\eta$-close for every $\eta > \epsilon$.
+
+    *Proof:* If $d(x,y) \leq \epsilon$ and $\eta$ is such that $\epsilon < \eta$, then $d(x,y) < \eta$.
+
+ 6. for $\epsilon > 0$, if $y$ and $z$ are both $\epsilon$-close to $x$ and $y \leq w \leq z$ or $z \leq w \leq y$, then $w$ is $\epsilon$-close to $x$.
+
+    *Proof:* By hypothesis, $d(x,y) \leq $\epsilon$ and $d(x,z) \leq \epsilon$. If $y \leq w \leq z$, then TODO
+
+ 7. for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \new 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+
+    *Proof:*
