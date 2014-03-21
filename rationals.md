@@ -139,6 +139,24 @@ and for $x \neq 0$,
      *Proof:* $x^{-1} x = b // a \ast a // b = ba // ab$, which equals $1$ since $ba = ab$. The other equality holds by commutativity in (2).
 
 
+## Cancellation of addition
+For any $x, y, z \in \mathbb{Q}$, $x + y = x + z$ implies $y = z$ and $x + z = y + z$ implies $x = y$.
+
+*Proof:* In the first case, add $-x$ to both sides. In the second, add $-z$.
+
+## Negation of negation
+For any $x \in \mathbb{Q}$, with $x \neq 0$, $-(-x)) = x$.
+
+*Proof:* $-x + -(-x) = 0$ because $\mathbb{Q}$ is a field. This implies $-(-x) = x$.
+
+## Negation distributes
+For any $x, y \in \mathbb{Q}$, $-(x + y) = -x + -y$. Also, $-(xy) = (-x) y = x (-y)$.
+
+*Proof:* $(x + y) + -(x+y) = 0 = 0 + 0 = (x + -x) + (y + -y)$, so by cancellation of addition the first statement is established. For the second, $xy + -(xy) = 0 = 0y = (x + -x)y = xy + (-x)y = x0 = x(y + -y) = xy + x(-y)$. Cancellation of addition establishes the second statement.
+
+
+
+
 ## Definition of the quotient operation in $\mathbb{Q}$
 For $x, y \in \mathbb{Q}$, $y \neq 0$, we define $x / y := x y^{-1}$.
 
@@ -209,3 +227,90 @@ For any $x, y, z \in \mathbb{Q}$, we have:
 
     *Proof:* We must prove $yz - xz$ is positive, but we know $y - x$ is positive (by (2)) and thus $(y - x)z$ is positive also by order properties of the integers.
 
+### Corollary
+If $x < y$ and $z$ is negative, then $xz > yz$
+
+*Proof:* $-z$ is positive by definition, so $-xz < -yz$ by the ordered field properties, which implies $(-yz - -(xz))$ is positive. But $-(-(xz)) = xz$, so we have $xz - yz$ is positive, or $xz > yz$.
+
+
+## The "adding inequalities" fact
+If $a < b$ and $c < d$, then $a + c < b + d$.
+
+*Proof:* By order properties we have $a + c < b + c$. But we also have $b + c < b + d$, so by transitivity it holds.
+
+### Corollary
+If $a \leq b$ and $c \leq d$, then $a + c \leq b + d$.
+
+*Proof:* We've covered the case when both strict inequalities hold. When both equalities hold, then $a + c = b + d$, so it holds. If $a = b$ and $c < d$, then it clearly holds again. Ditto for $c = d$ and $a < b$. This is all possible cases.
+
+
+## Definition of absolute value
+Define a function $||: \mathbb{Q} \to \mathbb{Q}$ by $|x| = x$ if $x$ is not negative and $|x| = -x$ if $x$ is negative.
+
+## Definition of distance
+Define the distance of any two rationals $x, y$ by $d(x, y) := |x - y|$.
+
+## Facts about absolute value and distance ($\mathbb{Q}$ is a metric space)
+For any $x, y, z \in \mathbb{Q}$,
+
+ - $|x| \geq 0$ and $|x| = 0$ iff $x = 0$
+ - $-|x| \leq x \leq |x|$
+ - $|x + y| \leq |x| + |y|
+ - $-y \leq x \leq y$ iff $y \geq |x|$.
+ - $|xy| = |x| |y|$
+ - $|-x| = |x|$
+ - $d(x,y) > \geq 0$ and $d(x,y) = 0$ iff $x = y$
+ - $d(x,y) = d(y, x)$
+ - $d(x,z) \leq d(x,y) + d(y,z)$
+
+
+ 1. $|x| \geq 0$ and $|x| = 0$ iff $x = 0$
+
+    *Proof:* If $x$ is not negative, then $|x| = x$, so it's either $0$ or positive. In either case, $|x| \geq 0$. If $x$ is negative, then $|x| = -x$, which is positive by definition of negativity. For the other statement, we know $x = 0$ implies $|x| = 0$. Conversely, if $x \neq 0$, then $x$ must be positive or negative by trichotomy of rationals, so in each case $|x|$ is positive and hence not $0$.
+
+ 2. $-|x| \leq x \leq |x|$
+
+    1. Case $x = 0$
+
+       *Proof:* $-|x| = x = |x|$. 
+
+    2. Case $x$ is positive
+
+       *Proof:* $-|x| = -x$, and $-x < x = |x|$ since $x - -x = x + x$ is positive. 
+
+    3. Case $x$ is negative, 
+
+       *Proof:* $-|x| = -(-x) = x$, and $|x| = -x$. We have $x < -x$ since $-x - x = -x + -x$ is positive.
+
+ 3. $-y \leq x \leq y$ iff $y \geq |x|$.
+
+    1. If $-y \leq x \leq y$, then $|x| \leq y$
+
+       *Proof:* If $x = 0$, $|x| = x$, so by hypothesis $|x| \leq y$. If $x > 0$, $|x| = x$, so again $|x| \leq y$ by hypothesis. If $x < 0$, $|x| = -x$, so we must prove $-x \leq y$. By hypothesis, $-y \leq x$, which means $x + y$ is positive or zero, which is the same as saying $-x \leq y$.
+
+    2. $|x| \leq y$ implies $-y \leq x \leq y$
+
+       *Proof:* If $x > 0$, then by hypothesis $x \leq y$. By transitivity of $<$, $y$ must be positive, so $-y$ is negative and therefore $-y \leq x$. If $x = 0$, then by hypothesis $0 \leq y$. Now either $y = 0$ or $y > 0$. If the former, then $-y \leq 0$ obviously. If the latter, then $-y$ is negative, so the statement is again proved. Finally, if $x < 0$, $|x| = -x$, so by hypothesis $-x \leq y$. This is the same as saying $-y \leq x$, and also as saying that $0 \leq y + x$. But $-x > 0$, so $-x + -x > 0$, which implies $0 \leq y - x$, aka $x \leq y$.
+
+    3. Q.E.D.
+
+       *Proof:* (1) and (2)
+
+ 4. $|x + y| \leq |x| + |y|
+
+    *Proof:* By (3) we have $-|x| \leq x \leq |x|$ and $-|y| \leq y \leq |y|$, so $-(|x| + |y|) \leq x + y \leq |x| + |y|$, which implies $|x + y| \leq |x| + |y|$ by (3) again.
+
+ 5. $|xy| = |x| |y|$
+
+    *Proof:* If $x > 0$ and $y > 0$, then $xy > 0y = 0$ by order properties, so $|xy| = xy = |x| |y|$. If ($x < 0 and $y > 0$) or ($x > 0$ and $y < 0$), then $xy < 0$, so $|xy| = -(xy)$, which equals $|x| |y|$ in either case since either $x$ or $y$ is negative. Finally, if $x < 0$ and $y < 0$, then $-y > 0$, so $-(xy) < 0$, or $xy > 0$. So $|xy| = xy = -(-(xy)) = (-x)(-y) = |x| |y|$.
+
+ 6. $|-x| = |x|$
+
+    *Proof:* Holds from (5) because $|-1| = 1$.
+
+ 7. $d(x,y) > \geq 0$ and $d(x,y) = 0$ iff $x = y$
+ 8. $d(x,y) = d(y, x)$
+ 9. $d(x,z) \leq d(x,y) + d(y,z)$
+
+## Definition of episilon-closeness
+For $\epsilon \in \mathbb{Q}$, $\epsilon > 0$ and any rationals $x, y$, say $y$ is $\epsilon$-close to $x$ iff $d(x,y) \leq \epsilon$.
