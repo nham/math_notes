@@ -78,6 +78,12 @@ If $a // b = A // B$ and $a \neq 0$, $A \neq 0$, then $b // a = B // A$.
 *Proof:* We have $aB = Ab$. We must prove $bA = Ba$, which holds by commutativity of $\mathbb{Z}$.
 
 
+## Reciprocal and  positivity
+If $x > 0$, then $1 / x > 0$.
+
+*Proof:* If $1 / x$ was negative, then $0 = (1 / x) 0 > (1/x) x = 1$, a contradiction.
+
+
 ## Trading our commutative ring in for a field
 For all $x, y, z \in \mathbb{Q}$, we have
 
@@ -387,7 +393,7 @@ For $x,y,z,w \in \mathbb{Q}$
 For rational $x$, define $x^0 = 1$ and, for any $n \in \mathbb{N}$ such that $x^n$ is defined, define $x^{n+1} = x^n x$.
 
 ## Natural exponentiation facts
-For any $x, y \in \mathbb{Q}$ and $n \in \mathbb{N}$
+For any $x, y \in \mathbb{Q}$ and $n,m \in \mathbb{N}$
 
  - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
  - $(xy)^n = x^n y^n$
@@ -451,15 +457,46 @@ For any $x, y \in \mathbb{Q}$ and $n \in \mathbb{N}$
 
 
 ## Definition of integer exponentiation
-If $z \in \mathbb{Z}$, then if $z \geq 0$, $x^z$ is already defined. If $z < 0$, then define $x^z$ by $1 / x^z$. In other words, for any $n \in \mathbb{N}$, define $x^{-n} = (x^n)^{-1}$.
+If $z \in \mathbb{Z}$, then if $z \geq 0$, $x^z$ is already defined. If $z < 0$, then define,for any non-zero $x$, $x^z$ to be $1 / x^z$. In other words, for any $n \in \mathbb{N}$, define $x^{-n} = (x^n)^{-1}$. This is well-defined since by properties of natural exponentiaton, $x^n = 0$ implies $x = 0$.
 
 
 ## Integer exponentiation facts
-For any $x, y \in \mathbb{Q}$ and $n \in \mathbb{N}$
+For any $x, y \in \mathbb{Q}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{N}$
 
  - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
  - $(xy)^n = x^n y^n$
  - If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$ if $n$ is positive and $0 \leq x^n \leq y^n$ if $n$ is negative.
  - |x^n| = |x|^n
 
-TODO
+ 1. $(xy)^n = x^n y^n$
+
+    *Proof:* This has already been proved for non-negative $n$. If $n$ is negative, $-n$ is a natural number, so $(xy)^{-n} = x^{-n} y^{-n}$ by the same theorem for naturals.  So $(xy)^n = 1 / (xy)^{-n} = 1 / (x^{-n} y^{-n}) = x^n y^n$, by definition, the previous sentence, and definition again, respectively.
+
+
+ 2. $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
+
+    1. Case $n$ and $m$ both non-negative.
+
+       *Proof:* Both statements hold from natural exponentiation.
+
+    2. Case $n$ and $m$ both negative.
+
+       *Proof:* $-n$ and $-m$ are positive, so $1 / x^{n + m} = x^{-(n + m)} = x^{-n + -m} = x^{-n} x^{-m} = (1 / x^n) (1 / x^m)$. After multiplying both sides, we get $x^{n+m} = x^n x^m$. For the second statement, $x^{nm} = x^{-n -m} = (x^{-n})^{-m} = 1 / (x^{-n})^m = 1 / (1 / x^n)^m = 1 / (1 / (x^n)^m) = (((x^n)^m)^{-1})^{-1} = (x^n)^m$.
+
+    3. Case $n$ negative, $m$ non-negative.
+
+       *Proof:* $-n$ is non-negative, so if $(n+m) \geq 0$, then $x^{n+m} x^{-n} = x^{m + n - n} = x^m$ by (2.1). If $(n+m) < 0$, $-(n+m) > 0$, so $x^{-(n+m)} x^m = x^{-n}$. In either case, $x^{n+m} = x^{n} x^m$. For the second statement, $(x^{-n})^m = x^{-nm} = 1 / x^{nm} = x^{-(nm)} = x^{-n m}$.
+
+    4. Case $n$ non-negative, $m$ negative.
+
+       *Proof:* The same as (2.3).
+
+ 3. If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$ if $n$ is positive and $0 \leq x^n \leq y^n$ if $n$ is negative.
+
+    *Proof:* The statement regarding positive $n$ is already known true from facts about natural exponentiation, so consider the case of negative $n$. If $y = 0 then it's true, as is the case when $x = 0$. So consider $x \neq 0$, $y \neq 0$. Then $0 \leq y^{-n} \leq x^{-n}$ since $-n$ is positive, which means $1 / y^n \leq 1 / x^n$. We must also have $x^n$ and $y^n$ positive since reciprocal of a positive number is positive, so $0 \leq x^n \leq y^n$.
+
+ 4. |x^n| = |x|^n
+
+    *Proof:* Already know it's true for $n$ non-negative. For negative $n$, $|1 / x^n| = |x^{-n}| = |x|^{-n} = 1 / |x|^n = 1 / 
+
+  $|x^n| = |1 / x^{-n}| = |1 / x^ TODO
