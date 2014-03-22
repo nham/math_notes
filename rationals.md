@@ -497,6 +497,30 @@ For any $x, y \in \mathbb{Q}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{N}$
 
  4. |x^n| = |x|^n
 
-    *Proof:* Already know it's true for $n$ non-negative. For negative $n$, $|1 / x^n| = |x^{-n}| = |x|^{-n} = 1 / |x|^n = 1 / 
+    *Proof:* Already know it's true for $n$ non-negative. First, $1 = |1| = |x / x| = |x| |x^{-1}|$, proving $|x|^{-1} = |x^{-1}|$. Now, for negative $n$, $-n$ is positive, so $|x^n| = |x^{-(-n)}| = |1 / x^{-n}| = |(x^{-n})^{-1}| = 1 / |x^{-n}| = 1 / |x|^{-n} = 1 / (1 / |x|^n) = |x|^n$.
 
-  $|x^n| = |1 / x^{-n}| = |1 / x^ TODO
+
+## Interspersing of integers by rationals
+For any rational $x$, there is a unique integer $n$ such that $n \leq x < n + 1$.
+
+*Proof:* By trichotomy on the rationals, we know every $x$ is either positive, negative, or zero. If $x = 0$, then $n = 0$ is unique.
+
+If we suppose that we've proved it for positive $x$, we can also prove it for negative $x$: just apply the proposition to $-x$, which is positive, to obtain $n \leq -x < n + 1$. Then, by order properties of the rationals, $-(n + 1) < x \leq -n$. $-(n+1)$ is what we're looking for if $x < -n$, and $-n$ is what we're looking for if $x = -n$. In either case, this solution must be unique, for if not we could turn it into another solution for $-x$, contradicting the fact that we've assumed every positive rational has a unique solution.
+
+So it suffices to prove that for any positive rational $x$, there is a unique natural number $n$ such that $n \leq x < n + 1$.
+
+By definition, $x = a / b$ for some naturals $a$ and $b$. We can apply Euclidean division to find $q$ and $r$ such that $a = qb + r$ and $0 \leq r < b$. So $x = q + r/b$, where $0 \leq r/b < 1$. So $q$ is a natural, $q \leq x < q + 1$. For any $n$ such that $n \leq x < n + 1$, we have $a = nb + (x - n)b$. So $q = n$ and $(x - n)b = r$ since the Euclidean division theorem yields a unique $q$ and $r$.
+
+### Corollary
+For all rationals $x$ there is an $N \in \mathbb{N}$ such that $x < N$.
+
+*Proof:* If the unique integer $n$ that exists by the above proposition is non-negative, then $N = n + 1$. If $n$ is instead negative, then $N = 0$.
+
+
+## Definition of floor
+For any rational $x$, the unique integer $n$ such that $n \leq x < n + 1$ is called the **integer part** of $x$, or the **floor*, and is denoted $\lfloor x \rfloor$.
+
+
+## Interspersing of rationals by rationals
+TODO
+
