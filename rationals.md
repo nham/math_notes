@@ -500,6 +500,12 @@ For any $x, y \in \mathbb{Q}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{N}$
     *Proof:* Already know it's true for $n$ non-negative. First, $1 = |1| = |x / x| = |x| |x^{-1}|$, proving $|x|^{-1} = |x^{-1}|$. Now, for negative $n$, $-n$ is positive, so $|x^n| = |x^{-(-n)}| = |1 / x^{-n}| = |(x^{-n})^{-1}| = 1 / |x^{-n}| = 1 / |x|^{-n} = 1 / (1 / |x|^n) = |x|^n$.
 
 
+## A useful fact for powersets?
+For any positive integer $n$, we have $n < 2^n$
+
+*Proof:* By induction on $n$: $1 < 2 = 2^1$, and if $n < 2^n$ for some $n$, then $n + 1 < 2^n + 2 = 2^n + 2^1 = 2^{n+1}$.
+
+
 ## Interspersing of integers by rationals
 For any rational $x$, there is a unique integer $n$ such that $n \leq x < n + 1$.
 
@@ -520,7 +526,78 @@ For all rationals $x$ there is an $N \in \mathbb{N}$ such that $x < N$.
 ## Definition of floor
 For any rational $x$, the unique integer $n$ such that $n \leq x < n + 1$ is called the **integer part** of $x$, or the **floor*, and is denoted $\lfloor x \rfloor$.
 
-
 ## Interspersing of rationals by rationals
-TODO
+If $x < y$ are two rationals, then there is another rational $z$ such that $x < z < y$.
 
+*Proof:* Let $z = (x+y)/2$. Then $z = x/2 + y/2$. We have $x/2 < y/2$ since $x < y$ by hypothesis, so $x = x/2 + x/2 < x/2 + y/2 = z$. Similarly, $z = x/2 + y/2 < y/2 + y/2 = y$.
+
+
+## Principle of infinite descent
+There is no sequence $(a_n)$ such that $a_n > a_{n+1}$ for all $n \in \mathbb{N}$
+
+*Proof:* If such a sequence exists, FIXME
+
+
+## No square root of 2 (we seem to be missing some numbers...)
+There is no rational $x$ for which $x^2 = 2$.
+
+### A preliminary definition
+A natural number $n$ is **even** if the Euclidean division theorem for $(n, 2)$ yields $r = 0$, and is **odd** if it yields $r = 1$ instead.
+
+### A preliminary lemma
+A natural $n$ is even iff $n^2$ is even, and is odd iff $n^2$ is odd.
+
+*Proof:* It suffices to prove $n$ even implies $n^2$ even and $n$ odd implies $n^2 odd (the others follow from these). If $n$ is even, then $n = 2k$ for some natural $k$. so $n^2 = 4k^2 = 2(2k^2)$, implying $n^2$ is even. If $n$ is odd, then $n = 2j + 1$ for some natural $j, so $n^2 = (2j + 1)(2j + 1) = 4j^2 + 4j + 1$, or $n^2 =  2(2j^2 + 2j) + 1$, so $n^2 is odd.
+
+### The proof
+
+ 1. It suffices to assume $x$ is positive and that $x^2 = 2$, and then derive a contradiction.
+
+    *Proof:* $0^2 = 0 \neq 2$, so $0$ clearly doesn't work. If such a negative $x$ exists, then $(-x)^2 = -(-x^2) = x^2 = 2$, so $-x$ also works. So any negative rational that works implies the existence of a positive rational that works. Hence if we prove that no positive $x$ has $x^2 = 2$, we must have that no negative $y$ has $y^2 = 2$ as well.
+
+ 2. If $x = a / b$ for some positive integers $a$, $b$, then $a$ and $b$ are both even, with $a > b$
+
+    1. $a^2 = 2 b^2$
+
+       *Proof:* By hypothesis in (2)
+
+    2. $a$ is even
+        
+       *Proof:* By (2.1) and the preliminary lemma.
+
+    3. $b$ is even
+
+       *Proof:* by (2.1) and (2.2) we have $4k^2 = 2 b^2$ for some natural $k$, so $b^2 = 2k^2$. We again invoke the preliminary lemma to obtain the statement.
+
+    4. $a > b$
+
+       *Proof:* $a = b$ is a contradiction since we would have $1 = 2$. $a < b$ implies $a^2 < b^2$ by basic properties of exponentiation, since $0 < a < b$. By (2.1) we have $2b^2 < b^2$, or $2 < 1$ since $1 / b^2$ is positive, another contradiction.
+
+    5. Q.E.D.
+
+       *Proof:* (2), (3) and (4) establish exactly what we set out to prove.
+
+ 3. If $x = a / b$ for some positive integers $a$, $b$, then there are positive integers $c$ and $d$ with $c < a$, $d < b$, such that $x = c / d$.
+
+    *Proof:* By (2), starting with our hypothesis, we have both $a$ and $b$ are even. So $a = 2j$ and $b = 2k$ for some positive integers $j$ and $k$. We have $ab = a(2k) = (2j)b$, which by cancellation implies $ak = bj$. This proves $x = j / k$.
+
+ 4. For all positive integers $a$, there is a unique $b$ such that $x = a / b$.
+
+    *Proof:* $x = m/n$ for some positive integers $m$ and $n$ since $x is positive by (1). Also $m \neq 0$, $n \neq 0$. So define $b := an/m$. Then $x = a/b$
+
+
+ 5. There exist positive integers $a$ and $b$ such that $x = a / b$
+
+    *Proof:* Valid by (1)
+
+ 6. There is a monotonically decreasing sequence of naturals
+
+    *Proof:* To be completely rigorous we have to use the principle of recursive definition. We use $a_0 = a$. To define $f_n$'s, note that by (4), for every positive $n$ we have a unique $m$ such that $n / m = x$. Define the function $g$ by $g(n) = m$ for positive $n$ and $g(0) = 0$.
+
+    We can also define for all positive $n, m$, the function $\phi(n, m) = (a', g(a'))$, where $a'$ is the smallest of the elements that are asserted to exist by (3). Define $\phi(0, m) = \phi(n, 0) = \phi(0, 0) = (0, 0)$. (choosing the smallest is valid by the well-ordering principle).
+
+    We can finally define $f(n) = \phi(n, g(n))$. Then every $f_n = f$ gives, for every positive integer $a$, the smallest $a'$ such that $a' < a$ and $x = a' / g(a')$.
+
+ 7. Q.E.D.
+
+    *Proof:* (6) contradicts the principle of infinite descent.
