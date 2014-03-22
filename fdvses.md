@@ -59,7 +59,7 @@ An **abelian group** is a group with a commutative group operation.
 A **subgroup** of a group $G$ is a subset $S$ which is a group when the group operation is restricted to $S$. 
 
 ## Definition of a field
-TODO
+A **field** is a commutative division ring. FIXME
 
 
 ## A brief note on notation
@@ -83,7 +83,7 @@ For all $v \in V$, $0 \cdot v = 0 \in V$.
 *Proof:* $0 \cdot v = (0 + 0) \cdot v = 0 \cdot v + 0 \cdot v. Add inverses to both sides to obtain the statement.
 
 ### $-1 \in \mathbb{F}$ negates the vector
-For all $v \in V$, $-1 \cdot v = -v \in V$.
+For all $v \in V$, $(-1) \cdot v = -v \in V$.
 
 *Proof:* $v + -1 \cdot v = 1 \cdot v + -1 \cdot v = (1 + -1) \cdot v = 0 \cdot v = 0$ by distributivity and the previous proposition. The additive inverse of any group is unique, so $-v = -1 \cdot v$.
 
