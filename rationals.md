@@ -535,7 +535,19 @@ If $x < y$ are two rationals, then there is another rational $z$ such that $x < 
 ## Principle of infinite descent
 There is no sequence $(a_n)$ such that $a_n > a_{n+1}$ for all $n \in \mathbb{N}$
 
-*Proof:* If such a sequence exists, FIXME
+ 1. It suffices to assume $(a_n)$ is an infinitely descending sequence and derive a contradiction.
+
+ 2. $\forall n a_n \geq 0$
+
+    *Proof:* this is true for any sequence of naturals.
+
+ 3. If $\forall n a_n \geq k$ for some $k \in \mathbb{N}$, then $\forall n a_n \geq k+1$
+
+    *Proof:* Suppose the conclusion isn't true. Then $\exists m$ such that $a_m < k + 1$, which means $a_m \leq k$. We must have $a_{m+1} < a_m \leq k$, contradicting the assumption that all $a_n \geq k$.
+
+ 4. Q.E.D.
+
+    *Proof:* (2) and (3) prove that $\forall k$, every $a_n \geq k$. So for every $a_n$, there are no possible valid values, which contradicts that it must have some value.
 
 
 ## No square root of 2 (we seem to be missing some numbers...)
