@@ -204,11 +204,7 @@ If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then assigning value
 
 
 ## Invertibility
-A linear map $T: V \to W$ is **left invertible** if there is a linear map $U: W \to V$ such that $U \circ T = id_V$. It is called **right invertible** if there is a linear map $S: W \to V$ such that $T \circ S = id_W$. $T$ is called **invertible** if it is both left- and right-invertible.
+A basic definition from set theory is that a function $f: X \to Y$ is **left invertible** if there is a $g: Y \to X$ such that $g \circ f = id_X$, and is **right invertible if there's an $h: Y \to X$ such that $f \circ h = id_Y$. if a function is both left invertible and right invertible, we say it is just **invertible**. It is easy to prove that if a function is invertible, then there is a unique function which serves as both left and right inverses. Also, it is a basic fact from set theory that a function $f$ is a bijection iff it is invertible.
 
 ## Definition of an isomorphism
-An **isomorphism** is a bijective linear map.
-
-
-## Invertible linear maps are isomorphisms.
-TODO
+An **isomorphism** between vector spaces is a bijective linear map. In other words, isomorphisms are invertible linear maps.
