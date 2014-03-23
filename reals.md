@@ -199,3 +199,88 @@ If $x$ is real, then define $-x := -1 \times x$. In other words, for any Cauchy 
 
 ## Definition of subtraction
 We define $x - y = x + -y$ for any two reals $x$, $y$.
+
+
+## $\mathbb{Z}$ is a commutative ring
+The integers satisfy the following properties. For all $x, y, z \in \mathbb{Z}$
+
+ - $x + y = y + x$
+ - $x + (y + z) = (x + y) + z$
+ - $x + 0 = 0 + x = x$
+ - $x + (-x) = (-x) + x = 0$
+ - $x y = y x$
+ - $x (y z) = (x y) z$
+ - $x 1 = 1 x = x$
+ - $x (y + z) = x y + x z$
+ - $(x + y) z = x z + y z$
+
+*Proof:* These all hold because multiplication and addition of sequences is defined term-wise, and the laws hold individually for each term.
+
+
+## Initial remarks on reciprocals
+One complication for defining the reciprocal operation on real numbers is that sequences that aren't equivalent to $0$ might still contain $0$ terms, since equivalence is defined as being *eventually* $\epsilon$-close. So we cannot simply take the reciprocal of all the terms of the sequence. The technical development that follows is designed to avoid this problem.
+
+## Definition of sequences bounded away from zero
+A sequence $(a_n)$ is bounded away from zero if there is a $c > 0$ such that for all $n \in \mathbb{N}$, c \leq |a_n|$.
+
+## Every non-zero real is represented by a sequence bounded away from zero
+If $x \in \mathbb{R}$ is non-zero, then there is an $(a_n)$, Cauchy, that is bounded away from zero, such that $x = LIM_{n \to \infty} a_n$
+
+ 1. Assume $x = LIM_{n \to \infty} b_n$ for some Cauchy sequence $(b_n)$.
+
+ 2. $\exists \epsilon > 0$ such that for all $N \in \mathbb{N}$, there is an $n \geq N$ such that $|b_n| > \epsilon$. 
+
+    *Proof:* By hypothesis $x \neq 0$, so it is not the case that $(b_n)$ is eventually $\epsilon$-close to $(0)_{n = 0}^{\infty}$. This means it is not the case that for all $\epsilon > 0$, there is a tail sequence such that $|a_n - 0| \leq \epsilon$ for all $n$. Equivalently, there is some $\epsilon > 0$ such that no matter where we are in the sequence, we can find another term after the current term whose absolute value is greater than $\epsilon$.
+
+ 3. There is an $N$ such that for all $j, k \geq N$, $|b_j - b_k| \leq \epsilon / 2$. 
+
+    *Proof:* $(b_n)$ is Cauchy by hypothesis, so $(b_n)$ is eventually $\epsilon / 2$-steady.
+
+ 4.  There is some $g \geq N$ such that $|b_g| > \epsilon$
+
+     *Proof:* By (2)
+
+ 5. $(b_n)_{n = N}^{\infty}$ is bounded away from zero
+
+    *Proof:* For all $n \geq N$, $|b_g| = |b_g - b_n + b_n| \leq |b_g - b_n| + |b_n|$, which implies that $\epsilon < |b_g - b_n| + |b_n|$. But $|b_g - b_n| \leq \epsilon / 2$ since $g \geq N$, so $-(\epsilon / 2) \leq -|b_g - b_n|$. This implies that $\epsilon / 2 < |b_n|$
+
+ 6. Q.E.D.
+
+    *Proof:* Define a sequence $(a_n)$ by $a_n = \epsilon / 2$ for $n < N$ and $a_n = b_n$ otherwise. $(a_n)$ and $(b_n)$ are equivalent since they are eventually $0$-close, which implies that $(a_n)$ is Cauchy (since it's equivalent to a Cauchy sequence), so they both represent $x$. $(a_n)$ is bounded away from zero by (5), which establishes what we set out to prove.
+
+## Cauchy sequences bounded away from zero have reciprocals
+If $(a_n)$ is bounded away from zero, then $(a_n^{-1})$ is a Cauchy sequence.
+
+ 1. Assume $\epsilon > 0$.
+
+ 2. There is some $c > 0$ such that $(a_n)$ is bounded away from zero by $c$.
+
+    *Proof:* By hypothesis
+
+ 3. For all $j$, $k$, $|a_j^{-1} - a_k^{-1}| \leq |a_k - a_j| / c^2$.
+
+    *Proof:* $|a_j^{-1} - a_k^{-1}| = |a_k - a_j| / |a_j a_k|$. Since $|a_k| \geq c$, $|a_j| \geq c$, the conclusion follows.
+
+ 4. There is an $N$ such that for all $j, k \geq N$, $|a_k - a_j| \leq \epsilon c^2$.
+
+    *Proof:* $(a_n)$ is Cauchy.
+
+ 5. Q.E.D.
+
+    *Proof:* The $N$ from (4) is the point in the reciprocal sequence after which all terms are within an $\epsilon$ of each other (by 3), which proves that $(a_n^{-1})$ is Cauchy.
+
+
+## Definition of reciprocals of reals
+If $x \neq 0$, then there is a sequence $(a_n)$ bounded away from zero. Define the **reciprocal** of $x$ by $x^{-1} := LIM_{n \to \infty} a_n^{-1}$. This new sequence $(a_n^{-1})$ is a Cauchy sequence by the previous proposition, hence $x^{-1}$ is a real number.
+
+
+### Reciprocal is well-defined
+If $(a_n)$ and $(b_n)$ are sequences bounded away from zero such that $LIM_{n \to \infty} a_n = LIM_{n \to \infty} b_n$, then $LIM_{n \to \infty} a_n^{-1} = LIM_{n \to \infty} b_n^{-1}$.
+
+*Proof:* ($LIM_{n \to \infty} a_n^{-1} \times LIM_{n \to \infty} a_n \times LIM_{n \to \infty} b_n^{-1}$) is equal to ($LIM_{n \to \infty} a_n^{-1} \times LIM_{n \to \infty} b_n \times LIM_{n \to \infty} b_n^{-1}$), which implies our result since $LIM_{n \to \infty} a_n^{-1} \times LIM_{n \to \infty} a_n = LIM_{n \to \infty} a_n^{-1} a_n = 1$, and similarly for $b_n$ and $b_n^{-1}$.
+
+## $\mathbb{R}$ is a field
+The only fact unproved is that every non-zero real has a multiplicative inverse. But we've just proven that the reciprocal operation gives such an inverse, so $\mathbb{R}$ is a field.
+
+## Definition of real division
+For $x, y \in \mathbb{R}$, $y \neq 0$, define $x / y := x y^{-1}$.
