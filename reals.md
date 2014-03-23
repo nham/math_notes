@@ -67,5 +67,135 @@ Equivalence of sequences is reflexive, symmetric, and transitive.
 ## Equivalent sequences are either both Cauchy or not
 If $(a_n)$ and $(b_n)$ are equivalent sequences, $(a_n)$ is Cauchy iff $(b_n)$ is.
 
-*Proof:* Supposing $(a_n)$ is Cauchy, this means for every $\epsilon > 0$ we can find a tail sequence which is $\epsilon$-steady.
-FIXME: i think we want $\epsilon / 3$. its $\epsilon / 3$ to get to from $a_k$ to $b_k$, another $\epsilon / 3$ to get from $b_k to any b_j$, and then another $\epsilon / 3$ to go from $b_j$ to $a_j$. this guarantees any $a_k$ is within an epsilon of $a_j$.
+*Proof:* Supposing $(a_n)$ is Cauchy, this means for every $\epsilon > 0$ we can find a tail sequence which is $\epsilon$-steady. We can choose an $N$ such that $d(a_n, b_n) \leq \epsilon / 3$ for all $n \geq N$. We can also choose an $M$ such that $(a_n)_{n=M}^{\infty}$ is $\epsilon / 3$-steady. This means that for all $j, k \geq N + M$, we have $d(b_j, b_k) \leq d(b_j, a_j) + d(a_j, a_k) + d(a_k, b_k) \leq 3(\epsilon / 3) = \epsilon$.
+
+## Definition of the reals
+A **real number** is an object $LIM_{n \to \infty} a_n$ where $(a_n)$ is a Cauchy sequence of rationals. 
+
+## Definition of real equality
+We say two real numbers are **equal**, written $LIM_{n \to \infty} a_n = LIM_{n \to \infty} b_N$, iff $(a_n)$ and $(b_n)$ are equivalent Cauchy sequences.
+
+This is a valid definition since we proved above that sequence equivalence is reflexive, symmetric and transitive.
+
+## Definition of real addition
+Let $x = LIM_{n \to \infty} a_n$ and $y = LIM_{n \to \infty} b_n$. Then define $x + y = LIM_{n \to \infty} (a_n + b_n)$.
+
+## Addition in $\mathbb{R}$ is well-defined
+### Sum of Cauchy sequences is Cauchy
+If $(a_n)$ and $(b_n)$ are Cauchy, then $(c_n)$ defined by $c_n = a_n + b_n$ is Cauchy.
+
+ 1. Assume  $\epsilon > 0$
+
+ 2. There is an $N$ such that $|a_j - a_k| \leq \epsilon / 2$ for all $j, k \geq N$
+
+    *Proof:* $(a_n)$ is Cauchy
+
+ 3. There is a $P$ such that $|b_j - b_k| \leq \epsilon / 2$ for all $j, k \geq P$
+
+    *Proof:* $(b_n)$ is Cauchy
+
+ 4. $|a_m + b_m - a_n - b_n| \leq \epsilon$ for all $m, n \geq N + P$
+
+    *Proof:* Since $(N + P)$ is greater than both $N$ and $P$, $|a_m + b_m - a_n - b_n| \leq |a_m - a_n| + |b_m - b_n| \leq \epsilon$ for all $m, n \geq N + P$ holds by (2) and (3) and the triangle inequality.
+
+ 5. Q.E.D.
+
+    *Proof:* (4) establishes that the sequence is Cauchy.
+
+### The axiom of substitution
+If $x = LIM_{n \to \infty} a_n$, $y = LIM_{n \to \infty} b_n$, $z = LIM_{n \to \infty} c_n$, and $w = LIM_{n \to \infty} d_n$ such that $x = z$ and $y = w$, then $x + y = z + w$.
+
+ 1. Assume  $\epsilon > 0$
+
+ 2. There is an $N$ such that $|a_n - c_n| \leq \epsilon / 2$ for all $n \geq N$
+
+    *Proof:* $(a_n)$ and $(c_n)$ are equivalent.
+
+ 3. There is a $P$ such that $|b_n - d_n| \leq \epsilon / 2$ for all $n \geq P$
+
+    *Proof:* $(b_n)$ and $(d_n)$ are equivalent.
+
+ 4. $|a_n + b_n - c_n - d_n| \leq \epsilon$ for all $n \geq N + P$
+
+    *Proof:* By the triangle inequality and (2) and (3), $|a_n + b_n - c_n - d_n| \leq |a_n - c_n| + |b_n - d_n| \leq \epsilon$ for $n \geq N + P$, since $N + P$ is greater than both $N$ and $P$.
+
+ 5. Q.E.D.
+
+    *Proof:* By (4)
+
+
+## Definition of real multiplication
+Let $x = LIM_{n \to \infty} a_n$ and $y = LIM_{n \to \infty} b_n$. Then define $x y = LIM_{n \to \infty} (a_n b_n)$.
+
+
+## Addition in $\mathbb{R}$ is well-defined
+### Sum of Cauchy sequences is Cauchy
+If $(a_n)$ and $(b_n)$ are Cauchy, then $(c_n)$ defined by $c_n = a_n b_n$ is Cauchy.
+
+ 1. Assume  $\epsilon > 0$
+
+ 2. There exist $A$ and $B$ such that $|a_j| \leq A$ and $|b_j| \leq B$ for all $j \in \mathbb{N}$.
+
+    *Proof:* $(a_n)$ and $(b_n$, being Cauchy, are both bounded.
+
+ 3. There is an $N$ such that $|a_j - a_k| \leq \epsilon / 2A$ for all $j, k \geq N$
+
+    *Proof:* $(a_n)$ is Cauchy
+
+ 4. There is a $P$ such that $|b_j - b_k| \leq \epsilon / 2B$ for all $j, k \geq P$
+
+    *Proof:* $(b_n)$ is Cauchy
+
+ 5. $|a_m b_m - a_n b_n| \leq \epsilon$ for all $m, n \geq N + P$
+
+    *Proof:* $|a_m b_m - a_n b_n| = |a_m b_m - a_m b_n + a_m b_n - a_n b_n| \leq |a_m| |b_m - b_n| + |b_n| |a_m - a_n| \leq A (\epsilon / 2A) + B (\epsilon / 2B) = \epsilon$ for all $m, n \geq N + P$ by (2), (3) and (4) since $N+P$ is greater than both $N$ and $P$.
+
+ 5. Q.E.D.
+
+    *Proof:* (5) establishes that the sequence is Cauchy.
+
+### The axiom of substitution
+If $x = LIM_{n \to \infty} a_n$, $y = LIM_{n \to \infty} b_n$, $z = LIM_{n \to \infty} c_n$, and $w = LIM_{n \to \infty} d_n$ such that $x = z$ and $y = w$, then $x y = z w$.
+
+ 1. Assume  $\epsilon > 0$
+
+ 2. There exist $B$ and $C$ such that $|b_j| \leq B$ and $|c_j| \leq C$ for all $j \in \mathbb{N}$.
+
+    *Proof:* $(b_n)$ and $(c_n$, being Cauchy, are both bounded.
+
+ 3. There is an $N$ such that $|a_n - c_n| \leq \epsilon / 2B$ for all $n \geq N$
+
+    *Proof:* $(a_n)$ and $(c_n)$ are equivalent.
+
+ 3. There is a $P$ such that $|b_n - d_n| \leq \epsilon / 2C$ for all $n \geq P$
+
+    *Proof:* $(b_n)$ and $(d_n)$ are equivalent.
+
+ 4. $|a_n b_n - c_n d_n| \leq \epsilon$ for all $n \geq N + P$
+
+    *Proof:* $|a_n b_n - c_n d_n| = |a_n b_n - b_n c_n + b_n c_n - c_n d_n| \leq |b_n| |a_n - c_n| + |c_n| |b_n - d_n| \leq B (\epsilon / 2B) + C (\epsilon / 2C) = \epsilon$ for all $n \geq N + P$ by (2), (3) and (4) since $N+P$ is greater than both $N$ and $P$.
+
+ 5. Q.E.D.
+
+    *Proof:* By (4)
+
+## Embedding the rationals into the reals
+We equate every rational $x$ with the sequence defined by $a_n = x$. This is a Cauchy sequence since it is $0$-steady. We've just proven that multiplication of reals is consistent with multiplication of rationals since 
+
+$$LIM_{n \to \infty} x + LIM_{n \to \infty} y = LIM_{n \to \infty} (x+ y)$$
+
+and
+
+$$LIM_{n \to \infty} x \times LIM_{n \to \infty} y = LIM_{n \to \infty} xy$$
+
+### Embedding is well-defined
+For rationals $x$ and $y$, then $x = y$ iff $LIM_{n \to \infty} x = LIM_{n \to \infty} y$
+
+*Proof:* If $x = y$, then $(a_n)$ and $(b_n)$ defined by $a_n = x$ and $b_n = y$ are $0$-close, hence equivalent. Conversely, if $(a_n)$ and $(b_n)$ are equivalent, then $|x - y| \leq \epsilon$ for all $\epsilon > 0$. So by a lemma about $\epsilon$-closeness, $x = y$.
+
+
+## Definition of negation of reals
+If $x$ is real, then define $-x := -1 \times x$. In other words, for any Cauchy sequence representing $x$, we negate all the terms of that sequence.
+
+## Definition of subtraction
+We define $x - y = x + -y$ for any two reals $x$, $y$.
