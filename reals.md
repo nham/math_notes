@@ -332,3 +332,52 @@ Conversely, if $-x = LIM_{n \to \infty} -a_n$ for some sequence $(b_n)$ positive
 If $x$ and $y$ are positive reals, then $x+y$ and $xy$ are positive too.
 
 *Proof:* If $x = LIM_{n \to \infty} a_n$ and $y = LIM_{n \to \infty} b_n$ and $x$ and $y$ are positive, then $(a_n)$ and $(b_n)$ are both positively bounded away from zero, so there are $c, d > 0$ such that $a_n > c$ and $b_n > d$ for all $n$. So $a_n + b_n > c + d$ for all $n$, and also $a_n b_n > c d$.
+
+
+## Remark on consistency of positive/negative between $\mathbb{Q}$ and $\mathbb{R}$
+For any rational number $q$, we have that $q$ is positive as a real iff $q$ is positive as a rational, since the sequence defined by $a_n = q$ is positively bounded away from zero. Similarly, $q$ is negative as a real iff $q$ is negative as a rational
+
+## Definition of absolute value in $\mathbb{R}
+For all $x \in \mathbb{R}$, define $|x|$ by $x$ if $x$ is positive or $0$ and $-x$ if $x$ is negative.
+
+## Definition of order in $\mathbb{R}$
+We write $x > y$ iff $x - y$ is positive, $x < y$ iff $x - y$ is negative, $x \geq y$ if $x > y$ or $x = y$, and $x \leq y$ iff $x < y$ or $x = y$.
+
+
+## Order properties in $\mathbb{R}$
+For any $x, y, z \in \mathbb{R}$, we have:
+
+ - Exactly one of these holds: a) $x < y$, b) $x = y$, c) $x > y$.
+ - $x < y$ iff $y > x$.
+ - If $x < y$ and $y < z$ then $x < z$.
+ - if $x < y$ then $x + z < y + z$
+ - if $x < y$ and $z$ is positive, then $xz < yz$.
+
+ 1. Exactly one of these holds: a) $x < y$, b) $x = y$, c) $x > y$.
+
+    *Proof:* By the trichotomy of reals, $x - y$ is either negative, zero or positive, which correspond to (a), (b) and (c), respectively.
+
+ 2. $x < y$ iff $y > x$.
+
+    *Proof:* $x < y$ iff $x - y$ is negative iff $-(x - y)$ is positive. $y > x$ iff $y - x$ is positive. But $y - x = -(x - y)$, so the statement is proved.
+
+ 3. If $x < y$ and $y < z$ then $x < z$.
+
+    *Proof:* By hypothesis and (2), $y - x$ and $z - y$ are positive, so $(z - y) + (y - x) = z - x$ is positive.
+
+ 4. if $x < y$ then $x + z < y + z$
+
+    *Proof:* $x < y$ means $y - x$ is positive by (2), so $(y+z) - (x + z) = (y - x)$ is positive.
+
+ 5. if $x < y$ and $z$ is positive, then $xz < yz$.
+
+    *Proof:* We must prove $yz - xz$ is positive, but we know $y - x$ is positive (by (2)) and thus $(y - x)z$ is positive also since positive reals are closed under multiplication.
+
+
+## Reciprocals of positive reals
+If $x, y \in \mathbb{R}$ are positive, then 
+
+ - $x^{-1}$ is positive.
+ - If $y < x$, then $x^{-1} < y^{-1}$
+
+*Proof:* TODO
