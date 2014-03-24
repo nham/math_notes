@@ -14,6 +14,8 @@ It's a real drag to define matrix multiplication, so I won't. I also won't prove
 
 TODO: define matrix multiplication, motivate it as the proper definition for ensuring that multiplying two matrices is composing linear maps.
 
+TODO: define invertibility for matrices
+
 A **linear system of equations** in $\mathbb{F}$ is a collection of equations
 
 $$
@@ -133,6 +135,14 @@ This form is interesting because it allows us to directly write down the solutio
 
 *Proof:* If the pivot is in the last column, this corresponds to a row of all zeroes in columns $1$ through $n and a non-zero in $n+1$th column. As an equation, this has no solution. It says $0 = c$ for some $c \neq 0$. Conversely, if a system has no pivot in the last column, we can easily construct a solution: the variables associated with non-pivot columns of $1$ through $n$ are *free variables* and can be assigned any scalar value. Once assigned, the other variables are fixed. This is a solution.
 
-*Corollary:* A system's solution is unique iff there are no free variables.
+*Theorem:* A system's solution is unique iff there are no free variables (iff there's a pivot in every column).
 
 *Proof:* If there are free variables, we have a new solution for every assignment of the free variables. If there are no free variables, then either there is no solution or any solution is completely constrained by the last column of the augmented matrix.
+
+**Theorem:** An equation $Ax = b$ for coefficient matrix $A$ has a solution for every $b$ iff the eliminated coefficient matrix has a pivot in every row.
+
+*Proof:* If one row has no pivot, by the algorithm it must be a zero row. The eliminated matrix $B$ is the one with the zero row, so we can find some $b$ with a non-zero component in the same row. Then $EA = B$ for a product of elimination matrices $E$, implying $A$ = E^{-1} B$. If $Ax = E^{-1} b$, then $Bx = b$, which contradicts the fact that we chose $b$ so that it has no solution $x$ in $Bx = b$. 
+
+Conversely, if every row has a pivot, for any $b$ we can obtain a solution by assigning arbitrary values to the free variables and then assigning appropriate values to the bound variables.
+
+**Corollary:** A system has a unique solution iff the eliminated coefficient matrix has a pivot in every row and in every column.
