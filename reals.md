@@ -284,3 +284,51 @@ The only fact unproved is that every non-zero real has a multiplicative inverse.
 
 ## Definition of real division
 For $x, y \in \mathbb{R}$, $y \neq 0$, define $x / y := x y^{-1}$.
+
+## Definition of positively/negatively bounded away from zero
+The sequence $(a_n)$ is **positively bounded away from zero** if there is a $c > 0$ such that $a_n \geq c$ for all $n \in \mathbb{N}$. A sequence is **negatively bounded away from zero** if there is a $c < 0$ such that $a_n \leq c$ for all $n \in \mathbb{N}$.
+
+## Definition of positivity/negativity in $\mathbb{R}$
+A real number $x$ is **positive** if $x = LIM_{n \to \infty} a_n$ for some sequence $(a_n)$ positively bounded away from zero. $x$ is **negative** if $x = LIM_{n \to \infty} b_n$ for some sequence $(b_n)$ negatively bounded away from zero.
+
+## Trichotomy for $\mathbb{R}$
+Every $x \in \mathbb{R}$ is exactly one of the following:
+
+ - positive
+ - negative
+ - equal to zero.
+
+ 1. Either $x = 0$ or $x \neq 0$
+
+    *Proof:* The law of the excluded middle (LOL?)
+
+ 2. If $x \neq 0$, then $x$ is either positive or negative.
+
+    *Proof:* Supposing $x \neq 0$, there is some Cauchy sequence $(b_n)$ bounded away from zero by some $c > 0$ such that $x = LIM_{n \to \infty}$. Since $(b_n)$ is Cauchy, there is some $N$ such that for all $j, k \geq N$, $|b_j - b_k| \leq c$. Since $b_N$ is a rational and isn't zero ($|b_N| \geq c$), by trichotomy of rationals $b_N$ must be either positive or negative. If $b_N$ is positive, all $b_j$ for $j \geq N$ are positive as well since $b_j$ being negative would mean $-b_j = |b_j| \geq c$, so $b_j \leq -c$, which implies $|b_N - b_j| = b_N - b_j \geq 2c$, contradicting our assumption that $j \geq N$. This proves that $b_N$ being positive means that $(b_n)$ is eventually positively bounded away from zero. We can build a new sequence that replaces the first $N$ terms with $c$, and this new sequence is equivalent to $(b_n)$, so it also represents $x$. Hence $x$ must be positive.
+
+    A similar argument for when $b_N$ is negative proves that $x$ must be negative.
+
+ 3. If $x = 0$, $x$ could not be positive or negative.
+
+    *Proof:* If $x = 0$, then supposing $x$ is positive means $x = LIM_{n \to \infty} a_n$ for some $(a_n)$ positively bounded away from zero by some $c > 0$. By hypothesis, $(a_n)$ is equivalent to the constant sequence of $0$'s, so in particular we can find an $N$ such that $|a_n| \leq c/2$ for all $n \geq N$, which contradicts that $(a_n)$ is positively bounded away from zero. So $x$ could not be positive. A similar argument proves that $x$ could not be negative.
+
+ 4. If $x$ is positive, $x$ is not negative.
+
+    *Proof:* This can be proven by showing that a sequence positively bounded away from zero could not be equivalent to a sequence negativly bounded away from zero. Suppose $x = LIM_{n \to \infty} a_n = LIM_{n \to \infty} b_n$ for positively bounded away from zero $(a_n)$ and negatively bounded away from zero $(b_n)$. $(a_n)$ is positively bounded by some $c > 0$, and $(b_n)$ is negatively bounded by some $d < 0$. Then for all $n$, $|a_n - b_n| = a_n - b_n \geq c - d > 0$, so they could not be equivalent.
+
+ 5. Q.E.D.
+
+    *Proof:* That one of the three statements must be true is proven by (1) and (2). That at most one can be true is proven by (3) and (4) (take the contrapositive of (4) to get the last implication).
+
+
+## Necessary and sufficient condition for negativity
+$x \in \mathbb{R}$ is negative iff $-x$ is positive.
+
+*Proof:* If $x$ is negative, $x = LIM_{n \to \infty} a_n$ for some $(a_n)$ bounded negatively away from zero, so $a_n \leq d$ for some $d < 0$ and for all $n \in \mathbb{N}$. Hence $-a_n \geq -d$, proving that the sequence $(-a_n)$ is positively bounded away from zero. But this sequence represents $-x$.
+
+Conversely, if $-x = LIM_{n \to \infty} -a_n$ for some sequence $(b_n)$ positively bounded away from zero, then $(a_n)$ must be negatively bounded away from zero since $-(-a_k) = a_k$ for all $k$.
+
+## Positive reals closed under addition and multiplication
+If $x$ and $y$ are positive reals, then $x+y$ and $xy$ are positive too.
+
+*Proof:* If $x = LIM_{n \to \infty} a_n$ and $y = LIM_{n \to \infty} b_n$ and $x$ and $y$ are positive, then $(a_n)$ and $(b_n)$ are both positively bounded away from zero, so there are $c, d > 0$ such that $a_n > c$ and $b_n > d$ for all $n$. So $a_n + b_n > c + d$ for all $n$, and also $a_n b_n > c d$.
