@@ -146,3 +146,19 @@ This form is interesting because it allows us to directly write down the solutio
 Conversely, if every row has a pivot, for any $b$ we can obtain a solution by assigning arbitrary values to the free variables and then assigning appropriate values to the bound variables.
 
 **Corollary:** A system has a unique solution iff the eliminated coefficient matrix has a pivot in every row and in every column.
+
+**Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then
+
+ 1. $S$ is independent iff the eliminated versions of $A$ each have a pivot in every column.
+ 2. $S$ generates $\mathbb{F}^n$ iff $ eliminated versions of $A$ each have a pivot in every row
+ 3. $S$ is a basis for $\mathbb{F}^n$ iff the eliminated versions of $A$ have a pivot in each row and each column.
+
+*Proof:* (1) holds because eliminated versions of $A$ have a pivot in every column iff there is at most one solution for each right-hand side $b$ in the equation $Ax = b$, where $x$ is unknown. But this latter statement is true iff there's at most one solution for $b = 0$: Clearly if all $b$'s have unique solutions, then $0$ does as well.. Conversely, if $b = 0$ doesn't have a unique solution, then no $b$ does because, supposing $y \neq 0$ and $Ay = 0$, then $If $Ax = b$, $A(x + y) = Ax + Ay = b + 0 = b$. (It is safe to assume $y \neq 0$ since $0$ is already a solution for $b = 0$).
+
+For (2), eliminated versions of $A$ have at least one solution for each right-hand side iff there's a pivot in every row (by the previous theorem again), which is precisely the same thing as saying that the column vectors (aka $S$) generate $\mathbb{F}^n$.
+
+For (3), this is just a combination of (1) and (2).
+
+**Theorem:** An independent finite subset of $\mathbb{F}^n$ cannot have more than $n$ vectors in it.
+
+*Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has more than $n$ vectors in it, then the matrix will have more columns than rows, so we cannot have a pivot in every column, and hence by the previous proposition the set cannot be independent.

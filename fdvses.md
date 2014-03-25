@@ -208,3 +208,13 @@ A basic definition from set theory is that a function $f: X \to Y$ is **left inv
 
 ## Definition of an isomorphism
 An **isomorphism** between vector spaces is a bijective linear map. In other words, isomorphisms are invertible linear maps.
+
+## Isomorphism preserves independence, generatingness
+If $T: V \to W$ is an isomorphism, then if $S$ is independent in $V$, then $T(S)$ is independent in $W$. Also If $G$ generates $V$, then $T(G)$ generates $W$.
+
+*Proof:* If $S$ is independent, then $\sum_{v \in S} \alpha(v) \cdot v = 0$ implies that $\alpha(v) = 0$ for all $v \in S$. So if $\sum_{v \in S} \beta(v) \cdot T(v) = 0$, then $T(\sum_{v \in S} \beta(v) \cdot v) = 0$, so \sum_{v \in S} \beta(v) \cdot v = 0$ since $T$, being an isomorphism, is injective. This implies $\beta(v) = 0$ for all $v \in S$, proving that the set of all $T(v)$'s is independent.
+
+If $G$ generates $V$ then for all $z \in V$ there is a scaling $\alpha$ of $S$ such that $\sum_{v \in G} \alpha(v) \cdot v = z$. If $w \in W$, then there is some $u \in V$ such that $T(v) = w$ since $T$ is an isomorphism, and since $G$ generates $V$ there is some $\beta$ such that $\sum_{v \in S} \beta(v) \cdot v = u$, so by linearity $T(u) = \sum_{v \in S} \beta(v) \cdot T(v) = w$. Hence the set of $T(v)$'s generates $W$.
+
+### Corollary
+For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
