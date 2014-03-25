@@ -264,7 +264,7 @@ Define the distance of any two rationals $x, y$ by $d(x, y) := |x - y|$.
 ## Facts about absolute value and distance ($\mathbb{Q}$ is a metric space)
 For any $x, y, z \in \mathbb{Q}$,
 
- - $|x| \geq 0$ and $|x| = 0$ iff $x = 0$
+ - $|x| \geq 0$, and $|x| = 0$ iff $x = 0$
  - $-|x| \leq x \leq |x|$
  - $|x + y| \leq |x| + |y|
  - $-y \leq x \leq y$ iff $y \geq |x|$.
@@ -275,7 +275,7 @@ For any $x, y, z \in \mathbb{Q}$,
  - $d(x,z) \leq d(x,y) + d(y,z)$
 
 
- 1. $|x| \geq 0$ and $|x| = 0$ iff $x = 0$
+ 1. $|x| \geq 0$, and $|x| = 0$ iff $x = 0$
 
     *Proof:* If $x$ is not negative, then $|x| = x$, so it's either $0$ or positive. In either case, $|x| \geq 0$. If $x$ is negative, then $|x| = -x$, which is positive by definition of negativity. For the other statement, we know $x = 0$ implies $|x| = 0$. Conversely, if $x \neq 0$, then $x$ must be positive or negative by trichotomy of rationals, so in each case $|x|$ is positive and hence not $0$.
 

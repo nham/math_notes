@@ -333,6 +333,11 @@ If $x$ and $y$ are positive reals, then $x+y$ and $xy$ are positive too.
 
 *Proof:* If $x = LIM_{n \to \infty} a_n$ and $y = LIM_{n \to \infty} b_n$ and $x$ and $y$ are positive, then $(a_n)$ and $(b_n)$ are both positively bounded away from zero, so there are $c, d > 0$ such that $a_n > c$ and $b_n > d$ for all $n$. So $a_n + b_n > c + d$ for all $n$, and also $a_n b_n > c d$.
 
+## Multiplication by zero annihilates everything
+For all $x \in \mathbb{R}$, $0x = 0$.
+
+*Proof:* By the field properties, $0x = (0 + 0)x = 0x + 0x$, so adding $-(0x)$ to both sides we obtain the result. 
+
 
 ## Remark on consistency of positive/negative between $\mathbb{Q}$ and $\mathbb{R}$
 For any rational number $q$, we have that $q$ is positive as a real iff $q$ is positive as a rational, since the sequence defined by $a_n = q$ is positively bounded away from zero. Similarly, $q$ is negative as a real iff $q$ is negative as a rational
@@ -380,4 +385,119 @@ If $x, y \in \mathbb{R}$ are positive, then
  - $x^{-1}$ is positive.
  - If $y < x$, then $x^{-1} < y^{-1}$
 
-*Proof:* TODO
+*Proof:* First, $x^{-1} \neq 0$, since $x^{-1}$ would imply $1 = 0$. So $x^{-1}$ is either positive or negative. If negative, then $(-x^{-1})x$ must be positive since $-x^{-1}$ is positive and the positives are closed under multiplication. But $(-x^{-1} x = -(x^{-1} x) = -1$, which is obviously negative. So $x^{-1}$ could only be positive.
+
+For the second statement, $xy$ must be positive since both $x$ and $y$ are, and also $x-y$ is positive. By the first statement, we must have $(xy)^{-1}$ positive as well, hence $(x-y)(xy)^{-1}$ is positive. But $(xy)^{-1} = x^{-1} y^{-1}$, so $(x-y)(xy)^{-1} = xx^{-1}y^{-1} - yx^{-1}y^{-1} = y^{-1} - x^{-1}$ is positive, proving the statement.
+
+
+## The non-negative reals are closed
+If $(a_n)$ is a cauchy sequence of non-negative rational numbers, then $x = LIM_{n \to \infty} a_n$ is a non-negative real.
+
+*Proof:* if $x$ is negative, then $x = LIM_{n \to \infty} b_n$ for some Cauchy sequence bounded negatively away from zero $(b_n)$ by some $(-c) < 0$. This means that $(a_n)$ and $(b_n)$ must be equivalent. So for all $n$, $a_n \geq 0$ and $b_n \leq -c$ and $a_n \geq 0$. Now, we have $a_n - b_n = a_n + c - c - b_n$. $(-c -b_n)$ is positive by hypothesis, so $a_n - b_n$ is positive. We also have $a_n - b_n \geq a_n + c \geq c$.  Hence $|a_n - b_n| \geq c$. So $(a_n)$ and $(b_n)$ are never $\epsilon$-close for any $\epsilon < c$.
+
+### Corollary
+If $(a_n)$ and $(b_n)$ are Cauchy sequences such that $a_n \geq b_n$ for all $n \in \mathbb{N}$, then $LIM_{n \to \infty} a_n \geq LIM_{n \to \infty}$.
+
+*Proof:* $(a_n - b_n)$ is a Cauchy sequence of non-negative rationals, so by the previous proposition $LIM_{n \to \infty} a_n \geq LIM_{n \to \infty}$ is positive, which proves the statement.
+
+## Definition of distance in $\mathbb{R}$
+We define $d(x,y)$ for $x, y \in \mathbb{R}$ by $d(x,y) = |x - y|$.
+
+## Facts about absolute value and distance in \mathbb{R}
+For any $x, y, z \in \mathbb{R}$,
+
+ - $|x| \geq 0$, and $|x| = 0$ iff $x = 0$
+ - $-|x| \leq x \leq |x|$
+ - $|x + y| \leq |x| + |y|
+ - $-y \leq x \leq y$ iff $y \geq |x|$.
+ - $|xy| = |x| |y|$
+ - $|-x| = |x|$
+ - $d(x,y) \geq 0$ and $d(x,y) = 0$ iff $x = y$
+ - $d(x,y) = d(y, x)$
+ - $d(x,z) \leq d(x,y) + d(y,z)$
+
+*Proof:* These all hold by proofs identical to those for $\mathbb{Q}$, since $\mathbb{R}$ obeys all of the algebraic and order properties that $\mathbb{Q}$ did, including the trichotomy laws. Also, absolute value is defined in exactly the same way.
+
+For $x,y,z,w \in \mathbb{R}$
+
+ - $x = y$ iff $\forall \epsilon > 0$, $x is $\epsilon$-close to $y$.
+ - for all $\epsilon > 0$ if $x$ is $\epsilon$-close to $y$, then $y is $\epsilon$-close to $x$
+ - if $x$ is $\epsilon$-close to $y$ and $y$ is $\delta$-close to $z$ for $\epsilon, \delta > 0$, then $x$ is $(\epsilon+\delta)$-close to $z$.
+ - for $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close and $z$ and $w$ are $\delta$-close, then $x+z$ and $y+w$ are $(\epsilon+\delta)$-close, as are $(x-z)$ and $(y-w)$
+ - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close, then they are also $\eta$-close for every $\eta > \epsilon$.
+ - for $\epsilon > 0$, if $y$ and $z$ are both $\epsilon$-close to $x$ and $y \leq w \leq z$ or $z \leq w \leq y$, then $w$ is $\epsilon$-close to $x$.
+ - for $\epsilon > 0$, if $x$ and $y$ are $\epsilon$-close and $z \new 0$, then $xz$ and $yz$ are $\epsilon |z|$-close.
+ - for $\epsilon, \delta > 0$, if $x$ and $y$ are $\epsilon$-close, and $z$ and $w $ are $\delta$ close, then $xz$ and $yw$ are $(\epsilon |z| + \delta |x| + \epsilon \delta)$-close.
+
+*Proof:* These all carry over from the case for $\mathbb{Q}$ because $\epsilon$-closeness in $\mathbb{R}$ is defined componentwise, and they hold for each component (since the components are rationals).
+
+
+## Bounding of reals by rationals
+If $x \in \mathbb{R}$ is positive, then there exists an $n \in \mathbb{N}$ such that $x \leq n$.
+
+*Proof:* By hypothesis $x = LIM_{n \to \infty} a_n$ for some sequence $(a_n)$ bounded positively away from zero. $(a_n)$ is cauchy, so it's bounded, hence for all $n \in \mathbb{N}$, $a_n \leq B$ for some positive rational $B$. An early proposition on the rationals proves there is some natural $n$ for which $B \leq n$. This proves that $x \leq n$.
+
+### Corollary
+If $x \in \mathbb{R}$ is positive, there exists an $n \in \mathbb{N}$ such that $1/n < x$.
+
+*Proof:* $1/x$ is also positive, so we can find an $n$ such that $1/x \leq n$, so $1/x < n + 1$. Now by a previous proposition, we have $1/(n+1) < x$.
+
+## Archimedean property
+If $x, \epsilon$ are positive reals, then $\exists m \in \mathbb{N}$ such that $m \epsilon > x$.
+
+*Proof:* $1 / \epsilon$ is a valid number since $\epsilon > 0$, so apply the previous proposition to $x / \epsilon$ to obtain the desired $m$.
+
+
+## Rationals are dense in $\mathbb{R}$
+For all reals $x, y$ such that $x < y$, there is a rational $q$ such that $x < q < y$.
+
+ 1. Case $x$ positive
+
+    *Proof:* We can find an $n \in \mathbb{N}$ such that $1/n < (y - x)$. Since $x$ is positive, we can apply the Archimedean property to find an $m \in \mathbb{N}$ such that $m/n > x$. So the set $\{k \in \mathbb{N} : k/n > x\}$ is a non-empty subset of $\mathbb{N}$, hence the well-ordering principle applies and we can find the smallest element $j$ in that set. This means that $(j-1)/n \leq x$, which implies $j \leq x + 1/n < y$ since $1/n < (y-x)$ by hypothesis. 
+
+ 2. Case $x = 0$
+
+    *Proof:* $1/n$ works. 
+
+ 3. Case $x$ negative
+
+    *Proof:* If $y > 0$, we can find $1/n < y$ by a previous proposition, so that works. Now assume $y \leq 0$. We must have $|y| < |x|$, so we can find a rational $r$ such that $|y| < r < |x|$. This implies $x = -|x| < -r$ and $-r < -|y| = y$.
+
+
+## Reals have integer parts
+For every real $x$ there is an integer $z$ such that $z \leq x < z + 1$.
+
+ 1. Case $x = 0$
+
+    *Proof:* $z = 0$ works. 
+
+ 2. Case $x$ is positive
+
+    *Proof:* We can find an $n \in \mathbb{N}$ such that $x < n$ by the Archimedean property, so form the set of all naturals bigger than $x$ and take the smallest one (which is possible by the well-ordering principle). Say $j$ is the smallest, so $j - 1 \leq x < j$.
+
+ 3. Case $x$ is negative
+
+    *Proof:* We apply (2) to $-x$ to find an $n$ such that $n \leq -x < n + 1$, which implies $-(n+1) < x \leq -n$. If $x = -n$, then that is our integer, otherwise $-n - 1$ is.
+
+## Some important properties
+### $\epsilon$-balls
+For any reals $x$ and $y$ and real $\epsilon > 0$, $|x - y| < \epsilon$ iff $y - \epsilon < x < y + \epsilon$ and $|x - y| \leq \epsilon$ iff $y - \epsilon \leq x \leq y + \epsilon$.
+
+ 1. $|x - y| \leq \epsilon$ iff $y - \epsilon \leq x \leq y + \epsilon$
+    *Proof:* $|x -y| \leq \epsilon$ iff $- \epsilon \leq x - y \leq \epsilon$  holds immediately from properties of the absolute value, and the latter is true iff $y - \epsilon \leq x \leq y + \epsilon$, which proves the statement. 
+
+
+ 2. $|x - y| = \epsilon$, iff either $x = y + \epsilon$ or $x = y - \epsilon$. 
+    *Proof:* $|x - y| = \epsilon$, iff either $x - y = \epsilon$ or $y - x = \epsilon$.  The statement holds by rearrangement of the latter.
+
+ 3. $|x - y| < \epsilon$ iff $y - \epsilon < x < y + \epsilon$
+
+    *Proof:* If $|x - y| < \epsilon$, we do not have $|x - y| = \epsilon$, so we could not have either $x = y + \epsilon$ or $x = y - \epsilon$, by (2). So by (1) we must have $x > y - \epsilon$ and $x < y + \epsilon$. The converse holds for similar reasons.
+
+
+### A tool for proving equality
+For any reals $x$ and $y$, $x \leq y$ iff $x \leq y + \epsilon$ for all $\epsilon > 0$ and $x = y$ iff $|x - y| \leq \epsilon$ for all $\epsilon > 0$.
+
+*Proof:* If $x \leq y$, then for any $\epsilon > 0$, $y - x + \epsilon$ is positive as well, so $x \leq y + \epsilon$. Conversely, if $x > y$, $x - y$ is positive, so $ for $\epsilon$ such that $0 < \epsilon < x - y$, we have $y + \epsilon < x$.
+
+For the second statement, $x = y$ clearly implies $|x - y| = 0 \leq \epsilon$ for any positive $\epsilon. Conversely, if $|x - y| \leq \epsilon$ for all $\epsilon  > 0$, we could not have $x \neq y$, since that would imply by the trichotomy law that either $x > y$ or $x < y$. In either case, $|x - y|$ would be positive, so there would be some $\epsilon$ which $|x-y|$ was greater than (we could at least find an $n \in \mathbb{N}$ such that $1\n < |x - y|$.
