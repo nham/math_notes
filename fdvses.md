@@ -197,6 +197,12 @@ If $(V, \mathbb{F})$ and $(W, \mathbb{F})$ are vector spaces, a linear map is a 
 
 Note: by induction we can extend the linearity properties to any finite linear combination: $T(\sum_{v \in S} a_v \cdot v) = \sum_{v \in S} a_v \cdot T(v)$.
 
+
+## Composition of linear maps is linear
+If $A: V \to W$ and $B: W \to X$ are linear maps, then $B \circ A$ is linear as well.
+
+*Proof:* $(B \circ A) (a u + b v) = B(aAu + bAv) = a (B \circ A)(u) + b (B \circ A)(v)$
+
 ## Assigning map values for a basis determines the map
 If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then assigning values $T(v)$ for all $v \in B$ completely determines the rest of the map.
 
@@ -218,3 +224,13 @@ If $G$ generates $V$ then for all $z \in V$ there is a scaling $\alpha$ of $S$ s
 
 ### Corollary
 For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
+
+## Composition of isomorphisms is an isomorphism
+The composition of isomorphisms is an isomorphism. *Proof:* It's certainly linear, but from set theory composition of bijections is a bijection.
+
+
+## Definition of a representation w.r.t. a basis
+If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
+
+## Example
+If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.

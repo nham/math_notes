@@ -159,6 +159,10 @@ For (2), eliminated versions of $A$ have at least one solution for each right-ha
 
 For (3), this is just a combination of (1) and (2).
 
-**Theorem:** An independent finite subset of $\mathbb{F}^n$ cannot have more than $n$ vectors in it.
+**Proposition:** An independent finite subset of $\mathbb{F}^n$ cannot have more than $n$ vectors in it.
 
 *Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has more than $n$ vectors in it, then the matrix will have more columns than rows, so we cannot have a pivot in every column, and hence by the previous proposition the set cannot be independent.
+
+**Proposition:** Any two (finite) bases in a vector space $V$ have the same number of elements.
+
+*Proof:* If $V$ is a vector space and $B$ and $C$ are bases in $V$ with $|B| = m$ and $|C| = n$, then we can order these bases to obtain ordered bases $\beta$ and $\gamma$, respectively. From here we can define isomorphisms $\phi: V \to \mathbb{F}^m$ and $\psi: V \to \mathbb{F}^n$ which assign to each $v$ in V$ its $\beta$ and $\gamma$-representation. Then $T = \phi \circ \psi^{-1} : \mathbb{F}^n \to \mathbb{F}^m$ is an isomorphism, as is $T^{-1} = \psi \circ \phi^{-1} : \mathbb{F}^m \to \mathbb{F}^n$. Let $S_m$ and $S_n$ be the standard basis sets in $\mathbb{F}^m$ and $\mathbb{F}^n$, respectively. Then $T(S_n)$ must be linearly independent in $\mathbb{F}^m$, and $T^{-1}(S_m)$ must be linearly independent in $\mathbb{F}^n$. So $m \leq n$ and $n \leq m$ by the previous proposition.
