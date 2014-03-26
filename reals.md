@@ -501,3 +501,77 @@ For any reals $x$ and $y$, $x \leq y$ iff $x \leq y + \epsilon$ for all $\epsilo
 *Proof:* If $x \leq y$, then for any $\epsilon > 0$, $y - x + \epsilon$ is positive as well, so $x \leq y + \epsilon$. Conversely, if $x > y$, $x - y$ is positive, so $ for $\epsilon$ such that $0 < \epsilon < x - y$, we have $y + \epsilon < x$.
 
 For the second statement, $x = y$ clearly implies $|x - y| = 0 \leq \epsilon$ for any positive $\epsilon. Conversely, if $|x - y| \leq \epsilon$ for all $\epsilon  > 0$, we could not have $x \neq y$, since that would imply by the trichotomy law that either $x > y$ or $x < y$. In either case, $|x - y|$ would be positive, so there would be some $\epsilon$ which $|x-y|$ was greater than (we could at least find an $n \in \mathbb{N}$ such that $1\n < |x - y|$.
+
+## Definition of an upper bound
+A subset $S \subseteq \mathbb{R}$ has an **upper bound** $b \in \mathbb{R}$ if for all $x \in S$, we have $x \leq b$.
+
+## Definition of a least upper bound
+An real number $b \in \mathbb{R}$ is said to be a **least upper bound** for a set $S$ if
+
+ - $b$ is an upper bound for $S$
+ - If $c$ is an upper bound for $S$, $b \leq c$
+
+
+## Least upper bounds, if they exist, are unique
+If $b$ and $c$ are least upper bounds for a set $S$, then $b = c$.
+
+*Proof:* By the definition we have $b \leq c$ and $c \leq b$, so neither $b < c$ nor $c < b$ could be true.
+
+## The empty set has no least upper bound
+$\emptyset$ has an upper bound, but no least upper bound
+
+*Proof:* Any $x \in \mathbb{R}$ is vacuously an upper bound for $\emptyset$, so there could be no least upper bound: For any upper bound $x$, $x - 1$ is also an upper bound.
+
+
+## Non-empty sets in $\mathbb{R}$ that are bounded above have least upper bounds
+If $S$ is a non-empty subset of $\mathbb{R}$ and $S$ has some upper bound, then $S$ has exactly one least upper bound.
+
+*Proof:* Uniqueness of the least upper bound is established by a previous proposition.
+
+# The least upper bound property
+If $S \subseteq \mathbb{R}$ is non-empty and bounded above, then it must have a unique least upper bound.
+
+ 1. It suffices to assume $S \neq \emptyset$ is a subset of $\mathbb{R}$, that for all $x \in S$ we have $x \leq M$ for some $M \in \mathbb{R}$, and prove that $S$ has a least upper bound.
+
+    *Proof:* Previous proposition proves that least upper bounds are unique.
+
+ 2. If $n \in \mathbb{N}^+$ and $L, K \in \mathbb{Z}$ with $L < K$, then if $K / n$ is an upper bound for $S$ and $L/n$ isn't, there must exist some $m \in \mathbb{Z}$ such that $L < m \leq K$ and $m/n$ is an upper bound for $S$ but $(m-1)/n$ is not.
+
+    1. It suffices to assume that no such $m$ exists and derive a contradiction.
+
+    2. $K/n$ is an upper bound for $S$.
+
+       *Proof:* By hypothesis.
+
+    3. If $j \in \mathbb{N}$ and $L < (K - j) \leq K$, then if $(K-j)/n$ is an upper bound for $S$, then $(K -(j+1))/n$ is also an upper bound for $S$
+
+       *Proof:* If $L < (K - j) \leq K$, then supposing $(K-j)/n$ is an upper bound for $S$, we must also have $(K - (j+1))/n$ as an upper bound for $S$, since this failing to be true would mean we have an integer $(K-j)$ such that $(K-j)/n$ is an upper bound but $(K - j - 1)/n$ is not an upper bound, and we supposed that there is no such integer.
+
+    
+    4. For all $j \in \mathbb{N}$, either $(K-j) \leq L$ or ($L < (K - j)$ and $(K - j)/n$ is an upper bound for $S$).
+
+      *Proof:* (2) establishes that it's true for $j = 0$. If it's true for $j$, so either $(K - (j + 1)) \leq L$ or $(K - (j + 1)) > L$. In the case of the latter, we have $(K-j) > L$ obviously, so by the induction hypothesis $(K-j)/n$ is an upper bound for $S$, and by (3) $(K -(j + 1))/n$ is an upper bound for $S$ as well.
+
+    5. Q.E.D.
+
+       *Proof:* By (4) we have, for $j = K - L - 1$, $K - j = L + 1 > L$, so $(L+1)/n$ is an upper bound for $S$. By (3) we must have $L/n$ also an upper bound for $S$, contradicting the assumption that $L/n$ isn't an upper bound.
+
+ 3. If $n \in \mathbb{N}^+$, and $\alpha$ and $\beta$ are integers such that $\alpha / n$ and $\beta / n$ are upper bounds for $S$ and such that $(\alpha - 1)/n$ and $(\beta - 1)/n$ are not upper bounds for $S$, then $\alpha = \beta$.
+
+    *Proof:* If $\alpha \neq \beta$, we may assume without loss of generality that $\alpha < \beta$, then $\alpha + 1 \leq \beta$, so $\alpha \leq \beta - 1$. But by hypothesis $\beta - 1$ is not an upper bound, so $\alpha$ could not be either, contradicting our hypothesis.
+
+ 4. There exists an $s \in S$.
+
+    *Proof:* $S$ is non-empty by hypothesis
+
+ 5. For each $n \in \mathbb{N}^+$, there exists a $K \in \mathbb{Z}$ such that $K/n > M$.
+
+    *Proof:* If $M$ is positive, we can directly use the Archimedean property. If $M \leq 0$, $K = 1$ works.
+
+ 6. For each $n \in \mathbb{N}^+$, there exists a $L \in \mathbb{Z}$ such that $L/n < s$.
+
+    *Proof:* If $sn$ is not an integer, then we can use $L = \lfloor sn \rfloor$. If $sn$ is an integer, use $L = \lfloor sn \rfloor - 1$.
+
+ 7. For each $n \in \mathbb{N}^+$, there is a unique $m_n \in \mathbb{Z}$ such that $L < m_n < K$ and $m_n / n$ is an upper bound for $S$, but $(m_n - 1)/n$ is not an upper bound for $S$.
+
+    *Proof:* The $K$ and $L$ in (5) and (6) allow us to apply (2) to find some $m_n$ since $K/n$ is an upper bound and $L/n$ is not. The $m_n$ is unique by (3).
