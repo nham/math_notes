@@ -342,6 +342,13 @@ For all $x \in \mathbb{R}$, $0x = 0$.
 ## Remark on consistency of positive/negative between $\mathbb{Q}$ and $\mathbb{R}$
 For any rational number $q$, we have that $q$ is positive as a real iff $q$ is positive as a rational, since the sequence defined by $a_n = q$ is positively bounded away from zero. Similarly, $q$ is negative as a real iff $q$ is negative as a rational
 
+
+## Limit of harmonic series
+$0 = LIM_{n \to \infty} 1/n
+
+*Proof:* We must prove that for all $\epsilon > 0$ there is a positive int $N$ such that $|1/N| \leq \epsilon$. But we can find an $N$ such that $0 < 1/N < \epsilon$, and $|1/N| = 1/N$, so it proves it.
+
+
 ## Definition of absolute value in $\mathbb{R}
 For all $x \in \mathbb{R}$, define $|x|$ by $x$ if $x$ is positive or $0$ and $-x$ if $x$ is negative.
 
@@ -502,6 +509,13 @@ For any reals $x$ and $y$, $x \leq y$ iff $x \leq y + \epsilon$ for all $\epsilo
 
 For the second statement, $x = y$ clearly implies $|x - y| = 0 \leq \epsilon$ for any positive $\epsilon. Conversely, if $|x - y| \leq \epsilon$ for all $\epsilon  > 0$, we could not have $x \neq y$, since that would imply by the trichotomy law that either $x > y$ or $x < y$. In either case, $|x - y|$ would be positive, so there would be some $\epsilon$ which $|x-y|$ was greater than (we could at least find an $n \in \mathbb{N}$ such that $1\n < |x - y|$.
 
+
+## Limit of a sequence with each term greater than or equal to
+If $(a_n)$ is a cauchy sequence and $x \in \mathbb{R}$ and for all $n$, $a_n \geq x$, then $x \leq LIM_{n \to \infty} a_n$.
+
+*Proof:* Let $(b_n)$ be such that $x = LIM_{n \to \infty} b_n$. Then suppose $x > LIM_{n \to \infty} a_n$. We must have $(b_n - a_n)$ positively bounded away from zero, so some $c > 0$ is such that $b_n - a_n \geq c$ for all $n$. By hypothesis and some algebra we have $b_n - x \geq c$, TODO
+
+
 ## Definition of an upper bound
 A subset $S \subseteq \mathbb{R}$ has an **upper bound** $b \in \mathbb{R}$ if for all $x \in S$, we have $x \leq b$.
 
@@ -575,3 +589,29 @@ If $S \subseteq \mathbb{R}$ is non-empty and bounded above, then it must have a 
  7. For each $n \in \mathbb{N}^+$, there is a unique $m_n \in \mathbb{Z}$ such that $L < m_n < K$ and $m_n / n$ is an upper bound for $S$, but $(m_n - 1)/n$ is not an upper bound for $S$.
 
     *Proof:* The $K$ and $L$ in (5) and (6) allow us to apply (2) to find some $m_n$ since $K/n$ is an upper bound and $L/n$ is not. The $m_n$ is unique by (3).
+
+ 8. The sequence $(a_n)$ defined by $a_n = m_n / n$ for positive $n$ is a Cauchy sequence.
+
+    1. For any positive ints $n$ and $k$, we have $- \frac{1}{k} < \frac{a_n}{n} - \frac{a_k}{k} < \frac{1}{n}$.
+
+      *Proof:* $\frac{m_k}{k}$ and $\frac{m_n}{n}$ are both upper bounds for $S$, but $\frac{m_k - 1}{k}$ and $\frac{m_n - 1}{n}$ are not. So $\frac{m_n}{n} > \frac{m_k - 1}{k}$, which is the same as saying $\frac{m_n}{n} - \frac{m_k}{k} > - \frac{1}{k}$. The same logic applied to $\frac{m_k}{k}$ and $\frac{m_n - 1}{n}$ yields $\frac{m_n}{n} - \frac{m_k}{k} < \frac{1}{n}$. So $- \frac{1}{k} < \frac{m_n}{n} - \frac{m_k}{k} < \frac{1}{n}$.
+
+    2. If $N, k, n$ are positive ints and $n, k \geq N$, then $-frac{1}{N} \leq \frac{a_n}{n} - \frac{a_k}{k} \leq \frac{1}{N}$
+
+       *Proof:* Noting that by hypothesis, $\frac{1}{n} \leq \frac{1}{N}$ and $- \frac{1}{N} \leq - \frac{1}{k}$ the result is established by using (1).
+
+    3. Q.E.D.
+    
+       *Proof:* For $\epsilon > 0$, we can find a positive integer $N$ such that $\frac{1}{N} \leq \epsilon$, which by (2) implies that $|\frac{a_n}{n} - \frac{a_k}{k}| \leq \frac{1}{N} \leq \epsilon$ for all $n, k \geq N$. So the sequence is Cauchy.
+
+ 9. Define $L = LIM_{n \to \infty} \frac{a_n}{n}$.
+
+    *Proof:* This is valid by (8)
+
+ 10. $L = LIM_{n \to \infty} \frac{a_n - 1}{n}$.
+
+     *Proof:* $S = LIM_{n \to \infty} \frac{a_n - 1}{n} + LIM_{n \to \infty} \frac{1}{n} = LIM_{n \to \infty} \frac{a_n - 1}{n} + 0$ since the limit of $(1/n)_{n \geq 1}$ is $0$.
+
+ 11. $L$ is an upper bound for $S$
+
+     *Proof:* For any $x \in S$, we have $\frac{m_n}{n} \geq x$ for all $n \geq 1$.
