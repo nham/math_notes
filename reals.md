@@ -657,3 +657,8 @@ $$(c - \epsilon)^2 \geq c^2 - 2 \epsilon$$
 If $c^2 < 2$, then $2 - c^2$ is positive, so $0 < \frac{2 - c^2}{10} < 1$. So letting $\epsilon = \frac{2 - c^2}{10}$, we obtain (by the above) $(c + \epsilon)^2 \leq c^2 + \frac{2 - c^2}{2} = \frac{2 + c^2}{2}$, which is both greater than $c^2$ and less than $2$. So $c$ could not be an upper bound for $S$, because $c + \epsilon$ is in $S$ and is greater than $c$.
 
 If $c^2 > 2$, then $(c^2 - 2$ is positive, so $0 < \frac{c^2 - 2}{4} < 1$. So letting $\epsilon = \frac{c^2 - 2}{4}$, we obtain $(c - \epsilon)^2 \leq c^2 - \frac{c^2 - 2}{2} = \frac{2 + c^2}{2}$, which is both greater than $2$ and less than $c^2$. We have that for all $x \in S$, $(c+\epsilon)^2 > x^2$. If $c - \epsilon < x$, then $(c - \epsilon)^2 < x^2$ which contradicts what we just proved. So we must have $c - \epsilon > x$, or that $c - \epsilon$ is an upper bound of $S$, so $c$ could not be a least upper bound for $S$.
+
+## Infimums exist
+If $S$ is non-empty and bounded below, then it has a greatest lower bound, called the **infimum** of $S$.
+
+*Proof:* Form the set $T$ by negating all elements of $S$. Then for all $x \in S$, we have some $c$ such that $c \leq x$, so for all $y \in T$, $-c \geq y$ since $y = -x$ for some $x \in S$. So $-c$ is an upper bound for the non-empty set $T$, and it thus has a least upper bound $L$. This implies not only that $-L$ is a lower bound for $S$, but that it must be the greatest lower bound since any greater lower bound $d$ would lead to $-d$ being an upper bound of $T$ that is smaller than $L$.
