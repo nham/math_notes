@@ -511,9 +511,15 @@ For the second statement, $x = y$ clearly implies $|x - y| = 0 \leq \epsilon$ fo
 
 
 ## Limit of a sequence with each term greater than or equal to
-If $(a_n)$ is a cauchy sequence and $x \in \mathbb{R}$ and for all $n$, $a_n \geq x$, then $x \leq LIM_{n \to \infty} a_n$.
+If $(a_n)$ is a Cauchy sequence and $x \in \mathbb{R}$ and for all $n$, $a_n \geq x$, then $x \leq LIM_{n \to \infty} a_n$.
 
-*Proof:* Let $(b_n)$ be such that $x = LIM_{n \to \infty} b_n$. Then suppose $x > LIM_{n \to \infty} a_n$. We must have $(b_n - a_n)$ positively bounded away from zero, so some $c > 0$ is such that $b_n - a_n \geq c$ for all $n$. By hypothesis and some algebra we have $b_n - x \geq c$, TODO
+*Proof:* Let $y = LIM_{n \to \infty} a_n$ and assumme $x > y$. Then we can find some rational $q$ with $x > q > y$ because the rationals are dense in the reals. So $a_n > q$ for all $n$. However, we also have $q > y$, so $LIM_{n \to \infty} q - LIM_{n \to \infty} a_n$ is positive, which means the sequence $(q - a_n)_{n = 0}^{\infty}$ is positively bounded away from zero, so $q - a_n \geq c$ for some $c > 0$. This implies $q \geq a_n + c$ for all $n$, which implies $q > q + c > q$ since $c > 0$, an obvious contradiction. So we must have $x \leq y$.
+
+### Corollary
+
+If $(a_n)$ is a Cauchy sequence and $x \in \mathbb{R}$ and for all $n$, $a_n \leq x$, then $x \geq LIM_{n \to \infty} a_n$.
+
+*Proof:* Apply the previous proposition to $(-a_n)$ and $-x$ and use properties of inequalities and negation.
 
 
 ## Definition of an upper bound
@@ -614,4 +620,40 @@ If $S \subseteq \mathbb{R}$ is non-empty and bounded above, then it must have a 
 
  11. $L$ is an upper bound for $S$
 
-     *Proof:* For any $x \in S$, we have $\frac{m_n}{n} \geq x$ for all $n \geq 1$.
+     *Proof:* For any $x \in S$, we have $\frac{m_n}{n} \geq x$ for all $n \geq 1$, so by a previous proposition $L$ is an upper bound for $S$.
+
+ 12. $L$ is a least upper bound for $S$.
+
+     *Proof:* If $u$ is an upper bound for $S$, then for all $n$, we have $\frac{m_n - 1}{n} \leq u$, where the inequality holds because each $\frac{m_n - 1}{n}$ is not an upper bound of $S$. We can apply a previous proposition to obtain $L \leq u$, since $L = LIM_{n \to \infty} \frac{m_n - 1}{n}$ by (10).
+
+ 13. Q.E.D.
+
+     *Proof:* (12) proves what we set out to establish.
+
+## Definition of supremum
+The **supremum** of a non-empty set bounded above by some real is the least upper bound, which the last theorem proves exists. We notate this, for any such set $S$, as $sup S$. For a non-empty set $X$ not bounded above, we write $sup X = + \infty$. If $Y$ is empty, we write it $sup Y = - \infty$.
+
+## I can has square root of two
+There is a real number $x$ such that $x^2 = 2$.
+
+*Proof:* Consider the set $S = \{x \in \mathbb{R} : x^2 < 2\}$. Then $1^2 = 1 < 2$, and $2^2 = 4 > 2$, so $S$ is non-empty and bounded above, and thus $c = sup S$ is a real number. We must have $2 \geq c \geq 1$. 
+
+For any $\epsilon \in \mathbb{R}$, $0 < \epsilon < 1$, we have 
+
+$$(c + \epsilon)^2 = c^2 + 2 \epsilon c + \epsilon^2 = c^2 + \epsilon (2c + \epsilon)$$ 
+
+Also, 
+
+$$(c - \epsilon)^2 = c^2 - 2 \epsilon c + \epsilon^2 = c^2 + \epsilon (-2c + \epsilon)$$
+
+Since $1 \leq c \leq 2$, we have
+
+$$(c + \epsilon)^2 \leq c^2 + 5 \epsilon$$
+
+and 
+
+$$(c - \epsilon)^2 \geq c^2 - 2 \epsilon$$
+
+If $c^2 < 2$, then $2 - c^2$ is positive, so $0 < \frac{2 - c^2}{10} < 1$. So letting $\epsilon = \frac{2 - c^2}{10}$, we obtain (by the above) $(c + \epsilon)^2 \leq c^2 + \frac{2 - c^2}{2} = \frac{2 + c^2}{2}$, which is both greater than $c^2$ and less than $2$. So $c$ could not be an upper bound for $S$, because $c + \epsilon$ is in $S$ and is greater than $c$.
+
+If $c^2 > 2$, then $(c^2 - 2$ is positive, so $0 < \frac{c^2 - 2}{4} < 1$. So letting $\epsilon = \frac{c^2 - 2}{4}$, we obtain $(c - \epsilon)^2 \leq c^2 - \frac{c^2 - 2}{2} = \frac{2 + c^2}{2}$, which is both greater than $2$ and less than $c^2$. We have that for all $x \in S$, $(c+\epsilon)^2 > x^2$. If $c - \epsilon < x$, then $(c - \epsilon)^2 < x^2$ which contradicts what we just proved. So we must have $c - \epsilon > x$, or that $c - \epsilon$ is an upper bound of $S$, so $c$ could not be a least upper bound for $S$.
