@@ -662,3 +662,141 @@ If $c^2 > 2$, then $(c^2 - 2$ is positive, so $0 < \frac{c^2 - 2}{4} < 1$. So le
 If $S$ is non-empty and bounded below, then it has a greatest lower bound, called the **infimum** of $S$.
 
 *Proof:* Form the set $T$ by negating all elements of $S$. Then for all $x \in S$, we have some $c$ such that $c \leq x$, so for all $y \in T$, $-c \geq y$ since $y = -x$ for some $x \in S$. So $-c$ is an upper bound for the non-empty set $T$, and it thus has a least upper bound $L$. This implies not only that $-L$ is a lower bound for $S$, but that it must be the greatest lower bound since any greater lower bound $d$ would lead to $-d$ being an upper bound of $T$ that is smaller than $L$.
+
+
+## Real exponentiation (by naturals)
+For any $x \in \mathbb{R}$ we define $x^0 = 1$ and, for any natural $n$, $x^n = x^{n-1} x$. 
+
+## Facts about natural exponentiation
+For any $x, y \in \mathbb{R}$ and $n,m \in \mathbb{N}$
+
+ - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
+ - $(xy)^n = x^n y^n$
+ - For all $n \neq 0$, $x^n = 0$ iff $x = 0$
+ - If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$. If $0 \leq y < x$ and $n > 0$, then $0 \leq y^n < x^n$
+ - |x^n| = |x|^n
+
+*Proof:* These properties were proved for the rationals. The same proofs that were used then work for the reals, since the reals obey the same algebraic and order properties.
+
+## Real exponentiation by integers
+For any non-zero $y \in \mathbb{R}$ and integer $z$, if $z$ is natural then $y^z$ has already been defined. If $z$ is a negative integer, define $y^z = 1 / y^{-z}$.
+
+
+## Facts about integer exponentiation
+For any $x, y \in \mathbb{R}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{N}$
+
+ - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
+ - $(xy)^n = x^n y^n$
+ - If $0 \leq y \leq x$ then $0 \leq y^n \leq x^n$ if $n$ is positive and $0 \leq x^n \leq y^n$ if $n$ is negative.
+ - |x^n| = |x|^n
+
+*Proof:* These properties were proved for the rationals. The same proofs that were used then work for the reals, since the reals obey the same algebraic and order properties.
+
+
+## $n$-th roots of reals
+We define for positive real $x$ and positive integer $n$ the quantity $x^{1/n}$ by
+
+$$x^{1/n} := sup \{y \in \mathbb{R} : y \geq 0, y^n \leq x \}$$
+
+
+### $n$-rooths exist for every positive real
+The set $S = \{y \in \mathbb{R} : y \geq 0, y^n \leq x\}$ is non-empty and bounded above for every positive real $x$.
+
+*Proof:* The set is non-empty since $0$ is in the set, which we know because $0^n = 0$ and because $x$ is positive. 
+
+To prove it is bounded above because, consider cases $x \leq 1$ and $x > 1$. For $x \leq 1$, any $y \in S$ must have $y^n \leq x \leq 1$, so $1$ is an upper bound on $S$. For $x > 1$, we can prove by induction that $x^m > x$ for all positive integers $m$. So if some $y \in S$ is such that $y > x$, then we have $y^n > x^n > x$, a contradiction.
+
+## Lemma for the $n$-th root sets
+If $x$ is positive real, $n$ is a positive int, and $y > x$, then $y$ is an upper bound for $S = \{ z \in \mathbb{R} : z \geq 0, z^n \leq x\}$.
+
+*Proof:* If not, then some $z \in S$ has $z > y$, so $z^n > y^n$ by order properties of $\mathbb{R}$, but $y^n > x^n$ by hypothesis, so $z \notin S$ after all, which is a contradiction.
+
+
+## Facts about $n$-th roots
+If $x, y \in \mathbb{R}$ are both positive and $n$ and $m$ are positive integers, then
+
+ - $y = x^{1/n}$ iff $y^n = x$
+ - $x^{1/n}$ is a positive real
+ - $x > y$ iff $x^{1/n} > y^{1/n}$
+ - $x > 1$ implies $f(k) := x^{1/k}$ is a decreasing function, $x < 1$ implies $f$ is an increasing function, and $x = 1$ implies $f(k) = 1$ for all $k$.
+ - $(xy)^{1/n} = x^{1/n} y^{1/n}$
+ - $(x^{1/n})^{1/m} = x^{1/nm}$
+
+ 1. $y = x^{1/n}$ implies $y^n = x$
+
+    1. It suffices to prove that $y^n < x$ and $y^n > x$ are both impossible. 
+
+       *Proof:* Once both are established to be impossible, $y^n = x$ is the only remaining option by trichotomy.
+
+    2. $y^n < x$ is impossible
+
+       *Proof:* For any $\epsilon \in \mathbb{R}$ with $0 < \epsilon < 1$, we have 
+
+       $$(y + \epsilon)^n = y^n + \sum_1^n {n \choose k} y^{n-k} \epsilon^k < y^n + \epsilon ( \sum_1^n {n \choose k} y^{n-k} )$$
+
+        where the inequality holds because for all positive integers $k$, \epsilon^k < \epsilon$, due to the fact that $0 < \epsilon < k$. We can pick an \epsilon such that
+
+        $$ \epsilon ( \sum_1^n {n \choose k} y^{n-k} ) < x$$
+
+        since $y^n < x$ by hypothesis. Such an $\epsilon$ furnishes us with a real number $y + \epsilon$ which is greater than $y$, but such that $(y + \epsilon)^n < x$, so $y + \epsilon$ is in $S$. This proves $y$ is not an upper bound for $S$, which contradicts our assumption.
+
+    3. $y^n > x$ is impossible
+
+       *Proof:* For any $\epsilon \in \mathbb{R}$ with $0 < \epsilon < 1$, we have 
+
+       $$(y - \epsilon)^n = y^n + \sum_1^n {n \choose k} y^{n-k} (-1)^k \epsilon^k$$
+
+       Now let $A = \sum_1^n {n \choose k} y^{n-k} (-1)^k \epsilon^k - \sum_1^{\lfloor n/2 \rfloor} {n \choose k} y^{n-2k} \epsilon^{2k}$. $A$ is the sum of all the negative terms ${n \choose k} y^{n-k} (-1)^k \epsilon^k$, i.e. those terms for which $k$ is odd. Since $-\epsilon < - \epsilon^k$ for positive ints $k$, we have that
+
+       $$(y - \epsilon)^n > y^n - \epsilon (\sum_1^{\lfloor n/2 \rfloor} {n \choose k} y^{n-k} )$$
+
+       Similar to the previous case, we have $y^n > x$ and so can pick $\epsilon$ such that $(y - \epsilon)^n > x$. So $(y - \epsilon)^n$ is an upper bound for $S$ (if not, some element $w \in S$ would be bigger, and hence $w^n$ would be bigger than $x$, contrary to the definition of $S$). This contradicts $y$'s status as the least upper bound.
+
+    4. Q.E.D.
+
+       *Proof:* (2) and (3) complete the proof.
+
+ 2. $y^n = x$ implies y = x^{1/n}$
+
+    *Proof:* Since $y^n = x$, then $y \in \{z \in \mathbb{R} : z \geq 0, z^n \leq x\}$. If $z^n \leq x$, then $y < z$ implies $y^n < z^n$ since both $y$ and $z$ are positive, which implies $z$ isn't in the set that we assumed it was in. So $y$  must be an upper bound. Also, every upper bound is $\geq y$ by definition, so it's the least upper bound.
+
+ 3. $x^{1/n}$ is a positive real
+
+    *Proof:* By the very definition of $x^{1/n}$, it is non-negative. We only defined $n$-th roots of positive reals, so for $0$ to the supremum of the $n$-th root set, we must have for all $\epsilon > 0$, $\epsilon^n > x$. In particular, $1 > x$, and for all $\epsilon$ such that $0 < \epsilon < 1$, $\epsilon > x$ since $ $\epsilon > \epsilon^n$. In other words, for all $\epsilon > 0$, we have $\epsilon > x$. So $x$ must be zero, contradicting our assumption that $x$ is positive.
+
+ 4. $x > y$ iff $x^{1/n} > y^{1/n}$
+    
+    *Proof:* By (1), $(x^{1/n})^n = x$ and $(y^{1/n})^n = y$, so $x^{1/n} > y^{1/n}$ implies that $x  > y$, $x^{1/n} = y^{1/n}$ implies $x = y$, and $x^{1/n} < y^{1/n}$ implies $x < y$, all by (3) and by basic order properties.
+
+ 5. $x > 1$ implies $f(k) := x^{1/k}$ is a decreasing function, $x < 1$ implies $f$ is an increasing function, and $x = 1$ implies $f(k) = 1$ for all $k$.
+
+    *Proof:* We have, for any positive integer $n$,:
+
+      - $x^{1/n} > 1$ implies $x > 1$
+      - $x^{1/n} = 1$ implies $x = 1$
+      - $x^{1/n} < 1$ implies $x < 1$
+
+    which all hold by (1). By trichotomy, the other directions of implication hold as well. 
+
+    The above proves what we set out to prove for $x = 1$. We now consider the remaining two cases.
+
+    For any positive ints $j$ and $k$ with $j < k$, we have $k - j$ is a positive integer too and
+
+    $$(x^{1/j})^k = x (x^{1/j})^{k - j}$$
+
+    If $x > 1$, then $x^{1/n} > 1$ for all positive integers $n$. Furthermore, if $x^{1/j} < $x^{1/k}$, then $x (x^{1/j})^{k-j} < x$, and since $x$ is positive we have $(x^{1/j})^{k-j} < 1$, which contradicts the fact that $x^{1/j} > 1$. If $x^{1/j} = x^{1/k}$, then $(x^{1/j})^{k - j} = 1$, another contradiction. So we must have $x^{1/j} > x^{1/k}$.
+
+    Finally, if $x < 1$, then $x^{1/n} < 1$ for all positive integers $n$. Furthermore, if $x^{1/j} > $x^{1/k}$, then $x (x^{1/j})^{k-j} > x$, and since $x$ is positive we have $(x^{1/j})^{k-j} > 1$, which contradicts the fact that $x^{1/j} < 1$. If $x^{1/j} = x^{1/k}$, then $(x^{1/j})^{k - j} = 1$, another contradiction. So we must have $x^{1/j} < x^{1/k}$.
+
+
+ 6. $(xy)^{1/n} = x^{1/n} y^{1/n}$
+
+    *Proof:* $(x^{1/n} y^{1/n})^n = (x^{1/n})^n (y^{1/n})^n = x y$ by (1), so $(xy)^{1/n} = x^{1/n} y^{1/n}$ by (2).
+
+ 7. $(x^{1/n})^{1/m} = x^{1/nm}$
+
+    *Proof:* We can establish this result by proving that $((x^{1/n})^{1/m})^{nm} = x$. (2) then gives the desired statement. But
+
+    $$ ((x^{1/n})^{1/m})^{nm} = (((x^{1/n})^{1/m})^m)^n$$
+
+    by commutativity and basic properties of exponentiation, which is equal to $x$ by (1) (applied two different times).
