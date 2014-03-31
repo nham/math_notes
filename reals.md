@@ -683,7 +683,7 @@ For any non-zero $y \in \mathbb{R}$ and integer $z$, if $z$ is natural then $y^z
 
 
 ## Facts about integer exponentiation
-For any $x, y \in \mathbb{R}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{N}$
+For any $x, y \in \mathbb{R}$ with $x \neq 0 \neq y$, and $n,m \in \mathbb{Z}$
 
  - $x^n x^m = x^{n+m}$ and $(x^n)^m = x^{nm}$
  - $(xy)^n = x^n y^n$
@@ -800,3 +800,74 @@ If $x, y \in \mathbb{R}$ are both positive and $n$ and $m$ are positive integers
     $$ ((x^{1/n})^{1/m})^{nm} = (((x^{1/n})^{1/m})^m)^n$$
 
     by commutativity and basic properties of exponentiation, which is equal to $x$ by (1) (applied two different times).
+
+
+## Definition of rational exponents
+If $x > 0$ is real and $q \in \mathbb{Q}$, we define $x^q$ by obtaining integers $a, b$, with $b > 0$, such that $q = a / b$, and then defining
+
+$$x^q := (x^{1/b})^a$$
+
+### Rational exponentiation is well-defined
+Our definition of exponentiation by a rational number depends on choice for representation, so we must prove that the result is the same for all choices. I.e. if $q = a/b = c/d$ for positive ints $b$ and $d$ and integers $a$ and $c$, then 
+
+$$(x^{1/b})^a = (x^{1/d})^c$$
+
+*Proof:* If $a = 0$, then $c = 0$ as well since we have $ad = 0 = cb$ and $b /neq 0$. The equation holds in this case since both sides are $1$. 
+
+If $a > 0$, $ad = bc$ and $ad$ is positive since $d$ is, so $cb$ is positive. But $b$ is positive, so $c$ must be positive as well. Let $y = x^{1/ad} = x^{1/bc}$. Then by previously proved facts we have $y = (x^{1/d})^{1/a} = (x^{1/b})^{1/c}$, so we also have $y^a = x^{1/d}$ and $y^c = x^{1/b}$. So $(x^{1/b})^a = (y^c)^a = y^{ca}$ and $(x^{1/d})^c = (y^a)^c = y^{ac}$. But $y^{ca} = y^{ac}$.
+
+Finally, if $a < 0$, we have that $(-a)/b = (-c)/d$, so we apply the case just proved to obtain $(x^{1/b})^{-a} = (x^{1/d})^{-c}$. We can take the reciprocal of both sides to obtain the statement.
+
+
+## Facts about exponentiation by rationals
+If $x, y$ positive reals and $q, r$ rationals, then
+
+ - $x^q$ is a positive real
+ - $x^{q+r} = x^q x^r$ and $(x^q)^r = x^{qr}$
+ - $x^{-q} = 1/x^q$
+ - if $q > 0$ then $x > y$ iff $x^q > y^q$
+ - if $x > 1, then ($x^q > x^r$ iff $q > r$). If $x < 1$, then ($x^q > x^r$ iff $q < r$)
+
+ 1. $x^q$ is a positive real
+
+    *Proof:* $q = a / b$ for some integers $a$ and $b$ with $b$ positive, so by a previous proposition $x^{1/b}$ is positive. $x^q$ is $(x^{1/b})^a$, so it must be positive since the positive reals are closed under multiplication.
+
+ 2. $x^{q+r} = x^q x^r$ and $(x^q)^r = x^{qr}$
+
+    *Proof:* We have $q = a/b$ and $r = c/d$ for integers $a, b, c, d$ with $b$ and $d$ positive. so $q+r = (ad + bc)/bd$. Hence
+
+    $$ x^{q+r} = (x^{1/bd})^{ad + bc} = (x^{1/bd})^{ad} + $(x^{1/bd})^{bc} = x^q + x^r$$
+
+    where the second equality holds by distributivity of integer exponents and the third equality holds because $q = ad / bd$ and $r = cb / db$.
+
+    Also, $qr = ac / bd$. We have that
+
+    $$(x^{1/bd})^{ad} = (x^{1/b})^a$$
+
+    since $ad/bd = a/b$, which implies
+
+    $$((x^{1/b})^a)^{1/d} = (x^{1/bd})^a$$
+
+    which further implies
+
+    $$(x^q)^r = (((x^{1/b})^a)^{1/d})^c = (x^{1/bd})^{ac} = x^{qr}$$
+    
+ 3. $x^{-q} = 1/x^q$
+
+    *Proof:* $q = a/b$ for some integer $a$ and positive integer $b$, so $-q = -a / b$ and $x^{-q} = (x^{1/b})^{-a} = 1 / (x^{1/b})^a$, which is precisely $1 / x^q$.
+
+ 4. if $q > 0$ then $x > y$ iff $x^q > y^q$
+
+    *Proof:* By hypothesis $q = a / b$ for positive integers $a$ and $b$, so $x > y$ iff $x^{1/b} > y^{1/b}$ by a previous hypothesis. This implies that $(x^{1/b})^a > (y^{1/b})^a$, and conversely this latter statement implies the former.
+
+ 5. if $x > 1, then ($x^q > x^r$ iff $q > r$). If $x < 1$, then ($x^q > x^r$ iff $q < r$)
+
+    *Proof:* We have $q = a/b$ and $r = c/d$ for integers $a, b, c, d$ with $b$ and $d$ positive. So $q = ad / bd$ and $r = bc / bd$.  
+
+    If $x > 1$ and $n$ and $m$ are integers, then if $n > m$, we have $x^{n-m} > 1$ as well. But $x^n = x^{n-m} x^m$,so $x^n = x^{n-m} x^m > x^m$ since $x^m$ is positive  by (1). To prove the converse, we note that $n = m$ implies $x^m = x^n$ (obviously) and $n < m$ implies $x^n < x^m$, by what was already proven.
+
+    Now we must prove that $q > r$ iff x^{1/bd})^{ad} > (x^{1/bd})^{bc}$. But $q > r$ iff $ad > bc$ iff $(x^{1/bd})^{ad} > (x^{1/bd})^{bc}$, where the second "iff" holds by the previous paragraph.
+
+    If $x < 1$ and $n$ and $m$ are integers, then if $n < m$, we have $x^{m-n} < 1$ as well. But $x^m = x^{m-n} x^n$,so $x^m = x^{m-n} x^n < x^n$ since $x^n$ is positive  by (1). To prove the converse, we note that $n = m$ implies $x^m = x^n$ (obviously) and $n > m$ implies $x^n < x^m$, by what was already proven.
+
+    Now we must prove that $q < r$ iff x^{1/bd})^{ad} > (x^{1/bd})^{bc}$. But $q < r$ iff $ad < bc$ iff $(x^{1/bd})^{ad} > (x^{1/bd})^{bc}$, where the second "iff" holds by the previous paragraph.
