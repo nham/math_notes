@@ -177,3 +177,16 @@ For (3), this is just a combination of (1) and (2).
 **Proposition:** Any two (finite) bases in a vector space $V$ have the same number of elements.
 
 *Proof:* If $V$ is a vector space and $B$ and $C$ are bases in $V$ with $|B| = m$ and $|C| = n$, then we can order these bases to obtain ordered bases $\beta$ and $\gamma$, respectively. From here we can define isomorphisms $\phi: V \to \mathbb{F}^m$ and $\psi: V \to \mathbb{F}^n$ which assign to each $v$ in V$ its $\beta$ and $\gamma$-representation. Then $T = \phi \circ \psi^{-1} : \mathbb{F}^n \to \mathbb{F}^m$ is an isomorphism, as is $T^{-1} = \psi \circ \phi^{-1} : \mathbb{F}^m \to \mathbb{F}^n$. Let $S_m$ and $S_n$ be the standard basis sets in $\mathbb{F}^m$ and $\mathbb{F}^n$, respectively. Then $T(S_n)$ must be linearly independent in $\mathbb{F}^m$, and $T^{-1}(S_m)$ must be linearly independent in $\mathbb{F}^n$. So $m \leq n$ and $n \leq m$ by the previous proposition.
+
+**Proposition:** A finite generating subset of $\mathbb{F}^n$ cannot have less than $n$ vectors in it.
+
+*Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has less than $n$ vectors in it, then the matrix will have less columns than rows, so we cannot have a pivot in every row, and hence by a previous proposition the set cannot be independent.
+
+The **dimension** of a vector space $V$ is, in the case of vector spaces with finite bases, the number of elements in the basis, written $dim V$. For the trivial vector space, we define dimension to be zero. For vector spaces with no finite bases, we say the vector space has infinite dimension. This definition is valid by the proof that any two finite bases have the same number of elements.
+
+
+**Theorem:** Any independent set can be completed to a basis in a finite dimensional space.
+
+*Proof:* If i have some basis of $n$ vectors and an independent set $S$, then add vectors from the basis as long as the set does not span the vector space. As soon as it does, quit. This will be a basis by construction. This arrangement must terminate since there are only finitely many basis vectors.
+
+TODO: proof that minimal generating set is a basis? and maximal independent set? how did we prove these? maybe go in fdvses page.
