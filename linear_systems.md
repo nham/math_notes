@@ -145,7 +145,18 @@ This form is interesting because it allows us to directly write down the solutio
 
 Conversely, if every row has a pivot, for any $b$ we can obtain a solution by assigning arbitrary values to the free variables and then assigning appropriate values to the bound variables.
 
-**Corollary:** A system has a unique solution iff the eliminated coefficient matrix has a pivot in every row and in every column.
+**Corollary:** A system has a unique solution for all RHSes iff the eliminated coefficient matrix has a pivot in every row and in every column.
+
+**Corollary Corollary:* A matrix $A$ is invertible iff the eliminated matrix has a pivot in every row and in every column.
+*Proof:* If the eliminated matrix has a pivot in every row and column, then the matrix represeents some invertible linear map. So there is a matrix $B$ representing the inverse, and hence $BA = id_{\mathbb{F}^n}$ and $AB = id_{\mathbb{F}^k}$ for some $n$ and $k$. Hence $B$ is an inverse for $A$, so $A$ is invertible.
+
+Conversely, if $A$ is invertible then, supposing $A$ is $k \times n$, there is some $n \times k$ matrix $B$ such that $BA = id_{\mathbb{F}^k}$ and $AB = id_{\mathbb{F}^n}$. For any $b \in \mathbb{F}^k$, $x = \mathbb{B} b$ satisfies $Ax = b$, and if $Ay = b$ as well, then $x = BAx = BAy = y$, so $x$ is unique. By the previous corollary the eliminated coefficient matrix must have a pivot in every row and column.
+
+
+**Corollary^3:** An invertible matrix must be square.
+
+*Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched).
+
 
 **Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then
 
