@@ -513,7 +513,11 @@ For the second statement, $x = y$ clearly implies $|x - y| = 0 \leq \epsilon$ fo
 ## Limit of a sequence with each term greater than or equal to
 If $(a_n)$ is a Cauchy sequence and $x \in \mathbb{R}$ and for all $n$, $a_n \geq x$, then $x \leq LIM_{n \to \infty} a_n$.
 
-*Proof:* Let $y = LIM_{n \to \infty} a_n$ and assumme $x > y$. Then we can find some rational $q$ with $x > q > y$ because the rationals are dense in the reals. So $a_n > q$ for all $n$. However, we also have $q > y$, so $LIM_{n \to \infty} q - LIM_{n \to \infty} a_n$ is positive, which means the sequence $(q - a_n)_{n = 0}^{\infty}$ is positively bounded away from zero, so $q - a_n \geq c$ for some $c > 0$. This implies $q \geq a_n + c$ for all $n$, which implies $q > q + c > q$ since $c > 0$, an obvious contradiction. So we must have $x \leq y$.
+*Proof:* Let $y = LIM_{n \to \infty} a_n$ and assume $x > y$. Then we can find some rational $q$ with $x > q > y$ because the rationals are dense in the reals. So $a_n > q$ for all $n$. However, we also have $q > y$, so $LIM_{n \to \infty} q - LIM_{n \to \infty} a_n$ is positive, which means the sequence $(q - a_n)_{n = 0}^{\infty}$ is equivalent to some sequence $(z_n)$ which is positively bounded away from zero by some $c > 0$.
+
+So we have some $N$ such that $|q - a_n - z_n| \leq c/2$ for all $n \geq N$, implying that $(q - a_n) > 0$ for all $n \geq N$ since $z_k \geq c$ for all $k$.
+
+We've just proven that for all $n \geq N$, we have both $q > a_n$ and $a_n > q$.
 
 ### Corollary
 
