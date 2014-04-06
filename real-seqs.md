@@ -80,3 +80,64 @@ A sequence $(a_n)$ is **bounded** if there's some $M > 0$ such that for all $n$ 
 Every Cauchy $(a_n)$ is bounded.
 
 *Proof:* The same proof that worked for rational sequences holds here, but to reiterate: some tail sequence has all terms $1$-close, so take the maximum magnitude of the finitely many terms not in this tail sequence and $|a_N| + 1$, where $a_N$ is the first term of the tail sequence. All terms are within this magnitude.
+
+### Corollary
+Convergent sequences are bounded (because they are Cauchy)
+
+## Limit lemma
+If $(a_n) \to L$ is a real convergent sequence and $x$ is real, then if $a_n \geq x$ for all $n$, then $L \geq x$. Also, if $a_n \leq x$ for all $n$, then $L \leq x$.
+
+*Proof:* Assuming all $a_n \geq x$, if $x > L$ then we can find some tail sequence which has all terms $(x - L)/2$-close to $L$. This means all terms in this tail sequence are less than $x$, which contradicts our assumption. If $a_n \leq x$ for all $n$, then $x < L$ means we can find a tail sequence with all terms being $(L - x)/2$-close to $L$, implying all terms in this sequence are greater than $x$, which is again a contradiction.
+
+
+## Limit laws
+Let $(a_n)$ and $(b_n)$ be convergent real sequences, and let $x = lim_{n \to \infty} a_n$ and $y = lim_{n \to \infty} b_n$.
+
+ - the sequence $(a_n + b_n)$ converges to $x+y$.
+ - the sequence $(a_n b_n)$ converges to $xy$
+ - for any real $c$, the sequence $(c a_n)$ converges to $cx$
+ - the sequence $(a_n - b_n)$ converges to $x - y$
+ - If $y \neq 0$ and $b_n \neq 0$ for all $n \geq m$, then $(b_n^{-1})_{n \geq m}$ converges to $y^{-1}$.
+ - If $y \neq 0$ and $b_n \neq 0$ for all $n \geq m$, then $(a_n / b_n)_{n \geq m}$ is a valid sequence that converges to $x/y$.
+ - the sequence $(max(a_n, b_n))$ converges to $max(x, y)$
+ - the sequence $(min(a_n, b_n))$ converges to $min(x, y)$
+
+ 1. If $(a_n)$ is $\epsilon$-close to $K$ and $(b_n)$ is $\delta$-close to $L$, then $(a_n + b_n)$ is $(\epsilon + \delta)$-close to $K + L.
+
+    *Proof:* $|a_n + b_n - K - L| \leq |a_n - K| + |b_n - L| \leq \epsilon + \delta$ is true for any $n$.
+
+ 2. the sequence $(a_n + b_n)$ converges to $x+y$.
+
+    *Proof:* Letting $\epsilon > 0$ be arbitrary, we must find a tail sequence of $(a_n + b_n)$ which is $\epsilon$-close to $K + L$. We can find a tail sequence of $(a_n)$ which $\epsilon / 2$-close to $K$ and a tail sequence of $(b_n)$ which is $\epsilon / 2$-close to $L$. Furthermore, whichever sequence starts earlier, we can "align" it with the later-starting sequence by removing some finite number of terms so that both sequences start at the same index, and both are still $\epsilon / 2$-close to $K$ and $L$, respectively. So by (1) we have a tail sequence of $(a_n + b_n)$ which is $\epsilon$-close to $K + L$.
+
+ 3. the sequence $(a_n b_n)$ converges to $xy$
+
+    *Proof:* Letting $\epsilon > 0$ be arbitrary, we must find a tail sequence of $(a_n b_n)$ which is $\epsilon$-close to $KL$. But we have $|a_n b_n - KL| \leq |b_n| |a_n - K| + |K| |b_n - L|$. Since $(b_n)$, being convergent, is bounded, there is some $M > 0$ such that $|b_n| \leq M$. Since we can choose a tail sequence for which $a_n$'s are $\epsilon / 2M$-close to $K$ and a tail sequence for which $b_n$'s are $\epsilon / 2 |K|$-close to $L$, we can choose the bigger of the starting indices for these two tail sequences to serve as the starting point of a tail sequence for $(a_n b_n)$. You can check that this tail sequence has all terms $\epsilon$-close to $KL$.
+
+ 4. for any real $c$, the sequence $(c a_n)$ converges to $cx$
+
+    *Proof:* If $c = 0$, then $(c a_n)$ is a constant sequence of all zeroes, so it clearly converges to $0$. If $c \neq 0$, pick a tail sequence of $(a_n)$ which is $\epsilon / |c|$-close to $x$. This same tail sequence of $(c a_n)$ is $\epsilon$-close to $cx$.
+
+ 5. the sequence $(a_n - b_n)$ converges to $x - y$
+
+    *Proof:* Use (2) and (4)
+
+ 6. If $y \neq 0$ and $b_n \neq 0$ for all $n \geq m$, then $(b_n^{-1})_{n \geq m}$ converges to $y^{-1}$.
+
+    *Proof:* $(b_n)$ is bounded by some $M$, so $|1 / b_n - 1/L| = |L - b_n| / (|b_n| |L|) \leq |L - b_n| / M |L|$ for all $n \geq m$. For any $\epsilon > 0$, we can find a tail sequence for which $|L - b_n| \leq \epsilon M |L|$ for all terms $b_n$, implying the tail sequence of $(1 / b_n)$ starting at the same index is $\epsilon$-close to $L$.
+
+ 7. If $y \neq 0$ and $b_n \neq 0$ for all $n \geq m$, then $(a_n / b_n)_{n \geq m}$ is a valid sequence that converges to $x/y$.
+
+    *Proof:* (3) and (6)
+
+ 8. the sequence $(max(a_n, b_n))$ converges to $max(x, y)$
+
+    *Proof:* If $x = y$, for all $\epsilon > 0$ we can find an $N$ such that for all $n \geq N$, $a_n$ is $\epsilon$-close to $K$ and $b_n$ is $\epsilon$-close to $L$. This implies that $|max(a_n, b_n) - x| \leq \epsilon$ for all $n \geq N$, since $max(a_n, b_n)$ is always either $a_n$ or $b_n$. If $x \neq y$, we can assume WLOG that $x < y$. Then we can find some point $N$ for any $n \geq N$, we have $a_n < b_n$. So this gives us a tail sequence in which $max(a_n, b_n) = b_n$ So we simply need find, for every $\epsilon > 0$, a tail sequence of this which has each $b_n$ within an $\epsilon$ of $L$.
+
+ 9. $-max(-x, -y) = min(x, y)$
+
+    *Proof:* If $x < y$, then $-y < -x$, so $-max(-x, -y) = -(-x) = x = min(x, y)$. If $y < x$, it holds by symmetricity and the previous sentence. If $x = y$, then it clearly holds.
+
+ 10. the sequence $(min(a_n, b_n))$ converges to $min(x, y)$
+
+    *Proof:* Apply (4) and (8) to the sequences $(-a_n)$ and $(-b_n)$ to obtain that $(max(-a_n, -b_n))$ converges to $max(-x, -y)$. By (9), the statement holds.
