@@ -141,3 +141,132 @@ Let $(a_n)$ and $(b_n)$ be convergent real sequences, and let $x = lim_{n \to \i
  10. the sequence $(min(a_n, b_n))$ converges to $min(x, y)$
 
     *Proof:* Apply (4) and (8) to the sequences $(-a_n)$ and $(-b_n)$ to obtain that $(max(-a_n, -b_n))$ converges to $max(-x, -y)$. By (9), the statement holds.
+
+## Definition of the extended real numbers
+The **extended reals** are the set $\mathbb{R} \cup \{ + \infty, - \infty \}$, where $+ \infty$ and $- \infty$ are assumed distinct from all real numbers. The numbers in $\mathbb{R}$ are called **finite** real numbers, and the others are **infinite**. We notate this new number system by $\mathbb{R}^{\ast}$.
+
+### Definition of negation in $\mathbb{R}^{\ast}$.
+Negation on real numbers is defined as before. We define $- (+ \infty) = - \infty$ and $- (- \infty) = + \infty$.
+
+### Definition of ordering in $\mathbb{R}^{\ast}$
+For any extended reals $x$ and $y$, define $x \leq y$ to be true if:
+
+ - $x$ and $y$ are both finite and $x \leq y$ is true in  $\mathbb{R}$
+ - $y = + \infty$
+ - $x = - \infty$
+
+Define $x < y$ if $x \leq y$ and $x \neq y$. Also define $x \geq y$ iff $y \leq x$, and $x > y$ iff $y < x$.
+
+
+## Order properties in $\mathbb{R}^{\ast}$
+For all extended reals $x, y, z$
+
+ - $x \leq x$
+ - Exactly one is true: $x < y$, $x = y$, $x > y$
+ - If $x \leq y$ and $y \leq z$, then $x \leq z$
+ - If $x \leq y$ and $y \leq x$, then $x = y$
+ - If $x \leq y$, then $-y \leq -x$
+
+ 1. $x \leq x$
+
+    *Proof:* If $x$ is finite it's obviously true. If $x$ is infinite, then in either case $x \leq x$ is true by definition.
+
+
+ 2. Exactly one is true: $x < y$, $x = y$, $x > y$
+1. Case $x$ and $y$ are both finite
+
+       *Proof:* This is true by trichotomy for the reals. 
+
+    2. Case $y = + \infty$
+
+       *Proof:* $x \leq y$ by definition. If $x \neq + \infty$, we have $x < y$ by definition. If we also have $y < x$, then clearly we also have $y \leq x$. By the definition this implies that $y = - \infty$ or $x = + \infty$, neither of which are true, which is a contradiction. If $x = + \infty$, then clearly $x = y$. We also can't have $x < y$ or $y < x$, since by definition we would have $x \neq y$.
+
+    3. Case $y = - \infty$.
+
+       *Proof:* By definition $y \leq x$, so we either have $x = -\infty$ (and therefore not $x < y$ and not $y < x$), or we have $x \neq - \infty$, in which case $y < x$ by definition. We can't also have $x < y$, since this implies $x \leq y$, which by definition implies either $y = + \infty$ or $x = - \infty$, neither of which is true.
+
+    4. Case $x$ is infinite, $y$ is finite
+
+       *Proof:* If $x = - \infty$, we must have $x \leq y$ and $x \neq y$, so $x < y$. We also can't have $y < x$, by definition. If $x = + \infty$, we have $y \leq x$ and $x \neq y$, so $y < x$. We cannot have $x < y$, for similar reasons as above.
+
+
+ 3. If $x \leq y$ and $y \leq z$, then $x \leq z$
+
+    *Proof:* if $z < x$, then we  must have either $x$ and $z$ both finite, contradicting transitivity of $\leq$ in $\mathbb{R}$, or $x = + \infty$, which implies that $x = y = z$, again a contradiction, or $z = - \infty$, which implies $z = y = x$, again a contradiction.
+
+
+ 4. If $x \leq y$ and $y \leq x$, then $x = y$
+
+    *Proof:* By hypothesis this means ($x < y$ or $x = y$) and ($y < x$ or $y = x)$. But $x < y$ contradicts both $y < x$ and $y = x$ by (2), and ditto $y < x$ contradicting $x < y$ and $x = y$.  So we must have $x = y$.
+
+ 5. If $x \leq y$, then $-y \leq -x$
+
+    *Proof:* This is true if $x$ and $y$ are both finite. If $y = + \infty$, then we have $-y = - \infty$, so clearly $-y \leq -x$ by definition. If $y = - \infty$, we have $y \leq x$ by definition and $x \leq y$ by hypothesis, which by (4) implies $x = y$. So clearly $-y = -x$, which implies $-y \leq -x$.
+
+## Definition of supremum in $\mathbb{R}^{\ast}$
+If $S$ is a subset of $\mathbb{R}^{\ast}$, then define $sup S$ to be the supremum in $\mathb{R}$ if $S$ is a subset of $\mathbb{R}$, define $sup S = + \infty$ if $S$ contains $+ \infty$, and defined $sup S = sup(S - \{- \infty\})$ is $S$ contains $- \infty$ but not $+ \infty$ (i.e. the supremum in $\mathbb{R}$ after removing $- \infty$).
+
+## Definition of infimum in $\mathbb{R}^{\ast}$
+If $S$ is a subset of $\mathbb{R}^{\ast}$, then define $inf S = - sup(T)$, where $T$ is the set of all negated elements of $S$.
+
+## Infimum/supremum facts in $\mathbb{R}^{\ast}$
+For any $S \subseteq \mathbb{R}^{\ast}$, we have:
+
+ - for all $x \in S$, $inf(S) \leq x \leq sup(S)$
+ - If $M$ is an upper bound for $S$, $sup(S) \leq M$
+ - If $M$ is a lower bound for $S$, $M \leq inf(S)$
+
+ 1. for all $x \in S$, $x \leq sup(S)$
+
+    1. Case $+ \infty \notin S$
+
+       1. Case $S$ bounded above by a finite $M$
+
+          *Proof:* Either $- \infty \in S$, in which case $S - \{- \infty\}$ has some least upper bound by the LUB-property of $\mathbb{R}$, or $S$ is all finite, in which case it is true again by the same reason.
+
+       2. Case $S$ not bounded above by any finite $M$
+
+          *Proof:* $sup S = + \infty$ by definition, so by definition of $\leq$ this is true.
+
+    2. Case $+ \infty \in S$
+
+        *Proof:* By definition $sup S = + \infty$, so by definition of $\leq$ this is true.
+
+ 2. for all $x \in S$, $inf(S) \leq x$
+
+    1. Case $- \infty \notin S$
+
+       1. Case $S$ bounded below by a finite $M$
+
+          *Proof:* Either $+ \infty \in S$, in which case $S - \{+ \infty\}$ has some greatest lower bound by the GLB-property of $\mathbb{R}$, or $S$ is all finite, in which case it is true again by the same reason.
+
+       2. Case $S$ not bounded below by any finite $M$
+
+          *Proof:* $inf S = - \infty$ by definition, so by definition of $\leq$ this is true.
+
+    2. Case $- \infty \in S$
+
+        *Proof:* By definition of infimums, $inf S = - \infty$, so by definition of $\leq$ this is true.
+
+
+ 3. If $M$ is an upper bound for $S$, $sup(S) \leq M$
+
+    1. Case $S = \emptyset$
+
+        *Proof:* in which case $sup S = - \infty$ by definiton, so it's true
+
+    2. Case $S = \{ - \infty \}$
+
+        *Proof:* $sup S = - \infty$ it's again true.
+
+    3. Case $S$ contains finite elements, but not $+ \infty$
+
+       *Proof:* $sup S$ is some finite element by definition, so by the least upper bound property of $\mathbb{R}$ this holds.
+
+    4. Case $+ \infty \in S$
+
+       *Proof:* $sup S = + \infty$, so the only upper bound is $+ \infty$. It is true by reflexivity.
+
+ 4. If $M$ is a lower bound for $S$, $M \leq inf(S)$
+
+    *Proof:* The proof is a boring and unenlightening enumeration of cases, as in part (3)
