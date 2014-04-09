@@ -270,3 +270,61 @@ For any $S \subseteq \mathbb{R}^{\ast}$, we have:
  4. If $M$ is a lower bound for $S$, $M \leq inf(S)$
 
     *Proof:* The proof is a boring and unenlightening enumeration of cases, as in part (3)
+
+## Definition of supremum/infimum of a sequence
+The supremum and infimum of a sequence are defined to be the supremum and infimum (respectively) of the set of terms in the sequence.
+
+## Least upper bound property for sequences
+If $(a_n)$ is a sequence and $x \in \mathbb{R}^{\ast}$ is defined to be $x = sup (a_n)$, then for all $n$, $a_n \leq x$. Also, for any upper  bound of the sequence (i.e. an $M$ such that $a_n \leq M$ for all $n$), we have $x \leq M$. Also, for any $y \in \mathbb{R}^{\ast}$ with $y < x$, we have $y < a_n$ for some $n$.
+
+*Proof:* By definition of the supremum of sequences, we have $x \geq a_n$ for all $n$. Any upper bound $M$ on the sequence is an upper bound on the set of terms, so we must have $x \leq M$ by the previous proposition. Also, for any $y < x$, $y \in \mathbb{R}^{\ast}$, we must have some $n$ such that $y < a_n$ (otherwise $y$ would be an upper bound less than $x$, contradicting the fact just proved).
+
+### Corresponding facts for infimum and lower bound
+Fill in the blank, yo. It's boring to prove this stuff over again for infimums and lower bounds.
+
+## Monotone convergence theorem
+If $(a_n)$ is a sequence in $\mathbb{R}$ bounded above by $M \in \mathbb{R}$ with $(a_n)$ increasing, then $(a_n)$ converges and 
+
+$$lim_{n \to \infty} a_n = sup (a_n) \leq M$$
+
+*Proof:* Letting $x = sup (a_n)$, we know that $x \leq M$. $x$ must therefore be finite. We also know that for all $n$, $a_n \leq x$. We have to prove that for any $\epsilon > 0$ we can find a tail sequence such that all terms are $\epsilon$-close to $x$. Since they can't be greater than $x$, we must find some tail sequence for which $x - \epsilon < a_n \leq x$ for all terms $a_n$. But we can certainly find at least one term $a_k$ such that $x - \epsilon < a_k$ (by the LUB-property for sequences), and then all terms in the sequence after $k$ are strictly greater than $a_k$. So the tail sequence starting at $a_k$ is $\epsilon$-close to $x$.
+
+
+### For decreasing sequences
+If $(a_n)$ is a sequence in $\mathbb{R}$ bounded below by $M \in \mathbb{R}$ with $(a_n)$ decreasing, then $(a_n)$ converges and 
+
+$$lim_{n \to \infty} a_n = inf (a_n) \leq M$$
+
+*Proof:* Letting $x = inf (a_n)$, we know $M \leq x$ by the LUB-property for sequences. $x$ must be finite. We also know that for all $n$, $x \leq a_n$. We seek to prove that for any $\epsilon > 0$, we can find a tail sequence such that all terms are $\epsilon$-close to $x$. Since no terms can go below $x$, we have to find some tail sequence for which all terms $a_n$ have $x \leq a_n < x + \epsilon$. But we can find at least one such term $a_k$, and the decreasingness of the sequence guarantees that the following terms are also within an $\epsilon$.
+
+## Definition of monotone sequence
+A sequence is **monotone** if it is increasing or decreasing.
+
+### Remark
+The monotone convergence theorem and the fact that all convergent sequences are bounded prove that a monotone sequence converges iff it is bounded.
+
+## Convergence of geometric sequences
+For $x \in \mathbb{R}$ with $0 < x < 1$, we have that $lim_{n \to \infty} x^n = 0$.
+
+*Proof:* $x < 1$ and $x > 0$ implies $x^n < x^{n-1} < ... < x^2 < x < 1$, so the sequence $(x^n)$ is decreasing. Since it's bounded below by zero, it converges by the monotone convergence theorem, and its limit is $L = inf (x^n) \geq 0$. The sequence $(x^{n+1})_{n=1}^{\infty}$ converges to $xL$ by the limit laws. However this is a tail sequence of the original sequence $(x^n)_{n = 1}^{\infty}$, and so these two sequences must have the same limit. Hence $xL = L$, so if $L \neq 0$ we have $x = 1$ by cancellation, a contradiction. So $L = 0$.
+
+## Definition of limit point
+For sequence $(a_n)$ in $\mathbb{R}$ any real $x$ is **$\epsilon$-adherent** to $(a_n)$ if some term is $\epsilon$-close to $x$. $x$ **continually $\epsilon$-adherent** to $(a_n)$ if $x$ is $\epsilon$-adherent to every tail sequence. $x$ is a **limit point** or **adherent point** of $(a_n)$ if $x$ is continually $\epsilon$-adherent for every $\epsilon > 0$. In other words, $x$ is a limit point iff for every $\epsilon > 0$, for every $N$, there is an $n \geq N$ such that $a_n$ is $\epsilon$-close to $x$.
+
+## Limits are limit points
+If $(a_n) \to c$ then $c$ is a limit point of $(a_n)$ and is the unique limit point of $(a_n)$.
+
+*Proof:* Since we can, for any $\epsilon$, find some tail sequence that is $\epsilon$-close to $c$, clearly for any $N$ we can find an $n \geq N$ for which $a_n$ is $\epsilon$-close to $c$ (take $n = max(N, k)$, where $k$ is where the starting index of an tail sequence which is $\epsilon$-close to $c$). If $d$ is a limit point of $(a_n)$, note that for any $n$, we have $|c - d| \leq |c - a_n| + |d - a_n|$. Let $\epsilon > 0$. Then some tail sequence starting at $N_{\epsilon / 2}$ is $\epsilon / 2$-close to $c$, and we can find a term $a_k$ in this tail sequence which is $\epsilon / 2$-close to $d$. This proves that $|c - d| \leq \epsilon$.
+
+## Definition of limit superior and limit inferior
+For any $(a_n)$, define a sequence by $a_N^+ = sup (a_n)_{n \geq N}$, meaning each term $a_N^+$ is the supremum of the tail sequence of $(a_n)$ that starts at $N$. Then the **limit superior** of $(a_n)$ is notated and defined by $lim_{n \to \infty} sup a_n = inf (a_n^+)$. Similarly define $a_N^- = inf (a_n)_{n \geq N}$, and the **limit inferior** of $(a_n)$ by $lim_{n \to \infty} inf a_n = sup (a_n^-)$.
+
+
+## Tail sequences do not affect limit points, limit superior, limit inferior
+For any natural $k$, we have 
+
+ - $c$ is a limit point of $(a_n)$ iff $c$ is a limit point of $(a_n)_{n \geq k}$
+ - $limsup (a_n) = limsup (a_n)_{n \geq k}$
+ - $liminf (a_n) = liminf (a_n)_{n \geq k}$
+
+TODO
