@@ -101,7 +101,7 @@ A basis is very often represented in ordered form $(v_1, \ldots, v_n)$, so that 
 ## Definition of a generating or spanning set
 A **generating** set or **spanning** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is some scaling whose linear combination is $v$.
 
-More generally, the **span** of a set $S$, denoted $span S$, is the set of vectors in $v \in V$ for which there exist scalings of $S$ that combine to $v$. So a set $S$ is a spanning set for vector space $V$ if $V = span S$.
+More generally, the **span** of a set $S$, denoted $span S$, is the set of vectors in $v \in V$ for which there exist scalings of $S$ that combine to $v$. In other words, the span of $S$ is the set of all linear combinations of $S$. It is easy to see that $S$ is a spanning set for vector space $V$ iff $V = span S$.
 
 ## Definition of an independent set
 An **independent** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is at most one scaling whose linear combination is $v$.
@@ -128,7 +128,7 @@ $$ 0 = v - v = \sum_{x \in S} h(x) \cdot x$$
 for the scaling defined by $h(x) = f(x) - g(x)$. $h(x)$ is non-trivial since $f$ and $g$ are distinct by hypothesis, so the zero vector does not have a unique scaling.
 
 ### Remark
-This is a more convenient way of determining when some set is independent.
+This is a more convenient way of determining when some set is independent. Note that we defined $S$ to be independent by saying that every element of $span S$ has a unique scaling of $S$ that combines to it, but found that a "weaker" statement, that merely $0$ has a unique scaling of $S$ that combines to it, is an equivalent formulation.
 
 
 ## Necessary and sufficient condition for dependence
@@ -226,11 +226,13 @@ If $G$ generates $V$ then for all $z \in V$ there is a scaling $\alpha$ of $S$ s
 For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
 
 ## Composition of isomorphisms is an isomorphism
-The composition of isomorphisms is an isomorphism. *Proof:* It's certainly linear, but from set theory composition of bijections is a bijection.
+The composition of isomorphisms is an isomorphism. 
+
+*Proof:* It's certainly linear, but from set theory composition of bijections is a bijection.
 
 
 ## Definition of a representation w.r.t. a basis
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
-## Example
+## Representation w.r.t. an ordered basis induces an isomorphism
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
