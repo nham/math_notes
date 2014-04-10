@@ -27,15 +27,23 @@ a_{k1} & \cdots & a_{kn} \end{bmatrix}
 $$
 
 ## Defining matrix multiplication
-It's a real drag to define matrix multiplication, so I won't. I also won't prove these basic facts about it:
+TODO: Flesh this out. But basically you prove that matrix multiplication as everyone knows it results in the matrix representing the composition of the linear maps. (i.e. the product of the matrix representations of the linear maps is equal to the matrix representation of the composition of the linear maps). In symbols:
 
- - Associativity: $(AB)C = A(BC)$
+$$[S]_{\gamma}^{\delta} [T]_{\beta}^{\gamma} = [S \circ T]_{\beta}^{\delta}$$
+
+From this perspective, associativity of matrix multiplications follows nearly immediately (from associativity of function composition) since $[(S \circ T) \circ U]_{\beta}^{\gamma} = [S \circ (T \circ U)]_{\beta}^{\gamma}$.
+
+These other two properties can be easily proved:
+
  - Distributivity $A(B + C) = AB + AC$ and $(A + B)C = AC + BC$.
  - Homogeneity: $c(AB) = (cA)B = A(cB)$
 
-TODO: define matrix multiplication, motivate it as the proper definition for ensuring that multiplying two matrices is composing linear maps.
+Note that for any finite dimensional vector space $V$ and any ordered basis $\beta$ in $V$, we have $[id_V]_{\beta}^{\beta}$ is the matrix with $1$'s in all the diagonal elements and zeroes elsewhere. We designate this $n \times n$ matrix by $I_n$.
 
-TODO: define invertibility for matrices
+## Definition of matrix invertibility
+A $k \times m$ matrix $A$ is **invertible** iff there is an $m \times k$ matrix $B$ such that $BA = I_k$ and $AB = I_m$.
+
+## Linear systems
 
 A **linear system of equations** in $\mathbb{F}$ is a collection of equations
 
@@ -52,6 +60,8 @@ Where the $a_{ij}$ are known elements of $\mathbb{F}$, as are the $c_i$, but the
  - determine if there are any tuples $(x_1, \ldots, x_n)$ that make all the equations true (i.e. determine if the system has a **solution**)
  - if so, determine if there is a unique solution or many solutions
  - and either find the unique solution or describe the set of solutions.
+
+In brief, our task is to determine the solution set.
 
 For convenience we take up all the $a_{ij}$ into a matrix, called the **coefficient matrix** of the system. Then our task is to determine the set of vectors
 
@@ -79,9 +89,9 @@ x_{n} \end{bmatrix}
 c_{k} \end{bmatrix}
 $$
 
-Our strategy for ascertaining the above is to apply transforms to the equations that expose the solution set, making it easy to directly solve. For the transforms to be effective, they must not alter the solution set.
+Our strategy for determining the solution set will be to apply transforms to the coefficient matrix that 1) do not change the solution set, but that 2) yield a matrix whose solution set is easier to determine (preferably immediately evident, if possible).
 
-Actually, the equations themselves are a bit unwieldy, so we will not apply transformations directly to them, but rather to a representation of the equations, called the **augmented coefficient matrix**, which we form by appending one column to the coefficient matrix described above: the column of scalars from the right-hand side of the equations:
+Actually, applying transformations to the coefficient matrix will not do, as this would be modifying one side of the equations and not the other. We need to form the **augmented coefficient matrix**, which is obtained by adding one more column to the right of the above coefficient matrix. The entries of this column are the "right-hand sides" of the equations. 
 
 $$
 \left[
@@ -91,7 +101,9 @@ a_{k1} & \cdots & a_{kn} & c_k \end{array}
 \right]
 $$
 
-We will concern ourselves with three different transformations to be applied to the augmented coefficient matrix:
+## Row operations
+
+It turns out that it will suffice to concern ourselves with three different transformations to be applied to the augmented coefficient matrix:
 
  - **Swap:** Exchange any two rows $i$ and $j$.
  - **Scale:** Multiply any row $i$ by a non-zero scalar $b$.
