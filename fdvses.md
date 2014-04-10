@@ -98,19 +98,25 @@ A **basis** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such
 
 A basis is very often represented in ordered form $(v_1, \ldots, v_n)$, so that a scaling can be specified by $(a_1, \ldots, a_n)$. The scaling of a basis that represents a vector $v$ is often instead called the **coordinates** of $v$ with respect to the basis.
 
-## Definition of a generating or spanning set
-A **generating** set or **spanning** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is some scaling whose linear combination is $v$.
+## Definition of finite-dimensional vector spaces
+A vector space is **finite-dimensional** if it has a finite basis. The word "dimension" in this phrase will be explained later.
 
-More generally, the **span** of a set $S$, denoted $span S$, is the set of vectors in $v \in V$ for which there exist scalings of $S$ that combine to $v$. In other words, the span of $S$ is the set of all linear combinations of $S$. It is easy to see that $S$ is a spanning set for vector space $V$ iff $V = span S$.
+## Assume all vector spaces are finite-dimensional from now on
+We will assume that all vector spaces are finite-dimensional from here on out. Proving things about infinite-dimensional vector spaces requires more machinery.
+
+
+## Definition of a generating set
+A **generating** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is some scaling whose linear combination is $v$.
+
+More generally, the **span** of a set $S$, denoted $span S$, is the set of vectors in $v \in V$ for which there exist scalings of $S$ that combine to $v$. In other words, the span of $S$ is the set of all linear combinations of $S$. It is easy to see that $S$ is a generating set for vector space $V$ iff $V = span S$.
 
 ## Definition of an independent set
 An **independent** set for a vector space $(V, \mathbb{F})$ is a subset $S$ of $V$ such that for every $v \in V$ there is at most one scaling whose linear combination is $v$.
 
 A set of vectors is **dependent** if it is not independent.
 
-
-## A basis is an independent spanning set
-$B$ is a basis iff it is an independent spanning set.
+## A basis is an independent generating set
+$B$ is a basis iff it is an independent generating set.
 
 *Proof:* immediately from the definitions.
 
@@ -183,10 +189,15 @@ If $S$ is a set of vectors and $u \in S$ with $u \in span(S - u)$, then $span S 
     *Proof:* $v = \sum_{x \in S} g(x) \cdot x = g(u) \cdot u + \sum_{x \in S - u} g(x) \cdot x$ by (1). The scaling of $S - u$ defined by $h(x) := g(u) f(x) + g(x)$ combines to $v$.
 
 
-## A finite spanning set contains a basis
-If $S$ is a finite spanning set for a vector space $V$, then there is a $B \subseteq S$ which is a basis for $V$.
+## A finite generating set contains a basis
+If $S$ is a finite generating set for a vector space $V$, then there is a $B \subseteq S$ which is a basis for $V$.
 
 *Proof:* If $S$ is independent, then it is a basis. Otherwise it is dependent and one element $x \in S$ is in the span of the others, so remove $x$ from $S$. The new set $S - x$ still spans $V$ because removing dependent vectors doesn't change the span. Repeat this process until an independent set is obtained. It must terminate eventually since we started with a finite set.
+
+## An independent set can be extended to a basis
+If $S$ is an independent subset of a vector space $V$, then there is a basis $B$ such that $S \subseteq B$.
+
+*Proof:* $V$ is by assumption finite-dimensional, so it has a basis $C$. If $S$ is not already a basis, then it must not generate $V$, so we can find one element of $C$ that isn't in the span of $S$ (if not, all are in the span, which means $S$ generates $V$, contradicting our assumption that it didn't). Continually add vectors from $C$ that are not in the span of $S$ until we achieve a basis. This will be achieved because we only add vectors not in the span of $S$, so each addition maintains the independence of the set. This process eventually terminates since there are finitely many vectors in the basis.
 
 
 ## Definition of a linear map

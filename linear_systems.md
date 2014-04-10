@@ -258,8 +258,4 @@ For (3), this is just a combination of (1) and (2).
 The **dimension** of a vector space $V$ is, in the case of vector spaces with finite bases, the number of elements in the basis, written $dim V$. For the trivial vector space, we define dimension to be zero. For vector spaces with no finite bases, we say the vector space has infinite dimension. This definition is valid by the proof that any two finite bases have the same number of elements.
 
 
-**Theorem:** Any independent set can be completed to a basis in a finite dimensional space.
-
-*Proof:* If i have some basis of $n$ vectors and an independent set $S$, then add vectors from the basis as long as the set does not span the vector space. As soon as it does, quit. This will be a basis by construction. This arrangement must terminate since there are only finitely many basis vectors.
-
 TODO: proof that minimal generating set is a basis? and maximal independent set? how did we prove these? maybe go in fdvses page.
