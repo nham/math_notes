@@ -41,7 +41,17 @@ These other two properties can be easily proved:
 Note that for any finite dimensional vector space $V$ and any ordered basis $\beta$ in $V$, we have $[id_V]_{\beta}^{\beta}$ is the matrix with $1$'s in all the diagonal elements and zeroes elsewhere. We designate this $n \times n$ matrix by $I_n$.
 
 ## Definition of matrix invertibility
-A $k \times m$ matrix $A$ is **invertible** iff there is an $m \times k$ matrix $B$ such that $BA = I_k$ and $AB = I_m$.
+A $k \times m$ matrix $A$ is **invertible** iff there is an $m \times k$ matrix $B$ such that $BA = I_k$ and $AB = I_m$, and $B$ is called an **inverse** for $B$.
+
+## Matrix inverse is unique
+If $B$ and $C$ are inverses for $A$, then $B = C$.
+
+*Proof:* $B = B(AC) = (BA)C = C$.
+
+## The product of invertible matrices is invertible
+If $A$ and $B$ are invertible and their dimensions are such that $AB$ is a valid matrix multiplication, then $AB$ is invertible and $(AB)^{-1} = B^{-1} A^{-1}$.
+
+*Proof:* Basic matrix algebra proves this.
 
 ## Linear systems
 
@@ -135,6 +145,8 @@ So we've determined 3 operations that we can apply at will to an augmented coeff
 
 TODO explain elementary matrices
 
+Elementary matrices are all invertible since for each row operation, there is a row operation of the same type that reverses it.
+
 ## Row elimination, reduction, row echelon
 By applying only saxpy operations, we can **row-eliminate** a matrix, which means each column in the matrix has exactly one non-zero element in it. An algorithm for doing this to a $m \times n$ matrix operation is
 
@@ -148,9 +160,12 @@ By applying only saxpy operations, we can **row-eliminate** a matrix, which mean
 
 In other words, for each row, find the first column from the left, that has a non-zero element in that column, and use saxpy to zero out all other elements of $A$ in that column. The unique non-zero elements in each column are called **pivots**.
 
-Note that we have at most $m$ pivots, since we only get a pivot when we eliminate for a row. Note also that we could never have two pivots in one column, since when we first construct the pivot, we zero out all other matrix elements in that column, and since the process of constructing other pivots never breaks a pivot that's already been established (the only way that could happen is if we saxpy the row that the pivot belongs to, but after we establish the pivot, that never occurs again).
+**Proposition:**
+There are at most $min(m, n)$ pivots in a row-eliminated matrix.
 
-Do note that we might not have all $m$ pivots, since a row could be zero, or could become zero  in the process of elimination, so that by the time we try to establish a pivot for it there is no non-zero element to find.
+*Proof:* We can't have more than $m$ (the number of rows), since we only get a pivot by starting with a row and finding the first non-zero element in the row. We can't have more than $n$ either, because each pivot is obviously in some column and no two pivots can be in the same column: after selecting one pivot in row $i$ and column $j$, the other elements in that column are all zero, so never in the process of finding pivots for the other rows will we be able to find the first non-zero element of a row in column $j$, because after we build the pivot $(i, j)$, we don't apply saxpy's of row $i$ to any other rows (so the other elements of column $j$ stay zero).
+
+There can obviously be less than $min(m, n)$ pivots, for example if, during elimination, one or more rows become zero. (In the extreme case, consider the matrix of all zero entries. It has no pivots).
 
 We can make this a bit neater by altering the algorithm to ensure that the pivots are always $1$. We can call the form of the resulting matrix **reduced, row-eliminated** form:
 
@@ -168,28 +183,53 @@ This form is interesting because it allows us to directly write down the solutio
 
 *Proof:* If the pivot is in the last column, this corresponds to a row of all zeroes in columns $1$ through $n and a non-zero in $n+1$th column. As an equation, this has no solution. It says $0 = c$ for some $c \neq 0$. Conversely, if a system has no pivot in the last column, we can easily construct a solution: the variables associated with non-pivot columns of $1$ through $n$ are *free variables* and can be assigned any scalar value. Once assigned, the other variables are fixed. This is a solution.
 
-*Theorem:* A system's solution is unique iff there are no free variables (iff there's a pivot in every column).
+*Theorem:* A system's solution is unique iff there are no free variables for the eliminated non-augmented coefficient matrix (iff there's a pivot in every column).
 
 *Proof:* If there are free variables, we have a new solution for every assignment of the free variables. If there are no free variables, then either there is no solution or any solution is completely constrained by the last column of the augmented matrix.
 
-**Theorem:** An equation $Ax = b$ for coefficient matrix $A$ has a solution for every $b$ iff the eliminated coefficient matrix has a pivot in every row.
+**Theorem:** An equation $Ax = b$ for (non-augmented) coefficient matrix $A$ has a solution for every $b$ iff the eliminated, non-augmented coefficient matrix has a pivot in every row.
 
 *Proof:* If one row has no pivot, by the algorithm it must be a zero row. The eliminated matrix $B$ is the one with the zero row, so we can find some $b$ with a non-zero component in the same row. Then $EA = B$ for a product of elimination matrices $E$, implying $A$ = E^{-1} B$. If $Ax = E^{-1} b$, then $Bx = b$, which contradicts the fact that we chose $b$ so that it has no solution $x$ in $Bx = b$. 
 
 Conversely, if every row has a pivot, for any $b$ we can obtain a solution by assigning arbitrary values to the free variables and then assigning appropriate values to the bound variables.
 
-**Corollary:** A system has a unique solution for all RHSes iff the eliminated coefficient matrix has a pivot in every row and in every column.
+**Corollary:** A system has a unique solution for all RHSes iff the eliminated, non-augmented coefficient matrix has a pivot in every row and in every column.
 
-**Corollary Corollary:* A matrix $A$ is invertible iff the eliminated matrix has a pivot in every row and in every column.
-*Proof:* If the eliminated matrix has a pivot in every row and column, then the matrix represeents some invertible linear map. So there is a matrix $B$ representing the inverse, and hence $BA = id_{\mathbb{F}^n}$ and $AB = id_{\mathbb{F}^k}$ for some $n$ and $k$. Hence $B$ is an inverse for $A$, so $A$ is invertible.
 
-Conversely, if $A$ is invertible then, supposing $A$ is $k \times n$, there is some $n \times k$ matrix $B$ such that $BA = id_{\mathbb{F}^k}$ and $AB = id_{\mathbb{F}^n}$. For any $b \in \mathbb{F}^k$, $x = \mathbb{B} b$ satisfies $Ax = b$, and if $Ay = b$ as well, then $x = BAx = BAy = y$, so $x$ is unique. By the previous corollary the eliminated coefficient matrix must have a pivot in every row and column.
+## Elimination and elementary matrices, plus one more form of elimination
+
+Note that both forms of elimination presented so far consist of starting with a coefficient matrix $A$ and multiplying by elementary matrices on the left. Basic row elimination consisted solely of saxpy elementary matrices. Reduced row-elimination added in scaling elementary matrices as well. We can go one further and use the swap operation to get a very orderly eliminated matrix. The following algorithm will give us what we will call **reduced, row-eliminated echelon matrices** (it's also widely known as *Gauss-Jordan elimination*):
+
+TODO: Insert GJE here, which gives a reduced, row-eliminated matrix in echelon form.
+
+TODO: prove that the RREE form of a matrix is unique?
+
+**Proposition:** If matrix $I_n$ is the reduced, row-eliminated echelon version of matrix $A$, then $A$ is the product of elementary matrices, and therefore invertible.
+
+*Proof:* An RREE version of $A$ being $I_n$ means that $E_k \cdots E_1 A = I_n$ for some elementary matrices $E_i$. These are all invertible, so $A = E_1^{-1} \cdots E_k^{-1}$. Since $A$ is the product of invertible matrices, it is invertible as well.
+
+
+**Proposition:** For any matrix $A$, $A$ is invertible iff the RREE-version of $A$ has a pivot in every row and every column.
+
+*Proof:* The only reduced, row-eliminated echelon matrix with a pivot in every row and column is an identity matrix, so by the previous proposition $A$ is invertible. Conversely, if $A$ is invertible, every $b$ has a unique $x$ such that $Ax = b$, namely, $x = A^{-1}b$. By the last proposition of the last section, any eliminated coefficient matrix has a pivot in every row and every column. So in particular, the RREE must have a pivot in every row and every column.
+
+
+**Corollary:** A matrix is invertible iff it is the product of elementary matrices.
+
+*Proof:*  If $A$ is invertible, the previous two propositions imply it is the product of elementary matrices. Conversely, if $A$ is the product of elementary matrices, it is the product of invertible matrices, hence invertible.
+
+
+**Corollary Corollary:* A matrix $A$ is invertible iff the reduced, row-eliminated matrix has a pivot in every row and in every column.
+
+*Proof:* If the reduced, row-eliminated matrix has a pivot in every row and column, we can actually just apply swaps until it's an identity matrix. So it must be invertible since its RREE is an identity matrix. Conversely, $A$ invertible implies a unique solution for every right-hand side, so it must have pivots in each row and column.
 
 
 **Corollary^3:** An invertible matrix must be square.
 
-*Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched).
+*Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched), hence we could not have a pivot in every row and every column, hence not invertible.
 
+
+## Hashtag BasisFacts
 
 **Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then
 
