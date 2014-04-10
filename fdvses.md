@@ -174,19 +174,29 @@ A set $S$ is dependent iff some $v \in S$ is in the span of the others
     *Proof:* By (1) and (2)
 
 ## Removing dependent vectors doesn't change the span
-If $S$ is a set of vectors and $u \in S$ with $u \in span(S - u)$, then $span S = span(S - u)$.
+If $S$ is a set of vectors and $u \in S$, then $u \in span(S - u)$ iff $span S = span(S - u)$.
 
- 1. It suffices to assume $v \in V$ and that $g$ is a scaling of $S$ that combines to $v$, and prove there exists a scaling of $S - u$ that combines to $v$.
+ 1. If $u \in span(S - u)$, then $span S = span(S - u)$
 
-   *Proof:* We already have $span(S - u) \subseteq span S$.
+    1. It suffices to assume $v \in V$ and that $g$ is a scaling of $S$ that combines to $v$, and prove there exists a scaling of $S - u$ that combines to $v$.
 
- 2. There is a scaling $f$ of $S - u$ such that $u = \sum_{x \in S - u} f(x) \cdot x$.
+      *Proof:* We already have $span(S - u) \subseteq span S$.
 
-    *Proof:* By assumption that $u \in span(S - u)$.
+    2. There is a scaling $f$ of $S - u$ such that $u = \sum_{x \in S - u} f(x) \cdot x$.
 
- 3. Q.E.D.
+       *Proof:* By assumption that $u \in span(S - u)$.
 
-    *Proof:* $v = \sum_{x \in S} g(x) \cdot x = g(u) \cdot u + \sum_{x \in S - u} g(x) \cdot x$ by (1). The scaling of $S - u$ defined by $h(x) := g(u) f(x) + g(x)$ combines to $v$.
+    3. Q.E.D.
+
+       *Proof:* $v = \sum_{x \in S} g(x) \cdot x = g(u) \cdot u + \sum_{x \in S - u} g(x) \cdot x$ by (1). The scaling of $S - u$ defined by $h(x) := g(u) f(x) + g(x)$ combines to $v$.
+
+ 2. If $span(S) = span(S - u)$, then $u \in span(S - u)$
+
+    *Proof:* Immediate since $u \in span(S)$.
+
+
+### Corollary
+$S$ is dependent iff there is a $u \in S$ such that $span(S) = span(S - u)$
 
 
 ## A finite generating set contains a basis
@@ -198,6 +208,40 @@ If $S$ is a finite generating set for a vector space $V$, then there is a $B \su
 If $S$ is an independent subset of a vector space $V$, then there is a basis $B$ such that $S \subseteq B$.
 
 *Proof:* $V$ is by assumption finite-dimensional, so it has a basis $C$. If $S$ is not already a basis, then it must not generate $V$, so we can find one element of $C$ that isn't in the span of $S$ (if not, all are in the span, which means $S$ generates $V$, contradicting our assumption that it didn't). Continually add vectors from $C$ that are not in the span of $S$ until we achieve a basis. This will be achieved because we only add vectors not in the span of $S$, so each addition maintains the independence of the set. This process eventually terminates since there are finitely many vectors in the basis.
+
+
+## Equivalent definitions of basis
+A set $B$ is a basis for fdvs $V$ iff $B$ is a maximal independent set iff $B$ is a minimal generating set.
+
+*Proof:* If $B$ is a basis, $span B = V$, so we could not add any other element to $B$ and obtain an indepedent set, since all other elemends in $V$ are in the span of $B$. So $B$ is a maximal independent set. Also, $B$ could not be a non-minimal generating set, since that would imply it is dependent, contrary to the assumption it is a basis. So it must be a minimal generating set.
+
+If $B$ is a maximal independent set, we cannot add any element of $V$ to $B$ without making the set dependent, so for all $v \in V - B$ we have $B + v$ dependent. This means some non-trivial scaling of $B + v$ combines to $0$, and we must have a non-zero coefficient on $v$ since otherwise we would have a non-trivial scaling of an independent set that combines to $0$, a contradiction. So $v \in span(B)$, meaning that $B$ generates $V$ and so $B$ is a basis.
+
+If $B$ is a minimal generating set, then for all $x \in B$ we have $span(B - x) \neq span(B)$, so $B$ could not be dependent and must be independent, hence a basis.
+
+
+## Steinitz exchange lemma
+If $S$ is independent in $V$ and $T$ generates $V$, with $S$ finite, then $|S| \leq |T|$.
+
+*Proof:* We can assume $S \neq \emptyset$ ($S = \emptyset$ immediately implies the statement to be proved), and impose some ordering so that $S = \{s_1, \ldots, s_k \}$.
+Note that we will use notation $a + X$ for an element $a$ of some set, and some set $X$, to be the union $X \cup \{a\}$. Also, if $b \in X$, then $X - b = \{x \in X : x \neq b\}$.
+
+By hypothesis $T$ generates $V$, so letting $S_0 = \emptyset$, $S_1 = \{ s_1 \}$, $T_0 = T$, we have $span(S_0 \cup T_0) = span(S_1 \cup T_0)$. The set $X_1 = S_1 \cup T_0$ is dependent since $T$ generates $V$ and $s_1 \in V$, and furthermore we can find a $t_1 \in T_0$ such that $t_1 \in span(X_1 - t_1)$ since we know some non-trivial scaling of $X_1$ combines to $0$ and that all zero-coefficients on the elements of $T$ in this scaling would imply that $s_1 = 0$, which is impossible. So let $T_1 = T_0 - t_1$. We have $span(S_0 \cup T_0) = span(S_1 \cup T_1)$ since removing a dependent vector doesn't change the span.
+
+Now suppose that we have $S_j$ and $T_j$ for some $j$ such that $span(S_j \cup T_j) = span(S_0 \cup T_0)$ and $S_j$ is a proper subset of $S$. By the same reasoning as above, we can find a $t_{j+1}$ that is in the span of $S_j + s_j + T_j - t_{j+1}$, hence $span(S_{j+1} \cup T_{j+1}) = span(S_j \cup T_j)$, where $S_{j+1} = S_j + s_j$ and $T_{j+1} = T_j - T_{j+1}$.
+
+This proves that there are at least $k$-elements in $T$ (since when we have defined $S_{k-1}$ and $T_{k-1}$, we can add $s_k$ to the set and still find a $t_k$ in the span of the others).
+
+
+## Corollary
+Any two finite bases in a finite dimensional vector space $V$ have the same number of elements.
+
+*Proof:* If $B$ and $C$ are bases, then $B$ is independent and $C$ generating, hence $|B| \leq |C|$, and also $C$ is independent and $B$ generating, so $|C| \leq |B|$.
+
+## Definition of dimension
+The last corollary allows us to define the **dimension** of a finite-dimensional vector space, which is the number of elements in every finite basis.
+
+TODO: somehow prove that a finite-dimensional vector space has no infinite bases.
 
 
 ## Definition of a linear map
