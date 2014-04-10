@@ -1,3 +1,23 @@
+## Motivating matrices
+
+A **finite-dimensional** vector space is defined to be any vector space with a finite basis. We just finished proving that if $V$ and $W$ are vector spaces over some field $\mathbb{F}$ and $V$ has some $n$-basis and $W$ has some $m$-basis, that $V$ is isomorphic to $\mathbb{F}^n$ and $W$ is isomorphic to $\mathbb{F}^m$. This "coordinatizing" of any finite-dimensional vector space leads to the idea of representing a linear map $T: V \to W$ as a linear map $A: \mathbb{F}^n \to \mathbb{F}^m$. We can obtain such a representation by first selecting an ordered basis $\beta$ in $V$ and an ordered basis $\gamma$ in $W$. The "coordinate isomorphisms" $\phi_{\beta} : V \to \mathbb{F}^n$ and $\phi_{\gamma} : W \to \mathbb{F}^m$ that $\beta$ and $\gamma$ induce give us a way to represent $T$ since we have
+
+$$\phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$$
+
+is a function $\mathbb{F}^n \to \mathbb{F}^m$.
+
+What do we gain from representing $T$ in this way?
+
+Let's notated $[T}_{\beta}^{\gamma} = \phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$. Also denote by $[v]_{\beta$ the tuple $(x_1, \ldots, x_n)$, provided that $v = \sum x_i b_i$, where $\beta = (b_1, \ldots, b_n)$ is an ordered basis. Then $\phi_{\beta}^{-1} ([v]_{\beta}) = v$, and $T(v) = \sum x_i T(b_i)$, so $\phi_{\gamma} (T(v)) = \sum x_i [T(b_i)]_{\gamma}$, meaning that
+
+$$[T]_{\beta}^{\gamma] ([v]_{\beta}) = [T(v)]_{\gamma}$$
+
+If we represent elements of $\mathbb{F}^n$ as a "column vector" of scalar numbers and if we fill a rectangular array with $m$ rows and $n$ columns, with the $i$-th column equal to $[T(b_i)]_{\gamma}$, then we can represent the operation of $[T]_{\beta}^{\gamma}$ by  multiplying each component of $[v]_{\beta}$ with its corresponding column $[T(b_i)]_{\gamma}$. We will soon  generalize this operation and call it **matrix multiplication**
+
+What we have just defined allows us to concretely represent a linear map between finite-dimensional vector spaces by versus choosing "coordinate axes" (i.e. ordered bases). The coordinate axes allow us to represent vectors as a tuple of scalar elements (i.e. as coordinates) and linear maps as a rectangular array of scalar elements.
+
+Let's clean this up slightly:
+
 For any $n \in \mathbb{N}$, $n > 0$, we denote the set $\{1, \ldots, n\}$ by $[n]$. Then a **matrix in $\mathbb{F}$** where $\mathbb{F}$ is a field is a function $[k] \times [n] \to \mathbb{F}$ for positive integers $k$ and $n$. Usually this is depicted as a rectangular array of field elements:
 
 $$
@@ -6,6 +26,7 @@ $$
 a_{k1} & \cdots & a_{kn} \end{bmatrix}
 $$
 
+## Defining matrix multiplication
 It's a real drag to define matrix multiplication, so I won't. I also won't prove these basic facts about it:
 
  - Associativity: $(AB)C = A(BC)$

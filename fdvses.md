@@ -197,6 +197,11 @@ If $(V, \mathbb{F})$ and $(W, \mathbb{F})$ are vector spaces, a linear map is a 
 
 Note: by induction we can extend the linearity properties to any finite linear combination: $T(\sum_{v \in S} a_v \cdot v) = \sum_{v \in S} a_v \cdot T(v)$.
 
+## The image of the basis completely determines a linear map
+If $T: V \to W$ is linear and $B$ is a finite basis for $V$, then by fixing $T(b)$ for all $b \in B$, the linearity of $T$ completely determines the rest of the values.
+
+*Proof:* For any $v \in V$, we have $v = \sum a_i b_i$ for some scalars $a_i$. So $T(v) = T(\sum a_i b_i) = \sum a_i T(b_i)$ by linearity. So every $T(v)$ is defined in terms of the $T(b_i)$.
+
 
 ## Composition of linear maps is linear
 If $A: V \to W$ and $B: W \to X$ are linear maps, then $B \circ A$ is linear as well.
