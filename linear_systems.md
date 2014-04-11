@@ -250,3 +250,7 @@ For (3), this is just a combination of (1) and (2).
 **Proposition:** A finite generating subset of $\mathbb{F}^n$ cannot have less than $n$ vectors in it.
 
 *Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has less than $n$ vectors in it, then the matrix will have less columns than rows, so we cannot have a pivot in every row, and hence by a previous proposition the set cannot be independent.
+
+
+## General solutions to a linear system
+TODO: Present this neatly somehow. Basically the null space is the solution set of a homogeneous system, and the cosets of the null space are the solution sets for each RHS that has a solution. If the range of the system is the whole space, then every RHS has a solution. If the null space is trivial, then solutions are unique.
