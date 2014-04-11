@@ -296,3 +296,56 @@ If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis fo
 
 ## Representation w.r.t. an ordered basis induces an isomorphism
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
+
+
+## Subspaces
+A **subspace** is a subset $S$ of a vector space $V$ that is a vector space under the restriction of vector addition and scalar multiplication to $S$. Clearly we must have at least that addition of vectors in $S$ is closed, and that scalar multiplication is also closed in $S$. We must also have that $S$ is an abelian group under restriction of addition to $S$ and that the four scalar multiplication properties are satisfied. The four scalar multiplication properties will be satisfied for the restriction, however, since they are satisfied for the unrestricted operations. For the same reason, vector addition will be associative and commutative. It remains to prove that $0 \in S$ and that each vector has an additive inverse. But since we must at least assume that the set is closed under vector addition and scalar multiplication, then we have $0v \in S$ and $-1 v \in S$. In other words:
+
+## Necessary and sufficient conditions for a subspace
+A subset $S$ of vector space $V$ is a subspace iff it is closed under vector addition and scalar multiplication.
+
+## Subspaces and linear combinations
+If $W$ is a subspace of $V$ and $S$ is a finite subset of $W$, then every linear combination of $S$ is in $W$.
+
+*Proof:* Any scaling of $S$ gives us a finite set of elements that are all in $W$, and adding them together gives the linear combination. Since $W$ is closed under addition, it's closed under any finite number of additions as well.
+
+## The span is a subspace
+For any subset $S$ of a vector space $V$, $span S$ is a subspace of $V$.
+
+*Proof:* We need merely prove that $span S$ is closed under vector addition and scalar multiplication. But $span S$ is the set of all linear combinations of vectors in $S$. But clearly we can add $\sum_1^n a_i s_i$ and $\sum_1^k b_i t_i$ to a linear combination of $\{s_1, \ldots, s_n, t_1, \ldots, t_k\}$. Also, scaling any linnear combination of vectors of $S$ is again a linear combination of those same vectors in $S$.
+
+### Intersections of subspaces
+If $V$ is a vector space and $\mathcal{S}$ is a collection of subspaces of $V$, then $\bigcap \mathcal{S}$ is a subspace. Note that $\bigcap \mathcal{S}$ is the biggest subspace contained in all subspaces of $\mathcal{S}$.
+
+*Proof:* If $u, v \in \bigcap \mathcal{S}$, then $u$ and $v$ are in every subspace of $\mathcal{S}$, so certainly $u+v$ is in every subspace as well, meaning $\bigcap \mathcal{S}$ is closed under addition. For the same reason, it's closed under scalar multiplication, hence is a subspace.
+
+## A nameless (for now) operation
+Let's notate by $V_{sub}$ the collection of all subspaces of $V$. Then for any subset $S$ of $V$, define $<S> := \bigcap \{ W \in V_{sub} : S \subseteq W \}$. In words, $<S>$ is the intersection of all subspaces that contain $S$.
+
+Then $<S>$ is the smallest subspace of $V$ that contains $S$ (in the sense that if $W$ is a subspace of $V$ that contains $S$, then $<S> \subseteq W$)
+
+*Proof:* This is by definition. By hypothesis $W$ is an element of the collection whose intersection is $<S>$.
+
+## Alternate characterization of the span
+For any subset $S$ of a vector space $V$, $span S = <S>$.
+
+*Proof:* Certainly $span S$ is a subspace that contains $S$, as recently proved, so $<S> \subseteq span S$.  Letting $\mathcal{S}$ be the collection of subspaces of $V$ that contain $S$, we have $\forall W \in \mathcal{S}$, $S \subseteq W$, so $span S \subseteq W$ as well, hence $span S \subseteq <S>$. So they are the same set.
+
+### Remark
+We can alternatively call $<S>$ the *span* of $S$. Even though the two operations are superficially different, we have proved that they are completely identical.
+
+
+## The lattice of subspaces
+### Definition of sums
+If $V$ is a vector space and $\mathcal{S}$ is a collection of subspaces of $V$, then define the **sum** $\sum \mathcal{S}$ to be the intersection of all subspaces that contain $\bigcup \mathcal{S}$. In symbols, $\sum \mathcal{S} := <\bigcup \mathcal{S}>$.
+
+Note that $\sum \mathcal{S}$ is the smallest subspaces that contains every subspace in $\mathcal{S}$ due to it being the span of the union of all the subspaces.
+
+
+## Definition of a lattice, the lattice of subspaces
+A **lattice** is a partially ordered set with, for any two elements $x$ and $y$, a *least upper bound* $sup(x, y)$ in the lattice, and also a *greatest lower bound* $inf(x, y)$. The set of all subspaces of $V$ forms a partial order under set inclusion, and intersection and sum form the greatest lower bound and least upper bound, respectively. In fact, the lattice is a **complete lattice**, meaning any subset $S$ of the lattice has a least upper bound and a greatest lower bound.
+
+## Sums of pairs
+If $V$ is a subspace and $W_1$ and $W_2$ are subspaces of $V$, then the sum $W_1 + W_2$ is the same as the set $S = \{u + v : u \in W_1, v \in W_2\}$.
+
+*Proof:* Certainly $S \subseteq W_1 + W_2$ since $W_1 + W_2$ is a subspace containing $W_1 \cup W_2$, and so must contain any linear combinations from this set. If $x \in W_1 + W_2$, then $x$ is a linear combination of vectors in $W_1 \cup W_2$. But this means that, if we gather up the vectors belonging to each subspace, that $x = \sum a_i u_i + \sum b_i v_i$  for $u_i \in W_1$ and $v_i \in W_2$. So $x = u + v$ for $u \in W_1$ and $v \in W_2$ (since $W_1$ and $W_2$ are undoubtedly closed under linear combinations).
