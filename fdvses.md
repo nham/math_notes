@@ -349,3 +349,19 @@ A **lattice** is a partially ordered set with, for any two elements $x$ and $y$,
 If $V$ is a subspace and $W_1$ and $W_2$ are subspaces of $V$, then the sum $W_1 + W_2$ is the same as the set $S = \{u + v : u \in W_1, v \in W_2\}$.
 
 *Proof:* Certainly $S \subseteq W_1 + W_2$ since $W_1 + W_2$ is a subspace containing $W_1 \cup W_2$, and so must contain any linear combinations from this set. If $x \in W_1 + W_2$, then $x$ is a linear combination of vectors in $W_1 \cup W_2$. But this means that, if we gather up the vectors belonging to each subspace, that $x = \sum a_i u_i + \sum b_i v_i$  for $u_i \in W_1$ and $v_i \in W_2$. So $x = u + v$ for $u \in W_1$ and $v \in W_2$ (since $W_1$ and $W_2$ are undoubtedly closed under linear combinations).
+
+## Dimension of a subspace
+If $V$ is a vector space and $W$ is a subspace of $V$, then $dim W \leq dim V$.
+
+*Proof:* By convention $V$ is finite dimensional, so $dim V = n$ for some $n$. Start with $\emptyset$ as a subset of $W$. It is linearly independent in $W$, and so it can be extended to a basis for $W$. So $W$ has some basis $B$. $B$ must also be independent in $V$, since otherwise we would have a non-trivial linear combination of $B$ combining to $0$ in $W$, contradicting its status as a basis. So $dim V = |B| \leq n$ since by the Steinitz exchange lemma any independent set can not have more elements in it than any basis.
+
+## Subset of a basis for a vector space is a basis for a subspace
+If $W$ is a subspace of a vector space $V$, with $dim V = n$, then letting $dim W = m$ and $B$ be a basis for $V$, any $m$-subset of $B$ is a vector space for $W$.
+
+*Proof:* Any $m$-subset of $V$ is certainly independent in $V$, so is independent in $W$. But this gives us an independent subset of $W$ with $dim W$ elements in it, so adding any vector to the set results in a dependent set (since no independent set can have more than $m$ elements), meaning it's a maximal independent set and therefore a basis.
+
+## Definition of complements
+If $W$ is a vector space and $U$ and $V$ are subspaces of $W$, then we say $U$ and $V$ are **complements** in $W$ iff $U + V = W$ and $U \cap V = \{0\}$.
+
+TODO: introduce null space, range
+TODO: rank-nullity theorem
