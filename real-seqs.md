@@ -366,12 +366,15 @@ If $(a_n)$ is a sequence, let $L^+ = limsup (a_n)$ and $L^- = liminf (a_n)$. The
 
  6. For all $k$, $inf (a_n)_{n \geq k} \leq L^- \leq L^+ \leq sup (a_n)_{n \geq k}$
 
-    *Proof:* To prove $L^- \leq L^+$, we prove that for any $j$ and any $k$, $inf (a_n)_{n \geq j} \leq sup (a_n)_{n \geq k}$. This proves that every $inf (a_n)_{n \geq j$ is a lower bound of the sequence $(a_n^+)$, so $L^-$ must be a lower bound as well by transitivity FUCK FIXME TODO ABLBHASASEH
+    *Proof:* To prove $L^- \leq L^+$, we prove that for any $j$ and any $k$, $inf (a_n)_{n \geq j} \leq sup (a_n)_{n \geq k}$. This proves that every $inf (a_n)_{n \geq j$ is a lower bound of the sequence $(a_n^+)$, so $L^-$ must be a lower bound as well by transitivity. Since $L^+ = inf (a_n^+)$ is the greatest lower bound, we must have $L^- \leq L^+$.
 
-By definition the rest hold, because $L^-$ is the supremum of all tail sequence infimums, and $L^+$ is the infimum of all tail sequence supremums.
+    But this holds, since if $j < k$ we have $inf (a_n)_{n \geq j} \leq inf (a_n)_{n \geq k} \leq sup (a_n)_{n \geq k}$, and if $k < j$ we have $inf (a_n)_{n \geq j \leq sup (a_n)_{n \geq j} \leq sup (a_n)_{n \geq k}$.
+
+    For the remainder, by definition the rest hold, because $L^-$ is the supremum of all tail sequence infimums, and $L^+$ is the infimum of all tail sequence supremums.
 
  7. If $c$ is a limit point of $(a_n)$, then $L^- \leq c \leq L^+$
 
+    *Proof:* TODO
 
 
 ## Tail sequences do not affect limit points, limit superior, limit inferior
