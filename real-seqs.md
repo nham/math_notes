@@ -1,3 +1,14 @@
+# Status
+Up until know we have, starting from basic set theory and the Peano axioms, built up a succession of number systems, culminating in the construction of the real numbers, which we defined as Cauchy sequences of rational numbers, and which we proved was a complete ordered field, i.e. a field such that
+
+ - $x < y$ implies $x + z < y + z$ for all $z$
+ - $0 < x$ and $0 < y$ implies $0 < xy$
+
+and such that every non-empty set bounded above has a least upper bound, every non-empty set bounded below has a greatest lower bound. We also proved many useful things, like the the cancellation law (true for all fields), trichotomy law (true for all totally ordered sets), the Archimedean property, that the rationals are dense in the reals, that $n$-th roots of positive reals exist, that positive reals can be taken to rational exponents, and that these exponents obey the laws that you think they do. We also defined the absolute value function for the reals and proved that its familiar properties, like triangle inequality, hold.
+
+Now, after tying up some loose ends, we can begin real analysis.
+
+
 ## Metric on $\mathbb{R}$
 For all $x, y \in \mathbb{R}$, define $d(x,y) = |x - y|$. 
 
@@ -318,6 +329,49 @@ If $(a_n) \to c$ then $c$ is a limit point of $(a_n)$ and is the unique limit po
 
 ## Definition of limit superior and limit inferior
 For any $(a_n)$, define a sequence by $a_N^+ = sup (a_n)_{n \geq N}$, meaning each term $a_N^+$ is the supremum of the tail sequence of $(a_n)$ that starts at $N$. Then the **limit superior** of $(a_n)$ is notated and defined by $lim_{n \to \infty} sup a_n = inf (a_n^+)$. Similarly define $a_N^- = inf (a_n)_{n \geq N}$, and the **limit inferior** of $(a_n)$ by $lim_{n \to \infty} inf a_n = sup (a_n^-)$.
+
+
+## Properties of limit superior and limit inferior
+If $(a_n)$ is a sequence, let $L^+ = limsup (a_n)$ and $L^- = liminf (a_n)$. Then we have
+
+ - For all $x \in \mathbb{R}^{\ast}$, $x > L^+$ implies that some tail sequence of $(a_n)$ has all terms strictly less than $x$. Also $x < L^-$ implies that some tail sequence of $(a_n)$ has all terms strictly greater than $x$.
+
+ - For all $x \in \mathbb{R}^{\ast}$, $x < L^+$ implies that there are infinitely terms strictly greater than $x$, and $x > L^-$ implies that there are infinitely terms strictly less than $x$.
+
+ - For any natural $j, k$, if $j < k$, then we have $inf (a_n)_{n \geq j} \leq inf (a_n)^{n \geq k}$ and $sup (a_n)_{n \geq k} \leq sup (a_n)_{n \geq j}$
+
+ - For all $k$, $inf (a_n)_{n \geq k} \leq L^- \leq L^+ \leq sup (a_n)_{n \geq k}$
+
+ - If $c$ is a limit point of $(a_n)$, then $L^- \leq c \leq L^+$
+
+ 1. $x > L^+$ implies that some tail sequence of $(a_n)$ has all terms strictly less than $x$
+
+    *Proof:* The hypothesis means that $x$ is not a lower bound of $(a_n^+)$, so some $k$ is such that $a_k^+ < x$ since $x$. But $a_k^+ = sup (a_n)_{n \geq k}$, so $x$ is strictly greater than every term in $(a_n)_{n \geq k}$.
+
+ 2. $x < L^-$ implies that some tail sequence of $(a_n)$ has all terms strictly greater than $x$.
+
+    *Proof:* By hypothesis, $x$ is not an upper bound of $(a_n^-)$, so some $k$ is such that $a_k^- > x$. But $a_k^- = inf(a_n)_{n \geq k}$, so $x$ is strictly less than all terms in $(a_n)_{n \geq k}$.
+
+ 3. $x < L^+$ implies that there are infinitely terms strictly greater than $x$
+
+    *Proof:* $x$ is a (strict) lower bound for $(a_n^+)$, which means $x$ is strictly less than the least upper bound of every tail sequence. So each tail sequence must have some term in it that is greater than $x$, since $x$ is not an upper bound for any tail sequence.
+
+ 4. $x > L^-$ implies that there are infinitely terms strictly less than $x$.
+
+    *Proof:* $x$ is a strict upper bound for $(a_n^-)$, so it is also a strictly greater than the infimum of every tail sequence. So some term in every tail sequence must be less than $x$, since $x$ is not a lower bound for any tail sequence.
+
+ 5. For any natural $j, k$, if $j < k$, then we have $inf (a_n)_{n \geq j} \leq inf (a_n)^{n \geq k}$ and $sup (a_n)_{n \geq k} \leq sup (a_n)_{n \geq j}$
+
+    *Proof:* The tail sequence starting at $k$ is a subsequence of the tail sequence starting at $j$, so any lower bound of the latter is also a lower bound of the former. Also, any upper bound of the latter is also an upper bound of the former. The statement immediately follows by properties of $inf$ and $sup$
+
+ 6. For all $k$, $inf (a_n)_{n \geq k} \leq L^- \leq L^+ \leq sup (a_n)_{n \geq k}$
+
+    *Proof:* To prove $L^- \leq L^+$, we prove that for any $j$ and any $k$, $inf (a_n)_{n \geq j} \leq sup (a_n)_{n \geq k}$. This proves that every $inf (a_n)_{n \geq j$ is a lower bound of the sequence $(a_n^+)$, so $L^-$ must be a lower bound as well by transitivity FUCK FIXME TODO ABLBHASASEH
+
+By definition the rest hold, because $L^-$ is the supremum of all tail sequence infimums, and $L^+$ is the infimum of all tail sequence supremums.
+
+ 7. If $c$ is a limit point of $(a_n)$, then $L^- \leq c \leq L^+$
+
 
 
 ## Tail sequences do not affect limit points, limit superior, limit inferior
