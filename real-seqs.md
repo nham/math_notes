@@ -308,6 +308,9 @@ $$lim_{n \to \infty} a_n = inf (a_n) \leq M$$
 
 *Proof:* Letting $x = inf (a_n)$, we know $M \leq x$ by the LUB-property for sequences. $x$ must be finite. We also know that for all $n$, $x \leq a_n$. We seek to prove that for any $\epsilon > 0$, we can find a tail sequence such that all terms are $\epsilon$-close to $x$. Since no terms can go below $x$, we have to find some tail sequence for which all terms $a_n$ have $x \leq a_n < x + \epsilon$. But we can find at least one such term $a_k$, and the decreasingness of the sequence guarantees that the following terms are also within an $\epsilon$.
 
+### For non-increasing/non-decreasing sequences
+The same proofs go through if $(a_n)$ is non-decreasing ($a_j \leq a_k$ for $j < k$) and non-increasing ($a_j \geq a_k$ for $j < k$).
+
 ## Definition of monotone sequence
 A sequence is **monotone** if it is increasing or decreasing.
 
@@ -344,6 +347,10 @@ If $(a_n)$ is a sequence, let $L^+ = limsup (a_n)$ and $L^- = liminf (a_n)$. The
 
  - If $c$ is a limit point of $(a_n)$, then $L^- \leq c \leq L^+$
 
+ - If $L^+$ is finite, then $L^+$ is a limit point of $(a_n)$. Ditto for $L^-$.
+
+ - For any $c \in \mathbb{R}$, $(a_n) \to c$ iff $L^+ = L^- = c$
+
  1. $x > L^+$ implies that some tail sequence of $(a_n)$ has all terms strictly less than $x$
 
     *Proof:* The hypothesis means that $x$ is not a lower bound of $(a_n^+)$, so some $k$ is such that $a_k^+ < x$ since $x$. But $a_k^+ = sup (a_n)_{n \geq k}$, so $x$ is strictly greater than every term in $(a_n)_{n \geq k}$.
@@ -374,7 +381,50 @@ If $(a_n)$ is a sequence, let $L^+ = limsup (a_n)$ and $L^- = liminf (a_n)$. The
 
  7. If $c$ is a limit point of $(a_n)$, then $L^- \leq c \leq L^+$
 
-    *Proof:* TODO
+    *Proof:* $c < L^-$ means that $c$ is not an upper bound for $(a_n^-)$, so some tail sequence starting at, say, $k$, has $c < inf(a_n)_{n \geq k}$. So let $\epsilon = inf(a_n)_{n \geq k} - c$, which is a positive real. Then $(a_n){n \geq k}$ is not $\epsilon$-close to $c$, contradicting its status as a limit point.
+
+    $c > L^+$ means that $c$ is not a lower bound for $(a_n^+)$, so some tail sequence starting at, say, $k$, has $sup(a_n)_{n \geq k} < c$. So let $\epsilon = c - sup(a_n)_{n \geq k}$. This is a positive real, and $(a_n)_{n \geq k}$ is not $\epsilon$-close to $c$, contradicting its status as a limit point once again.
+
+    The only remaining options are $L^- \leq c \leq L^+$.
+
+ 8. If $L^+$ is finite, then $L^+$ is a limit point of $(a_n)$. Ditto for $L^-$.
+
+    1. Some tail sequence (starting at let's-call-it-$k$) of $(a_n^+)$ has all terms finite. It converges to $L^+$.
+
+       1. For all $\epsilon > 0$, there is a $k$ such that $L^+ \leq a_j^+ < L^+ + \epsilon$. 
+
+          *Proof:* $L^+$ is the greatest lower bound of $(a_n^+)$, so $L^+ + \epsilon$ is not a lower bound.
+
+       2. Q.E.D.
+
+          *Proof:* Let $k$ be the starting index of the tail sequence that (1.1) proves to exist for $\epsilon = 1$. All the terms of this tail sequence are finite, and the sequence is non-increasing, so it holds by the monotone convergence theorem that $(a_n^+)_{n \geq k} \to inf (a_n^+)_{n \geq k} = inf (a_n^+)$.
+
+    2. Let $\epsilon > 0$. It suffices to prove that some tail sequence of $(a_n)$ has every tail sequence containing a term $\epsilon$-close to $L^+$.
+
+       *Proof:* If some tail sequence starting at $k$ has every tail sequence containing the $\epsilon$-close term, then every tail sequence of $(a_n)$ is either a tail sequence of the sequence starting at $k$, or is a sequence for which the sequence starting at $k$ is a tail sequence of it.
+
+    3. Let $(a_n^+)_{n \geq j}$ be the tail sequence of $(a_n^+)_{n \geq k}$ which is $\epsilon / 2$-close to $L^+$.
+
+       *Proof:* By (1)
+
+    4. For all $d \geq j$, we can find a term $m \geq d$ such that $sup (a_n)_{n \geq d} - \epsilon / 2 < a_m \leq sup (a_n)_{n \geq d}$.
+
+       *Proof:* Definition of supremum.
+
+    5. Every tail sequence of $(a_n)_{n \geq j}$ has a term that is $\epsilon$-close to $L^+$.
+
+       *Proof:* By (4), for every tail sequence there's a term that is $\epsilon / 2$-close to supremum of the tail sequence. But the supremum of the tail sequence is $\epsilon / 2$-close to $L^+$ by (3). So by triangle inequality every tail sequence has a term that is $\epsilon$-close to $L^+$.
+    
+    6. Ditto for $L^-$.
+
+       *Proof:* Basically the same proof as (1) through (5) holds.
+
+ 9. For any $c \in \mathbb{R}$, $(a_n) \to c$ iff $L^+ = L^- = c$
+
+    *Proof:* If $(a_n) \to c$, then for every $\epsilon > 0$ we can find a tail sequence of $(a_n)$ (starting at $j$0 which is $\epsilon$-close to $c$, meaning all terms $a_k$ have $c - \epsilon \leq a_k \leq c + \epsilon$. So $L^+ \leq sup (a_n)_{n \geq j} \leq c + \epsilon$, and $c - \epsilon \leq inf (a_n)_{n \geq j} \leq L^-$. We've just proven that for all $\epsilon > 0$, $L^+ \leq c + \epsilon$ and $c - \epsilon \leq L^-$. So $|c - L^+| \leq \epsilon$ and $|c - L^-| \leq \epsilon$ for all $\epsilon > 0$, which proves $L^- = c = L^+$
+
+    Conversely, if $L^+ = L^- = c$, then for any $\epsilon > 0$ we can find a $j$ and $k$ such that $L^+ \leq sup (a_n)_{n \geq j} \leq L^+ + \epsilon$ and $L^- - \epsilon < inf (a_n)_{n \geq k} \leq L^-$. Since $(a_n^+)$ and $(a_n^-)$ are non-increasing and non-decreasing, respectively, then the bigger of $j$ and $k$, call it $m$, has $L^+ \leq sup (a_n)_{n \geq m} \leq L^+ + \epsilon$ and $L^- - \epsilon < inf (a_n)_{n \geq m} \leq L^-$. So $(a_n)_{n \geq m}$ is $\epsilon$-close to $c$, or in other words, $(a_n) \to c$.
+
 
 
 ## Tail sequences do not affect limit points, limit superior, limit inferior
