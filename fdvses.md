@@ -102,7 +102,7 @@ A basis is very often represented in ordered form $(v_1, \ldots, v_n)$, so that 
 A vector space is **finite-dimensional** if it has a finite basis. The word "dimension" in this phrase will be explained later.
 
 ## Assume all vector spaces are finite-dimensional from now on
-We will assume that all vector spaces are finite-dimensional from here on out. Proving things about infinite-dimensional vector spaces requires more machinery.
+Unless mentioned otherwise, we will assume that all vector spaces are finite-dimensional from here on out. Proving things about infinite-dimensional vector spaces requires more machinery.
 
 
 ## Definition of a generating set
@@ -238,10 +238,16 @@ Any two finite bases in a finite dimensional vector space $V$ have the same numb
 
 *Proof:* If $B$ and $C$ are bases, then $B$ is independent and $C$ generating, hence $|B| \leq |C|$, and also $C$ is independent and $B$ generating, so $|C| \leq |B|$.
 
-## Definition of dimension
-The last corollary allows us to define the **dimension** of a finite-dimensional vector space, which is the number of elements in every finite basis.
+## No finite-dimensional vector space has an infinite independent set
+If $V$ has a finite basis, then there is no infinite subset $S$ of $V$ which is independent.
 
-TODO: somehow prove that a finite-dimensional vector space has no infinite bases.
+*Proof:* If there is an infinite independent $S$, then any subset of $S$ is independent. In particular, we can find a subset with $n+1$ elements in it. This contradicts the Steinitz exchange lemma which says any independent set must have no more elements than any other spanning set.
+
+### Corollary
+Any two bases in a finite dimensional vector space have the same number of elements.
+
+## Definition of dimension
+The last corollary allows us to define the **dimension** of a finite-dimensional vector space, which is the (unique) number of elements in any basis.
 
 
 ## Definition of a linear map
@@ -253,7 +259,7 @@ If $(V, \mathbb{F})$ and $(W, \mathbb{F})$ are vector spaces, a linear map is a 
 Note: by induction we can extend the linearity properties to any finite linear combination: $T(\sum_{v \in S} a_v \cdot v) = \sum_{v \in S} a_v \cdot T(v)$.
 
 ## The image of the basis completely determines a linear map
-If $T: V \to W$ is linear and $B$ is a finite basis for $V$, then by fixing $T(b)$ for all $b \in B$, the linearity of $T$ completely determines the rest of the values.
+If $T: V \to W$ is linear and $B$ is a basis for $V$, then by fixing $T(b)$ for all $b \in B$, the linearity of $T$ completely determines the rest of the values.
 
 *Proof:* For any $v \in V$, we have $v = \sum a_i b_i$ for some scalars $a_i$. So $T(v) = T(\sum a_i b_i) = \sum a_i T(b_i)$ by linearity. So every $T(v)$ is defined in terms of the $T(b_i)$.
 
@@ -356,12 +362,34 @@ If $V$ is a vector space and $W$ is a subspace of $V$, then $dim W \leq dim V$.
 *Proof:* By convention $V$ is finite dimensional, so $dim V = n$ for some $n$. Start with $\emptyset$ as a subset of $W$. It is linearly independent in $W$, and so it can be extended to a basis for $W$. So $W$ has some basis $B$. $B$ must also be independent in $V$, since otherwise we would have a non-trivial linear combination of $B$ combining to $0$ in $W$, contradicting its status as a basis. So $dim V = |B| \leq n$ since by the Steinitz exchange lemma any independent set can not have more elements in it than any basis.
 
 ## Subset of a basis for a vector space is a basis for a subspace
-If $W$ is a subspace of a vector space $V$, with $dim V = n$, then letting $dim W = m$ and $B$ be a basis for $V$, any $m$-subset of $B$ is a vector space for $W$.
+If $W$ is a subspace of a vector space $V$, with $dim V = n$ and $dim W = m$, then we can find a basis $B$ of $V$ such that some $m$-subset of $V$ is a basis for $W$.
 
-*Proof:* Any $m$-subset of $V$ is certainly independent in $V$, so is independent in $W$. But this gives us an independent subset of $W$ with $dim W$ elements in it, so adding any vector to the set results in a dependent set (since no independent set can have more than $m$ elements), meaning it's a maximal independent set and therefore a basis.
+*Proof:* This follows mostly from the previous proposition. $W$ has some basis, which is independent in $V$, so we can extend it to a basis of $V$.
 
-## Definition of complements
-If $W$ is a vector space and $U$ and $V$ are subspaces of $W$, then we say $U$ and $V$ are **complements** in $W$ iff $U + V = W$ and $U \cap V = \{0\}$.
+## Definition of direct sums of pairs, complements
+If $V$ is a vector space and $A$ and $B$ are subspaces of $V$, then the sum $A + B$ is called a **direct sum** if $A \cap B = \{ 0 \}$. This state of affairs is denoted $A \oplus B$. If $V = A \oplus B$, then $B$ is called the **complement** of $A$ in $V$.
+
+## Complements exist
+If $V$ is a finite dimensional vector space and $A$ is a subspace of $V$, then there is a subspace $B$ such that $V = A \oplus B$.
+
+*Proof:* Let $dim V = n$ and $dim A = k$. Let $B$ be some basis for $A$. Then $B$ is independent in $V$, so can be extended to a basis for $V$ by adding $n - k$ vectors. Let $C$ be this set of vectors. Then since $B \cup C$ is a basis for $V$ by definition, every $v \in V$ is a linear combination of $B \cup C$. This means there exist $a \in A$, $b \in span C$ such that $v = a + b$. Also for any vectors $u \in A$, $v \in span C$, $u + v \in V$ since $A$ and $span C$ are both elements of $V$. So $V = A + span C$. Were there to be any non-zero element $z \in A \cap span C$, we would have a non-trivial scaling of $B \cup C$ that combines to zero, which is a contradiction since $B \cup C$ is a basis. So we must have $V = A \oplus span C$.
+
+## Dimension of direct sums
+If $A$ and $B$ are finite-dimensional subspaces of some vector space $V$ (not-necessarily finite-dimensional) with $A \cap B = \{ 0 \}$. Then $dim(A \oplus B) = dim A + dim B$.
+
+*Proof:* Let $C$ and $D$ be bases for $A$ and $B$, respectively. $C \cap D = \emptyset$ since $0$ is not in any basis. If we can prove $C \cup D$ is a basis for $A \oplus B$, then the statement is proven. If $C \cup D$ fails to be independent in $A \oplus B$, we must have a non-trivial scaling of $C \cup D$ that results in $0$. This means that there is some non-zero $a \in A$ that is also a linear combination of the $D$, so $A \cap B$ has non-zero elements in it, a contradiction. So $C \cup D$ is independent. For generating, let $v \in A \oplus B$. Then $v = a + b$ for some $a \in A, b \in B$ by a previous proposition. Clearly there are scalings of $C$ and $D$, respectively that combine to $a$ and $b$, so this gives us a scaling of $C \cup D$ that combines to $v$. So $C \cup D$ is a basis.
+
+
+## Sum/intersection formula
+If $W$ is finite dimensional and $U$ and $V$ are two subspaces, then $dim(U+V) + dim(U \cap V) = dim U + dim V$
+
+*Proof:* We can find complements $U = S \oplus U \cap V$ and $V = T \oplus U \cap V$. Our strategy is to prove that $dim(U + V) = dim U + dim T$. From this we can prove that $dim(U + V) + dim(U \cap V) = dim U + dim(T) + dim (U \cap V) = dim U + dim V$, where the last equality holds by definition. of $T$.
+
+Let $A$ be a basis for $U \cap V$, and let $B$ be a basis for $U$ that contains $A$ (which we can find by a previous proposition). Also let $C$ be a basis for $T$. Note that $A \cup C$ is a basis for $V$. Since all the elements of $B$ and $C$ are non-zero, if $B \cap C$ is non-empty then we would have an element of $U \cap T$ which is not zero. But $T \subseteq V$, so this is an element of both $T$ and $U \cap V$ which isn't zero, contrary to $T$'s status as the complement of $U \cap V$ in $V$. So $B$ and $C$ are disjoint. We proceed to prove $B \cup C$ is a basis for $U + V$, which would imply that $dim(U+V) = |B| + |C| = dim U + dim T$.
+
+If $B \cup C$ isn't independent, some non-trivial scaling must combine to $0$, which implies that some non-zero element of $U$ is in $span C$. This again implies a non-zero element is in both $T$ and $U \cap V$, a contradiction. So $B \cup C$ is independent. Now for any $v \in A + B$, we know there exist $a \in A, b \in B$ such that $v = a + b$. There is a scaling such that $a = \sum f(i) b_i$ and $b = \sum g(i) c_i + \sum h(i) a_i$. We can form a scaling of $B \cup C$ that combines to $v = a + b$ since the $a_i$ are all in $B$ by definition. Since $v$ was arbitrary, $B \cup C$ generates as well, so it must be a basis.
+
+
 
 TODO: introduce null space, range
 TODO: rank-nullity theorem
