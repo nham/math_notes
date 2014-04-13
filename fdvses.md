@@ -291,6 +291,21 @@ If $G$ generates $V$ then for all $z \in V$ there is a scaling $\alpha$ of $S$ s
 ### Corollary
 For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
 
+## Image of a basis determines injectiveness/surjectiveness
+If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then if $T(B)$ is independent in $W$, then $T$ is injective, and if $T(B) is generating in $W$, then $T$ is surjective.
+
+*Proof:* If $T(B)$ is independent, then for $u, v \in V$, we have that $u = \sum c_i b_i$ and $v = \sum d_i b_i$ for some scalars $c_i$ and $d_i$. So if $T(u) = T(v)$, then $0 = T(u - v) = T(\sum (c_i - d_i) b_i) = \sum (c_i - d_i) T(b_i)$. Since the $T(b_i)$ are independent, we must have $c_i = d_i$ for all $i$, so $u = v$. If $T(B)$ is generating, then for $w \in W$, $w = \sum a_i T(b_i)$ for some $a_i$'s. So $w = T(\sum a_i b_i)$, hence $T$ is surjective.
+
+### Corollary
+For any linear map $T: V \to W$ and basis $B$ for $V$, if $T(B)$ is a basis then $T$ is an isomorphism.
+
+### Corollary 
+$V$ and $W$ are isomorphic iff $dim V = dim W$.
+
+*Proof:* If $B$ is a basis for $V$, then for any isomorphism $T: V \to W$, we have $T(B)$ is a basis for $W$. It has exactly the same number of elements as $B$, so they must have the same dimension. 
+
+Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$, respectively with $|B| = |C|$. We can define a mapping $T$ by starting with a bijection between $B$ and $C$. The rest of the linear map follows since the image of a basis determines the rest of the linear map. Then the image of $B$ is a basis, so by the previous proposition $T$ is an isomorphism.
+
 ## Composition of isomorphisms is an isomorphism
 The composition of isomorphisms is an isomorphism. 
 
@@ -389,7 +404,26 @@ Let $A$ be a basis for $U \cap V$, and let $B$ be a basis for $U$ that contains 
 
 If $B \cup C$ isn't independent, some non-trivial scaling must combine to $0$, which implies that some non-zero element of $U$ is in $span C$. This again implies a non-zero element is in both $T$ and $U \cap V$, a contradiction. So $B \cup C$ is independent. Now for any $v \in A + B$, we know there exist $a \in A, b \in B$ such that $v = a + b$. There is a scaling such that $a = \sum f(i) b_i$ and $b = \sum g(i) c_i + \sum h(i) a_i$. We can form a scaling of $B \cup C$ that combines to $v = a + b$ since the $a_i$ are all in $B$ by definition. Since $v$ was arbitrary, $B \cup C$ generates as well, so it must be a basis.
 
+## Definition of null space, range of a linear map
+If $T: V \to W$ is a linear map, then the subset $N = \{ v \in V : T(v) = 0\}$ is a subspace of $V$, called the **null space**, and the image of $T$, $R = \{ w \in W : \exists v \in V T(v) = w \}$ is a subspace of $W$, called the **range**.
 
+*Proof:* We just have to prove closure on each. If $u, v \in N$, then for any scalars $a$ and $b$, $T(au + bv) = aT(u) + b T(v) = a0 + b0 = 0$. Also, if $w, x \in R$, then there are $u, v \in V$ such that $T(u) = w$ and $T(v) = x$. So for any scalars $a, b$, we have $aw + bx = T(au + bv)$, so both $N$ and $R$ are closed under linear combinations.
 
-TODO: introduce null space, range
-TODO: rank-nullity theorem
+## Basic properties of the null space and range
+For any linear map $T: V \to W$, let $N$ and $T$ be the null space and range, respectively. Then $T$ is injective iff $N = \{ 0 \}$. Also, $T$ is surjective iff $R = W$.
+
+*Proof:* if $N \neq \{ 0 \}$, $T$ could not be injective since more than one element map to $0$. Conversely, if $N = \{ 0 \}$, then for any $u, v \in V$, $T(u) = T(v)$ implies $u - v \in N$, so $u - v = 0$ or $u = v$, so $T$ is injective.
+
+$R$ is by definition the image, so $T$ is surjective exactly when the image is the entire co-domain.
+
+## Definition of rank and nullity
+The **rank** of a linear map is the dimension of the range. The **nullity** of a linear map is the dimension of the null space. These are denoted $rank(T)$ and $nullity(T)$, respectively.
+
+## Rank-nullity theorem
+For any linear map $T: V \to W$, we have $dim V = rank(T) + nullity(T)$.
+
+*Proof:* Let $N$ be the null space of $T$ and $R$ be the range of $T$.. Then we can find a complement $A$ in $V$, so that $V = A \oplus N$. By previous propositions, $dim V = dim A + nullity(T)$.
+
+Now, note first that since $R$ is a subspace of $W$ which, by definition, is the image of $T$, that we can define a restriction of $T$, $S: V \to R$ by $S(v) = T(v)$. This is a well-defined function, and it is a linear map since S(au + bv) = T(au + bv) = a T(u) + b T(v) = a S(u) + b S(v)$. We define a restriction of $S$, $\phi: A \to R$ by $\phi(a) = T(a)$. This is again well-defined and is certainly linear. Also we have that if $T(a) = 0$, then $a = 0$ since $A \cap N = \{ 0 \}$. So the null space of $\phi$ is trivial, meaning $\phi$ is injective. Also by definition, if $w \in R$, $w \neq 0$, then some $v$ is such that $T(v) = w$. But that $v$ could not be in the null space of $T$ by definition, so it must be in $A$. Hence $\phi$ is surjective. In other words, $\phi$ is an isomorphism, so $dim A = dim R = rank(T)$.
+
+Combined with the above equation, we have proved what we set out to.
