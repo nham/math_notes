@@ -425,6 +425,22 @@ If $(a_n)$ is a sequence, let $L^+ = limsup (a_n)$ and $L^- = liminf (a_n)$. The
 
     Conversely, if $L^+ = L^- = c$, then for any $\epsilon > 0$ we can find a $j$ and $k$ such that $L^+ \leq sup (a_n)_{n \geq j} \leq L^+ + \epsilon$ and $L^- - \epsilon < inf (a_n)_{n \geq k} \leq L^-$. Since $(a_n^+)$ and $(a_n^-)$ are non-increasing and non-decreasing, respectively, then the bigger of $j$ and $k$, call it $m$, has $L^+ \leq sup (a_n)_{n \geq m} \leq L^+ + \epsilon$ and $L^- - \epsilon < inf (a_n)_{n \geq m} \leq L^-$. So $(a_n)_{n \geq m}$ is $\epsilon$-close to $c$, or in other words, $(a_n) \to c$.
 
+## Comparison principle for supremums/infimums of sequences
+If $(a_n)$ and $(b_n)$ are sequences in $\mathbb{R}$ and $a_n \leq b_n$ for all $n$, then 
+
+ - $sup (a_n) \leq sup (b_n)$
+ - $inf (a_n) \leq inf (b_n)$.
+ - $limsup a_n \leq limsup b_n$
+ - $liminf a_n \leq liminf b_n$
+
+*Proof:* If $sup (b_n) < sup (a_n)$, we can find a term $a_k$ such that $sup (b_n) < a_k \leq sup (a_n)$, contradicting $a_n \leq b_n$. A similar contradiction arises if $inf (b_n) < inf (a_n)$.
+
+For the remaining two, we just have to realize that the previous fact applies to sequences in $\mathbb{R}^{\ast}$. Then apply the first fact to the sequences $(a_n^+)$ and $(b_n^+)$ and $(a_n^-)$ and $(b_n^-)$.
+
+### Corollary: squeeze theorem
+If $(a_n)$, $(b_n)$, and $(c_n)$ are all sequences and for all $n$ we have $a_n \leq b_n \leq c_n$, and also we have $(a_n) \to L$ and $(c_n) \to L$ for some $L$, then $(b_n) \to L$ as well.
+
+*Proof:* By the comparison principle we have $limsup a_n \leq limsup b_n \leq limsup c_n$ and $liminf a_n \leq liminf b_n \leq liminf c_n$. But since $(a_n)$ and $(c_n)$ converge to $L$, then by limsup and liminf facts, $liminf a_n = limsup a_n = L = limsup c_n = liminf c_n$. So $L \leq liminf b_n \leq L$ and $L \leq limsup b_n \leq L$, which implies $L = limsup b_n = liminf b_n$, so $(b_n) \to L$.
 
 
 ## Tail sequences do not affect limit points, limit superior, limit inferior
