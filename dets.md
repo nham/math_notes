@@ -82,3 +82,52 @@ We also have
 $$b_{nn} (B_{kj})_{nn} = \sum_{\alpha \in G} sgn(\alpha) b_{{\beta_{\alpha}}_1 1} \cdots b_{{\beta_{\alpha}}_n n}$$
 
 By the above, $sgn(\alpha) = (-1)^{i+j} sgn(\beta_{\alpha})$. Also, $(B_{kj})_{nn}$ is exactly the $(n, n)$ minor of $B_{kj}$. Also, the $(n, n)$ minor of $B_{kj}$ is precisely the $(i, j)$ minor of $A$ (TODO: prove). So this establishes what we wanted to prove.
+
+
+==============
+
+
+The above notes were from Shilov. The axiomatic approach from LADW is clearly better.
+
+The desiderata for determinant: for any field $\mathbb{F}$, a function $D: {\mathbb{F}^n}^n \to \mathbb{R}$ satisfying:
+
+ - linear in every argument
+ - For all $j$ and $k$ and for all $x, y \in {\mathbb{F}^n}^n$ with $x_i = y_i$ for all $i \neq j, k$, $y_k = x_j$, $y_j = x_k$, we have $D(x) = -D(y)$.
+ - $D(e_1, \ldots, e_n) = 1$, where the $e_i$ are the elements of the standard basis on $\mathbb{F}^n$.
+
+## Determinants of linearly dependent vectors
+If $(v_1, \ldots, v_n)$ are linearly dependent as a set, then $D(v_1, \ldots, v_n) = 0$.
+
+*Proof:* First notice that if we have some $i$ and $j$ such that $v_i = v_j$, we must have the determinant zero, since we could swap those two columns to get a $D(v_1, \ldots, v_n) = - D(v_1, \ldots, v_n)$, which can only happen if $D(v_1, \ldots, v_n) = 0$. Now, the vectors are linearly dependent iff one is in the span of the others, so we have $D(v_1, \ldots, v_n) = D(v_1, \ldots, \sum_{i \neq j} a_i v_i, \ldots, v_n)$ for some $v_j$ which is in the span of the others. Using linearity, we get $n-1$ determinants which each have duplicate columns, so the total determinant is zero since each of the $n-1$ determinants is.
+
+## Corollary
+For any $j$, adding a linear combination of the other $v_i$'s ($i \neq j$) does not change the determinant.
+
+## Determinant of diagonal matrices
+The determinant of a diagonal matrix is the product of terms on the diagonal, since we can scale each column down by its value to find the identity matrix (and by linearity).
+
+## Determinant of triangular matrices
+We just do "column elimination" on any triangular matrix to obtain a diagonal matrix. Column saxpy (adding a linear combination of one column to all the others) does not change the determinant, so the determinant of any triangular matrix is again the product of the terms on the diagonal.
+
+## Determinants and elementary matrices
+If $E$ is elementary matrix, then $det(AE) = det A det E$.
+
+*Proof:* Note that multiplying on the right by an elementary matrix is applying a *column operation*. Note also that any elementary matrix can be formed by applying a column operation of the same type to $I_n$. So the saxpy elementary matrix is obtained via a saxpy on $I_n$, the scaling elementary matrix results from a scaling of $I_n$, and the swap elementary matrix is itself the result of swapping $I_n$. So for column saxpy, $det (AE) = det A = (det A) 1 = det A det E$ since $det E = 1$. For scaling operation, $det AE = k det A$ for some $k$, and $det E = k$ as well. Last, for swap, $det E = -1$, and $det (AE) = - det A$.
+
+## Product rule for determinants
+$det AB = det A det B$
+
+*Proof:* If $B$ invertible, $B = E_k \cdots E_1$ for elementary matrices $E_i$, so $det AB = det A det E_k \cdots det E_1 = det A det B$ by the previous proposition. If $B$ is not invertible, then we prove $AB$ is not invertible: If it is, then there is some $C$ such that $CAB = I_n$, which is a left-inverse for $B$.
+
+TODO: this still requres Det not zero iff invertible, which I'm not sure has a clean proof yet.
+
+## Determinant of transpose
+$det A = det A^T$
+
+*Proof:* We can transpose $A$ and then RREE to obtain either $I_n$ or some matrix with at least one zero-column. If the latter, then $det(E_k \cdots E_1 A^T) = 0$
+
+
+## Fundamental fact about determinants and invertibility
+Any matrix $A$ is invertible iff $det A \neq 0$.
+
+*Proof:* $A$ is invertible iff $A^T$ is, and $A^T$ is invertible iff its reduced, row-eliminated echelon form is the identity matrix. but $det I_n = 1$, and Gauss-Jordan elimination involves only operations that do not zero-out the matrix (swaps, which negate, saxpy, which do nothing, and scalings, which scale). Since GJE is row-operations on a transposed matrix, it is the same as column operations. So $det A = c_1 \cdots c_k det I_n$ where each $c_i$ is some non-zero scalar due to swaps or scaling operations.

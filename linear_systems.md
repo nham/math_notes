@@ -219,7 +219,7 @@ TODO: prove that the RREE form of a matrix is unique?
 *Proof:*  If $A$ is invertible, the previous two propositions imply it is the product of elementary matrices. Conversely, if $A$ is the product of elementary matrices, it is the product of invertible matrices, hence invertible.
 
 
-**Corollary Corollary:* A matrix $A$ is invertible iff the reduced, row-eliminated matrix has a pivot in every row and in every column.
+**Corollary Corollary:* A matrix $A$ is invertible iff the reduced, row-eliminated (not necessarily echelon) matrix has a pivot in every row and in every column.
 
 *Proof:* If the reduced, row-eliminated matrix has a pivot in every row and column, we can actually just apply swaps until it's an identity matrix. So it must be invertible since its RREE is an identity matrix. Conversely, $A$ invertible implies a unique solution for every right-hand side, so it must have pivots in each row and column.
 
@@ -229,7 +229,7 @@ TODO: prove that the RREE form of a matrix is unique?
 *Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched), hence we could not have a pivot in every row and every column, hence not invertible.
 
 
-## Hashtag BasisFacts
+## Hashtag columnfacts
 
 **Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then
 
@@ -245,3 +245,8 @@ For (3), this is just a combination of (1) and (2).
 
 ## General solutions to a linear system
 TODO: Present this neatly somehow. Basically the null space is the solution set of a homogeneous system, and the cosets of the null space are the solution sets for each RHS that has a solution. If the range of the system is the whole space, then every RHS has a solution. If the null space is trivial, then solutions are unique.
+
+
+TODO: invertibility and transposes. We need $A$ is invertible iff $A^T$ invertible for the determinant notes.
+
+TODO: prove that if a matrix (linear map?) is left-invertible, it is invertible
