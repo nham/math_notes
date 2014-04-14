@@ -475,3 +475,17 @@ If $(a_n)$ is a real sequence, then $(a_n) converges$ iff $(a_n)$ is Cauchy.
 
 Let $x = L^+ - (L^+ - L^-)/4$ and $y = L^- + (L^+ - L^-)/4$. Then $L^- < x, y < L^+$. By a previous proposition we can find infinitely many terms of $(a_n)$ that are less than $x$ and infinitely many terms that are greater than $y$, which contradicts the fact that we must be able to find a tail sequence where all terms are within $(L^+ - L^-)/4$ of one other (since $(a_n)$ is Cauchy). So $L^- = L^+$, and $lim a_n = L^-$.
 
+
+## Definition of subsequences
+If $(a_n)$ is a sequence in $\mathbb{R}$, then $(b_n)$ is a **subsequence** of $\mathbb{R}$ if there's an increasing $f: \mathbb{N} \to \mathbb{N}$ such that $b_n = a_{f(n)}$ for all $n$.
+
+
+## "Is-a-subsequence" is reflexive and transitive
+For any $(a_n)$, $(b_n)$, $(c_n)$, $(a_n)$ is a subsequence of $(a_n)$. and if $(a_n)$ subsequence of $(b_n)$ and $(b_n)$ subsequence of $(c_n)$, then $(a_n) subsequence of $(c_n)$.
+
+*Proof:* For reflexivity, the identity function is increasing. For transitivity, we have increasing $f$ and $g$ such that $a_n = b_{f(n)}$ and $b_n = c_{g(n)}$ for all $n$. So $a_n = b_{f(n)} = c_{g(f(n))}$ for all $n$. But composition of increasing functions is increasing since $m < n$ implies that $f(m) < f(n)$ which implies that $g(f(m)) < g(f(n))$.
+
+## Equivalent account of sequence convergence
+For any sequence $(a_n)$, $(a_n)$ converges to $L$ iff every subsequence of $(a_n)$ converges to $L$
+
+*Proof:* The latter implies the former since $(a_n)$ is a subsequence of itself. Conversely, If $(a_n)$ converges to $L$, then for any $\epsilon$ we can find a tail sequence whose terms are all $\epsilon$-close to $L$. Say that the tail sequence starts at $k$. Then any subsequence $(b_n)$ has that $b_k = b_j$ for some $j > k$ by definition, so all the terms starting with $b_k$ are also $\epsilon$-close to $L$ (since they are elements of the tail sequence of $(a_n)$ that starts at $k$. So $(b_n)$ converges to $L$ as well.
