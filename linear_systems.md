@@ -179,7 +179,7 @@ We can make this a bit neater by altering the algorithm to ensure that the pivot
 
 This form is interesting because it allows us to directly write down the solution set. The resulting matrix will consist of some number of pivot columns and some number of non-pivot columns. Recall from the form of the augmented matrix there are $k$ rows and $n+1$ columns. Columns $1$ through $n$ correspond to variables $x_i$, while column $n+1$ is the right-hand side.
 
-**Theorem:** A system has a solution iff a reduced, row-eliminated form of the augmented matrix has a pivot in the last column.
+**Theorem:** A system has a solution iff a reduced, row-eliminated form of the augmented matrix does not have a pivot in the last column.
 
 *Proof:* If the pivot is in the last column, this corresponds to a row of all zeroes in columns $1$ through $n and a non-zero in $n+1$th column. As an equation, this has no solution. It says $0 = c$ for some $c \neq 0$. Conversely, if a system has no pivot in the last column, we can easily construct a solution: the variables associated with non-pivot columns of $1$ through $n$ are *free variables* and can be assigned any scalar value. Once assigned, the other variables are fixed. This is a solution.
 
@@ -242,15 +242,6 @@ TODO: prove that the RREE form of a matrix is unique?
 For (2), eliminated versions of $A$ have at least one solution for each right-hand side iff there's a pivot in every row (by the previous theorem again), which is precisely the same thing as saying that the column vectors (aka $S$) generate $\mathbb{F}^n$.
 
 For (3), this is just a combination of (1) and (2).
-
-**Proposition:** An independent finite subset of $\mathbb{F}^n$ cannot have more than $n$ vectors in it.
-
-*Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has more than $n$ vectors in it, then the matrix will have more columns than rows, so we cannot have a pivot in every column, and hence by the previous proposition the set cannot be independent.
-
-**Proposition:** A finite generating subset of $\mathbb{F}^n$ cannot have less than $n$ vectors in it.
-
-*Proof:* If we construct a matrix out of the vectors in a set $S \subseteq \mathbb{F}^n$ which has less than $n$ vectors in it, then the matrix will have less columns than rows, so we cannot have a pivot in every row, and hence by a previous proposition the set cannot be independent.
-
 
 ## General solutions to a linear system
 TODO: Present this neatly somehow. Basically the null space is the solution set of a homogeneous system, and the cosets of the null space are the solution sets for each RHS that has a solution. If the range of the system is the whole space, then every RHS has a solution. If the null space is trivial, then solutions are unique.
