@@ -442,6 +442,11 @@ If $(a_n)$, $(b_n)$, and $(c_n)$ are all sequences and for all $n$ we have $a_n 
 
 *Proof:* By the comparison principle we have $limsup a_n \leq limsup b_n \leq limsup c_n$ and $liminf a_n \leq liminf b_n \leq liminf c_n$. But since $(a_n)$ and $(c_n)$ converge to $L$, then by limsup and liminf facts, $liminf a_n = limsup a_n = L = limsup c_n = liminf c_n$. So $L \leq liminf b_n \leq L$ and $L \leq limsup b_n \leq L$, which implies $L = limsup b_n = liminf b_n$, so $(b_n) \to L$.
 
+## The zero test
+If $(a_n)$ is a sequence, then $lim a_n = 0$ iff $lim |a_n| = 0$.
+
+*Proof:* If $lim a_n = 0$, then for every $\epsilon$ we can find a tail sequence with all terms having $|a_n| \leq \epsilon$. Since $||a_n|| = |a_n|$, this implies $lim |a_n| = 0$. Conversely, recall that for all $a_n$ we have $-|a_n| \leq a_n \leq |a_n|$. So if $lim |a_n| = 0$, then $lim -|a_n| = 0$ clearly by limit laws, so $a_n$ converges to zero as well by the squeeze theorem.
+
 
 ## Tail sequences do not affect limit points, limit superior, limit inferior
 For any natural $k$, we have 
@@ -450,4 +455,23 @@ For any natural $k$, we have
  - $limsup (a_n) = limsup (a_n)_{n \geq k}$
  - $liminf (a_n) = liminf (a_n)_{n \geq k}$
 
-TODO
+ 1. $c$ is a limit point of $(a_n)$ iff $c$ is a limit point of $(a_n)_{n \geq k}$
+
+    *Proof:* If $c$ is a limit point of $(a_n)$, this means for every $\epsilon > 0$, every tail sequence has a term that is $\epsilon$-close to $c$. This clearly means that every tail sequence of $(a_n){n \geq k}$ has a term $\epsilon$-close to $c$. Conversely, every tail sequence of $(a_n)$ is either a tail sequence of $(a_n)_{n \geq k}$ or has $(a_n)_{n \geq k}$ as a tail sequence. So if $c$ is a limit point of the tail sequence starting at $k$, then every tail sequence of $(a_n)$ that is a tail sequence of $(a_n)_{n \geq k}$ by hypothesis has a term that is $\epsilon$-close to $c$. For the rest, $(a_n)_{n \geq k}$ has a term $\epsilon$-close to $c$, so the rest do as well.
+
+ 2. $limsup (a_n) = limsup (a_n)_{n \geq k}$
+
+    *Proof:* $limsup (a_n) = inf (a_n^+)$ and $inf (a_n^+)_{n \geq k} = limsup (a_n)_{n \geq }$ by definition. Every lower bound of $(a_n^+)$ is a lower bound for the tail sequence (since as sets, the tail sequence is a subset of the original), so $inf (a_n^+) \leq inf (a_n^+)_{n \geq k}$. But also, for all $j < k$, $a_j^+ \geq a_k^+$ since $(a_n^+)$ is decreasing, so any lower bound for $(a_n^+)_{n \geq k}$ must also be a lower bound for $(a_n^+)$.
+
+ 3. $liminf (a_n) = liminf (a_n)_{n \geq k}$
+
+    *Proof:* This will be virtually the same proof as in (2), but with infs and sups switched and $\leq$ and $\geq$ also switched. Alternatively, you could do some trickery with negating each of the elements and applying (2) to the negated sequence, then switching it back.
+
+
+## Completeness of the reals
+If $(a_n)$ is a real sequence, then $(a_n) converges$ iff $(a_n)$ is Cauchy.
+
+*Proof:* We already proved one direction, that all convergent sequences are Cauchy. So Let $(a_n)$ be Cauchy. We know $(a_n)$ must therefore be bounded, so $sup (a_n)$ and $inf (a_n)$ are both finite. This implies that $L^-$ and $L^+$ are both finite as well. A previous proposition proves that $L^- \leq L^+$. Suppose that $L^- < L^+$. 
+
+Let $x = L^+ - (L^+ - L^-)/4$ and $y = L^- + (L^+ - L^-)/4$. Then $L^- < x, y < L^+$. By a previous proposition we can find infinitely many terms of $(a_n)$ that are less than $x$ and infinitely many terms that are greater than $y$, which contradicts the fact that we must be able to find a tail sequence where all terms are within $(L^+ - L^-)/4$ of one other (since $(a_n)$ is Cauchy). So $L^- = L^+$, and $lim a_n = L^-$.
+
