@@ -114,6 +114,12 @@ If $E$ is elementary matrix, then $det(AE) = det A det E$.
 
 *Proof:* Note that multiplying on the right by an elementary matrix is applying a *column operation*. Note also that any elementary matrix can be formed by applying a column operation of the same type to $I_n$. So the saxpy elementary matrix is obtained via a saxpy on $I_n$, the scaling elementary matrix results from a scaling of $I_n$, and the swap elementary matrix is itself the result of swapping $I_n$. So for column saxpy, $det (AE) = det A = (det A) 1 = det A det E$ since $det E = 1$. For scaling operation, $det AE = k det A$ for some $k$, and $det E = k$ as well. Last, for swap, $det E = -1$, and $det (AE) = - det A$.
 
+## Fundamental fact about determinants and invertibility
+Any matrix $A$ is invertible iff $det A \neq 0$.
+
+*Proof:* If $A$ is invertible, then $A$ is a product of elementary matrices, so $A = I E_k \cdots E_1$, hence $det A = det E_k \cdots det E_1$. Since the determinant of an elementary matrix is non-zero, the determinant of $A$ must be as well. Conversely, if $det A \neq 0$, the columns of $A$ must be independent. A proposition from the notes on linear systems implies that blah. Don't think it works. TODO FIXME
+
+
 ## Product rule for determinants
 $det AB = det A det B$
 
@@ -127,7 +133,3 @@ $det A = det A^T$
 *Proof:* We can transpose $A$ and then RREE to obtain either $I_n$ or some matrix with at least one zero-column. If the latter, then $det(E_k \cdots E_1 A^T) = 0$
 
 
-## Fundamental fact about determinants and invertibility
-Any matrix $A$ is invertible iff $det A \neq 0$.
-
-*Proof:* $A$ is invertible iff $A^T$ is, and $A^T$ is invertible iff its reduced, row-eliminated echelon form is the identity matrix. but $det I_n = 1$, and Gauss-Jordan elimination involves only operations that do not zero-out the matrix (swaps, which negate, saxpy, which do nothing, and scalings, which scale). Since GJE is row-operations on a transposed matrix, it is the same as column operations. So $det A = c_1 \cdots c_k det I_n$ where each $c_i$ is some non-zero scalar due to swaps or scaling operations.
