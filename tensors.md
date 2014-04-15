@@ -69,3 +69,39 @@ If $u, v \in V$ are distinct vectors, then there is some functional $f$ in $V'$ 
 *Proof:* Find a functional $f$ such that $f(u-v) \neq 0$, which can be done by the previous proposition since $u \neq v$. $f(u) = f(v)$ implies $f(u-v) = 0$, a contradiction.
 
 
+## The natural correspondence between a vector space and its double dual space
+If $V$ is a vector space, then the map $\phi: V \to V''$ defined by, for all $v \in V$, associating the functional $V' \to \mathbb{F}$ sending $f \in V'$ to $[v, f]$, (i.e. for any vector $v$ we assign to every functional $f$ the scalar $f(v)$) is not only a bijection, but is an isomorphism.
+
+*Proof:* It's clearly linear since $[v, f]$ is a bilinear form. It remains to prove bijectivity. But if $u, v \in V$, then for $\phi(u) = \phi(v)$, we must have for any $f \in V'$, $[u, f] = [v, f]$. If $u \neq v$, this is a contradiction since we know from a previously proved proposition that some function has distinct values for $u$ and $v$. So $u = v$, and $\phi$ is injective. So the image of $\phi$ is isomorphic to $V$ since $\phi$ is an injective linear map. But we already know that $dim W = dim W'$ for any vector space $W$, so we must have $dim V = dim V''$. So in fact $\phi$ is an isomorphism.
+
+
+## Definition of annihilators
+If $S$ is any subset of a vector space $V$, then $S^0$ defined by all functionals that map every vector in $S$ to $0$ is called the **annihilator of $S$**. In symbols:
+
+$$S^0 = \{f \in V' : \forall s \in S [s, f] = 0 \}$$
+
+
+### Examples
+$\emptyset^0 = \{ 0 \}^0 = V'$. Also, $V^0 = \{ 0 \}$, where here we interpret $0$ as the zero functional in $V'$.
+
+
+## Annihilators of subspaces
+If $A$ is a subspace of vector space $V$, then $A^0$ is a subspace of $V'$ and $dim A^0 + dim A = dim V$.
+
+ 1. $A^0$ is a subspace of $V'$
+
+    *Proof:* It is an easy proof that is omitted here.
+
+ 2. the subset $B$ of $V'$ consisting of linear functionals that map one nonzero element of $A$ to a nonzero scalar is in fact a subspace
+
+    *Proof:* We know by a previously proved proposition that for any nonzero $a \in A$, we can find a functional $f$ such that $f(a) \neq 0$. Let $f$ and $g$ be two such functionals, meaning there are $a, b \in A$ such that $f(a) \neq 0 \neq g(b)$.
+
+ 3. If $B$ is the complement of $A^0$ in $V$, then $A' \cong B$.
+
+    *Proof:* Construct $\phi: A' \to B$ by, for any $f \in A'$, $\phi(f) = g$, where $g: V \to \mathbb{F}$ is a functional such that $g(x) = f(x)$ if $x \in A$ and $g(x) = 0$ otherwise. Then $g(u + v) =  BLAH BLAH FIXMe TODO
+
+ 4. $A' \cong B$. 
+
+ 5. Q.E.D.
+
+    *Proof:* $dim V = dim V' = dim A^0 + dim B = dim A^0 + dim A' = dim A^0 + dim A$, which follow by a previous proposition, by (3), by (4), and by a previous proposition, respectively.
