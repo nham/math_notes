@@ -229,6 +229,12 @@ TODO: prove that the RREE form of a matrix is unique?
 *Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched), hence we could not have a pivot in every row and every column, hence not invertible.
 
 
+## Square matrices and one-sided inverses
+A square matrix $A$ is invertible iff $A$ has a left-inverse iff $A$ has a right-inverse.
+
+*Proof:* A square matrix represents a linear map $\mathbb{F}^n \to \mathbb{F}^n$. This was already proved for general linear endomaps.
+
+
 ## Hashtag columnfacts
 
 **Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then

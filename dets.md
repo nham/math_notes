@@ -110,26 +110,28 @@ The determinant of a diagonal matrix is the product of terms on the diagonal, si
 We just do "column elimination" on any triangular matrix to obtain a diagonal matrix. Column saxpy (adding a linear combination of one column to all the others) does not change the determinant, so the determinant of any triangular matrix is again the product of the terms on the diagonal.
 
 ## Determinants and elementary matrices
-If $E$ is elementary matrix, then $det(AE) = det A det E$.
+If $E$ is elementary matrix, then $det(AE) = det A det E$. Also, $det E \neq 0$.
 
 *Proof:* Note that multiplying on the right by an elementary matrix is applying a *column operation*. Note also that any elementary matrix can be formed by applying a column operation of the same type to $I_n$. So the saxpy elementary matrix is obtained via a saxpy on $I_n$, the scaling elementary matrix results from a scaling of $I_n$, and the swap elementary matrix is itself the result of swapping $I_n$. So for column saxpy, $det (AE) = det A = (det A) 1 = det A det E$ since $det E = 1$. For scaling operation, $det AE = k det A$ for some $k$, and $det E = k$ as well. Last, for swap, $det E = -1$, and $det (AE) = - det A$.
+
+Note that in each case, the determinant of an elementary matrix is non-zero.
 
 ## Fundamental fact about determinants and invertibility
 Any matrix $A$ is invertible iff $det A \neq 0$.
 
-*Proof:* If $A$ is invertible, then $A$ is a product of elementary matrices, so $A = I E_k \cdots E_1$, hence $det A = det E_k \cdots det E_1$. Since the determinant of an elementary matrix is non-zero, the determinant of $A$ must be as well. Conversely, if $det A \neq 0$, the columns of $A$ must be independent. A proposition from the notes on linear systems implies that blah. Don't think it works. TODO FIXME
+*Proof:* If $A$ is invertible, then $A$ is a product of elementary matrices, so $A = I E_k \cdots E_1$, hence $det A = det E_k \cdots det E_1$. Since the determinant of an elementary matrix is non-zero, the determinant of $A$ must be as well. Conversely, if $det A \neq 0$, the columns of $A$ must be independent. This latter property is true iff $A$ is invertible.
 
 
 ## Product rule for determinants
 $det AB = det A det B$
 
-*Proof:* If $B$ invertible, $B = E_k \cdots E_1$ for elementary matrices $E_i$, so $det AB = det A det E_k \cdots det E_1 = det A det B$ by the previous proposition. If $B$ is not invertible, then we prove $AB$ is not invertible: If it is, then there is some $C$ such that $CAB = I_n$, which is a left-inverse for $B$.
-
-TODO: this still requres Det not zero iff invertible, which I'm not sure has a clean proof yet.
+*Proof:* If $B$ invertible, $B = E_k \cdots E_1$ for elementary matrices $E_i$, so $det AB = det A det E_k \cdots det E_1 = det A det B$ by the previous proposition. If $B$ is not invertible, then we prove $AB$ is not invertible: If it is, then there is some $C$ such that $CAB = I_n$, which provides $CA$ as a left-inverse for $B$. Since $B$ is a square matrix, this proves $B$ is invertible, a contradiction.
 
 ## Determinant of transpose
 $det A = det A^T$
 
 *Proof:* We can transpose $A$ and then RREE to obtain either $I_n$ or some matrix with at least one zero-column. If the latter, then $det(E_k \cdots E_1 A^T) = 0$
+TODO
+
 
 

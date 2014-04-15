@@ -276,20 +276,26 @@ If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then assigning value
 
 
 ## Invertibility
-A basic definition from set theory is that a function $f: X \to Y$ is **left invertible** if there is a $g: Y \to X$ such that $g \circ f = id_X$, and is **right invertible if there's an $h: Y \to X$ such that $f \circ h = id_Y$. if a function is both left invertible and right invertible, we say it is just **invertible**. It is easy to prove that if a function is invertible, then there is a unique function which serves as both left and right inverses. Also, it is a basic fact from set theory that a function $f$ is a bijection iff it is invertible.
+A basic definition from set theory is that a function $f: X \to Y$ is **left invertible** if there is a $g: Y \to X$ such that $g \circ f = id_X$, and is **right invertible if there's an $h: Y \to X$ such that $f \circ h = id_Y$. if a function is both left invertible and right invertible, we say it is just **invertible**. It is easy to prove that if a function is invertible, then there is a unique function which serves as both left and right inverses. Also, it is well-known from set theory that a function $f$ is an injection iff it has a left-inverse, a surjectin iff it has a right-inverse, and a bijection iff it is invertible.
 
 ## Definition of an isomorphism
 An **isomorphism** between vector spaces is a bijective linear map. In other words, isomorphisms are invertible linear maps.
 
-## Isomorphism preserves independence, generatingness
+## Injective maps perserve independence, surjective maps preserve generatingness
+If $T: V \to W$ is an injective linear map, then if $A$ is independent in $V$, we have $T(A)$ is independent in $W$. Also, if $T$ is a surjective linear map, then if $B$ is generating in $V$, we also have $T(B)$ generating in $W$.
+
+*Proof:* If $A$ is independent, then $\sum_{v \in A} \alpha(v) \cdot v = 0$ implies that $\alpha(v) = 0$ for all $v \in A$. So if $\sum_{v \in A} \beta(v) \cdot T(v) = 0$, then $T(\sum_{v \in A} \beta(v) \cdot v) = 0$, so \sum_{v \in A} \beta(v) \cdot v = 0$ since $T$ is injective. This implies $\beta(v) = 0$ for all $v \in A$, proving that the set of all $T(v)$'s is independent.
+
+If $B$ generates $V$ then for all $z \in B$ there is a scaling $\alpha$ of $B$ such that $\sum_{v \in B} \alpha(v) \cdot v = z$. If $w \in W$, then there is some $u \in V$ such that $T(v) = w$ since $T$ is surjective, and since $B$ generates $V$ there is some $\beta$ such that $\sum_{v \in B} \beta(v) \cdot v = u$, so by linearity $T(u) = \sum_{v \in B} \beta(v) \cdot T(v) = w$. Hence the set of $T(v)$'s generates $W$.
+
+### Corollary
 If $T: V \to W$ is an isomorphism, then if $S$ is independent in $V$, then $T(S)$ is independent in $W$. Also If $G$ generates $V$, then $T(G)$ generates $W$.
 
-*Proof:* If $S$ is independent, then $\sum_{v \in S} \alpha(v) \cdot v = 0$ implies that $\alpha(v) = 0$ for all $v \in S$. So if $\sum_{v \in S} \beta(v) \cdot T(v) = 0$, then $T(\sum_{v \in S} \beta(v) \cdot v) = 0$, so \sum_{v \in S} \beta(v) \cdot v = 0$ since $T$, being an isomorphism, is injective. This implies $\beta(v) = 0$ for all $v \in S$, proving that the set of all $T(v)$'s is independent.
-
-If $G$ generates $V$ then for all $z \in V$ there is a scaling $\alpha$ of $S$ such that $\sum_{v \in G} \alpha(v) \cdot v = z$. If $w \in W$, then there is some $u \in V$ such that $T(v) = w$ since $T$ is an isomorphism, and since $G$ generates $V$ there is some $\beta$ such that $\sum_{v \in S} \beta(v) \cdot v = u$, so by linearity $T(u) = \sum_{v \in S} \beta(v) \cdot T(v) = w$. Hence the set of $T(v)$'s generates $W$.
+*Proof:* An isomorphism is both injective and surjective, so this holds by a previous proposition.
 
 ### Corollary
 For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
+
 
 ## Image of a basis determines injectiveness/surjectiveness
 If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then if $T(B)$ is independent in $W$, then $T$ is injective, and if $T(B) is generating in $W$, then $T$ is surjective.
@@ -306,6 +312,15 @@ $V$ and $W$ are isomorphic iff $dim V = dim W$.
 
 Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$, respectively with $|B| = |C|$. We can define a mapping $T$ by starting with a bijection between $B$ and $C$. The rest of the linear map follows since the image of a basis determines the rest of the linear map. Then the image of $B$ is a basis, so by the previous proposition $T$ is an isomorphism.
 
+
+## A linear endomap is invertible iff it has a one-sided inverse
+If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a right-inverse.
+
+*Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
+
+TODO: I think that linear maps are injective iff they preserve independence, and surjective iff they preserve generatingness. Need to reorganize the above.
+
+
 ## Composition of isomorphisms is an isomorphism
 The composition of isomorphisms is an isomorphism. 
 
@@ -317,6 +332,7 @@ If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis fo
 
 ## Representation w.r.t. an ordered basis induces an isomorphism
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
+
 
 
 ## Subspaces
