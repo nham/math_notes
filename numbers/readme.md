@@ -1,0 +1,1 @@
+Building the number systems N, Z, Q, R, and C from scratch out of (informal) set theory. Follows Terence Tao's book *Analysis I*. I use a structured proof style taken from Leslie Lamport's, ["How to Write a 21st Century Proof"](http://research.microsoft.com/en-us/um/people/lamport/pubs/proof.pdf).
