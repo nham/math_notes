@@ -16,21 +16,21 @@ The most common formulation of metric spaces (and definitely easier to work with
   - $d(x,y) = d(y,x)$
   - $d(x,z) \leq d(x,y) + d(y,z)$
 
-An **open ball** of radius r around x is the set of all points in the metric space that are less than a distance r from x. In symbols:
+An **open ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than a distance $r$ from $x_0$. In symbols:
 
-  $$ B_r(x_0) = \{ x : d(x, x_0) < r \}$$
+  $$ B(x_0; r) = \{ x : d(x, x_0) < r \}$$
 
 We will often call an open ball of radius $r$ an **$r$-ball**.
 
-An **open set** is a set $U$ such that every $x \in U$ has an open ball $B_\epsilon(x)$ which is entirely contained in $U$.
+An **open set** is a set $U$ such that every $x \in U$ has an open ball $B(x; \epsilon)$ which is entirely contained in $U$.
 
 Open balls are a kind of "primitive" open set that all other open sets are defined in terms of. We haven't yet proved that open balls are open sets, however. So let's do that.
 
 **Lemma:** Open balls are open.
 
-*Proof:* Let $B_\epsilon(x)$ be any open ball. Then $y$ is some distance $\delta \in \mathbb{R}$ from $x$ where $\delta < \epsilon$ (by definition of an open ball). We need to find some $\xi$-ball around $y$ that fits inside $B_\epsilon(x)$. 
+*Proof:* Let $B(x; \epsilon)$ be any open ball. Then $y$ is some distance $\delta \in \mathbb{R}$ from $x$ where $\delta < \epsilon$ (by definition of an open ball). We need to find some $\xi$-ball around $y$ that fits inside $B(x; \epsilon)$. 
 
-Restating this condition using the definition of open balls, we need to find some $\xi \in \mathbb{R}$ such that every $z \in B_\xi(y)$ is less than $\epsilon$ from x. So we need to ensure that $d(x, z) < \epsilon$.
+Restating this condition using the definition of open balls, we need to find some $\xi \in \mathbb{R}$ such that every $z \in B(y; \xi)$ is less than $\epsilon$ from x. So we need to ensure that $d(x, z) < \epsilon$.
 
 By the triangle inequality, $d(x, z) \leq d(x, y) + d(y, z)$. By hypothesis, $d(x,y) = \delta$, so if we could ensure that $d(y, z) < \epsilon - \delta$, we would be okay.
 
@@ -50,9 +50,9 @@ Proof:
 
 (1) $\emptyset$ is vacuously open. $X$ is open because it contains *every* open ball, so it certainly contains *an* open for every point.
 
-(2) If $x \in \bigcup \mathcal{S}$, then it must be in some open $U \in \mathcal{S}$. So  $\exists B_\epsilon(x) \subseteq U \subseteq \bigcup \mathcal{S}$. The arbitrary union of open sets is thus open.
+(2) If $x \in \bigcup \mathcal{S}$, then it must be in some open $U \in \mathcal{S}$. So  $\exists B(x; \epsilon) \subseteq U \subseteq \bigcup \mathcal{S}$. The arbitrary union of open sets is thus open.
 
-(3) If $x \in U_1 \cap U_2$, there are open balls $B_\epsilon(x)$, $B_\delta(x)$ contained in $U_1$ and $U_2$, resp. The smaller of these balls is contained in both open sets, so is also in the intersection. $\Box$
+(3) If $x \in U_1 \cap U_2$, there are open balls $B(x; \epsilon)$, $B(x; \delta)$ contained in $U_1$ and $U_2$, resp. The smaller of these balls is contained in both open sets, so is also in the intersection. $\Box$
 
 
 An **open neighborhood** of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
@@ -86,7 +86,7 @@ $$
 \begin{split}
 \overline{S} &= \{ x : \forall N \in \mathcal{N}_x N \cap S \neq \emptyset \}\\
 &= \{ x : \forall U \in \mathcal{O}_x U \cap S \neq \emptyset \}\\
-&= \{ x : \forall \epsilon > 0 B_\epsilon(x) \cap S \neq \emptyset \}
+&= \{ x : \forall \epsilon > 0 B(x; \epsilon) \cap S \neq \emptyset \}
 \end{split}
 $$
 
@@ -96,9 +96,39 @@ If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could n
 
 Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $\overline{S} \subset N$ because $\overline{S}$ is defined to be the minimal closed set containing $S$. $\Box$
 
+### Closure points
+
+In the last characterization of the closure of $S$, we proved that $\overline{S}$ consists of all points $x$ for which every open ball around $x$ intersects $S$. We call such a point a **closure point** of $S$. This is also commonly known as an *adherent point* of $S$, but I have seen at least one author call it a "limit point", which is confusing because there is another slightly different concept that others call "limit point". We will stick with "closure point", which makes sense because the closure of $S$ consists precisely of the set of all of $S$'s closure points.
+
 **Lemma:** A set $S$ is closed iff $\overline{S} = S$
 
 *Proof:* By definition $S \subseteq \overline{S}$. If S is closed, then $\overline{S} \subseteq S$ since $\overline{S}$ is minimal. Conversely, if $\overline{S} = S$, then $\overline{S}$, being an intersection of closed sets, is closed. $\Box$
+
+## Closed balls are closed sets
+An **closed ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than or equal to a distance $r$ from $x_0$. In symbols:
+
+  $$ C(x_0; r) = \{ x : d(x, x_0) \leq r \}$$
+
+Then every closed ball is a closed set.
+
+*Proof:* We have to prove that $C(x_0; r)$'s complement is open. So let $U = X - C(x_0; r)$, and let $y \in U$. This means that $d(y, x_0) > r$ by definition of $C(x_0; r)$. Suppose further that there isn't any open ball around $y$ that is contained entirely in $U$ (which is allowable since we are assuming $U$ is not open). Then every $\epsilon$-ball of $y$ intersects $C(x_0; r)$ In particular, $\epsilon = (d(y, x_0) - r) / 2$ > 0$, so some $z \in B(y; \epsilon)$ is also in $C(x_0; r)$.
+
+We know
+
+$$d(x_0,y) \leq d(x_0, z) + d(z, y)$$
+
+Rearranging this we obtain:
+
+$$d(x_0, z) \geq d(x_0, y) - d(z,y)$$
+
+But since $d(z,y) < (d(x_0, y) - r) / 2$, we obtain
+
+
+$$d(x_0, z) > d(x_0, y) - (d(x_0, y) - r)/2 = (d(x_0, y)  + r) / 2 > r$$
+
+This contradicts that $z$ was assumed to be in $C(x_0; r)$.
+
+
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
 
@@ -106,7 +136,7 @@ The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined 
 
 *Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
 
-The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B_\epsilon(x) \text{ intersects both } S \text{ and } X-S\}$
+The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B(x; \epsilon) \text{ intersects both } S \text{ and } X-S\}$
 
 **Lemma:** For a set $S$, $\partial S = \overline{S} \cap \overline{X-S}$
 
@@ -130,7 +160,7 @@ The dual notion to the closure of a set is the "interior" of a set, which is the
 
 *Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
 
-A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B_\delta(x)) \subseteq B_\epsilon(f(x))$.
+A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B(x; \delta)) \subseteq B(f(x); \epsilon)$.
 
 We can interpret the above definition this way: $f$ allows us to ensure that we can keep the output of $f$ arbitrarily close to $f(x)$ by restricting the input to some range of points sufficiently close to $x$. More briefly: points that are close enough to $x$ get mapped to points close to $f(x)$.
 
@@ -144,15 +174,14 @@ Conversely if the inverse image of any open set in $Y$ is an open set in $X$, th
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
 
-A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B_\epsilon(x)$ for some $\epsilon > 0$.
+A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B(x; \epsilon)$ for some $\epsilon > 0$.
 
-**Lemma:** A compact set $S$ in a metric space is bounded.
-
-*Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B_{r_1}(x), \ldots, B_{r_n}(x) \}$. The union of these is just the biggest open ball, $B_N(x)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
+**Lemma:** A compact set $S$ in a metric space is bounded.  
+*Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B(x; r_1), \ldots, B(x; r_n) \}$. The union of these is just the biggest open ball, $B(x; N)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
 
 **Lemma:** A compact subset $S$ of some metric space $X$ is closed.
 
-*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$ there is at least one pair of open balls around $x$ and $y$ that are disjoint (take $\epsilon_x = d(x,y)$). Then the collection of all such balls $B_{\epsilon_x}(x)$  is an open cover of $S$, which, being compact, implies the existence of a finite number of them that cover $S$. These open balls $B_{\epsilon_1}(x_1), \ldots, B_{\epsilon_n}(x_n)$ have corresponding open balls $D_{\delta_i}(y)$ around $y$ that are disjoint from the $B_{\epsilon_i}(x_i)$'s. The smallest ball $D_{\delta_i}(y)$ is disjoint from the whole union of $B_{\epsilon_k}(x_k)$'s, so it's disjoint from $S$, meaning contained in $X-S$. So $X-S$ is open. $\Box$
+*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$ there is at least one pair of open balls around $x$ and $y$ that are disjoint (take $\epsilon_x = d(x,y)$). Then the collection of all such balls $B(x; \epsilon_x)$  is an open cover of $S$, which, being compact, implies the existence of a finite number of them that cover $S$. These open balls $B(x_1; \epsilon_1), \ldots, B(x_n; \epsilon_n)$ have corresponding open balls $D_{\delta_i}(y)$ around $y$ that are disjoint from the $B(x_i; \epsilon_i)$'s. The smallest ball $D_{\delta_i}(y)$ is disjoint from the whole union of $B(x_k; \epsilon_k)$'s, so it's disjoint from $S$, meaning contained in $X-S$. So $X-S$ is open. $\Box$
 
 **Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
 
