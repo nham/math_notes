@@ -296,14 +296,21 @@ If $T: V \to W$ is an isomorphism, then if $S$ is independent in $V$, then $T(S)
 ### Corollary
 For any isomorphism $T: V \to W$, if $S$ is a basis for $V$ then $T(S)$ is a basis for $W$.
 
+## Linear maps that preserve independence/generatingness are injective/surjective.
+If $T: V \to W$ is a linear map, then
 
-## Image of a basis determines injectiveness/surjectiveness
-If $T: V \to W$ is a linear map and $B$ is a basis for $V$, then if $T(B)$ is independent in $W$, then $T$ is injective, and if $T(B) is generating in $W$, then $T$ is surjective.
+ - if every indepedent $S \subseteq V$ has $T(S)$ independent in $W$, then $T$ is injective
+ - if every generating $S \subseteq V$ has $T(S)$ generating in $W$, then $T$ is surjective
 
-*Proof:* If $T(B)$ is independent, then for $u, v \in V$, we have that $u = \sum c_i b_i$ and $v = \sum d_i b_i$ for some scalars $c_i$ and $d_i$. So if $T(u) = T(v)$, then $0 = T(u - v) = T(\sum (c_i - d_i) b_i) = \sum (c_i - d_i) T(b_i)$. Since the $T(b_i)$ are independent, we must have $c_i = d_i$ for all $i$, so $u = v$. If $T(B)$ is generating, then for $w \in W$, $w = \sum a_i T(b_i)$ for some $a_i$'s. So $w = T(\sum a_i b_i)$, hence $T$ is surjective.
+*Proof:* If $T$ isn't injective, then there are $u \neq v$ such that $T(u) = T(v)$. So $u - v \neq 0$, hence $\{u -v\}$ is independent, but $T(u-v) = 0$, and $\{0\}$ is not independent.
+
+For the second statement, if $T$ is not surjective then there is some $w \in W$ such that no $v \in V$ has $T(v) = w$. This implies no $S \subseteq V$ could have $T(S)$ generating, because if $w \sum a_i T(s_i)$ for some $s_i$'s in $S$, then $T(\sum a_i s_i) = w$, contradicting that $w$ is not in the image of $T$.
+
+### Remark
+Combining the last two propositions, we have that linear maps send independent sets to independent sets iff they are injective, and that linear maps send generating sets to generating sets iff they are surjective.
 
 ### Corollary
-For any linear map $T: V \to W$ and basis $B$ for $V$, if $T(B)$ is a basis then $T$ is an isomorphism.
+For any linear map $T: V \to W$ and basis $B$ for $V$, $T$ is an isomorphism iff $T(B)$ is a basis.
 
 ### Corollary 
 $V$ and $W$ are isomorphic iff $dim V = dim W$.
@@ -317,8 +324,6 @@ Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$
 If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a right-inverse.
 
 *Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
-
-TODO: I think that linear maps are injective iff they preserve independence, and surjective iff they preserve generatingness. Need to reorganize the above.
 
 
 ## Composition of isomorphisms is an isomorphism
