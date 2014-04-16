@@ -126,13 +126,34 @@ But since $d(z,y) < (d(x_0, y) - r) / 2$, we obtain
 
 $$d(x_0, z) > d(x_0, y) - (d(x_0, y) - r)/2 = (d(x_0, y)  + r) / 2 > r$$
 
-This contradicts that $z$ was assumed to be in $C(x_0; r)$.
-
+This contradicts that $z$ was assumed to be in $C(x_0; r)$. $\Box$
 
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
 
 **Lemma:** $clo(S) = \{ x \in X : dist(x,S) = 0$
+
+
+## Interior, interior points
+
+To make this symmetric, we define the "dual" notion of the closure of a set. For any subset $S$ of a metric space, the **interior** of $S$, denoted $int(S)$, is the largest open set contained in $S$. In symbols:
+
+$$int(S) := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$$
+
+**Proposition:** A set $S$ is open iff $int(S) = S$.
+
+*Proof:* If $int(S) = S$, then $S$ is clearly open since $int(S)$ is. Conversely if $S$ is open, then $S$ is the largest open set contained in $S$.
+
+An **interior point** of $S$ is the set of all points $x \in S$ such that there is some open ball $B(x; \epsilon)$ contained entirely in $S$.
+
+TODO: prove that $int(S) = the set of all interior points$. In fact, prove all the analogs of the things we proved for closures.
+
+
+**Lemma:** $int(S) = X - clo(X - S)$
+
+*Proof:* $X - S \subseteq clo(X - S)$, so $X - clo(X-S)$ is not only open, but $X - clo(X-S) \subseteq S$. If it's not the biggest open set contained in $S$, then some open $T$ is bigger. So $X-T$ is obviously closed, and we have $X-S \subseteq X-T \subseteq clo(X-S)$, contradicting that $clo(X-S)$ is the smallest closed set containing $X - S$. So in fact $X - clo(X - S) = int(S)$.
+
+
 
 *Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
 
@@ -154,12 +175,6 @@ For (2), we could use the previous lemma to say that $\partial S$ is the interse
 
 For (3), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq clo(S)$ and $\partial S \subseteq (clo(S) \cap clo(X-S)) \subseteq clo(S)$. $\Box$
 
-The dual notion to the closure of a set is the "interior" of a set, which is the largest open set contained in the set: for a given set $S$, we define the **interior** of $S$, $int(S) := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$.
-
-**Lemma:** $int(S) = X - clo(X - S)$
-
-*Proof:* $X - S \subseteq clo(X - S)$, so $X - clo(X-S)$ is not only open, but $X - clo(X-S) \subseteq S$. If it's not the biggest open set contained in $S$, then some open $T$ is bigger. So $X-T$ is obviously closed, and we have $X-S \subseteq X-T \subseteq clo(X-S)$, contradicting that $clo(X-S)$ is the smallest closed set containing $X - S$. So in fact $X - clo(X - S) = int(S)$.
-
 
 **Lemma:** A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
@@ -168,6 +183,7 @@ The dual notion to the closure of a set is the "interior" of a set, which is the
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
 
+## Compact sets
 
 A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
 
