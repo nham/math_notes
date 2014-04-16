@@ -77,14 +77,14 @@ A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. A
 
 *Proof:* (1) is immediate. The rest can be proved using DeMorgan's law [$X - (A \cup B) = (X-A) \cap (X-B)$] and the TLFOS. $\Box$
 
-The **closure** of a set $S$ in $X$, written $\overline{S}$, is defined as the minimal closed set containing $S$. In symbols:
+The **closure** of a set $S$ in $X$, written $clo(S)$, is defined as the minimal closed set containing $S$. In symbols:
 
-$$ \overline{S} := \bigcap \{ F : S \subseteq F, F \text{ is closed} \}$$ 
+$$ clo(S) := \bigcap \{ F : S \subseteq F, F \text{ is closed} \}$$ 
 
 **Alternate characterization of closures:** 
 $$
 \begin{split}
-\overline{S} &= \{ x : \forall N \in \mathcal{N}_x N \cap S \neq \emptyset \}\\
+clo(S) &= \{ x : \forall N \in \mathcal{N}_x N \cap S \neq \emptyset \}\\
 &= \{ x : \forall U \in \mathcal{O}_x U \cap S \neq \emptyset \}\\
 &= \{ x : \forall \epsilon > 0 B(x; \epsilon) \cap S \neq \emptyset \}
 \end{split}
@@ -92,17 +92,17 @@ $$
 
 *Proof:* Call the first set $N$, the second set $O$, the third set $B$. If $x \in N$ then $x \in O$ because every open neighborhood of $x$ is a neighborhood of $x$. So $N \subseteq O$. All open balls of $x$ are open neighborhoods of $x$, so similarly $O \subseteq B$. 
 
-If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could not possibly be in $X-C$, which is a subset of $X - S$ and is open and must therefore contain an open ball around every point (every open ball around $x$ intersects $S$). So $B \subseteq \overline{S}$.
+If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could not possibly be in $X-C$, which is a subset of $X - S$ and is open and must therefore contain an open ball around every point (every open ball around $x$ intersects $S$). So $B \subseteq clo(S)$.
 
-Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $\overline{S} \subset N$ because $\overline{S}$ is defined to be the minimal closed set containing $S$. $\Box$
+Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $clo(S) \subset N$ because $clo(S)$ is defined to be the minimal closed set containing $S$. $\Box$
 
 ### Closure points
 
-In the last characterization of the closure of $S$, we proved that $\overline{S}$ consists of all points $x$ for which every open ball around $x$ intersects $S$. We call such a point a **closure point** of $S$. This is also commonly known as an *adherent point* of $S$, but I have seen at least one author call it a "limit point", which is confusing because there is another slightly different concept that others call "limit point". We will stick with "closure point", which makes sense because the closure of $S$ consists precisely of the set of all of $S$'s closure points.
+In the last characterization of the closure of $S$, we proved that $clo(S)$ consists of all points $x$ for which every open ball around $x$ intersects $S$. We call such a point a **closure point** of $S$. This is also commonly known as an *adherent point* of $S$, but I have seen at least one author call it a "limit point", which is confusing because there is another slightly different concept that others call "limit point". We will stick with "closure point", which makes sense because the closure of $S$ consists precisely of the set of all of $S$'s closure points.
 
-**Lemma:** A set $S$ is closed iff $\overline{S} = S$
+**Lemma:** A set $S$ is closed iff $clo(S) = S$
 
-*Proof:* By definition $S \subseteq \overline{S}$. If S is closed, then $\overline{S} \subseteq S$ since $\overline{S}$ is minimal. Conversely, if $\overline{S} = S$, then $\overline{S}$, being an intersection of closed sets, is closed. $\Box$
+*Proof:* By definition $S \subseteq clo(S)$. If S is closed, then $clo(S) \subseteq S$ since $clo(S)$ is minimal. Conversely, if $clo(S) = S$, then $clo(S)$, being an intersection of closed sets, is closed. $\Box$
 
 ## Closed balls are closed sets
 An **closed ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than or equal to a distance $r$ from $x_0$. In symbols:
@@ -132,13 +132,13 @@ This contradicts that $z$ was assumed to be in $C(x_0; r)$.
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
 
-**Lemma:** $\overline{S} = \{ x \in X : dist(x,S) = 0$
+**Lemma:** $clo(S) = \{ x \in X : dist(x,S) = 0$
 
 *Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
 
 The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B(x; \epsilon) \text{ intersects both } S \text{ and } X-S\}$
 
-**Lemma:** For a set $S$, $\partial S = \overline{S} \cap \overline{X-S}$
+**Lemma:** For a set $S$, $\partial S = clo(S) \cap clo(X-S)$
 
 *Proof:* If $x$ is in the boundary, every epsilon ball intersects $S$ and $X-S$. So by the characterization lemma of closure, $x$ is in the closures of both $S$ and $X-S$. The converse direction works as well. $\Box$
 
@@ -146,23 +146,20 @@ The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every
 
  1. $\partial S$ = $\partial X-S$
  2. $\partial S$ is closed
- 3. $\overline{S} = S \cup \partial S$
+ 3. $clo(S) = S \cup \partial S$
 
 *Proof:* (1) holds from the definition because $X - (X - S) = S$.
 
 For (2), we could use the previous lemma to say that $\partial S$ is the intersection of two closed sets and be done with it. For fun and profit, let's use the definition. Assume that $y$ is some point for which every open ball intersects $\partial S$. So for every open ball $B$ around $y$, there's some $x \in \partial S$ in $B$. But $B$, being an open ball, is open, so there's some open ball $C$ around x that fits entirely inside $B$. Every open ball of $x$ intersects both $S$ and $X-S$, so $B$, which was an arbitrary open ball of $y$, also intersects both $S$ and $X-S$. 
 
-For (3), if $x \in \overline{S}$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq \overline{S}$ and $\partial S \subseteq (\overline{S} \cap \overline{X-S}) \subseteq \overline{S}$. $\Box$
+For (3), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq clo(S)$ and $\partial S \subseteq (clo(S) \cap clo(X-S)) \subseteq clo(S)$. $\Box$
 
-The dual notion to the closure of a set is the "interior" of a set, which is the largest open set contained in the set: for a given set $S$, we define the **interior** of $S$, $\mathring{S} := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$.
+The dual notion to the closure of a set is the "interior" of a set, which is the largest open set contained in the set: for a given set $S$, we define the **interior** of $S$, $int(S) := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$.
 
-**Lemma:** $\mathring{S} = X - \overline{X - S}$
+**Lemma:** $int(S) = X - clo(X - S)$
 
-*Proof:* Some point $y$ is not in every closed superset of $X-S$, iff it's in some open subset of $S$. $\Box$
+*Proof:* $X - S \subseteq clo(X - S)$, so $X - clo(X-S)$ is not only open, but $X - clo(X-S) \subseteq S$. If it's not the biggest open set contained in $S$, then some open $T$ is bigger. So $X-T$ is obviously closed, and we have $X-S \subseteq X-T \subseteq clo(X-S)$, contradicting that $clo(X-S)$ is the smallest closed set containing $X - S$. So in fact $X - clo(X - S) = int(S)$.
 
-A function $f: X \rightarrow Y$ is **continuous at $x$** if for every $\epsilon$-ball around $f(x)$ there is a $\delta$-ball around $x$ that $f$ maps inside the $\epsilon$-ball. In symbols: $\forall \epsilon > 0 \exists \delta > 0 f(B(x; \delta)) \subseteq B(f(x); \epsilon)$.
-
-We can interpret the above definition this way: $f$ allows us to ensure that we can keep the output of $f$ arbitrarily close to $f(x)$ by restricting the input to some range of points sufficiently close to $x$. More briefly: points that are close enough to $x$ get mapped to points close to $f(x)$.
 
 **Lemma:** A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
