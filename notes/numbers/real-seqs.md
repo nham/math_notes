@@ -489,3 +489,11 @@ For any $(a_n)$, $(b_n)$, $(c_n)$, $(a_n)$ is a subsequence of $(a_n)$. and if $
 For any sequence $(a_n)$, $(a_n)$ converges to $L$ iff every subsequence of $(a_n)$ converges to $L$
 
 *Proof:* The latter implies the former since $(a_n)$ is a subsequence of itself. Conversely, If $(a_n)$ converges to $L$, then for any $\epsilon$ we can find a tail sequence whose terms are all $\epsilon$-close to $L$. Say that the tail sequence starts at $k$. Then any subsequence $(b_n)$ has that $b_k = b_j$ for some $j > k$ by definition, so all the terms starting with $b_k$ are also $\epsilon$-close to $L$ (since they are elements of the tail sequence of $(a_n)$ that starts at $k$. So $(b_n)$ converges to $L$ as well.
+
+## Limit points and subsequence convergence
+If $(a_n)$ is a sequence, then $L$ is a limit point of $(a_n)$ iff some subsequence of $(a_n)$ converges to $L$.
+
+*Proof:* If some subsequence $(b_n)$ converges to $L$, then for every $\epsilon > 0$ there is a tail sequence of $(b_n)$ that has all terms $\epsilon$-close to $L$. Hence there are infinitely many terms of $(a_n)$ that are $\epsilon$-close to $(a_n)$. Conversely, if $L$ is a limit point of $(a_n)$, then we can find a term $a_{k_1}$ which is $1$-close to $L$. Then we can find a term coming after $k_2$ which is $1/2$-close to $L$. Suppose that we've located a term $k_n$ that is $1/n$-close to $L$. Then we can find a term coming after $k_n$ which is $1/(n+1)$-close to $L$. This is a subsequence of $(a_n)$ that converges to $L$ since the tail sequence starting at $a_{k_n}$ has all terms $1\n$-close to $L$.
+
+## Bolzano-Weierstrass Theorem
+TODO
