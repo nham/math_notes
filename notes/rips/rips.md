@@ -122,3 +122,15 @@ $$
 This proves that any real inner product space is a normed vector space under the norm induced by the inner product. Consequently, an inner product space is a metric space (since any normed vector space is) under the metric $d(x, y) = \|x - y\|$.
 
 
+## The standard inner product
+The inner product on $\mathbb{R}^n$ defined by
+
+$$a \cdot b = \sum_1^n a_i b_i$$
+
+To ensure that this operation is worthy of the name, we should verify that it satisfies the three properties
+
+*Proof:* For positive-definiteness, $a \cdot a = \sum_1^n a_i^2$ is certainly never negative. If $a \cdot a = 0$, then we have a sum of non-negative numbers equaling zero, so each term must individually be zero. Conversely, we clearly have $0 \cdot 0 = 0$.
+
+Symmetricity holds by commutativity of multiplication.
+
+To prove linearity, first note $(a + b) \cdot c = \sum_1^n (a_i + b_i) c_i = \sum_1^n a_i c_i + b_i c_i$. Clearly this is the same as $a \cdot c + b \cdot c$. Now suppose $x \in \mathbb{R}$. Then $(xa) \cdot b = \sum_1^n x a_i b_i = x(\sum_1^n a_i b_i$ by distributivity. So $(xa) \cdot b = x (a \cdot b)$, and this operation is an inner product.
