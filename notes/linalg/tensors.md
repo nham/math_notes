@@ -243,3 +243,8 @@ $$
         & = f(u, v)
 \end{aligned}
 $$
+
+### Corollary
+$dim B[U, V] = (dim U) (dim V)$
+
+*Proof:* The basis for $B[U, V]$ has $|U| |V|$ elements in it.
