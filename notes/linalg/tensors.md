@@ -134,26 +134,112 @@ If $U$ is a subspace of vector space $W$, then $dim ann(U; W) + dim U = dim W$.
 
 
 
-
 ## Annihilators of direct sums
 If $U$ and $V$ are subspaces of $W$ such that $W = U \oplus V$, then $W' = ann(U; W) \oplus ann(V; W)$ and $U' \cong ann(V; W)$ and $V' \cong ann(U; W)$.
 
-*Proof:* TODO
+ 1. $U' \cong ann(V; W)$ and $V' \cong ann(U; W)$.
+
+    *Proof:* First, $dim W = dim U + dim V = dim U + dim ann(U; W)$ where the first equality holds by the well-known fact for the direct sums and the second holds by the previous proposition. So by cancellation, $V$ is isomorphic to $ann(U;W)$. Since $V \cong V'$, we have $V' \cong ann(U; W)$. Similar reasoning proves $U' \cong ann(V; W)$. 
 
 
- 7. $U^0 \cong V$, therefore $dim U^0 = dim V$
+ 2. $ann(U; W) \cap ann(V; W) = \{ 0 \}$
 
-    *Proof:* By (6), since $B'$ and $B$ have the same number of elements
-
- 8. Defining $A' = C' - B'$, $A'$ is a basis for $V^0, implying that $V^0 \cong U$.
-
-    *Proof:* We can actually applying (6) to $A'$. The reasoning is entirely symmetric.
-
- 9. $W' = U^0 \oplus V^0$
-
-    *Proof:* If $f \in W'$, then for any $w \in $W$, $w = u + v$ for $u \in U$, $v \in V$. So $f(w) = f(u) + f(v)$. For all $\beta \in B'$ $\beta(u) = 0$ since $u$ is a linear combination of vectors from $A$. Similarly, for all $\alpha in A'$, $\alpha(v) = 0$ since $v$ is a linear combination of vectors from $B$. This means that, upon writing $u = \sum_{a \in A} x_a a$ and $v = \sum_{b \in B} x_b b$, we can see that $f = \sum_{a \in A} f(a) g_a + \sum_{b \in B} f(b) g_b$, since (\sum_{a \in A} f(a) g_a + \sum_{b \in B} f(b) g_b)(u + v) = \sum_{a \in A} f(a) g_a(u) + \sum_{b \in B} f(b) g_b(v) = \sum_{a \in A} f(a) x_a + \sum_{b \in B} f(b) x_b = f(u) + f(v)$, where we have denoted the functional corresponding to $c \in C$ by $g_c$. Since $\sum_{a \in A} f(a) g_a$ and $\sum_{b \in B} f(b) g_b$ are functionals in $A'$ and $B'$, r
+    *Proof:* If a functional $f$ both annihilates $U$ and annihilates $V$, then for all $w \in W$, $w = u + v$ for some $u$ and $v$, so $f(w) = f(u) + f(v) = 0 + 0 = 0$. i.e. $f$ is the functional mapping everything to zero.
 
 
- 10. Q.E.D.
+ 3. for all $f \in W'$, $f = \alpha + \beta$ for some $\alpha \in ann(U; W)$ and $\beta \in ann(V; W)$. 
 
-    *Proof:* $dim W = dim U  + dim V$ by definition of $V$ in (1). By (7) we have $dim W = dim U + dim U^0$.
+    *Proof:* Let $A$ be a basis for $U$, and $C$ a basis for $W$ that contains $A$. Let $C'$ be the dual basis corresponding to $C$, and, for all $c \in C$, $g_c$ be the functional in $C'$ that maps $c$ to $1$ and all other basis elements to $0$. Also let $B = C - A$.
+
+Then define $\alpha = \sum_{a \in A} f(a) g_a$ and $\beta = \sum_{b \in B} f(b) g_b$. For any $w \in W$, $w = u + v$ for $u \in U$ and $v \in V$, and we have some scalars $r_a$ and $r_b$ such that $u = \sum_{a \in A} r_a a$ and $v = \sum_{b \in B} r_b b$. So 
+
+$$
+\begin{aligned}
+(\alpha + \beta)(w) & = (\alpha + \beta)(u + v) \\
+                    & = \sum_{a \in A} f(a) g_a(u + v) + \sum_{b \in B} f(b) g_b(u + v) \\
+                    & = \sum_{a \in A} f(a) g_a(u) + \sum_{b \in B} f(b) g_b(v) \\
+                    & = \sum_{a \in A} r_a f(a) + \sum_{b \in B} r_b f(b) \\
+                    & = f(\sum_{a \in A} r_a a) + f(\sum_{b \in B} r_b b) \\
+                    & = f(u) + f(v) \\
+                    & = f(u + v) \\
+                    & = f(w)
+\end{aligned}
+$$
+
+where these equalities hold, respectively, because (1) substitution, (2) expansion of $\alpha$ and $\beta$, (3) because $\alpha(v) = 0$ and $\beta(u) = 0$ due to $\alpha$ being a linear combination of functionals $g_a$ for $a \in A$ (and hence annihilating all vectors not in $A$) and $\beta$ being a linear combination of functionals $g_b$ for $b \in B$ (and hence annihilating all vectors not in $B$), (4) because each $g_a$ annihilates everything but $a$. (and each $g_b$ annihilates everything but $b$, (5) linearity, (6) by definition, (7) linearity of $f$ and (8) by hypothesis.
+
+ 4. Q.E.D.
+
+    *Proof:* $W' = ann(U; W) \oplus ann(V; W)$ holds from (2) and (3)
+
+
+## The space of bilinear functionals
+If $U$ and $V$ are vector spaces, then a **bilinear functional** is a function $U \times V \to \mathbb{F}$, where $U \times V$ is the direct product of vector spaces. We can form the set $B[U, V]$ of all bilinear functionals, and in fact imbue it with operations to turn it into a vector space, as follows. For $f, g \in B[U, V]$, $(f+g)(u, v) = f(u, v) + g(u, v)$, and for $c \in \mathbb{F}$, $(cf)(u, v) = c f(u, v)$. Since the set of all functions $U \times V \to \mathbb{F}$ is a vector space under these same operations, to prove that specifically the set of bilinear funcitonals is a vector space we need to merely prove that the space is closed under addition/scalar multiplication (the usual routine).
+
+So 
+
+$$
+\begin{aligned}
+(f+g)(u + w, v) & = f(u + w, v) + g(u + w, v) \\
+                & = f(u, v) + f(w, v) + g(u, v) + g(w, v) \\
+                & = (f+g)(u, v) + (f+g)(w, v)
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned}
+(f+g)(cu, v) & = f(cu, v) + g(cu, v) \\
+             & = c f(u, v) + c g(u, v) \\
+             & = c (f + g)(u, v)
+\end{aligned}
+$$
+
+The other parameter holds similarly, proving that $(f+g)$ is linear. Also:
+
+$$
+\begin{aligned}
+(af)(u + w, v) & = a f(u + w, v) \\
+                & = a f(u, v) + cf(w, v) \\
+                & = a f(u + w, v)
+\end{aligned}
+$$
+
+and
+
+$$
+\begin{aligned}
+(af)(cu, v) & = a f(cu, v) \\
+             & = ac f(u, v) \\
+             & = c (af)(u, v)
+\end{aligned}
+$$
+
+so $(cf)$ is linear as well since the other parameter holds with similar reasoning. So $B[U, V]$ is a vector space.
+
+## A basis for the space of bilinear functionals
+### Preliminary lemma
+If $U$ and $V$ are spaces, with $dim U = m$ and $dim V = n$, and $B$ and $C$ are bases for $U$ and $V$, respectively. Then if $f: B \times C \to \mathbb{F}$ is arbitrary, we can find exactly one bilinear form $w \in B[U, V]$ such that $w(b, c) = f(b_c)$ for all $(b, c) \in B \times C$.
+
+*Proof:* First of all, if we start out by defining $w: U \times V \to \mathbb{F}$ with $w(b, c) = f(b, c)$ for all $(b, c) \in B \times C$, then for any $(u, v) \in U \times V$, $u = \sum_i r_i b_i$ and $v = \sum_j s_j c_j$, for $b_i \in B$, $c_j \in C$. So because $w$ must be bilinear we have $w(u, v) = \sum_i \sum_j r_i s_j f(b_i, c_j)$. That is, once we fix values $w(b, c)$, every other element of $U \times V$ is determined if we want $w$ to be bilinear. So not only is $w$ defined in this way a valid bilinear form, but it's the only possible bilinear form mapping each $(b,c) \mapsto f(b, c)$.
+
+### Bases for the bilinear space
+If $B$ is a basis in $U$, and $C$ is a basis for $V$, then there is a unique basis $D = \{ d_{bc} : b \in B, c \in C}$ for $B[U, V]$, where $d_{bc}(x, y) = 1$ iff $x = b$ and $y = c$, and $d_{bc}(x, y) = 0$ otherwise, for all $x \in B$, $y \in C$.
+
+*Proof:* Each $d_{bc}$ is the unique bilinear functional obtained from the scaling of $B \times C$ that maps $(b,c)$ to 1$ and all other pairs to zero. This collection $D$ of functionals is unique collection such that the stated property holds. The only thing that remains is to prove it a basis for $B[U, V]$.
+
+No $d_{bc}$ could be in the span of the others, since $d_{bc}$ maps $(b, c) \mapsto 1$ and, by definition, every other $d_{pq}$ maps $(b, c) \to 0$ (hence every linear combination does as well). So $D$ is independent. To prove it spans, let $f \in B[U, V]$. Then we prove that 
+
+$$f = \sum_{b \in B} \sum_{c \in C} f(b, c) d_{bc}$$
+
+For $(u, v) \in U \times V$, we can write $u$ and $v$ and linear combinations of $B$ and $C$, respectively, so $u = \sum_{b \in B} r_b b$ and $v = \sum_{c \in C} s_c c$. So 
+
+$$
+\begin{aligned}
+\sum_{b \in B} \sum_{c \in C} f(b, c) d_{bc}(u, v)
+        & = \sum_{b \in B} \sum_{c \in C} f(b, c) r_b s_c d_{bc}(b, c) \\
+        & = (\sum_{b \in B} r_b f(b, v) \\
+        & = f(u, v)
+\end{aligned}
+$$
