@@ -76,54 +76,84 @@ If $V$ is a vector space, then the map $\phi: V \to V''$ defined by, for all $v 
 
 
 ## Definition of annihilators
-If $S$ is any subset of a vector space $V$, then $S^0$ defined by all functionals that map every vector in $S$ to $0$ is called the **annihilator of $S$**. In symbols:
+If $S$ is any subset of a vector space $V$, then $ann(S; V)$ defined by all functionals on $V$ that map every vector in $S$ to $0$ is called the **annihilator of $S$**. In symbols:
 
-$$S^0 = \{f \in V' : \forall s \in S [s, f] = 0 \}$$
+$$ann(S; V) = \{f \in V' : \forall s \in S [s, f] = 0 \}$$
 
 
 ### Examples
-$\emptyset^0 = \{ 0 \}^0 = V'$. Also, $V^0 = \{ 0 \}$, where here we interpret $0$ as the zero functional in $V'$.
+$ann(\emptyset; V) = ann(\{ 0 \}; V) = V'$. Also, $ann(V; V)$ consists solely of the zero functional in $V'$
 
 ## Annihilators are subspaces of the dual space
 
-For any subset $S \subseteq V$, $S^0$ is a subspace of $V'$
+For any subset $S \subseteq V$, $ann(S; V)$ is a subspace of $V'$
 
-*Proof:* Let $f, g \in S^0$. Then for any $s \in S$, $(f+g)(s) = f(s) + g(s) = 0 + 0 = 0$, so $f+g \in S^0$ as well. For similar reasons, $cf \in S^0$ for any scalar $c$.
+*Proof:* Let $f, g \in ann(S; V)$. Then for any $s \in S$, $(f+g)(s) = f(s) + g(s) = 0 + 0 = 0$, so $f+g \in ann(S; V)$ as well. For similar reasons, $cf \in ann(S; V)$ for any scalar $c$.
+
+
+## Annihilating a set is the same as annihilating the span of that set
+If $S$ is a subset of vector space $V$, then $ann(S; V) = ann(span S; V)$
+
+*Proof:* Clearly any functional that annihilates vectors in $span S$ annihilators $S$ as well, so that $ann(span S; V) \subseteq ann(S; V)$. But for $f \in ann(S; V)$  and $v \in span S$, $v = \sum_1^k a_i s_i$ for some $k$ and $s_i$'s in $S$. So $f(v) = \sum_1^k a_i f(s_i) = 0$. Hence $ann(span S; V) \subseteq ann(span S; V)$, so the two sets are equal.
+
+
+##  Annihilators of functionals and the natural correspondence
+Let $V$ be a vector space, $V'$ its dual and $S$ a subset of $V'$. Also let $\phi: V \to V''$ be the natural isomorphism between $V$ and its double dual space. Then letting $X = \{ v \in V : \forall f \in S f(v) = 0$, we have that $\phi(X) = ann(S; V')$. Also, $X$ is a subspace of $V$ and $\phi$ restricted to $X$ is an isomorphism.
+
+ 1. $X$ is a subspace of $V$, 
+
+    *Proof:* Any $u, v \in X$ have, for all $f \in S$, f(u + v) = f(u) + f(v) = 0 + 0 = 0$. Also $f(cu) = cf(u) = c0 = 0$ for any scalar $c$ and any $f \in S$, both by linearity. 
+
+
+ 2. $\phi(X) \subseteq ann(S; V')$
+
+    *Proof:* For any $x \in X$, $\phi(x)$ is a function $V' \to \mathbb{F}$ that maps functionals on $V$ (elements of $V'$) to scalars by $f \mapsto f(x)$ for $f \in V'$. So $\phi(x)$ must map every $f \in S$ to $f(x)$, which is by definition $0$ since $x \in X$. This proves that $\phi(X) \subseteq ann(S; V')$. 
+
+
+ 3. $ann(S; V') \subseteq \phi(X)$
+
+    *Proof:* If $g \in ann(S; V')$, then let $v = \phi^{-1}(g)$ be the element of $V$ such that $g(h) = h(v)$ for all $h \in V'$, which is guaranteed to exist by the natural isomorphism $\phi$. Since $g \in ann(S; V')$, we know that for all $f \in S$, $g(f) = 0$. But this means that $f(v) = 0$ for all $f \in S$. So $v \in X$ This proves that $\phi^{-1}(ann(S; V')) \subseteq X$, i.e. that $ann(S; V') \subseteq phi(X)$.
+
+ 4. $X$ and $ann(S; V')$ are isomorphic under $\phi$
+
+    *Proof:* We already know that $phi$ restricted to $X$ is an isomorphism between $X$ and $\phi(X)$. But (3) proves that the latter is $ann(S; V')$.
 
 
 ## Annihilators of subspaces
-If $U$ is a subspace of vector space $W$, then $dim U^0 + dim U = dim W$.
+If $U$ is a subspace of vector space $W$, then $dim ann(U; W) + dim U = dim W$. 
 
- 1. There is a subspace $V$ of $W$ such that $U \oplus V = W$.
+ 1. Let $A$ be a basis for $U$ and $C$ be a basis for $W$ such that $A \subseteq C$. Let $B = C - A$. Let $C'$ be the dual basis for $W'$, and let $A'$ and $B'$ be the subsets of $C'$ that correspond to $A$ and $B$, respectively, so that $B' = C' - A'$.
 
-    *Proof:* See "fdvses" notes.
+ 2. $B'$ is a basis for $ann(U; V)$
 
- 2. We can find a basis $A$ of $U$ and a basis $C$ of $W$ such that $A \subseteq C$.
+    *Proof:* $B'$ is independent, so it suffices to prove $span B' = ann(U; V)$. For $f \in ann(U; V)$, we know there exist, for all $c \in C$, $r_c \in \mathbb{F}$ such that $f = \sum_{c \in C} r_c g_c$, where $g_c \in C'$ is the dual basis element that corresponds to $c in C$. If there is an $a \in A$ such that $r_a \neq 0$, then $f(a) = r_a \neq 0$, contradicting the fact that $f$ is an annihilator for $U$. So in fact $r_a = 0$ for all $a \in A$, and $f = \sum_{b \in B} r_b g_b$.
 
-    *Proof:* It is certainly true that we can obtain a basis for $U$. Also, any basis for a subspace can be extended to a basis for the superspace.
+ 3. Q.E.D.
 
- 3. Let $B = C - A$. Then $B$ is a basis for $V$.
-
-    *Proof:* Every $v \in V$ is a combination of vectors from $C$. If any element of $A$ has a non-zero coefficient, then by grouping terms on both sides of the equation we could find a non-zero vector that is in both $U$ and $V$, contradicting $W$ being a direct sum of $U$ and $V$. So $B$ generates $V$. It's also clearly independent, being a subset of a basis.
-
- 4. Let $C'$ be the dual basis of $W'$ generated by $C$.
-
-    *Proof:* Previously proved proposition shows how to construct this.
-
- 5. Let $B'$ be the subset of $C'$ of dual basis elements generated by vectors in $B$.
-
-    *Proof:* Each vector in $c \in C$ gets transformed into a unique functional in $C'$, which is the functional determined by mapping $c \mapsto 1$ and $x \mapsto 0$ for all $x \in C - c$.
+    *Proof:* $dim W = |C| = |A| + |B| = dim U + |B'| = dim U + dim ann(U; W)$, where the last equality holds by (2).
 
 
- 6. $B'$ is a basis for $U^0$.
-
-    *Proof:* $U^0$ is by definition the functionals that send every element of $U$ to zero. Every functional in $B'$ maps every $a \in A$ to zero (since for each one, the only element of $C$ that they don't map to zero is an element of $B$). This proves that $B'$ is an independent subset of $U^0$. To prove that it generates, let $f \in U^0$. Then we wish to prove that $f = \sum_{b \in B} f(b) g_b$, where $g_b \in B'$ is the functional generated by $b \in B$. But for $w \in W$, we know they agree on $w = 0$, so let $w \neq 0$. Then if $w \in U$, $f(w) = 0 = \sum_{b \in B} f(b) g_b(w)$ since each $g_b(w) = 0$ (due to $w$ being a linear combination of vectors in $A$). If $w \in V$, then $w$ is a linear combination of $B$, say $w = \sum c_b b$, so $\sum_{b \in B} f(b) g_b(w) = \sum_{b \in B} f(b) c_b = f(w)$.
-
- 7. $dim U^0 = dim V$
-
-    *Proof:* By (7), since $B'$ and $B$ have the same number of elements.
 
 
- 8. Q.E.D.
+## Annihilators of direct sums
+If $U$ and $V$ are subspaces of $W$ such that $W = U \oplus V$, then $W' = ann(U; W) \oplus ann(V; W)$ and $U' \cong ann(V; W)$ and $V' \cong ann(U; W)$.
 
-    *Proof:* $dim W = dim U  + dim V$ by definition of $V$ in (2). By (8) we have $dim W = dim U + dim U^0$.
+*Proof:* TODO
+
+
+ 7. $U^0 \cong V$, therefore $dim U^0 = dim V$
+
+    *Proof:* By (6), since $B'$ and $B$ have the same number of elements
+
+ 8. Defining $A' = C' - B'$, $A'$ is a basis for $V^0, implying that $V^0 \cong U$.
+
+    *Proof:* We can actually applying (6) to $A'$. The reasoning is entirely symmetric.
+
+ 9. $W' = U^0 \oplus V^0$
+
+    *Proof:* If $f \in W'$, then for any $w \in $W$, $w = u + v$ for $u \in U$, $v \in V$. So $f(w) = f(u) + f(v)$. For all $\beta \in B'$ $\beta(u) = 0$ since $u$ is a linear combination of vectors from $A$. Similarly, for all $\alpha in A'$, $\alpha(v) = 0$ since $v$ is a linear combination of vectors from $B$. This means that, upon writing $u = \sum_{a \in A} x_a a$ and $v = \sum_{b \in B} x_b b$, we can see that $f = \sum_{a \in A} f(a) g_a + \sum_{b \in B} f(b) g_b$, since (\sum_{a \in A} f(a) g_a + \sum_{b \in B} f(b) g_b)(u + v) = \sum_{a \in A} f(a) g_a(u) + \sum_{b \in B} f(b) g_b(v) = \sum_{a \in A} f(a) x_a + \sum_{b \in B} f(b) x_b = f(u) + f(v)$, where we have denoted the functional corresponding to $c \in C$ by $g_c$. Since $\sum_{a \in A} f(a) g_a$ and $\sum_{b \in B} f(b) g_b$ are functionals in $A'$ and $B'$, r
+
+
+ 10. Q.E.D.
+
+    *Proof:* $dim W = dim U  + dim V$ by definition of $V$ in (1). By (7) we have $dim W = dim U + dim U^0$.
