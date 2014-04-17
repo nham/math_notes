@@ -496,4 +496,6 @@ If $(a_n)$ is a sequence, then $L$ is a limit point of $(a_n)$ iff some subseque
 *Proof:* If some subsequence $(b_n)$ converges to $L$, then for every $\epsilon > 0$ there is a tail sequence of $(b_n)$ that has all terms $\epsilon$-close to $L$. Hence there are infinitely many terms of $(a_n)$ that are $\epsilon$-close to $(a_n)$. Conversely, if $L$ is a limit point of $(a_n)$, then we can find a term $a_{k_1}$ which is $1$-close to $L$. Then we can find a term coming after $k_2$ which is $1/2$-close to $L$. Suppose that we've located a term $k_n$ that is $1/n$-close to $L$. Then we can find a term coming after $k_n$ which is $1/(n+1)$-close to $L$. This is a subsequence of $(a_n)$ that converges to $L$ since the tail sequence starting at $a_{k_n}$ has all terms $1\n$-close to $L$.
 
 ## Bolzano-Weierstrass Theorem
-TODO
+If $(a_n)$ is a bounded sequence in $\mathbb{R}$, then some subsequence converges.
+
+*Proof:* We have that $-M \leq a_n \leq M$ for some $M \in \mathbb{R}$. So we can form the constant sequences $b_n = -M$ and $c_n = M$. Then apply the comparison test to prove that $sup (a_n) \leq M$ and $-M \leq inf (a_n)$. By properties of the limit superior (denote it by $L$), we have $-M \leq L \leq M$. So $L$ is finite, and hence a limit point of $(a_n)$, and by the previous proposition some subsequence converges to $L$.
