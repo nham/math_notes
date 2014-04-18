@@ -1,3 +1,22 @@
+## Defining matrices
+(This is a new section that I'm writing to take the place of the old introduction).
+
+The new idea to define $k \times m$ matrices with elements in $\mathbb{F}$ as representations of linear transformations from $\mathbb{F}^m \to \mathbb{F}^k$. One can prove that, by choosing the standard bases of $\mathbb{F}^m$ and $\mathbb{F}^k$, there is a one-to-one correspondence between linear maps and matrices. So then all of the properties of linear maps between abstract vector spaces hold nearly immediately for vectors once you define matrix multiplication to represent map composition. The fact that the set of all $m \times n$ matrices forms an abelian group under matrix addition holds immediately, associativity of matrix multiplication holds immediately, the homogeneity property holds immediately. We didn't prove distributivity for abstract linear maps, but we certainly can do that. Furthermore, matrix invertibility is all defined, with the properties we expect, like that any matrix with both a left-inverse and a right-inverse has the two equal, and hence it must be an inverse. This proves that inverses are unique, and also that invertible matrices must be square. We also get that the inverse of $AB$ for invertible matrices $A$ and $B$ is $B^{-1} A^{-1}$, since we've already proven that for arbitrary linear maps. Also we get that any left-invertible or right-invertible square matrix is invertible, since we proved that for arbitrary linear maps.
+
+The key to explaining the pivot analysis is the following theorems. For any functions $f, g$ such that $f \circ g$ is well-defined, if $f$ is bijective, then:
+
+ - $g$ injective iff $f \circ g$ injective
+ - $g$ surjective iff $f \circ g$ surjective
+
+This along with the theorem that a linear map is injective iff it maps independent sets to independent sets and  surjective iff it maps generating sets to generating sets, more or less completely explains what's happening abstractly with the elimination algorithm. Exposing "pivots" is really exposing whether the column is independent and/or generating. The injectivity/surjectivity of $g$ is really what we're interested in for determining the solution sets, since that determines the null space and the range, which determines the quotient space induced by the null space and the map from the quotient space to the range.
+
+So most of the messy proofs about properties of elimination and analyzing the pivot distribution are not in fact needed.
+
+The only thing I see that might need to be proved specially for matrices is facts regarding transposition (not sure that makes sense for arbitrary linear maps) and I currently don't see how to prove that if $A$ is invertible, then it must be the product of elementary matrices. I suppose we just need to prove that for any invertible matrix $A$ we can, in fact, construct an inverse for $A$ out of elementary matrices. That might be another matrix-specific proof. The converse, that any product of elementary matrices is invertible, holds directly from facts about linear maps (in fact about composition of bijective functions).
+
+
+
+
 ## Motivating matrices
 
 A **finite-dimensional** vector space is defined to be any vector space with a finite basis. We just finished proving that if $V$ and $W$ are vector spaces over some field $\mathbb{F}$ and $V$ has some $n$-basis and $W$ has some $m$-basis, that $V$ is isomorphic to $\mathbb{F}^n$ and $W$ is isomorphic to $\mathbb{F}^m$. This "coordinatizing" of any finite-dimensional vector space leads to the idea of representing a linear map $T: V \to W$ as a linear map $A: \mathbb{F}^n \to \mathbb{F}^m$. We can obtain such a representation by first selecting an ordered basis $\beta$ in $V$ and an ordered basis $\gamma$ in $W$. The "coordinate isomorphisms" $\phi_{\beta} : V \to \mathbb{F}^n$ and $\phi_{\gamma} : W \to \mathbb{F}^m$ that $\beta$ and $\gamma$ induce give us a way to represent $T$ since we have
@@ -254,5 +273,3 @@ TODO: Present this neatly somehow. Basically the null space is the solution set 
 
 
 TODO: invertibility and transposes. We need $A$ is invertible iff $A^T$ invertible for the determinant notes.
-
-TODO: prove that if a matrix (linear map?) is left-invertible, it is invertible
