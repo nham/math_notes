@@ -134,3 +134,8 @@ $det A = det A^T$
 
 Now consider the general case of invertible $A$. Then there are elementary matrices $E_i$ such that  $E_k \cdots E_1 A = I_n$, but this implies $A^T E_1^T \cdots E_k^T = I_n = E_k \cdots E_1 A$. Since $det E_i = det E_i^T$ for all $i$, we have established the proposition.
 
+
+## Cramer's rule
+If $Ax = b$ is a square linear system with a non-zero determinant, and if it has a solution $x$, then $x_i = det A^i / det A$, where $A^i$ is the matrix formed by replacing the $i$-th column of $A$ with $b$.
+
+*Proof:* Let $A_i$ be the $i$-th column of $A$. Then $b = Ax = \sum_1^n x_i A_i$, we have $det A^i = det(A_1, \ldots, A_{i-1}, \sum_1^n x_i A_i, A_{i+1}, \ldots, A_n)$, which equals $x det A$ by multilinearity and because any matrix with duplicate columns has a zero determinant.
