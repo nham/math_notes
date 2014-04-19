@@ -130,8 +130,7 @@ $det AB = det A det B$
 ## Determinant of transpose
 $det A = det A^T$
 
-*Proof:* We can transpose $A$ and then RREE to obtain either $I_n$ or some matrix with at least one zero-column. If the latter, then $det(E_k \cdots E_1 A^T) = 0$
-TODO
+*Proof:* We know that $A$ is invertible iff $A^T$ is. In the case that $A$ is not invertible, then $A^T$ is also not, so $det A = det A^T = 0$. If $A$ is invertible, we first consider a special case. If $A$ is an elementary matrix, then a scale matrix is a diagonal matrix, so clearly $det A = det A^T$. A swap matrix is equal to its transpose, so again clearly $det A = det A^T$. Finally for saxpy matrices, the determinant is $1$ since the matrix has a multiple of one column added to another column, which doesn't change the determinant from $det I_n$. The transpose of such a matrix possibly moves the element to some other column, but it has the same determinant.
 
-
+Now consider the general case of invertible $A$. Then there are elementary matrices $E_i$ such that  $E_k \cdots E_1 A = I_n$, but this implies $A^T E_1^T \cdots E_k^T = I_n = E_k \cdots E_1 A$. Since $det E_i = det E_i^T$ for all $i$, we have established the proposition.
 
