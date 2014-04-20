@@ -6,6 +6,20 @@ A **metric space** is a pair $(X, d)$ where $d$ is a function $X \times X \right
   - $d(x,y) = d(y,x)$
   - $d(x,z) \leq d(x,y) + d(y,z)$
 
+## Reverse triangle inequality
+If $x,y,z$ are elements of a metric space $(X, d)$, then $|d(x,y) - d(y, z)| \leq d(x, z)$.
+
+*Proof:* By triangle inequality we have:
+
+$$d(x, y) \leq d(x, z) + d(y, z)$$
+
+$$d(y, z) \leq d(x, z) + d(x, y)$$
+
+After rearrangement, the statement follows.
+
+## Definition of subspaces/superspaces
+If $(X, d)$ is a metric space, then for any subset $U$ of $X$ we can define a metric space on $U$ by restricting the metric $d$ to $U$. (the metric space axioms hold for all points in $X$, so they clearly hold for all points in $U \subseteq X$). In this case $U$ is called a **subspace** of $X$ and $X$ is called a **superspace** of $U$.
+
 
 ## Definition of open balls
 
@@ -143,10 +157,79 @@ If $S$ is closed, then $clo(S) = S$, so by (3) we have $\partial S \subseteq S$.
 ## Definition of accumulation point
 If $S$ is a subset of a metric space, then $a$ is an **accumulation point** of $S$ iff every open ball around $a$ intersects $S - a$.
 
+We denote the set of all accumulation points of $S$ by $acc(S)$.
+
+## Definition of an isolated point
+If $S$ is a subset of a metric space and $x \in S$, then $x$ is said to be an **isolated point iff there is some open ball around $x$ for which the only point of $S$ the ball intersects is $x$ itself.
+
+We denote the set of all isolated points of $S$ by $iso(S)$.
+
 
 ## Definition of distance
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
+
+## Distance and subsets
+If $S$ and $T$ are subsets of a metric space $(X, d)$, then if $S \subseteq T$, then we have for any $x \in X$, $dist(x, S) \geq dist(X, T)$
+
+*Proof:* Since $S \subseteq T$, we have $S_d = \{ d(x, s) : s \in S \} \subseteq \{ d(x, t) : t \in T\} = T_d$. So any lower bound for $T_d$ is a lower bound for $S_d$, meaning that $dist(x, T) = inf T_d \leq inf S_d = dist(x, S)$.
+
+
+## Definition of point functions
+If $(X, d)$ is a metric space, then we can define for each $z \in X$ a function $\delta_z: X \to \mathbb{R}_{\geq 0}$ by $\delta_z(x) = d(x,z)$. Each $\delta_z$ is called a **point function** and the collection of such point functions is denoted $\delta(X)$.
+
+## Bijection between $X$ and $\delta(X)$
+If $(X, d)$ is a metric space, then the function $z \mapsto \delta_z$ is a bijection.
+
+*Proof:* It's a surjection by definition of $\delta(X)$, and it's an injection since $\delta_z$ is the only point function which maps $z$ to $0$.
+
+## Definition of pointlike functions
+If $(X, d)$ is a non-empty metric space, then $u: X \to \mathbb{R}_{\geq 0}$ is a **pointlike function** if it satisfies for all $a,  b \in X$:
+
+$$u(a) - u(b) \leq d(a, b) \leq u(a) + u(b)$$
+
+## Point functions are pointlike functions
+For point function $\delta_z$ associated with $z$ in metric space $(X, d)$, $\delta_z$ is a pointlike function.
+
+*Proof:* $\delta_z$ certainly satisfies the domain/codomain constraints. Now we must prove that
+
+$$\delta_z(a) - \delta_z(b) \leq d(a, b) \leq \delta_z(a) + \delta_z(b)$$
+
+These hold immediately from the triangle inequality and reverse triangle inequality.
+
+
+## Definition of nearest points
+If $(X, d)$ is a metric space and $S \subseteq X$, then we say that $s \in S$ is the **nearest point** to some $x \in X$ iff $d(x, s) = dist(x, S)$.
+
+
+## When all nearest points exist
+For a non-empty metric space $(X, d)$, we have the following two statements as logically equivalent:
+
+ - For any metric superspace $(Y, e)$ of $(X, d)$, we have that $\forall y \in Y \exists x \in X$ such that $x$ is the nearest point to $y$ in $X$.
+ - Every pointlike function $f: X \to \mathbb{R}^_{\geq 0}$ attains a minimum value.
+
+*Proof:*  TODO
+
+## Equivalent characterization of isolated points
+$x \in S$ is an isolated point of $S$ iff $dist(x, S - x) > 0$.
+
+*Proof:* If $x$ is an isolated point of $S$, then some open ball $B(x; \epsilon)$ doesn't intersect $S - x$ (by definition). This means, for example, that $\epsilon / 2$ is a lower bound on the set $\{ d(x, s) : s \in S - x\}$, so by definition $dist(x, S-x) \geq \epsilon / 2 > 0$. Conversely, if $dist(x, S - x) > 0$, then let $\epsilon$ be such that $0 < \epsilon < dist(x, S - x)$. Then $B(x; \epsilon)$ doesn't intersect $S - x$ (if it did we'd have an $s \in S - x$ with $d(x, s) < dist(x, S - x)$). So $x$ is an isolated point.
+
+## Equivalent characterization of accumulation points
+For subset $S$ of metric space $(X, d)$, any $x \in X$ is an accumulation point of $S$ iff $dist(x, S - x) = 0$.
+
+*Proof:* For any accumulation point $x$, every open ball intersects $S - x$, so there no positive lower bound on the collection of numbers $d(x, s)$ for $s \in S - x$. So $dist(x, S - x) = 0$. Conversely, if $dist(x, S - x) = 0$, then for any $\epsilon > 0$ we can find an $s \in S - x$ with $d(x, s) < \epsilon$. So $x$ must be an accumulation point.
+
+## Equivalent characterization of closure points
+For subset $S$ of metric space $(X, d)$, any $x \in X$ is a closure point of $S$ iff $dist(x, S) = 0$.
+
+*Proof:* Every open ball around a closure point $x$ intersects $S$, so there is no positive lower bound on the set of distances $d(x, s)$ for $s \in S$. Thus $dist(x, S) = 0$. Conversely, if $dist(x, S) = 0$, then we can find points in $S$ arbitrarily close to $x$. In other words, every open ball around $x$ intersects $S$, so $x$ is a closure point of $S$.
+
+
+## Accumulation points, isolated points and distance
+TODO
+
+
 
 ## Distance facts
 TODO: expand
