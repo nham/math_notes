@@ -114,33 +114,73 @@ The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every
 
 ## Boundary facts
  1. $\partial S = \partial X-S$
- 2. $\partial S \subseteq clo(S)$
- 3. $int(S) = S - \partial S$
- 4. $clo(S) = S \cup \partial S$
- 5. $\partial S = clo(S) \cap clo(X-S)$
+ 2. $\partial \cap int(S) = \emptyset$
+ 3. $\partial S \subseteq clo(S)$
+ 4. $int(S) = S - \partial S$
+ 5. $clo(S) = S \cup \partial S$
+ 6. $\partial S = clo(S) \cap clo(X-S)$
 
 *Proof:* For (1), $X - (X - S) = X$, so by definition they are the same.
 
-For (2), it's true by definition. Every boundary point is a closure point.
+For (2), no element of the boundary could be an interior point since every open ball around a boundary point must intersect $X - S$.
 
-For (3), we know $int(S) \subseteq S - \partial S$ since every interior point of $S$ is in $S$ but does not have every open ball around it intersecting both $S$ and $X - S$. Conversely, if $x \in S - \partial S$, then some open ball around $x$ doesn't intersect $X - S$, so is entirely contained in $S$, hence $x \in int(S)$.
+For (3), it's true by definition. Every boundary point is a closure point.
 
-For (4), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, $S \subseteq clo(S)$ by definition and $\partial S \subseteq clo(S)$ by (2), so $S \cup \partial S \subseteq clo(S)$.
+For (4), we know $int(S) \subseteq S - \partial S$ since every interior point of $S$ is in $S$ but, by (2), is not a boundary point. Conversely, if $x \in S - \partial S$, then some open ball around $x$ doesn't intersect $X - S$, so is entirely contained in $S$, hence $x \in int(S)$.
 
-For (5), $x \in \partial S$ iff every open bal around $X$ intersects both $S$ and $X - S$ iff $x \in clo(S) \cap clo(X-S)$.
+For (5), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, $S \subseteq clo(S)$ by definition and $\partial S \subseteq clo(S)$ by (3), so $S \cup \partial S \subseteq clo(S)$.
+
+For (6), $x \in \partial S$ iff every open ball around $X$ intersects both $S$ and $X - S$ iff $x \in clo(S) \cap clo(X-S)$.
 
 
-## Reorganize this somehow.
+## More equivalent conditions for open and closed sets
+A set $S$ is open iff it does not contain any boundary points and closed iff it contains all boundary points.
+
+*Proof:* If $S$ is open, then $S = int(S)$, so we have $\partial S \cap S = \emptyset$ by (2) of the previous proposition. conversely, if $S$ does not contain boundary points, then $S = int(S)$ by (4) of the previous proposition, so $S$ is open.
+
+If $S$ is closed, then $clo(S) = S$, so by (3) we have $\partial S \subseteq S$. Conversely, if $S$ contains all boundary points, then we have $S \cup \partial S = S = clo(S)$ by (5), so $S$ is closed.
+
+## Definition of accumulation point
+If $S$ is a subset of a metric space, then $a$ is an **accumulation point** of $S$ iff every open ball around $a$ intersects $S - a$.
+
+
+## Definition of distance
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
 
-**Lemma:** $clo(S) = \{ x \in X : dist(x,S) = 0$
+## Distance facts
+TODO: expand
+
+ - $clo(S) = \{ x \in X : dist(x,S) = 0$
 
 *Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
 
 
 
-## Continuity TODO reorganize
+## Definition of continuity
+A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **continuous at $x \in X$** if for every open ball $B_Y(f(x); \epsilon)$ there is an open ball $B_X(x; \delta)$ for some $\epsilon$ and $\delta$, such that $f(B_X(x; \delta)) \subseteq B_Y(f(x); \epsilon)$.
+
+$f$ is **continuous** if it is continuous at every point $x \in X$.
+
+## Definition of function limits
+Let $\r{B}(x; \epsilon) := B(x; \epsilon) - \{x \}$ be called the **deleted open ball** of radius $\epsilon$ centered at $x$.
+
+If $(X, d)$ and $(Y, e)$ are two metric spaces, $S \subseteq X$, and $a$ is an accumulation point of $S$, then any function $f: S \to Y$ is said to have a **limit** $L$ at $a \in X$ if for every open ball $B_Y(L, \epsilon)$ in $Y$ around $L$, there is a deleted open ball $\r{B}_X(a; \delta$ in $X$ around $a$ such that
+$f(\r{B}_X(a; \delta) \subseteq B_Y(L; \epsilon)$.
+
+If $f$ has a limit of $L$ at $a$, we denote this $lim_{x \to a} f(x) = L$.
+
+
+
+## Alternative characterization of continuity
+A function $f: X \to Y$ is continuous at $a \in X$ iff either $lim_{x \to a} f(x) = f(a)$ or $a$ is an isolated point of $X$.
+
+*Proof:* If $f$ is continuous at $a$, then if $a$ is an accumulation point, the definition of continuity satisfies the condition for $lim_{x \to a} f(x) = f(a)$. If $a$ is not an accumulation point, then $a$ is an isolated point. Conversely, if $a$ is an isolated point, then $f$ is continuous at $a$ since the singleton set of $a$ is an open set. If $a$ is not an isolated point but $lim_{x \to a} f(x) = f(a)$, then this is precisely the definition for $f$ being continuous at $a$.
+
+
+## "Topological" definition of continuity
+TODO: review
+
 **Lemma:** A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
 *Proof:* If $V \subset Y$ is open in $Y$, then if $f^{pre}(V)$ is non-empty (the empty set is open), then any $x \in f^{pre}(V)$ has $f(x) \in V$, so some $\epsilon$-ball around $f(x)$ fits in $V$. By continuity some $\delta$-ball around $x$ maps into the $\epsilon$-ball around $f(x)$, which shows in particular that $x$ has some open ball around it that is contained in $f^{pre}(V)$. So the set is open.
