@@ -1,52 +1,44 @@
-Metric spaces are an abstract characterization of spaces equipped with a notion of distance. To each pair of elements we assign a number, the *distance*, between the two points. We must employ the real numbers to quantify distance since the hypotenuse of a unit square is irrational, and it would be silly to lay out a theory of distance that could not account for the euclidean plane. We also only make use of the nonnegative reals, since it's not clear how to interpret *negative* distance (how, exactly, would -5 distance differ from +5 distance?).
+## Definition of metric spaces
 
-Let $X$ be a set, and let $X_k$ for $k \leq |X|$ be the set of all subsets of $X$ with cardinality $k$. For example, $X_1$ is the collection of all singletons, and $X_0$ is a set consisting of the empty set.
-
-A **metric space** is a pair $(X, d)$ where $d$ is a function $X_1 \cup X_2 \rightarrow \mathbb{R}$ such that:
-
-  - For all $A \in X_1 \cup X_2$, $d(A) \geq 0$
-  - $d(A) = 0$ iff $A$ is a singleton
-  - For $A = \{x,y\}$, $B = \{y,z\}$, $C = \{x,z\}$ in $X_2$, $d(C) \leq d(A) + d(B)$ 
-
-The first two just say that distances are nonnegative and distinct points have nonzero distance. Probably the most important property is the third, commonly known as the *triangle inequality*. It says, simply, that there's no way to shorten a trip from point A to point B by visiting some other point C on the way.
-
-The most common formulation of metric spaces (and definitely easier to work with) is this: *d* is a function $X \times X \rightarrow \mathbb{R}$ such that:
+A **metric space** is a pair $(X, d)$ where $d$ is a function $X \times X \rightarrow \mathbb{R}$ such that:
 
   - $d(x,y) \geq 0$ for all $x$, $y$, and $d(x,y) = 0$ iff $x = y$.
   - $d(x,y) = d(y,x)$
   - $d(x,z) \leq d(x,y) + d(y,z)$
 
+
+## Definition of open balls
+
 An **open ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than a distance $r$ from $x_0$. In symbols:
 
   $$ B(x_0; r) = \{ x : d(x, x_0) < r \}$$
 
-We will often call an open ball of radius $r$ an **$r$-ball**.
+A **closed ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than or equal to a distance $r$ from $x_0$. In symbols:
 
+  $$ C(x_0; r) = \{ x : d(x, x_0) \leq r \}$$
+
+
+## Definition of open sets
 An **open set** is a set $U$ such that every $x \in U$ has an open ball $B(x; \epsilon)$ which is entirely contained in $U$.
 
+
+## Open balls are open
+Any open ball $B(x; \epsilon)$ is an open set.
+
+*Proof:* If $y \in B(x; \epsilon)$, then $d(x, y) < \epsilon$. Let $\gamma = [\epsilon - d(x, y)] / 2$. Then $B(y; \gamma)$ must be contained within $B(x; \epsilon)$, since any $z \in B(y; \gamma)$ has $d(x, z) < d(x, y) + \gamma = (\epsilon + d(x,y))/2 < \epsilon$.
+
+### Remark
 Open balls are a kind of "primitive" open set that all other open sets are defined in terms of. We haven't yet proved that open balls are open sets, however. So let's do that.
 
-**Lemma:** Open balls are open.
 
-*Proof:* Let $B(x; \epsilon)$ be any open ball. Then $y$ is some distance $\delta \in \mathbb{R}$ from $x$ where $\delta < \epsilon$ (by definition of an open ball). We need to find some $\xi$-ball around $y$ that fits inside $B(x; \epsilon)$. 
-
-Restating this condition using the definition of open balls, we need to find some $\xi \in \mathbb{R}$ such that every $z \in B(y; \xi)$ is less than $\epsilon$ from x. So we need to ensure that $d(x, z) < \epsilon$.
-
-By the triangle inequality, $d(x, z) \leq d(x, y) + d(y, z)$. By hypothesis, $d(x,y) = \delta$, so if we could ensure that $d(y, z) < \epsilon - \delta$, we would be okay.
-
-That's our $\xi$, then. Set $\xi = \epsilon - \delta$. Every point in the $\xi$-ball will then be in our $\epsilon$-ball.
-
-We can restate the above proof with more words: after traveling from $x$ to $y$, we used up some $\delta$ of distance. If we go $\epsilon - \delta$ more distance from $y$, it is possible that we will get outside of the $\epsilon$-ball. So set $\epsilon - \delta$ as the radius we must stay strictly inside. This is an open ball around $y$ that is contained in the $\epsilon$-ball around $x$. $\Box$
-
-The following lemma is fundamentally important.
-
-**Topology Lemma for Open Sets:** In a metric space $(X, d)$:
+## Topology Lemma for open sets
+In a metric space $(X, d)$:
 
  1. $\emptyset$, $X$ are both open.
  2. If $\mathcal{S}$ is an arbitrary collection of open sets in $X$, then $\bigcup \mathcal{S}$ is open
  3. If $U_1$ and $U_2$ are open subsets of $X$, then $X_1 \cap X_2$ is open.
 
-Proof: 
+*Proof:*
 
 (1) $\emptyset$ is vacuously open. $X$ is open because it contains *every* open ball, so it certainly contains *an* open for every point.
 
@@ -54,62 +46,17 @@ Proof:
 
 (3) If $x \in U_1 \cap U_2$, there are open balls $B(x; \epsilon)$, $B(x; \delta)$ contained in $U_1$ and $U_2$, resp. The smaller of these balls is contained in both open sets, so is also in the intersection. $\Box$
 
+## Definition of interior
+The **interior** of a set $S$, written $int(S)$, is the union of all open sets contained in $S$. Since the collection of all open sets is closed under arbitrary union, $int(S)$ is the largest open set contained in $S$.
 
-An **open neighborhood** of $x$ is an open set that contains $x$. A **neighborhood** of $x$ is a set that contains an open neighborhood of $x$.
 
-We will use $\mathcal{N}_x$ to notate the set of all neighborhoods of a point $x$, and $\mathcal{O}_x$ to notate the set of all open neighborhoods of $x$.
-
-Above we used open neighborhoods to define neighborhoods. We could have gone in the reverse direction as well:
-
-**Lemma**: In metric space $(X, d)$, a set $U \subseteq X$ is open iff for every $y \in U$, $U \in \mathcal{N}_y$
-
-*Proof:* If $U$ is open, then it clearly holds because open balls are open sets.
-
-Conversely, if $U$ is a neighborhood of every one of its elements, then every $y \in U$ has an open set $O_y$ contained in $U$, and that $O_y$ contains an open ball of $y$. Alternatively, $U = \bigcup_y O_y$, and any union of open sets is open (by the topology lemma for open sets). $\Box$
+## Definition of closed sets
 
 A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. An result analogous to the topology lemma for open sets can be proved:
 
-**Topology Lemma for Closed Sets:** In a metric space $(X, d)$:
 
- 1. $\emptyset$, $X$ are both closed.
- 2. If $\mathcal{S}$ is an arbitrary collection of closed sets in $X$, then $\bigcap \mathcal{S}$ is closed.
- 3. If $U_1$ and $U_2$ are closed subsets of $X$, then $X_1 \cup X_2$ is closed.
-
-*Proof:* (1) is immediate. The rest can be proved using DeMorgan's law [$X - (A \cup B) = (X-A) \cap (X-B)$] and the TLFOS. $\Box$
-
-The **closure** of a set $S$ in $X$, written $clo(S)$, is defined as the minimal closed set containing $S$. In symbols:
-
-$$ clo(S) := \bigcap \{ F : S \subseteq F, F \text{ is closed} \}$$ 
-
-**Alternate characterization of closures:** 
-$$
-\begin{split}
-clo(S) &= \{ x : \forall N \in \mathcal{N}_x N \cap S \neq \emptyset \}\\
-&= \{ x : \forall U \in \mathcal{O}_x U \cap S \neq \emptyset \}\\
-&= \{ x : \forall \epsilon > 0 B(x; \epsilon) \cap S \neq \emptyset \}
-\end{split}
-$$
-
-*Proof:* Call the first set $N$, the second set $O$, the third set $B$. If $x \in N$ then $x \in O$ because every open neighborhood of $x$ is a neighborhood of $x$. So $N \subseteq O$. All open balls of $x$ are open neighborhoods of $x$, so similarly $O \subseteq B$. 
-
-If $x \in B$, then $x$ is in every closed $C$ containing $S$, because it could not possibly be in $X-C$, which is a subset of $X - S$ and is open and must therefore contain an open ball around every point (every open ball around $x$ intersects $S$). So $B \subseteq clo(S)$.
-
-Finally, $S \subseteq N$ and $N$ must be closed because if $y \in X - N$ then some neighborhood $M$ of $y$ doesn't intersect $S$ (otherwise $y$ would be in $N$), and $M$ contains an open ball of $y$, so that open ball is entirely contained in $X - N$. Thus $X - N$ is open, and $clo(S) \subset N$ because $clo(S)$ is defined to be the minimal closed set containing $S$. $\Box$
-
-### Closure points
-
-In the last characterization of the closure of $S$, we proved that $clo(S)$ consists of all points $x$ for which every open ball around $x$ intersects $S$. We call such a point a **closure point** of $S$. This is also commonly known as an *adherent point* of $S$, but I have seen at least one author call it a "limit point", which is confusing because there is another slightly different concept that others call "limit point". We will stick with "closure point", which makes sense because the closure of $S$ consists precisely of the set of all of $S$'s closure points.
-
-**Lemma:** A set $S$ is closed iff $clo(S) = S$
-
-*Proof:* By definition $S \subseteq clo(S)$. If S is closed, then $clo(S) \subseteq S$ since $clo(S)$ is minimal. Conversely, if $clo(S) = S$, then $clo(S)$, being an intersection of closed sets, is closed. $\Box$
-
-## Closed balls are closed sets
-An **closed ball** of radius $r$ around $x_0$ is the set of all points in the metric space that are less than or equal to a distance $r$ from $x_0$. In symbols:
-
-  $$ C(x_0; r) = \{ x : d(x, x_0) \leq r \}$$
-
-Then every closed ball is a closed set.
+## Closed balls are closed
+Every closed ball $C(x_0; r)$ is a closed set.
 
 *Proof:* We have to prove that $C(x_0; r)$'s complement is open. So let $U = X - C(x_0; r)$, and let $y \in U$. This means that $d(y, x_0) > r$ by definition of $C(x_0; r)$. Suppose further that there isn't any open ball around $y$ that is contained entirely in $U$ (which is allowable since we are assuming $U$ is not open). Then every $\epsilon$-ball of $y$ intersects $C(x_0; r)$ In particular, $\epsilon = (d(y, x_0) - r) / 2$ > 0$, so some $z \in B(y; \epsilon)$ is also in $C(x_0; r)$.
 
@@ -123,59 +70,77 @@ $$d(x_0, z) \geq d(x_0, y) - d(z,y)$$
 
 But since $d(z,y) < (d(x_0, y) - r) / 2$, we obtain
 
-
 $$d(x_0, z) > d(x_0, y) - (d(x_0, y) - r)/2 = (d(x_0, y)  + r) / 2 > r$$
 
 This contradicts that $z$ was assumed to be in $C(x_0; r)$. $\Box$
 
 
+## Topology Lemma for Closed Sets
+In a metric space $(X, d)$:
+
+ 1. $\emptyset$, $X$ are both closed.
+ 2. If $\mathcal{S}$ is an arbitrary collection of closed sets in $X$, then $\bigcap \mathcal{S}$ is closed.
+ 3. If $U_1$ and $U_2$ are closed subsets of $X$, then $X_1 \cup X_2$ is closed.
+
+*Proof:* (1) is immediate. The rest can be proved using DeMorgan's law [$X - (A \cup B) = (X-A) \cap (X-B)$] and the TLFOS. $\Box$
+
+## Definition of closure
+
+The **closure** of a set $S$, written $clo(S)$, is the intersection of all closed sets containing $S$. Since the collection of all closed sets is closed under arbitrary intersections, $clo(S)$ is the smallest closed set that contains $S$.
+
+
+## Necessary and sufficient conditions for set openness and closedness
+A set $S$ is closed iff $clo(S) = S$, and open iff $int(S) = S$.
+
+*Proof:* If $int(S) = S$, then $S$ is clearly open since $int(S)$ is. Conversely if $S$ is open, then $S$ is the largest open set contained in $S$. Similarly, if $clo(S) = S$, then $S$ is closed since $clo(S)$ is, and if $S$ is closed, $S$ itself is the smallest closed set containing $S$.
+
+## Definition of closure and interior points
+A **closure point** of $S$ is any point $x$ such every open ball $B(x; \epsilon)$ around $x$ intersects $S$. An **interior point** of $S$ is a point $x$ such that there is some open ball $B(x; \epsilon)$ contained entirely in $S$.
+
+## Alternative characterization of closure and interior
+For any subset $S$ of a metric space, $int(S)$ is equivalently the set of all interior points of $S$, and $clo(S)$ is equivalently the set of all closure points of $S$.
+
+*Proof:* TODO
+
+## Closure of the complement is the complement of the closure
+$X - int(S) = clo(X - S)$
+
+*Proof:* If $x$ is not an interior point of $S$, then no open ball centered at $x$ is contained entirely in $S$, so every open ball centered around $x$ must actually intersect $X - S$, meaning $x \in clo(X - S)$. Conversely, $x \in clo(X - S)$, every open ball around $x$ intersects $X - S$ since $x$ is a closure point of $X - S$, so it could not be an interior point of $S$.
+
+
+## Definition of boundary
+The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B(x; \epsilon) \text{ intersects both } S \text{ and } X-S\}$. The boundary of $S$ is made up of the **boundary points** of $S$, which are defined as members of the boundary.
+
+
+## Boundary facts
+ 1. $\partial S = \partial X-S$
+ 2. $\partial S \subseteq clo(S)$
+ 3. $int(S) = S - \partial S$
+ 4. $clo(S) = S \cup \partial S$
+ 5. $\partial S = clo(S) \cap clo(X-S)$
+
+*Proof:* For (1), $X - (X - S) = X$, so by definition they are the same.
+
+For (2), it's true by definition. Every boundary point is a closure point.
+
+For (3), we know $int(S) \subseteq S - \partial S$ since every interior point of $S$ is in $S$ but does not have every open ball around it intersecting both $S$ and $X - S$. Conversely, if $x \in S - \partial S$, then some open ball around $x$ doesn't intersect $X - S$, so is entirely contained in $S$, hence $x \in int(S)$.
+
+For (4), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, $S \subseteq clo(S)$ by definition and $\partial S \subseteq clo(S)$ by (2), so $S \cup \partial S \subseteq clo(S)$.
+
+For (5), $x \in \partial S$ iff every open bal around $X$ intersects both $S$ and $X - S$ iff $x \in clo(S) \cap clo(X-S)$.
+
+
+## Reorganize this somehow.
+
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
 
 **Lemma:** $clo(S) = \{ x \in X : dist(x,S) = 0$
 
-
-## Interior, interior points
-
-To make this symmetric, we define the "dual" notion of the closure of a set. For any subset $S$ of a metric space, the **interior** of $S$, denoted $int(S)$, is the largest open set contained in $S$. In symbols:
-
-$$int(S) := \bigcup \{ U : U \subseteq S, U \text{ is open}\}$$
-
-**Proposition:** A set $S$ is open iff $int(S) = S$.
-
-*Proof:* If $int(S) = S$, then $S$ is clearly open since $int(S)$ is. Conversely if $S$ is open, then $S$ is the largest open set contained in $S$.
-
-An **interior point** of $S$ is the set of all points $x \in S$ such that there is some open ball $B(x; \epsilon)$ contained entirely in $S$.
-
-TODO: prove that $int(S) = the set of all interior points$. In fact, prove all the analogs of the things we proved for closures.
-
-
-**Lemma:** $int(S) = X - clo(X - S)$
-
-*Proof:* $X - S \subseteq clo(X - S)$, so $X - clo(X-S)$ is not only open, but $X - clo(X-S) \subseteq S$. If it's not the biggest open set contained in $S$, then some open $T$ is bigger. So $X-T$ is obviously closed, and we have $X-S \subseteq X-T \subseteq clo(X-S)$, contradicting that $clo(X-S)$ is the smallest closed set containing $X - S$. So in fact $X - clo(X - S) = int(S)$.
-
-
-
 *Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
 
-The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B(x; \epsilon) \text{ intersects both } S \text{ and } X-S\}$
-
-**Lemma:** For a set $S$, $\partial S = clo(S) \cap clo(X-S)$
-
-*Proof:* If $x$ is in the boundary, every epsilon ball intersects $S$ and $X-S$. So by the characterization lemma of closure, $x$ is in the closures of both $S$ and $X-S$. The converse direction works as well. $\Box$
-
-**Lemma:**
-
- 1. $\partial S$ = $\partial X-S$
- 2. $\partial S$ is closed
- 3. $clo(S) = S \cup \partial S$
-
-*Proof:* (1) holds from the definition because $X - (X - S) = S$.
-
-For (2), we could use the previous lemma to say that $\partial S$ is the intersection of two closed sets and be done with it. For fun and profit, let's use the definition. Assume that $y$ is some point for which every open ball intersects $\partial S$. So for every open ball $B$ around $y$, there's some $x \in \partial S$ in $B$. But $B$, being an open ball, is open, so there's some open ball $C$ around x that fits entirely inside $B$. Every open ball of $x$ intersects both $S$ and $X-S$, so $B$, which was an arbitrary open ball of $y$, also intersects both $S$ and $X-S$. 
-
-For (3), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, by definition $S \subseteq clo(S)$ and $\partial S \subseteq (clo(S) \cap clo(X-S)) \subseteq clo(S)$. $\Box$
 
 
+## Continuity TODO reorganize
 **Lemma:** A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
 *Proof:* If $V \subset Y$ is open in $Y$, then if $f^{pre}(V)$ is non-empty (the empty set is open), then any $x \in f^{pre}(V)$ has $f(x) \in V$, so some $\epsilon$-ball around $f(x)$ fits in $V$. By continuity some $\delta$-ball around $x$ maps into the $\epsilon$-ball around $f(x)$, which shows in particular that $x$ has some open ball around it that is contained in $f^{pre}(V)$. So the set is open.
