@@ -108,19 +108,21 @@ A set $S$ is closed iff $clo(S) = S$, and open iff $int(S) = S$.
 
 *Proof:* If $int(S) = S$, then $S$ is clearly open since $int(S)$ is. Conversely if $S$ is open, then $S$ is the largest open set contained in $S$. Similarly, if $clo(S) = S$, then $S$ is closed since $clo(S)$ is, and if $S$ is closed, $S$ itself is the smallest closed set containing $S$.
 
+## Closure of the complement is the complement of the closure
+$X - int(S) = clo(X - S)$
+
+*Proof:* If $x$ is not an interior point of $S$, then no open ball centered at $x$ is contained entirely in $S$, so every open ball centered around $x$ must actually intersect $X - S$, meaning $x \in clo(X - S)$. Conversely, $x \in clo(X - S)$, every open ball around $x$ intersects $X - S$ since $x$ is a closure point of $X - S$, so it could not be an interior point of $S$.
+
+
 ## Definition of closure and interior points
 A **closure point** of $S$ is any point $x$ such every open ball $B(x; \epsilon)$ around $x$ intersects $S$. An **interior point** of $S$ is a point $x$ such that there is some open ball $B(x; \epsilon)$ contained entirely in $S$.
 
 ## Alternative characterization of closure and interior
 For any subset $S$ of a metric space, $int(S)$ is equivalently the set of all interior points of $S$, and $clo(S)$ is equivalently the set of all closure points of $S$.
 
-*Proof:* TODO
+*Proof:* $int(S)$ is the union of all open sets in $S$, and every interior point has an open ball around it that is contained in $S$, so every interior point is in $int(S)$. If $x \in int(S)$, then there exists an open $U \subseteq S$ with $x \in U$, so $x$ must be an interior point since some open ball around $x$ is contained in $U$ by definition of open sets, hence the open ball is also in $S$.
 
-## Closure of the complement is the complement of the closure
-$X - int(S) = clo(X - S)$
-
-*Proof:* If $x$ is not an interior point of $S$, then no open ball centered at $x$ is contained entirely in $S$, so every open ball centered around $x$ must actually intersect $X - S$, meaning $x \in clo(X - S)$. Conversely, $x \in clo(X - S)$, every open ball around $x$ intersects $X - S$ since $x$ is a closure point of $X - S$, so it could not be an interior point of $S$.
-
+If $x$ is a closure point of $S$, then then it isn't an interior point of $X - S$ since every open ball intersecst $S$, so by a previous proposition it must be in $clo(S)$. Conversely, if $x \in clo(S)$, $x$ is in every closed superset of $S$, so it could not be in any open subset of $X - S$. So it is not in the interior of $X - S$, which means every open ball around $x$ intersects $S$, i.e. $x$ is a closure point of $S$.
 
 ## Definition of boundary
 The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every } B(x; \epsilon) \text{ intersects both } S \text{ and } X-S\}$. The boundary of $S$ is made up of the **boundary points** of $S$, which are defined as members of the boundary.
@@ -231,6 +233,54 @@ If $(x_n)$ converges in a metric space $X$ to $L$, then any subsequence $(x_{n_k
 *Proof:* For any $\epsilon > 0$, we can find a tail starting at some $j$ that is contained in $B(L; \epsilon)$. Just find a $k$ such that $n_k > j$ to find a tail of $(x_{n_k})$ that is contained in $B(L; \epsilon)$.
 
 
+## Convergence of subsequences
+If $(x_n)$ is a sequence in $(X, d)$ and $z \in X$, then the following are equivalent:
+
+ 1. There is a subsequence of $(x_n)$ that converges to $z$
+ 2. Every open ball around $z$ intersects every tail sequence of $(x_n)$
+ 3. $z$ is in the closure of any tail sequence
+
+*Proof:* Another way of saying that every open ball around $z$ intersects every tail of $(x_n)$ is to say that every tail of $(x_n)$ every open ball around $z$, or that $z$ is a closure point of any tail. So (2) and (3) are equivalent. 
+
+If (1) is true, then letting $(x_n)_{n \geq k}$ be a tail and $\epsilon > 0$, we want to find an $m \geq k$ such that $x_m \in B(z; \epsilon)$. But there is a tail sequence of $(x_{n_k})$ entirely contained in $B(z; \epsilon)$, starting at some $n_j$, so we take $m = max \{ n_j, k \}$. Then $x_m$ is as desired, proving every open ball of $z$ intersects $(x_n)_{n \geq k}$, so (3) is true. 
+
+Conversely, if (2) is true, then every open ball around $z$ contains infinitely many terms in the sequence. So we can find a term $x_{n_1}$ in $B(z; 1)$, and given that $x_{n_k}$ is selected from $B(z; 1/k)$, for some natural $k$, we can find a term $x_{n_{k+1}} > x_{n_k}$ that's in the ball $B(z; 1/(k+1})$. Each tail starting at $n_k$ is entirely contained in $B(z; 1/k)$ by construction, so the sequence converges to $z$.
+
+## Definition of Cauchy sequence
+If $(X, d)$ is a metric space, then $(x_n)$ is a **Cauchy sequence** for every $\epsilon > 0$, some tail of $(x_n)$ is contained in a ball of radius $\epsilon$.
+
+
+## Every convergent sequence is Cauchy
+If $(x_n) \to c$, then $(x_n)$ is Cauchy
+
+*Proof:* Immediate.
+
+
+## Subsequence convergence of Cauchy sequences
+If $(x_n)$ is a Cauchy sequence and $c \in X$, then $(x_n) \to c$ iff there exists some subsequence $(x_{n_k})$ such that $(x_{n_k}) \to c$ as well.
+
+*Proof:* If $(x_n) \to c$ then we know every subsequence converges to $c$ as well. Conversely, if some subsequence $(x_{n_k}) \to c$, then for $\epsilon > 0$, some tail starting at $n_j$ is contained within the $\epsilon / 2$-ball around $c$. Also since $(x_n)$ Cauchy, some tail of $(a_n)$ starting at $k$ is contained within an $\epsilon / 4$-ball centered somewhere. So all terms of the tail of $(a_n)$ starting at $max{k, n_j}$ are within an $\epsilon / 2$ of one another, and there is one term of this latter sequence that is within $\epsilon / 2$ of $c$, so all terms of this tail are within $\epsilon$ of $c$.
+
+
+
+## Definition of bounded subsets
+A subset $S$ of a metric space $X$ is **bounded** if some $z \in X$ is such that an open ball centered at $z$ contains $S$.
+
+## Definition of totally bounded subsets
+A subset $S$ of a metric space $X$ is **totally bounded** if for every $r \in \mathbb{R}_{\geq 0}$, there are finitely many open balls of radius $r$ that cover $S$.
+
+
+## Nearest-point property
+If $(X, d)$ is a non-empty metric space, then the following are equivalent.
+
+ 1. $X$ has nearest points for all $x \in X$
+ 2. Every  infinite bounded subset of $X$ has an accumulation point in $X$
+ 3. every bounded sequence in $X$ has a subsequence that converges in $X$.
+ 4. $X$ is complete and every bounded subset is totally bounded.
+
+*Proof:* TODO
+
+
 ## Definition of continuity
 A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **continuous at $x \in X$** if for every open ball $B_Y(f(x); \epsilon)$ there is an open ball $B_X(x; \delta)$ for some $\epsilon$ and $\delta$, such that $f(B_X(x; \delta)) \subseteq B_Y(f(x); \epsilon)$.
 
@@ -243,7 +293,6 @@ If $(X, d)$ and $(Y, e)$ are two metric spaces, $S \subseteq X$, and $a$ is an a
 $f(\r{B}_X(a; \delta) \subseteq B_Y(L; \epsilon)$.
 
 If $f$ has a limit of $L$ at $a$, we denote this $lim_{x \to a} f(x) = L$.
-
 
 
 ## Alternative characterization of continuity
