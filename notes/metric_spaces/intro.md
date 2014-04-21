@@ -175,40 +175,9 @@ If $S$ and $T$ are subsets of a metric space $(X, d)$, then if $S \subseteq T$, 
 *Proof:* Since $S \subseteq T$, we have $S_d = \{ d(x, s) : s \in S \} \subseteq \{ d(x, t) : t \in T\} = T_d$. So any lower bound for $T_d$ is a lower bound for $S_d$, meaning that $dist(x, T) = inf T_d \leq inf S_d = dist(x, S)$.
 
 
-## Definition of point functions
-If $(X, d)$ is a metric space, then we can define for each $z \in X$ a function $\delta_z: X \to \mathbb{R}_{\geq 0}$ by $\delta_z(x) = d(x,z)$. Each $\delta_z$ is called a **point function** and the collection of such point functions is denoted $\delta(X)$.
-
-## Bijection between $X$ and $\delta(X)$
-If $(X, d)$ is a metric space, then the function $z \mapsto \delta_z$ is a bijection.
-
-*Proof:* It's a surjection by definition of $\delta(X)$, and it's an injection since $\delta_z$ is the only point function which maps $z$ to $0$.
-
-## Definition of pointlike functions
-If $(X, d)$ is a non-empty metric space, then $u: X \to \mathbb{R}_{\geq 0}$ is a **pointlike function** if it satisfies for all $a,  b \in X$:
-
-$$u(a) - u(b) \leq d(a, b) \leq u(a) + u(b)$$
-
-## Point functions are pointlike functions
-For point function $\delta_z$ associated with $z$ in metric space $(X, d)$, $\delta_z$ is a pointlike function.
-
-*Proof:* $\delta_z$ certainly satisfies the domain/codomain constraints. Now we must prove that
-
-$$\delta_z(a) - \delta_z(b) \leq d(a, b) \leq \delta_z(a) + \delta_z(b)$$
-
-These hold immediately from the triangle inequality and reverse triangle inequality.
-
-
 ## Definition of nearest points
 If $(X, d)$ is a metric space and $S \subseteq X$, then we say that $s \in S$ is the **nearest point** to some $x \in X$ iff $d(x, s) = dist(x, S)$.
 
-
-## When all nearest points exist
-For a non-empty metric space $(X, d)$, we have the following two statements as logically equivalent:
-
- - For any metric superspace $(Y, e)$ of $(X, d)$, we have that $\forall y \in Y \exists x \in X$ such that $x$ is the nearest point to $y$ in $X$.
- - Every pointlike function $f: X \to \mathbb{R}^_{\geq 0}$ attains a minimum value.
-
-*Proof:*  TODO
 
 ## Equivalent characterization of isolated points
 $x \in S$ is an isolated point of $S$ iff $dist(x, S - x) > 0$.
@@ -229,15 +198,37 @@ For subset $S$ of metric space $(X, d)$, any $x \in X$ is a closure point of $S$
 ## Accumulation points, isolated points and distance
 TODO
 
+## Definition of a sequence
+A **sequence** in a metric space $(X, d)$ is a function $a: \mathbb{N} \to X$, often represented by the notation $(x_n)$. A **subsequence** $(x_{n_k})$ of $(x_n)$ is determined by an increasing function $f: \mathbb{N} \to \mathbb{N}$, to give a new sequence $a \circ f$.
+
+A **tail** of a sequence $(x_n)$ is a subsequence defined by $f(n) = n + k$ for some $k \in \mathbb{N}$.
+
+## Definition of convergence
+If $(X, d)$ is a metric space, then sequence $(x_n)$ converges to $c \in X$ iff for every $\epsilon \in \mathbb{R}_{\geq 0}$, some tail of $(x_n)$ is entirely contained in $B(x; \epsilon)$. We denote this situation by $(x_n) \to c$, and $c$ is called a **limit** of $(x_n)$ in this case.
+
+## Limits are unique.
+If $(x_n)$ and $(y_n)$ are sequences in $X$ such that $(x_n) \to a$ and $(y_n) \to b$, then $a = b$.
+
+*Proof:* If $a \neq b$, let $\epsilon  = d(a, b)/4$. Then we can find a tail sequence where all terms are contained in $B(a; \epsilon)$ and another where all terms another with all terms contained in $B(b; \epsilon)$. So we can find a tail sequence with all terms contained in both. Let $x$ be a term from this latter tail sequence. Then we have $d(a, b) \leq d(a, x) + d(x, b) \leq 2 \epsilon = d(a, b)/2$, a blatant contradiction.
+
+### Remark
+We are now justified in speaking of *the* limit of a sequence.
 
 
-## Distance facts
-TODO: expand
+## A sequential characterization of interior and closure points.
+If $(X, d)$ is a metric space and $S \subseteq X$, then $x$ is an interior point of $S$ iff no sequence in $X - S$ converges to $x$. Also, $x$ is a closure point of $S$ iff there is a sequence in $S$ that converges to $x$.
 
- - $clo(S) = \{ x \in X : dist(x,S) = 0$
+*Proof:* Every interior point $x$ of $S$ has a open ball centered at $x$ that is entirely contained in $S$, so no element entirely in $X - S$ could converge to $x$. 
 
-*Proof:* A point $x$ has $dist(x, S) = 0$ iff every open ball around $x$ intersects $S$. $\Box$
+If $x$ is a closure point of $S$, then every open ball around $x$ intersects $S$, so we can construct a sequence by choosing for each $n \in \mathbb{N}$, an element of $S$ in $B(x; 1/n)$. This sequence converges to $x$ since after we get to the $n$-th term, all points are within $1/n$ of $x$.
 
+For the converses, if $x$ is not an interior point of $S$, it must be a closure point of $X - S$, so some sequence in $X - S$ converges to $x$. Also, if $x$ is not a closure point of $S$, it must be an interior point of $X - S$, so no sequence in $S$ converges to $x$.
+
+
+## Every subsequence of a convergent sequence has the same limit.
+If $(x_n)$ converges in a metric space $X$ to $L$, then any subsequence $(x_{n_k})$ also converges to $L$.
+
+*Proof:* For any $\epsilon > 0$, we can find a tail starting at some $j$ that is contained in $B(L; \epsilon)$. Just find a $k$ such that $n_k > j$ to find a tail of $(x_{n_k})$ that is contained in $B(L; \epsilon)$.
 
 
 ## Definition of continuity
