@@ -161,6 +161,13 @@ If $S$ is a subset of a metric space, then $a$ is an **accumulation point** of $
 
 We denote the set of all accumulation points of $S$ by $acc(S)$.
 
+
+## Every accumulation point is a closure point
+If $x \in acc(S)$, then $x$ is a closure point of $S$.
+
+*Proof:* Every open ball around $x$ intersects $S - x$, so it clearly intersects $S$.
+
+
 ## Definition of an isolated point
 If $S$ is a subset of a metric space and $x \in S$, then $x$ is said to be an **isolated point iff there is some open ball around $x$ for which the only point of $S$ the ball intersects is $x$ itself.
 
@@ -198,7 +205,34 @@ For subset $S$ of metric space $(X, d)$, any $x \in X$ is a closure point of $S$
 
 
 ## Accumulation points, isolated points and distance
-TODO
+For subset $S$ of a metric space $(X, d)$:
+
+ 1. For all $x \in acc(S)$, $dist(x, S) = 0$ and $x \notin iso(S)$.
+ 2. For all $x \notin S$, $x$ is an accumulation point of $S$ iff $dist(x, S) = 0$
+ 3. For all $x \in S$, $x$ is an accumulation point of $S$ iff $x$ is not an isolated point of $S$
+ 4. $x$ is an accumulation point of $S$ iff $x is not an isolated point in $S$ and $dist(x, S) = 0$
+
+
+ 1. For all $x \in acc(S)$, $dist(x, S) = 0$ and $x \notin iso(S)$.
+
+    *Proof:* If $x \in acc(S)$, then we have $dist(x, S - x) = 0$ by definition. But $0 = dist(x, S - x) \geq dist(x, S) \geq 0$, so $x$ must have $dist(x, S) = 0$ as well.  Also, clearly $x$ could not be an isolated point, since no open ball around $x$ lies outside $S - x$.
+
+ 2. For all $x \notin S$, $dist(x, S) = 0$ implies that $x \in acc(S)$.
+
+    *Proof:* If $dist(x, S) = 0$, then $x$ is a closure point of $S$, so every open ball around $x$ contains a point of $S$. Since $x \notin S$, every open ball actually contains a point of $S - x$, so $x$ is an accumulation point.
+
+ 3. For all $x \in S$, $x \notin iso(S)$ implies $x \in acc(S)$
+
+    *Proof:* Since $x$ not isolated, no open ball around $X$ is completely disjoint from $S - x$, so $x$ must be an accumulation point. 
+
+ 4. if $x$ is not an isolated point in $S$ and $dist(x, S) = 0$, then $x \in acc(S)$
+
+    *Proof:* Assuming $x \notin iso(S)$ and $dist(x, S) = 0$, then either $x \notin S$ or $x \in S$. In the former case, (2) applies to yield $x \in acc(S)$. In the latter, (3) applies to yield $x \in acc(S)$ again.
+
+ 5. Q.E.D.
+
+    *Proof:* The converses to (2), (3) and (4) were proved in (1).
+
 
 ## Definition of a sequence
 A **sequence** in a metric space $(X, d)$ is a function $a: \mathbb{N} \to X$, often represented by the notation $(x_n)$. A **subsequence** $(x_{n_k})$ of $(x_n)$ is determined by an increasing function $f: \mathbb{N} \to \mathbb{N}$, to give a new sequence $a \circ f$.
@@ -250,6 +284,12 @@ Conversely, if (2) is true, then every open ball around $z$ contains infinitely 
 If $(X, d)$ is a metric space, then $(x_n)$ is a **Cauchy sequence** for every $\epsilon > 0$, some tail of $(x_n)$ is contained in a ball of radius $\epsilon$.
 
 
+## Equivalent definition of Cauchy sequence
+This is the standard definition that I've seen in every other textbook so far: A sequence is Cauchy iff for every $\epsilon > 0$, there is some tail sequence $(x_n)_{n \geq N}$ with all terms $j, k \geq N$ such that $d(x_j, x_k) < \epsilon$. (In words, every term of the tail has all other terms in an $\epsilon$-ball around the first term).
+
+*Proof:* If $(x_n)$ is Cauchy, then for every $\epsilon > 0$, there is some tail sequence and some point $z$ such that $B(z; \epsilon / 2)$ that contains the tail sequence, by definition. Pick any element of this tail, say $x_k$. Then for all other terms $x_j$, $d(x_k, x_j) \leq d(x_k, z) + d(x_j, z) = \epsilon$. Conversely, if for every $\epsilon > 0$ there is a tail sequence such that the $\epsilon$-ball around around any term contains the entire tail, then by definition $(x_n)$ is Cauchy.
+
+
 ## Every convergent sequence is Cauchy
 If $(x_n) \to c$, then $(x_n)$ is Cauchy
 
@@ -266,8 +306,33 @@ If $(x_n)$ is a Cauchy sequence and $c \in X$, then $(x_n) \to c$ iff there exis
 ## Definition of bounded subsets
 A subset $S$ of a metric space $X$ is **bounded** if some $z \in X$ is such that an open ball centered at $z$ contains $S$.
 
+## Cauchy sequences are bounded
+If $(x_n)$ is Cauchy, then it is bounded
+
+*Proof:* By definition, some tail sequence starting at $k$ of $(x_n)$ is contained in some open ball $B(z; 1)$, so letting $\epsilon = max \{ d(z, x_1), \ldots, d(z, x_{k - 1}, 1 \}$, the whole sequence is contained in $B(z; \epsilon + 1)$.
+
+### Corollary: convergent sequences are bounded
+Any convergent sequence is bounded.
+
+*Proof:*  Every convergent sequence is Cauchy.
+
+
 ## Definition of totally bounded subsets
 A subset $S$ of a metric space $X$ is **totally bounded** if for every $r \in \mathbb{R}_{\geq 0}$, there are finitely many open balls of radius $r$ that cover $S$.
+
+
+## Definition of $\epsilon$-net
+An $\epsilon$-net for a set $S$ is a finite subset $\{s_1, \ldots, s_n \}$ such that $S \subseteq \bigcup_1^n B(s_1, \epsilon)$.
+
+We can rephrase the definition for totally bounded sets: a set $S$ is bounded if for every $\epsilon > 0$ there is an $\epsilon$-net for $S$.
+
+
+## Sequential characterization of totally bounded subsets
+A subset $S$ of a metric space $(X, d)$ is **totally bounded** iff every sequence in $S$ has a Cauchy subsequence.
+
+*Proof:* If every sequence in $S$ has a Cauchy subsequence, then for every $\epsilon > 0$, pick a point $x_1 \in S$. If for some integer $k$, $x_k$ is chosen and $\{x_1, \ldots, x_k \}$ do not cover $S$, then we can find at least one point in $S$ that is isn't in any of the existing $k$ $\epsilon$-balls, so let that be $x_{k+1}$. This process must stop after finitely many terms, since otherwise we would have an infinite sequence with each term greater than $\epsilon$ away from every other term. Such a sequence would have no Cauchy subsequence.
+
+Conversely, if $S$ is totally bounded and $(x_n)$ is any sequence in $S$, then there is some $1$-net for $S$, and one of the balls in this net contains infinitely many terms of $(x_n)$, so we have a subsequence $s_1$ of $(x_n)$ that is entirely contained in some open balls of radius $1$. Given that $s_1, \ldots, s_k$ are defined for some $k$, we can find a $1/(k+1)$-net of the terms of $s_k$, so we can find a subsequence of $s_k$ that is contained in one ball of of the $1/(k+1)$-net. Repeating this for all $k \in \mathbb{N}$, we obtain a sequence of subsequences of $(x_n)$, each term being a subsequence of the previous, and the $k$-th sequence contained in one $1/k$-ball. For any $m < n$,  $1/m$-ball that contains $s_m$ clearly contains the $1/n$-ball that contains $s_n$. So diagonalize the sequences by forming a new sequence $(a_n)$ where $a_n$ is the $n$-th term from sequence $s_n$. Then the tail sequence starting at $a_n$ is entirely contained in some $1/n$-ball, so $(a_n)$ is Cauchy.
 
 
 ## Nearest-point property
