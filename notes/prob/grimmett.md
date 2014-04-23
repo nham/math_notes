@@ -18,6 +18,9 @@ A **measure** on a sigma-field $(\Omega, F)$ is a function $\mu: F \to [0, 1] \s
 
 A **probability measure** is a measure $\mathbb{P}$ such that $\mathbb{P}(\Omega) = 1$. We will generically denote arbitrary probability measures by $\mathbb{P}$. A triple $(\Omega, F, \mathbb{P})$ where the first two are a sigma-fied and the last is a probability measure is called a **probability space**.
 
+## Definition of null, almost certain events
+An event $A$ is said to be **null** of $\mathbb{P}(A) = 0$ and **almost certain** if $\mathbb{P}(A) = 1$. The empty event $\emptyset$ is null, but is not necessarily the only null event, and the whole sample space $\Omega$ is almost certain, but not necessarily the only almost certain event.
+
 ## Basic properties
 For any probability space $(\Sigma, F, \mathbb{P})$, and for any events $A$ and $B$ in $F$, we have
 
@@ -76,3 +79,43 @@ so we must have
 $$\mathbb{P}(B | A) / \mathbb{P}(B) > 1$$
 
 Rearrangement proves the proposition.
+
+
+## Definition of independence
+### Discussion
+We'd like some notion of when witnessing one event doesn't change the probability that some other event will occur. In other words, we are looking for criteria for when $\mathbb{P}(A | B) = \mathbb{P}(A)$. We can expand the conditional probability to obtain
+
+$$\mathbb{P}(A \cap B) / \mathbb{P}(B) = \mathbb{P}(A)$$
+
+or, by rearrangement:
+
+$$\mathbb{P}(A \cap B) = \mathbb{P}(A) \mathbb{P}(B)$$
+
+Note that the above required $\mathbb{P}(B) > 0$. We will generalize slightly to allow for $\mathbb{P}(B) = 0$, and also to allow for multiple events.
+
+### Definition
+Two events $A$ and $B$ are said to be **independent** if $\mathbb{P}(A \cap B) = \mathbb{P}(A) \mathbb{P}(B)$. A collection $\mathcal{A} = \{A_i : i \in I\}$ of events is said to be independent iff for every finite subcollection $\{A_j : j \in J \subseteq I\}$ of $\mathcal{A}$, we have
+
+$$\mathbb{P}(\bigcap_{j \in J} A_j) = \prod_{j \in J} \mathbb{P}(A_j)$$
+
+
+## Definition of pairwise independence
+A collection of events is **pairwise independent** if any two events $A_i$ and $A_j$ in the collection are independent. Every independent collection of events is pairwise independent, but the converse is not true.
+
+
+## Independent of a pair with one event null or almost certain
+If $A$ and $B$ are two events, then $A$ and $B$ are independent if $A$ is null or if $A$ is almost certain.
+
+*Proof:* In the null case, $\mathbb{P}(A \cap B) \leq \mathbb{P}(A) = 0$, so $\mathbb{P}(A \cap B) = 0 = 0 \mathbb{P}(B) = \mathbb{P}(A) \mathbb{P}(B)$.
+
+In the almost certain case, we know that $A^c$ is null, so $\mathbb{P}(A^c \cap B) = 0, implying $\mathbb{P}(A \cap B) = \mathbb{P}(B)$, which implies independence since $\mathbb{P}(A) = 1$.
+
+
+## Definition of conditional independence
+A collection $\mathcal{A} = \{A_i : i \in I\}$ of events is said to be **conditionally independent** given event $B$ iff for every finite subcollection $\{A_j : j \in J \subseteq I\}$ of $\mathcal{A}$, we have
+
+$$\mathbb{P}(\bigcap_{j \in J} A_j | B) = \prod_{j \in J} \mathbb{P}(A_j | B)$$
+
+
+## Definition of random variable
+A **random variable** on a probability space $(\Omega, F, \mathbb{P})$ is a function $f: \Omega \to \mathbb{R}$ such that $\{\omega \in \Omega : f(\omega) \leq x \}$ is an event for every $x \in \mathbb{R}$.
