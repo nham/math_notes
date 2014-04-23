@@ -174,6 +174,10 @@ If $S$ is a subset of a metric space and $x \in S$, then $x$ is said to be an **
 We denote the set of all isolated points of $S$ by $iso(S)$.
 
 
+## Definition of diameter
+A subset $A$ of a metric space $(X, d)$ has a **diameter** defined by $diam(A) := sup \{ d(a, b) : a, b \in A \}$. This is the supremum defined using the extended reals, so that the diameter of the empty set is $- \infty$ and the diameter of any set with the $d(a, b)$s not having a finite upper bound is $+ \infty$.
+
+
 ## Definition of distance
 
 The **distance** of a point $x$ from a set $S$, written $dist(x,S)$, is defined to be $inf \{ d(x,s) : s \in S\}$.
@@ -323,9 +327,19 @@ If $(x_n)$ is a Cauchy sequence and $c \in X$, then $(x_n) \to c$ iff there exis
 
 
 ### Corollary
-If $(x_n)$ is a Cauchy sequence that does not converge to any point, then the set $\{ x_n : n \in \mathbb{N} \}$ is closed.
+If $(x_n)$ is a Cauchy sequence that does not converge to any point, then $[x_n]$ is closed.
 
-*Proof:* We must have that $(x_n)$ has no convergent subsequence.
+*Proof:* We must have that $(x_n)$ has no convergent subsequence. But this implies (by basic properties of the convergence of subsequences) that there could not be any closure points of $[x_n]$ not in $[x_n]$, since it would have to be an accumulation point of $[x_n]$, which would imply that a subsequence converges to the closure point in question.
+
+## Cauchy sequences, subspaces and superspaces
+If $(X, d)$ is a metric space and $(x_n)$ a Cauchy sequence in $X$, then $(x_n)$ is a Cauchy sequence in every superspace of $X$ and every subspace of $X$ that contains all the terms of the sequence.
+
+*Proof:*  The equivalent definition of a Cauchy sequence is that for all $\epsilon > 0$ there is a tail of $(x_n)$ such that all terms $x_j$, $x_k$ in the tail have $d_X(x_j, x_k) < \epsilon$. But this is true in any superspace $Y$ and in any subspace $Z$ containing $[x_n]$, since $d_Y$ is an extension of $d_X$ and $d_Z$ is a restriction of $d_X$.
+
+## Filling in the gaps for non-convergent Cauchy sequences
+If $X$ is a metric space and $(x_n)$ is a Cauchy sequence in $X$ that does not converge in $X$, then we can create a superspace $Y$ of $X$ in which $(x_n)$ converges.
+
+*Proof:* TODO
 
 
 ## Definition of complete metric spaces
@@ -334,7 +348,9 @@ A metric space is **complete** if every Cauchy sequence converges.
 ## Equivalent characterization of complete metric spaces ("Universal criterion")
 A metric space is complete iff it is closed in every superspace.
 
-*Proof:* TODO
+*Proof:*  If a metric space $X$ is complete, then let $Y$ be any superspace of $X$. Let $z \in clo_Y(X)$. This means that there is a sequence $(x_n)$ in $X$ that converges to $z$. Convergent sequences are Cauchy, so $(x_n)$ is Cauchy in $Y$, and therefore Cauchy in $X$ since the metric space $X$ contains $(x_n)$ (it being a sequence in $X$). But $X$ is complete by hypothesis, so $(x_n)$ converges in $X$. If the limit were some element of $X$ that was distinct from $z$, then $(x_n)$ would have two limits in $Y$. So $z \in X$, meaning $X$ is closed in $Y$.
+
+Conversely, TODO
 
 
 
