@@ -235,9 +235,25 @@ For subset $S$ of a metric space $(X, d)$:
 
 
 ## Definition of a sequence
-A **sequence** in a metric space $(X, d)$ is a function $a: \mathbb{N} \to X$, often represented by the notation $(x_n)$. A **subsequence** $(x_{n_k})$ of $(x_n)$ is determined by an increasing function $f: \mathbb{N} \to \mathbb{N}$, to give a new sequence $a \circ f$.
+A **sequence** in a metric space $(X, d)$ is a function $a: \mathbb{N} \to X$, often represented by the notation $(x_n)$. A sequence $(y_n)$ is a **subsequence** of $(x_n)$ if there is an increasing function $f: \mathbb{N} \to \mathbb{N}$ such that for all $n$, $y_n = x_{f(n)}$
 
-A **tail** of a sequence $(x_n)$ is a subsequence defined by $f(n) = n + k$ for some $k \in \mathbb{N}$.
+A **tail** of a sequence $(x_n)$ is a subsequence determined by $f(n) = n + k$ for some $k \in \mathbb{N}$.
+
+## Definition of the set of terms
+For any sequence $(x_n)$, we can form the set of all terms $\{x_n : n \in \mathbb{N} \}$. We will notate this set $[x_n]$.
+
+
+
+## "Is-a-subsequence" relation is transitive
+For any metric space $(X, d)$ and for any sequences $(x_n)$, $(y_n)$, $(z_n)$ in $X$, we have:
+
+ - $(x_n)$ is a subsequence of itself
+
+ - if $(x_n)$ is a subsequence of $(y_n)$ is a subsequence of $(z_n)$, then $(x_n)$ is a subsequence of $(z_n)$.
+
+
+*Proof:* the identity function on $\mathbb{N}$ is increasing, so each sequence is a subsequence of itself. If $f$ and $g$ are the functions such that $x_n = y_{f(n)}$ and $y_n = z_{g(n)}$ for all $n$, then $z_{g(f(n))} = y_{f(n)} = x_n$, so $(x_n)$ is a subsequence of $(z_n)$ by $g \circ f$.
+
 
 ## Definition of convergence
 If $(X, d)$ is a metric space, then sequence $(x_n)$ converges to $c \in X$ iff for every $\epsilon \in \mathbb{R}_{\geq 0}$, some tail of $(x_n)$ is entirely contained in $B(x; \epsilon)$. We denote this situation by $(x_n) \to c$, and $c$ is called a **limit** of $(x_n)$ in this case.
@@ -273,12 +289,16 @@ If $(x_n)$ is a sequence in $(X, d)$ and $z \in X$, then the following are equiv
  1. There is a subsequence of $(x_n)$ that converges to $z$
  2. Every open ball around $z$ intersects every tail sequence of $(x_n)$
  3. $z$ is in the closure of any tail sequence
+ 4. Either there are infinitely many terms of $(x_n)$ that equal $z$, or $z \in acc([x_n])$.
 
 *Proof:* Another way of saying that every open ball around $z$ intersects every tail of $(x_n)$ is to say that every tail of $(x_n)$ every open ball around $z$, or that $z$ is a closure point of any tail. So (2) and (3) are equivalent. 
 
 If (1) is true, then letting $(x_n)_{n \geq k}$ be a tail and $\epsilon > 0$, we want to find an $m \geq k$ such that $x_m \in B(z; \epsilon)$. But there is a tail sequence of $(x_{n_k})$ entirely contained in $B(z; \epsilon)$, starting at some $n_j$, so we take $m = max \{ n_j, k \}$. Then $x_m$ is as desired, proving every open ball of $z$ intersects $(x_n)_{n \geq k}$, so (3) is true. 
 
-Conversely, if (2) is true, then every open ball around $z$ contains infinitely many terms in the sequence. So we can find a term $x_{n_1}$ in $B(z; 1)$, and given that $x_{n_k}$ is selected from $B(z; 1/k)$, for some natural $k$, we can find a term $x_{n_{k+1}} > x_{n_k}$ that's in the ball $B(z; 1/(k+1})$. Each tail starting at $n_k$ is entirely contained in $B(z; 1/k)$ by construction, so the sequence converges to $z$.
+If (3) is true and there are at most finitely many terms of $(x_n)$ equal to $z$, then we can find a tail sequence that does not have any terms equal to $z$ but does have $z$ as a closure point. So $z$ is an accumulation point of $[x_n]$, proving that (4) is true.
+
+If (4) is true, then in case there are infinitely many terms equal to $z$, then clearly we can build a subsequence of constant $z$-terms, which converges to $z$. In the case that $z \in acc([x_n])$, we can pick a term $x_{n_1}$ that is in $B(z; 1)$. If $x_{n_k}$ is defined already, we can pick a term $x_{n_{k+1}}$ that comes after $x_{n_k}$ and is in $B(z; 1/(k+1))$. This is a subsequence of $(x_n)$, and it converges to $z$ since after the $k$-th term in the subsequence, all points are within the $1/k$-ball around $z$.
+
 
 ## Definition of Cauchy sequence
 If $(X, d)$ is a metric space, then $(x_n)$ is a **Cauchy sequence** for every $\epsilon > 0$, some tail of $(x_n)$ is contained in a ball of radius $\epsilon$.
@@ -300,6 +320,21 @@ If $(x_n) \to c$, then $(x_n)$ is Cauchy
 If $(x_n)$ is a Cauchy sequence and $c \in X$, then $(x_n) \to c$ iff there exists some subsequence $(x_{n_k})$ such that $(x_{n_k}) \to c$ as well.
 
 *Proof:* If $(x_n) \to c$ then we know every subsequence converges to $c$ as well. Conversely, if some subsequence $(x_{n_k}) \to c$, then for $\epsilon > 0$, some tail starting at $n_j$ is contained within the $\epsilon / 2$-ball around $c$. Also since $(x_n)$ Cauchy, some tail of $(a_n)$ starting at $k$ is contained within an $\epsilon / 4$-ball centered somewhere. So all terms of the tail of $(a_n)$ starting at $max{k, n_j}$ are within an $\epsilon / 2$ of one another, and there is one term of this latter sequence that is within $\epsilon / 2$ of $c$, so all terms of this tail are within $\epsilon$ of $c$.
+
+
+### Corollary
+If $(x_n)$ is a Cauchy sequence that does not converge to any point, then the set $\{ x_n : n \in \mathbb{N} \}$ is closed.
+
+*Proof:* We must have that $(x_n)$ has no convergent subsequence.
+
+
+## Definition of complete metric spaces
+A metric space is **complete** if every Cauchy sequence converges.
+
+## Equivalent characterization of complete metric spaces ("Universal criterion")
+A metric space is complete iff it is closed in every superspace.
+
+*Proof:* TODO
 
 
 
@@ -338,12 +373,24 @@ Conversely, if $S$ is totally bounded and $(x_n)$ is any sequence in $S$, then t
 ## Nearest-point property
 If $(X, d)$ is a non-empty metric space, then the following are equivalent.
 
- 1. $X$ has nearest points for all $x \in X$
+ 1. for any metric superspace $(Y, d)$ of $X$, $X$ has nearest points for all $y \in Y$
  2. Every  infinite bounded subset of $X$ has an accumulation point in $X$
  3. every bounded sequence in $X$ has a subsequence that converges in $X$.
  4. $X$ is complete and every bounded subset is totally bounded.
 
 *Proof:* TODO
+
+ 1. (1) implies (2)
+
+ 2. (2) implies (3)
+
+    *Proof:* If $(x_n)$ is a bounded sequence in $X$, then the collection $T = \{x_n : n \in \mathbb{N} \}$ is either infinite or finite. If infinite, $T$ must have an accumulation point $a$ by hypothesis, which means for every $\epsilon > 0$, every tail of $(x_n)$ has a term that is in $B(a; \epsilon)$, because if not then $B(a; min \{ x_1, \ldots, x_{k-1} \})$ would contain no elements of $T - a$, assuming that the tail sequence in question starts at position $k$.
+
+Hence, we can find a term $x_{n_1} \in T - a$ that is also in $B(a; 1)$, and given that $x_{n_k}$ has been selected for some $k \in \mathbb{N}$, we can find a point $x_{n_{k+1}}$ from the tail sequence starting at $n_k$ in $B(a; 1/n)$. $(x_{n_k})$ is thus a subsequence of $(x_n)$ that converges to $a$.
+
+ 3. (3) implies (4)
+
+    *Proof:* If $(x_n)$ is a Cauchy, it is bounded, so by hypothesis $(x_n)$ has a subsequence converging to some point $c$, so the whole sequence converges to $c$, meaning that $X$ is complete. Also, if $S$ is a bounded subset, any sequence in $S$ is also bounded, so any such sequence has a convergent subsequence. All convergent sequences are Cauchy, so every sequence in $S$ has a Cauchy subsequence. This implies that $S$ is totally bounded, by the sequential characterization of totally bounded sets.
 
 
 ## Definition of continuity
