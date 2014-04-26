@@ -108,7 +108,7 @@ A set $S$ is closed iff $clo(S) = S$, and open iff $int(S) = S$.
 
 *Proof:* If $int(S) = S$, then $S$ is clearly open since $int(S)$ is. Conversely if $S$ is open, then $S$ is the largest open set contained in $S$. Similarly, if $clo(S) = S$, then $S$ is closed since $clo(S)$ is, and if $S$ is closed, $S$ itself is the smallest closed set containing $S$.
 
-## Closure of the complement is the complement of the closure
+## Closure of the complement is the complement of the interior
 $X - int(S) = clo(X - S)$
 
 *Proof:* If $x$ is not an interior point of $S$, then no open ball centered at $x$ is contained entirely in $S$, so every open ball centered around $x$ must actually intersect $X - S$, meaning $x \in clo(X - S)$. Conversely, $x \in clo(X - S)$, every open ball around $x$ intersects $X - S$ since $x$ is a closure point of $X - S$, so it could not be an interior point of $S$.
@@ -130,11 +130,12 @@ The **boundary** of a set $S$, notated $\partial S$, is $\{x \in X : \text{every
 
 ## Boundary facts
  1. $\partial S = \partial X-S$
- 2. $\partial \cap int(S) = \emptyset$
+ 2. $\partial S \cap int(S) = \emptyset$
  3. $\partial S \subseteq clo(S)$
  4. $int(S) = S - \partial S$
  5. $clo(S) = S \cup \partial S$
  6. $\partial S = clo(S) \cap clo(X-S)$
+ 7. $clo(S) = int(S) \cup \partial S$
 
 *Proof:* For (1), $X - (X - S) = X$, so by definition they are the same.
 
@@ -147,6 +148,8 @@ For (4), we know $int(S) \subseteq S - \partial S$ since every interior point of
 For (5), if $x \in clo(S)$, then every open ball around $x$ intersects $S$. If every open ball around $x$ also intersects $X-S$, then $x \in \partial S$. Otherwise one open ball $B$ does not, so $x$ must be in $S$ (because it could not be in $X-S$. Conversely, $S \subseteq clo(S)$ by definition and $\partial S \subseteq clo(S)$ by (3), so $S \cup \partial S \subseteq clo(S)$.
 
 For (6), $x \in \partial S$ iff every open ball around $X$ intersects both $S$ and $X - S$ iff $x \in clo(S) \cap clo(X-S)$.
+
+For (7), we use (4) and (5) to obtain that $clo(S) = S \cup \partial S$ and $int(S) \cup \partial S = (S - \partial S) \cup \partial S$. These two are the same since $A \cup B = (A - B) \cup B$ is true for every set $A$ and $B$. (Note that by (2) we have that the closure is the disjoint union of the interior and the boundary).
 
 
 ## More equivalent conditions for open and closed sets
@@ -173,9 +176,12 @@ If $S$ is a subset of a metric space and $x \in S$, then $x$ is said to be an **
 
 We denote the set of all isolated points of $S$ by $iso(S)$.
 
+### Remark
+Whether an isolated point is in the interior of $S$ depends on whether the singleton set consisting of that point is open. Some metric spaces have isolated points in the interior, others do not. (Most familiar ones, like $\mathbb{R}^n$, do not).
+
 
 ## Definition of diameter
-A subset $A$ of a metric space $(X, d)$ has a **diameter** defined by $diam(A) := sup \{ d(a, b) : a, b \in A \}$. This is the supremum defined using the extended reals, so that the diameter of the empty set is $- \infty$ and the diameter of any set with the $d(a, b)$s not having a finite upper bound is $+ \infty$.
+A subset $A$ of a metric space $(X, d)$ has a **diameter** defined by $diam(A) := sup \{ d(a, b) : a, b \in A \}$. This is the supremum defined using the extended reals, so that the diameter of the empty set is $- \infty$ and the diameter of any set with the $d(a, b)$'s not having a finite upper bound is $+ \infty$.
 
 
 ## Definition of distance
@@ -207,6 +213,11 @@ For subset $S$ of metric space $(X, d)$, any $x \in X$ is a closure point of $S$
 
 *Proof:* Every open ball around a closure point $x$ intersects $S$, so there is no positive lower bound on the set of distances $d(x, s)$ for $s \in S$. Thus $dist(x, S) = 0$. Conversely, if $dist(x, S) = 0$, then we can find points in $S$ arbitrarily close to $x$. In other words, every open ball around $x$ intersects $S$, so $x$ is a closure point of $S$.
 
+## Equivalent characterization of interior points
+For subset $S$ of metric space $(X, d)$, any $x \in X$ is an interior point of $S$ iff $dist(x, X - S) > 0$.
+
+*Proof:* $dist(x, X - S) > 0$ means that $x$ isn't a closure point of $X - S$, by the distance characterization of closure points. So $x \in int(S)$ since $int(S) = X - clo(X -S)$. Conversely, any interior point of $S$ could not be a closure point of $X - S$, so has a positive distance from $X -S$.
+
 
 ## Accumulation points, isolated points and distance
 For subset $S$ of a metric space $(X, d)$:
@@ -219,7 +230,7 @@ For subset $S$ of a metric space $(X, d)$:
 
  1. For all $x \in acc(S)$, $dist(x, S) = 0$ and $x \notin iso(S)$.
 
-    *Proof:* If $x \in acc(S)$, then we have $dist(x, S - x) = 0$ by definition. But $0 = dist(x, S - x) \geq dist(x, S) \geq 0$, so $x$ must have $dist(x, S) = 0$ as well.  Also, clearly $x$ could not be an isolated point, since no open ball around $x$ lies outside $S - x$.
+    *Proof:* Accumulation points are closure points, so $dist(x, S) = 0$. Also, $x$ could not be an isolated point since no open ball around $x$ lies outside $S - x$.
 
  2. For all $x \notin S$, $dist(x, S) = 0$ implies that $x \in acc(S)$.
 
@@ -238,6 +249,10 @@ For subset $S$ of a metric space $(X, d)$:
     *Proof:* The converses to (2), (3) and (4) were proved in (1).
 
 
+## Definition of $\epsilon$-closeness
+Two points $x$ and $y$ of a metric space $X$ are **$\epsilon$-close** for some $\epsilon > 0$ if $d(x, y) < \epsilon$. More generally, $S \subseteq X$ is **$\epsilon$-close** to $x \in X$ if $x$ is $\epsilon$-close to every point in $S$. In other words, $S$ is $\epsilon$-close to $x$ iff $S$ is contained within the $\epsilon$-open ball around $z$.
+
+
 ## Definition of a sequence
 A **sequence** in a metric space $(X, d)$ is a function $a: \mathbb{N} \to X$, often represented by the notation $(x_n)$. A sequence $(y_n)$ is a **subsequence** of $(x_n)$ if there is an increasing function $f: \mathbb{N} \to \mathbb{N}$ such that for all $n$, $y_n = x_{f(n)}$
 
@@ -245,6 +260,10 @@ A **tail** of a sequence $(x_n)$ is a subsequence determined by $f(n) = n + k$ f
 
 ## Definition of the set of terms
 For any sequence $(x_n)$, we can form the set of all terms $\{x_n : n \in \mathbb{N} \}$. We will notate this set $[x_n]$.
+
+
+## Definition of $\epsilon$-closeness for sequences
+A sequence $(x_n)$ is said to be **$\epsilon$-close** to $x$ iff its set of terms is.
 
 
 
@@ -287,7 +306,14 @@ If $(x_n)$ converges in a metric space $X$ to $L$, then any subsequence $(x_{n_k
 *Proof:* For any $\epsilon > 0$, we can find a tail starting at some $j$ that is contained in $B(L; \epsilon)$. Just find a $k$ such that $n_k > j$ to find a tail of $(x_{n_k})$ that is contained in $B(L; \epsilon)$.
 
 
+
 ## Convergence of subsequences
+### Lemma: $\epsilon$-closeness for subseqences and tail sequences
+If $(x_n)$ is a sequence and $(y_n)$ is a subsequence of $(x_n)$ such that $(y_n)$ is $\epsilon$-close to $z \in X$, then every tail of $(x_n)$ contains a term that is $\epsilon$-close to $z$.
+
+*Proof:* Let $(x_n)_{n \geq k}$ be the tail of $(x_n)$ starting at $k$. Then $y_k = x_j$ for some $j > k$, i.e. $y_k$ is a term of the tail starting at $k$. Every term in $(y_n)$ is $\epsilon$-close by hypothesis, so this concludes the proof.
+
+### Theorem
 If $(x_n)$ is a sequence in $(X, d)$ and $z \in X$, then the following are equivalent:
 
  1. There is a subsequence of $(x_n)$ that converges to $z$
@@ -295,9 +321,9 @@ If $(x_n)$ is a sequence in $(X, d)$ and $z \in X$, then the following are equiv
  3. $z$ is in the closure of any tail sequence
  4. Either there are infinitely many terms of $(x_n)$ that equal $z$, or $z \in acc([x_n])$.
 
-*Proof:* Another way of saying that every open ball around $z$ intersects every tail of $(x_n)$ is to say that every tail of $(x_n)$ every open ball around $z$, or that $z$ is a closure point of any tail. So (2) and (3) are equivalent. 
+*Proof:* Another way of saying that every open ball around $z$ intersects every tail of $(x_n)$ is to say that every tail of $(x_n)$ intersects every open ball around $z$, or that $z$ is a closure point of any tail. So (2) and (3) are equivalent. 
 
-If (1) is true, then letting $(x_n)_{n \geq k}$ be a tail and $\epsilon > 0$, we want to find an $m \geq k$ such that $x_m \in B(z; \epsilon)$. But there is a tail sequence of $(x_{n_k})$ entirely contained in $B(z; \epsilon)$, starting at some $n_j$, so we take $m = max \{ n_j, k \}$. Then $x_m$ is as desired, proving every open ball of $z$ intersects $(x_n)_{n \geq k}$, so (3) is true. 
+If (1) is true, we know for every $\epsilon > 0$ there is some subsequence (tail sequence of the convergent subsequence) of $(x_n)$ that is $\epsilon$-close to $z$. So every tail of $(x_n)$ contains a term that is $\epsilon$-close to $z$. In other words, the $\epsilon$-ball around $z$ intersects every tail sequence. Since $\epsilon$ was arbitrary, $z$ is a closure point of every tail sequence.
 
 If (3) is true and there are at most finitely many terms of $(x_n)$ equal to $z$, then we can find a tail sequence that does not have any terms equal to $z$ but does have $z$ as a closure point. So $z$ is an accumulation point of $[x_n]$, proving that (4) is true.
 
