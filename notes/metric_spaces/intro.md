@@ -1,4 +1,8 @@
-## Definition of metric spaces
+# in $X - S$.
+
+*Proof:* If $S$ is closed and $(x_n)$ is entirely in $S$ and convergent in $X$, then the limit of $(x_n)$, call it $L$, is a closure point of $S$ by the previous proposition, so $L \in S$. Conversely if every convergent sequence contained in $S$ converges to a limit in $S$, then since every closure point of $S$ has a limit in $S$ converging to it, $S$ must contain it.
+
+$S$ is open iff $X - S$ is closed, so the second statement holds from the first.# Definition of metric spaces
 
 A **metric space** is a pair $(X, d)$ where $d$ is a function $X \times X \rightarrow \mathbb{R}$ such that:
 
@@ -194,10 +198,6 @@ If $S$ and $T$ are subsets of a metric space $(X, d)$, then if $S \subseteq T$, 
 *Proof:* Since $S \subseteq T$, we have $S_d = \{ d(x, s) : s \in S \} \subseteq \{ d(x, t) : t \in T\} = T_d$. So any lower bound for $T_d$ is a lower bound for $S_d$, meaning that $dist(x, T) = inf T_d \leq inf S_d = dist(x, S)$.
 
 
-## Definition of nearest points
-If $(X, d)$ is a metric space and $S \subseteq X$, then we say that $s \in S$ is the **nearest point** to some $x \in X$ iff $d(x, s) = dist(x, S)$.
-
-
 ## Equivalent characterization of isolated points
 $x \in S$ is an isolated point of $S$ iff $dist(x, S - x) > 0$.
 
@@ -304,6 +304,13 @@ If $x$ is a closure point of $S$, then every open ball around $x$ intersects $S$
 
 For the converses, if $x$ is not an interior point of $S$, it must be a closure point of $X - S$, so some sequence in $X - S$ converges to $x$. Also, if $x$ is not a closure point of $S$, it must be an interior point of $X - S$, so no sequence in $S$ converges to $x$.
 
+## A sequential characterization of open and closed sets
+If $S$ is a subset of a metric space $(X, d)$, then $S$ is closed iff every sequence in $S$ that converges in $X$ converges to a limit in $S$. $S$ is open iff every sequence in $X - S$ converges in $X - S$.
+
+*Proof:* If $S$ is closed and $(x_n)$ is entirely in $S$ and convergent in $X$, then the limit of $(x_n)$, call it $L$, is a closure point of $S$ by the previous proposition, so $L \in S$. Conversely if every convergent sequence contained in $S$ converges to a limit in $S$, then since every closure point of $S$ has a limit in $S$ converging to it, $S$ must contain it.
+
+$S$ is open iff $X - S$ is closed, so the second statement holds from the first.
+
 
 ## Every subsequence of a convergent sequence has the same limit.
 If $(x_n)$ converges in a metric space $X$ to $L$, then any subsequence $(x_{n_k})$ also converges to $L$.
@@ -367,22 +374,9 @@ If $(X, d)$ is a metric space and $(x_n)$ a Cauchy sequence in $X$, then $(x_n)$
 
 *Proof:*  The equivalent definition of a Cauchy sequence is that for all $\epsilon > 0$ there is a tail of $(x_n)$ such that all terms $x_j$, $x_k$ in the tail have $d_X(x_j, x_k) < \epsilon$. But this is true in any superspace $Y$ and in any subspace $Z$ containing $[x_n]$, since $d_Y$ is an extension of $d_X$ and $d_Z$ is a restriction of $d_X$.
 
-## Filling in the gaps for non-convergent Cauchy sequences
-If $X$ is a metric space and $(x_n)$ is a Cauchy sequence in $X$ that does not converge in $X$, then we can create a superspace $Y$ of $X$ in which $(x_n)$ converges.
-
-*Proof:* TODO
-
 
 ## Definition of complete metric spaces
 A metric space is **complete** if every Cauchy sequence converges.
-
-## Equivalent characterization of complete metric spaces ("Universal criterion")
-A metric space is complete iff it is closed in every superspace.
-
-*Proof:*  If a metric space $X$ is complete, then let $Y$ be any superspace of $X$. Let $z \in clo_Y(X)$. This means that there is a sequence $(x_n)$ in $X$ that converges to $z$. Convergent sequences are Cauchy, so $(x_n)$ is Cauchy in $Y$, and therefore Cauchy in $X$ since the metric space $X$ contains $(x_n)$ (it being a sequence in $X$). But $X$ is complete by hypothesis, so $(x_n)$ converges in $X$. If the limit were some element of $X$ that was distinct from $z$, then $(x_n)$ would have two limits in $Y$. So $z \in X$, meaning $X$ is closed in $Y$.
-
-Conversely, TODO
-
 
 
 ## Definition of bounded subsets
@@ -468,28 +462,33 @@ A subset $S$ of a metric space $(X, d)$ is **totally bounded** iff every sequenc
 Conversely, if $S$ is totally bounded and $(x_n)$ is any sequence in $S$, then there is some $1$-net for $S$, and one of the balls in this net contains infinitely many terms of $(x_n)$, so we have a subsequence $s_1$ of $(x_n)$ that is entirely contained in some open balls of radius $1$. Given that $s_1, \ldots, s_k$ are defined for some $k$, we can find a $1/(k+1)$-net of the terms of $s_k$, so we can find a subsequence of $s_k$ that is contained in one ball of of the $1/(k+1)$-net. Repeating this for all $k \in \mathbb{N}$, we obtain a sequence of subsequences of $(x_n)$, each term being a subsequence of the previous, and the $k$-th sequence contained in one $1/k$-ball. For any $m < n$,  $1/m$-ball that contains $s_m$ clearly contains the $1/n$-ball that contains $s_n$. So diagonalize the sequences by forming a new sequence $(a_n)$ where $a_n$ is the $n$-th term from sequence $s_n$. Then the tail sequence starting at $a_n$ is entirely contained in some $1/n$-ball, so $(a_n)$ is Cauchy.
 
 
-## Nearest-point property
+## Bolzano-Weierstrass
 If $(X, d)$ is a non-empty metric space, then the following are equivalent.
 
- 1. for any metric superspace $(Y, d)$ of $X$, $X$ has nearest points for all $y \in Y$
- 2. Every  infinite bounded subset of $X$ has an accumulation point in $X$
- 3. every bounded sequence in $X$ has a subsequence that converges in $X$.
- 4. $X$ is complete and every bounded subset is totally bounded.
+ 1. Every  infinite bounded subset of $X$ has an accumulation point in $X$
+ 2. every bounded sequence in $X$ has a subsequence that converges in $X$.
+ 3. $X$ is complete and every bounded subset is totally bounded.
 
-*Proof:* TODO
+*Proof:*
 
  1. (1) implies (2)
-
- 2. (2) implies (3)
 
     *Proof:* If $(x_n)$ is a bounded sequence in $X$, then the collection $T = \{x_n : n \in \mathbb{N} \}$ is either infinite or finite. If infinite, $T$ must have an accumulation point $a$ by hypothesis, which means for every $\epsilon > 0$, every tail of $(x_n)$ has a term that is in $B(a; \epsilon)$, because if not then $B(a; min \{ x_1, \ldots, x_{k-1} \})$ would contain no elements of $T - a$, assuming that the tail sequence in question starts at position $k$.
 
 Hence, we can find a term $x_{n_1} \in T - a$ that is also in $B(a; 1)$, and given that $x_{n_k}$ has been selected for some $k \in \mathbb{N}$, we can find a point $x_{n_{k+1}}$ from the tail sequence starting at $n_k$ in $B(a; 1/n)$. $(x_{n_k})$ is thus a subsequence of $(x_n)$ that converges to $a$.
 
- 3. (3) implies (4)
+ 2. (2) implies (1)
+
+    *Proof:* If $S$ is an infinite bounded subset of $X$, then we can find a sequence $(x_n)$ in $S$ of distinct terms. It's a bounded sequence, so by hypothesis it has a convergent subsequence $(x_{n_k})$. This means that the limit of the subsequence is an accumulation point, since every open ball around the limit entirely contains some tail of the subsequence and all the points are distinct.
+
+
+ 3. (2) implies (3)
 
     *Proof:* If $(x_n)$ is a Cauchy, it is bounded, so by hypothesis $(x_n)$ has a subsequence converging to some point $c$, so the whole sequence converges to $c$, meaning that $X$ is complete. Also, if $S$ is a bounded subset, any sequence in $S$ is also bounded, so any such sequence has a convergent subsequence. All convergent sequences are Cauchy, so every sequence in $S$ has a Cauchy subsequence. This implies that $S$ is totally bounded, by the sequential characterization of totally bounded sets.
 
+ 4. (3) implies (2)
+
+    *Proof:* If $(x_n)$ is bounded, then its set of terms is bounded, and hence by hypothesis totally bounded. This is equivalent to saying that every sequence in the set has a Cauchy subsequence. Hence $(x_n)$ has a Cauchy subsequence. But by hypothesis $X$ is complete, so that same Cauchy subsequence is a convergent subsequence.
 
 
 ## Definition of continuity
