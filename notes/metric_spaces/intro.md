@@ -35,6 +35,8 @@ A **closed ball** of radius $r$ around $x_0$ is the set of all points in the met
 
   $$ C(x_0; r) = \{ x : d(x, x_0) \leq r \}$$
 
+We shall on occasion need to specify the metric space that the ball is contained in. If the metric space is $(X,d)$, then $B_X^d(x; \epsilon)$ is the open ball of radius $\epsilon$ centered at $x$ in metric space $(X,d)$. We will often just use $B_X(x; \epsilon)$ if the metric is clear from the context.
+
 
 ## Definition of open sets
 An **open set** is a set $U$ such that every $x \in U$ has an open ball $B(x; \epsilon)$ which is entirely contained in $U$.
@@ -462,7 +464,7 @@ A subset $S$ of a metric space $(X, d)$ is **totally bounded** iff every sequenc
 Conversely, if $S$ is totally bounded and $(x_n)$ is any sequence in $S$, then there is some $1$-net for $S$, and one of the balls in this net contains infinitely many terms of $(x_n)$, so we have a subsequence $s_1$ of $(x_n)$ that is entirely contained in some open balls of radius $1$. Given that $s_1, \ldots, s_k$ are defined for some $k$, we can find a $1/(k+1)$-net of the terms of $s_k$, so we can find a subsequence of $s_k$ that is contained in one ball of of the $1/(k+1)$-net. Repeating this for all $k \in \mathbb{N}$, we obtain a sequence of subsequences of $(x_n)$, each term being a subsequence of the previous, and the $k$-th sequence contained in one $1/k$-ball. For any $m < n$,  $1/m$-ball that contains $s_m$ clearly contains the $1/n$-ball that contains $s_n$. So diagonalize the sequences by forming a new sequence $(a_n)$ where $a_n$ is the $n$-th term from sequence $s_n$. Then the tail sequence starting at $a_n$ is entirely contained in some $1/n$-ball, so $(a_n)$ is Cauchy.
 
 
-## Bolzano-Weierstrass
+## Bolzano-Weierstrass property
 If $(X, d)$ is a non-empty metric space, then the following are equivalent.
 
  1. Every  infinite bounded subset of $X$ has an accumulation point in $X$
@@ -490,6 +492,84 @@ Hence, we can find a term $x_{n_1} \in T - a$ that is also in $B(a; 1)$, and giv
 
     *Proof:* If $(x_n)$ is bounded, then its set of terms is bounded, and hence by hypothesis totally bounded. This is equivalent to saying that every sequence in the set has a Cauchy subsequence. Hence $(x_n)$ has a Cauchy subsequence. But by hypothesis $X$ is complete, so that same Cauchy subsequence is a convergent subsequence.
 
+
+## Metrics and containment of open balls
+If $X$ is any set and $d$ and $e$ are two metrics on $X$, with $d(x,y) \leq e(x,y)$ for all $x, y \in X$, then $B_X^e(x; \epsilon) \subseteq B_X^d(x; \epsilon)$ for any $\epsilon > 0$.
+
+*Proof:* If $y \in B_X^e(x; \epsilon)$, then $e(x, y) < \epsilon$. So $d(x,y) < \epsilon$ as well by hypothesis and transitivity, meaning that $y \in B_X^d(x; \epsilon)$.
+
+
+## Product metric space, conserving metrics
+If $(X_i, d_i)$ is a metric space for each $1 \leq i \leq n$, then we can define the **product metric space** on $\prod_1^n X_i$ in a number of ways:
+
+ - $\mu_1 (a, b) = \sum_1^n d_i(a_i, b_i)$
+ - $\mu_2 (a, b) = (\sum_1^n d_i(a_i, b_i)^2)^{1/2}$
+ - $\mu_{\infty} (a, b) = max \{ d_i(a_i, b_i) : 1 \leq i \leq n \}$
+
+Then $\mu_{\infty}(a,b) \leq \mu_2(a, b) \leq \mu_1(a, b)$ for all $a, b \in \prod_1^n X_i$. Also, any metric $d$ on $\prod_1^n X_i$  such that $\mu_{\infty}(a,b) \leq d(a, b) \leq \mu_1(a, b)$ for all $a, b$ is called a **conserving metric**.
+
+ 1. $\prod_1^n X_i$ is a metric space under $\mu_1$
+
+    *Proof:* The metric is always positive since it is the sum of non-negative reals. The only way that $\mu_1(a, b)$ can be zero is if $d_i(a_i, b_i)$ is zero for all $i$ (since each is non-negative), so we must have $a_i = b_i$ by positive-definiteness of $d_i$'s. This proves that $\mu_1$ is positive definite. Symmetricity is proved directly from symmetricity for $d_i$'s. The triangle inequality follows similarly.
+
+ 2. $\prod_1^n X_i$ is a metric space under $\mu_2$
+
+    *Proof:* $\sum_1^n d_i(a_i, b_i)^2$ is non-negative, so the square root is well defined and non-negative. For $\mu_2(a, b) = 0$, we must have $d_i(a_i, b_i)^2 = 0$ for all $i$. This means we must have $d_i(a_i, b_i) = 0$, or $a_i = b_i$ for all $i$. This proves that $\mu_2$ is positive definite. Symmetricity is proved once again from symmetricity for $d_i$'s. To prove the triangle inequality, we must prove $(\sum_1^n d_i(a_i, c_i)^2)^{1/2} \leq (\sum_1^n d_i(a_i, c_i)^2)^{1/2}. It's a lot of work to write it out here, but it essentially holds from the triangle inequality for each $d_i$ and the Cauchy-Schwarz inequality in $\mathbb{R}^n$.
+
+
+ 3. $\prod_1^n X_i$ is a metric space under $\mu_1$
+
+    *Proof:* It's the max of non-negative values, so it's non-negative and zero iff each $d_i(a_i, b_i) = 0$, meaning $a_i = b_i$. This proves positive-definiteness. It's symmetric by symmetricity of each $d_i$. Finally, 
+
+$$
+\begin{aligned}
+max \{ d_i(a_i, c_i) : 1 \leq i \leq n\} & \leq max \{ d_i(a_i, b_i) + d_i(b_i, c_i) : 1 \leq i \leq n\} \\
+                                         & \leq max \{ d_i(a_i, b_i) : 1 \leq i \leq n \}$ + max \{ d_i(b_i, c_i) : 1 \leq i \leq n
+\end{aligned}
+$$
+
+which proves the triangle inequality
+
+ 4. $\mu_{\infty}(a,b) \leq \mu_2(a, b) \leq \mu_1(a, b)$
+
+    *Proof:* Letting $x = max \{ d_i(a_i, b_i) : 1 \leq i \leq n \}$, we have $x = (x^2)^{1/2} \leq (\sum_1^n d_i(a_i, b_i)^2)^{1/2}$, which proves $\mu_{\infty}(a, b) \leq \mu_2(a, b)$. To prove $\mu_2(a, b) \leq mu_1(a, b)$, we must prove that 
+
+    $$\sum_1^n x_i^2 \leq (\sum_1^n x_i)^2$$
+
+    This is, however, true by induction. It then follows from letting $x_i = d_i(a_i, b_i)$. and taking the square root of both sides.
+
+
+## Product topology
+For metric spaces $(X_i, d_i)$, $1 \leq i \leq n$ and any conserving metric $d$ on $P = \prod_1^n X_i$, the open sets with respect to this metric consist arbitrary unions of sets $\prod_1^n U_i$ for any collection of open sets $\{U_1, \ldots, U_n\}$.
+
+ 1. Let $\epsilon > 0$ and $x = (x_1, \ldots, x_n) \in P$
+
+ 2. $B_P^{\mu_{\infty}}(x; \epsilon) = \prod_1^n B_{X_i}(x_i; \epsilon)$
+
+    *Proof:* if $y \in B_P^{\mu_{\infty}}(x; \epsilon)$, then $max \{ d_i(x_i, y_i) : 1 \leq i \leq n \} < \epsilon$, so $d_i(x_i, y_i) < \epsilon$ for all $i$. This means that $y_i \in B_{X_i}(x_i; \epsilon)$ for all $i$, so $y \in \prod_1^n B_{X_i}(x_i; \epsilon)$. Conversely, If $y \in \prod_1^n B_{X_i}(x_i; \epsilon)$, then $d_i(x_i, y_i) < \epsilon$, so $max \{ d_i(x_i, y_i) 1 \leq i \leq n \} < \epsilon$ as well, hence $y \in B_P^{\mu_{\infty}}(x; \epsilon)$.
+
+ 3. For any $y \in P$, $B_P^d(x; \epsilon) \subseteq B_P^{\mu_{\infty}}(x; \epsilon)$
+
+    *Proof:* This holds because $\mu_{\infty}(x,y) \leq d(x,y)$ for any $y$.
+
+ 4. For any $U_1, \ldots, U_n$, with $U_i$ open in $X_i$, we have $U = \prod_1^n U_i$ is open in $P$.
+
+    *Proof:* If $y \in U$, then each $y_i \in U_i$, and we can find $\epsilon_i$ such that $B_{X_i}(y_i; \epsilon_i) \subseteq U_i$ since by hypothesis $U_i$ is open in $X_i$. Let $\epsilon = min \{ \epsilon_1, \ldots, \epsilon_n \}$. Then we know that $\prod_1^n B_{X_i}(y_i; \epsilon) \subseteq U$ by definition of $\epsilon$. But $\prod_1^n B_{X_i}(y_i; \epsilon = B_P^{\mu_{\infty}}(y; \epsilon)$ by (2). In words, we have an open ball with respect to the $\mu_{\infty}$ metric centered around $y$ that is contained in $U$. We wanted to prove that $U$ was open with respect to the $d$ metric, however, but (3) provides us this since the open ball of radius $\epsilon$ centered at $y$ with respect to $d$ is contained in $B_P^{\mu_{\infty}}(y; \epsilon)$.
+
+ 5. If $W$ is open in $P$, then $W$ is the union of sets $\prod_1^n U_i$ for $U_i$ open in $X_i$.
+
+    *Proof:* TODO
+
+TODO
+
+### Definition of product topology
+The collection of open sets induced by any conserving metric is called the **product topology** on $(X_1, \ldots, X_n)$, and any metric which induces this topology on the metric space is called a **product metric** for $(X_1, \ldots, X_n)$.
+
+
+## Convergent sequences in product space
+If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_n)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$.
+
+*Proof:* TODO
 
 ## Definition of continuity
 A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **continuous at $x \in X$** if for every open ball $B_Y(f(x); \epsilon)$ there is an open ball $B_X(x; \delta)$ for some $\epsilon$ and $\delta$, such that $f(B_X(x; \delta)) \subseteq B_Y(f(x); \epsilon)$.
