@@ -289,6 +289,11 @@ If $(x_n)$ and $(y_n)$ are sequences in $X$ such that $(x_n) \to a$ and $(y_n) \
 ### Remark
 We are now justified in speaking of *the* limit of a sequence.
 
+## Equivalent characterization of convergence
+A sequence $(x_n)$ converges to $x$ in a metric space $(X, d)$ iff the sequence $(d(x_n, x))$ converges to $0$ in $\mathbb{R}$.
+
+*Proof:* If $(x_n) \to x$, then for any $\epsilon > 0$, we can find an $N$ such that $d(x_n, x) < \epsilon$ for all $n \geq N$. So the tail sequence of $(d(x_n, x))$ starting at $N$ is contained in an $\epsilon$-ball around $0$ in $\mathbb{R}$, proving the sequence $(d(x_n, x))$ converges to zero. Conversely, if some tail sequence of $(d(x_n, x))$ converges to $0$, then the tail seqence of $(x_n)$ starting at the same point has all terms within the $\epsilon$-ball around $x$.
+
 
 ## A sequential characterization of interior and closure points.
 If $(X, d)$ is a metric space and $S \subseteq X$, then $x$ is an interior point of $S$ iff no sequence in $X - S$ converges to $x$. Also, $x$ is a closure point of $S$ iff there is a sequence in $S$ that converges to $x$.
@@ -394,6 +399,57 @@ Any convergent sequence is bounded.
 *Proof:*  Every convergent sequence is Cauchy.
 
 
+## Definition of bounded function
+If $(X, d)$ is a metric space and $S$ is any set, then a function $f: S \to X$ is called a **bounded function** iff $img f$ is a bounded subset of $X$. The set of all bounded functions $S \to X$ is denoted $Bf(S, X)$.
+
+## Metric space of bounded functions
+We can define a metric on $Bf(S,X)$ by defining $e(f,g) := sup \{ d(f(s), g(s)) : s \in S \}$. This metric is called the **supremum metric**, and the resulting metric space is what we will take to be the standard metric space of bounded functions.
+
+*Proof:*  We have to prove that $e$ is a metric on $Bf(S, X)$. First we must prove that $e$ is a function $Bf(S, X) \times Bf(S, X) \to \mathbb{R}$. Really we need to prove that the supremum is always finite. But $img f$ is contained in some ball $B(z_f; \epsilon_f)$, and similarly $img g$ is contained in some $B(z_g; \epsilon_g)$. So for all $s \in S$, $d(f(s), g(s)) \leq d(f(s), z_f) + d(z_f, z_g) + d(z_g, g(s)) \leq \epsilon_f + \epsilon_g + d(z_f, z_g)$ by the triangle inequality, so the set $\{d(f(s), g(s)) : s \in S\}$ is bounded above in $\mathbb{R}$ and hence has a finite supremum. So the function is well-defined, at least.
+
+To prove symmetry, note that $d(f(s), g(s)) = d(g(s), f(s))$ for all $s \in S$ by symmetry of $d$, so $e(f,g) = e(g, f)$. 
+
+To prove positive definiteness, note that $d(f(s), f(s)) = 0$ for all $s \in S$, so clearly $e(f, f) = sup \{ 0 \} = 0$. For $f \neq g$, there is some $s$ such that $f(s) \neq g(s)$, hence $d(f(s), g(s)) \neq 0$. So the supremum is positive.
+
+To prove the triangle inequality, we need $e(f, h) \leq e(f, g) + e(g, h)$ for any bounded $f, g, h: S \to X$. So we need to prove
+
+$$sup \{ d(f(s), h(s) : s \in S \} \leq sup \{ d(f(s), g(s)) : s \in S \} + sup \{ d(g(s), h(s)) : s \in S \}$$
+
+We generalize slightly for more compact notation. We have an index set $I$, and 3 subsets of $\mathbb{R}$ that are bounded above: $X = \{x_i : i \in I \}$, $Y = \{y_i : i \in I \}$, $Z = \{z_i : i \in I \}$. For all $i$, $x_i \leq y_i + z_i$. Prove that $sup X \leq sup Y + sup Z$. The key is to note that for all $w_i \in W = \{ y_i + z_i : i \in I \}$, x_i \leq w_i$. So any upper bound $u$ of $W$ is an upper bound of $X$ as well, and hence $sup X \leq u$. Now just note that $sup Y + sup Z$ is an upper bound of $W$ since $y_i \leq sup Y$ for all $i$ and $z_i \leq sup Z$ for all $i$. This establishes the triangle inequality.
+
+## Convergence in $Bf(S, X)$ implies pointwise convergence
+If $S$ is any set, $(X, d)$ any metric space, and $(f_n)$ is a sequence in $Bf(S, X)$ that converges to $g$ in $Bf(S, X)$, then for all $s \in S$, the sequence $(f_n(s))$ converges to $g(s)$ in $X$.
+
+ 1. Let $x \in S$ and $\epsilon > 0$.
+
+ 2. There is a $k \in \mathbb{N}$ such that $sup \{ d(f_m(s), g(s) : s \in S \}$ for all $m \geq k$.
+
+    *Proof:* Since $(f_n)$ converges to $g$, there is some $k$ such that the tail of $(f_n)$ starting at $k$ is contained within the $\epsilon$-ball around $g$.
+
+ 3. $(f_n(x))_{n \geq k}$ is $\epsilon$-close to $g(x)$.
+
+    *Proof:* $d(f_m(x), g(x) \leq sup \{ d(f_m(s), g(s) : s \in S \} < \epsilon$ for all $m \geq k$ by (2).
+
+ 4. Q.E.D.
+
+    *Proof:* (3) proves we can find a tail of $(f_n(x))$ that is $\epsilon$-close to $g(x)$, and $\epsilon$ was arbitrary by (1).
+
+
+## Definition of uniform and pointwise convergence
+If $S$ is any set, $(X,d)$ is any metric space, $(f_n)$ is a sequence of functions $S \to X$ and $g: S \to X$, then 
+
+ - $(f_n)$ converges **pointwise** to $g$ iff $(f_n(s))$ converges to $g(s)$ for all $s \in S$
+ - $(f_n)$ converges **uniformly** to $g$ iff $sup \{ d(f_n(s), g(s)) : s \in S \}$ is finite for all $n$ and $(sup \{ d(f_n(s), g(s)) : s \in S \})$ converges to $0$ in $\mathbb{R}$.
+
+### Remark
+The supremum metric defined on $B(S, X)$ is a metric that ensures that convergent sequences converge uniformly. However, we do not insist that functions must be bounded in order for them to converge uniformly. Our definition here is more general.
+
+## Uniform convergence implies pointwise convergence
+We generalize our previous proposition for metric spaces of bounded functions. If $S$ is any set, $(X, d)$ any metric space, and $(f_n)$ is a sequence of functions $S \to X$, then if $(f_n)$ converges uniformly to $g$, it converges pointwise to $g$ as well.
+
+*Proof:* We must prove that $(d(f_n(s), g(s))$ converges to $0$ for all $s \in S$. But $0 \leq d(f_n(s), g(s)) \leq sup \{ d(f_n(x), g(x)) : x \in S \}$ by definition, so by the squeeze theorem of real analysis, $(d(f_n(s), g(s)))$ converges to $0$.
+
+
 ## Definition of totally bounded subsets
 A subset $S$ of a metric space $X$ is **totally bounded** if for every $r \in \mathbb{R}_{\geq 0}$, there are finitely many open balls of radius $r$ that cover $S$.
 
@@ -433,6 +489,7 @@ Hence, we can find a term $x_{n_1} \in T - a$ that is also in $B(a; 1)$, and giv
  3. (3) implies (4)
 
     *Proof:* If $(x_n)$ is a Cauchy, it is bounded, so by hypothesis $(x_n)$ has a subsequence converging to some point $c$, so the whole sequence converges to $c$, meaning that $X$ is complete. Also, if $S$ is a bounded subset, any sequence in $S$ is also bounded, so any such sequence has a convergent subsequence. All convergent sequences are Cauchy, so every sequence in $S$ has a Cauchy subsequence. This implies that $S$ is totally bounded, by the sequential characterization of totally bounded sets.
+
 
 
 ## Definition of continuity
