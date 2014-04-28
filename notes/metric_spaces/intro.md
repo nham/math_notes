@@ -50,6 +50,11 @@ Any open ball $B(x; \epsilon)$ is an open set.
 ### Remark
 Open balls are a kind of "primitive" open set that all other open sets are defined in terms of. We haven't yet proved that open balls are open sets, however. So let's do that.
 
+## Open sets are unions of open balls
+Every open set $U$ in $(X,d)$ is a union of open balls.
+
+*Proof:* By definition all $u \in U$ have an $\epsilon_u$ such that $B(u; \epsilon_u) \subseteq U$. So $\bigcup_{u \in } B(u; \epsilon_u) = U$.
+
 
 ## Topology Lemma for open sets
 In a metric space $(X, d)$:
@@ -455,6 +460,12 @@ We generalize our previous proposition for metric spaces of bounded functions. I
 A subset $S$ of a metric space $X$ is **totally bounded** if for every $r \in \mathbb{R}_{\geq 0}$, there are finitely many open balls of radius $r$ that cover $S$.
 
 
+## A totally bounded subset is bounded
+Any totally bounded subset $S$ of $(X, d)$ is bounded.
+
+*Proof:* We have some $1$-net covering $S$, so $\bigcup_1^n B(x_1; 1)$ for some $x_1, \ldots, x_n$. For any $s \in S$, $s$ is contained in the $1$-ball around some $x_k$, so $d(x_1, s) \leq d(x_1, x_k) + d(x_k, s) < d(x_1, x_k) + 1$. So let $\epsilon = max \{ d(x_1, x_k) + 1 : 1 \leq k \leq n \}$. Then $S \subseteq B(x_1; \epsilon)$, so $S$ is bounded.
+
+
 ## Definition of $\epsilon$-net
 An $\epsilon$-net for a set $S$ is a finite subset $\{s_1, \ldots, s_n \}$ such that $S \subseteq \bigcup_1^n B(s_1, \epsilon)$.
 
@@ -612,7 +623,9 @@ If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n 
 
 *Proof:* Assuming $(P, d)$ has the BW-property, then any bounded sequence $(a_n)$ in $X_i$ can be turned into a sequence $(p_n)$ in $P$ by picking arbitrary $x_j \in X_j$ for $j \neq i$ and defining $p_n = (z_1, \ldots, z_n)$ with $z_i = a_n$ and $z_j = x_j$ for $i \neq j$. Then $(\pi_j(p_n)) = (a_n)$ if $j = i$ and $(\pi_j(p_n))$ is the constant sequence of $x_j$ otherwise. Since each $(\pi_j(p_n))$ is bounded in $X_j$, we have $(p_n)$ bounded in $P$, so it has a convergent subsequence $(p_{n_k})$ converging to come $c \in P$. This implies that, in particular, $(\pi_i(p_{n_k}))$ converges in $X_i$ to $\pi_i(c)$. But this is a subsequence of $(a_n)$, so $(a_n)$ has a subsequence converging to $\pi_i(c)$.
 
-Conversely, if each $(X_i, d_i)$ has the BW-property, then for any bounded sequence $(x_n)$ in $P$, each sequence $(\pi_i(x_n))$ is bounded in $X_i$, and hence TODO
+Conversely, if each $(X_i, d_i)$ has the BW-property, then for any bounded subset $S$ of $P$, we must have $\pi_i(S)$ bounded as well for all $i$. If $S$ is additionally infinite, then we must have some $i$ such that $\pi_i(S)$ is infinite, otherwise $\prod_1^n \pi_i(S)$ is finite and a superset of $S$, implying $S$ is finite as well. So $\pi_i(S)$ is an infinite bounded subset of $X_i$, and hence by the BW-property it has an accumulation point $a \in X_i$. Let $x_j \in \pi_j(S)$ be arbitrary for every $j \neq i$. Define $c = (c_1, \ldots, c_n)$, where $c_i = a$ and $c_j = x_j$ for all $j \neq i$. We want to prove that $c$ is an accumulation point of $
+
+TODO
 
 
 
@@ -648,17 +661,60 @@ Conversely if the inverse image of any open set in $Y$ is an open set in $X$, th
 
 ## Compact sets
 
-A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact if every open cover has a finite subcover.
+A subset $S$ of some metric space is **compact** if for every collection $\mathcal{U}$ of open sets whose union contains $S$, there's a finite subcollection $\{U_1, \ldots, U_n\}$ whose union also contains $S$. We call any collection of open sets whose union contains $S$ an **open cover** of $S$, and the finite subcollection is called a **finite sub-cover**. Restated, a subset is compact iff every open cover has a finite subcover.
 
-A set S in a metric space $(X,d)$ is **bounded** if for some $x \in X$, $S \subseteq B(x; \epsilon)$ for some $\epsilon > 0$.
+## Open ball compactness
+A subset $S$ is compact in $(X, d)$ iff every collection of open balls that cover $S$ containes a finite sub cover.
 
-**Lemma:** A compact set $S$ in a metric space is bounded.  
-*Proof:* Suppose $S$ is compact and non-empty (empty sets are clearly bounded). Fix a point $x \in S$. The set of all open balls of $x$ covers $S$ (it covers the whole metric space, actually). This is an open cover of $S$, so there's at least one finite subcover $\{ B(x; r_1), \ldots, B(x; r_n) \}$. The union of these is just the biggest open ball, $B(x; N)$ where $N := max\{r_1, \ldots, r_n\}$. Hence this open ball contains $S$, meaning $S$ is bounded. $\Box$
+*Proof:* Compactness immediately implies that every cover of open balls has a finite subcover. Conversely, every open set is a union of open balls, so any open cover $\mathcal{O}$ can be transformed into a cover made out of open balls. By hypothesis this has a finite subcover $\mathcal{B}$. Each one of the balls in this subcover is a subset of one open set in the original open cover, so the subcollection of $\mathcal{O}$ of open sets that correspond to the open balls in $\mathcal{B}$ is finite, covers $S$, and is a subcollection of $\mathcal{O}$.
 
-**Lemma:** A compact subset $S$ of some metric space $X$ is closed.
 
-*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$ there is at least one pair of open balls around $x$ and $y$ that are disjoint (take $\epsilon_x = d(x,y)$). Then the collection of all such balls $B(x; \epsilon_x)$  is an open cover of $S$, which, being compact, implies the existence of a finite number of them that cover $S$. These open balls $B(x_1; \epsilon_1), \ldots, B(x_n; \epsilon_n)$ have corresponding open balls $D_{\delta_i}(y)$ around $y$ that are disjoint from the $B(x_i; \epsilon_i)$'s. The smallest ball $D_{\delta_i}(y)$ is disjoint from the whole union of $B(x_k; \epsilon_k)$'s, so it's disjoint from $S$, meaning contained in $X-S$. So $X-S$ is open. $\Box$
+## Compact subsets are totally bounded
+A compact set $S$ in a metric space is totally bounded, hence also bounded.  
+
+*Proof:* For any $\epsilon > 0$, form the collection $S_{\epsilon} = \{ B(s; \epsilon) : s \in S \}$. $S_{\epsilon}$ is an open cover of $S$, hence has a finite subcover since $S$ is compact. This proves that $S$ is totally bounded since $\epsilon$ was arbitrary. Since totally bounded subsets are bounded, the result is established.
+
+## compact subsets are closed
+A compact subset $S$ of some metric space $X$ is closed.
+
+*Proof:* Let $y$ be any point in $X-S$. For any $x \in S$, $B(x; d(x, y) / 2)$ and $B(y; d(x,y)/2)$ are disjoint. Take the collection of open balls around points of $S$. This is an open cover of $S$, and hence has a finite subcover of balls $B(x_i; d(x_i; y)/2)$ for some $x_1, \ldots, x_n$. Then $\bigcap B(y; d(x_i, y)/2)$ is an open ball around $y$ that is disjoint from $S$, hence contained in $X - S$, so $X - S$ is open.
+
+
+## Closed subsets of compact subsets are compact
+If $S$ is a compact subset of $X$ and $C$ is a closed subset of $S$, then $C$ is compact.
+
+*Proof:* Any open cover $\mathcal{O}$ of $C$ can be transformed into an open cover of $S$ via $\mathcal{O} \cup \{ X - C \}$ since $X - C$ is open on account of $C$ being closed. So we have some finite subcover of $S$, call it $\mathcal{S}$. If it contains $X - C$, then $\mathcal{S} - (X - C)$ is a finite subcover of $\mathcal{O}$. If not, then $\mathcal{S}$ is a finite subcover of $\mathcal{O}$. So $C$ is compact.
+
 
 **Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
 
 *Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
+
+## Definition of finite intersection property
+A collection $\mathcal{S}$ of subsets of a metric space $(X, d)$ has the **finite intersection property** if every non-empty finite subcollection of $\mathcal{S}$ has a non-empty intersection.
+
+## Equivalent characterization of compactness
+For a metric space $(X, d)$, the following are equivalent:
+
+ 1. $X$ is compact
+ 2. $X$ is complete and totally bounded
+ 3. $X$ is bounded and has the Bolzano-Weierstrass property.
+ 4. Every sequence in $X$ has a convergent subsequence
+ 5. Every collection of subsets of $X$ that possesses the finite intersection property has a non-empty intersection
+
+*Proof:* If (3) is true, then $X$ is bounded and has the Bolzano-Weierstrass property, so $X$ is complete and every bounded subset is totally bounded. But since $X$ is bounded, it must be totally bounded as well. So (3) implies (2). Assuming (2), we have that $X$ is complete and totaly bounded. So $X$ must be bounded. Also, any bounded subset of $X$ is totally bounded since every subset is totally bounded. This proves that (2) implies (3).
+
+If (3) holds, then every sequence in $X$ is bounded and so has a convergent subsequence, which implies (4).
+
+If (4) holds, TODO: apparently you can prove that $X$ is totally bounded. Also if every sequence has a convergent sequence, every Cauchy sequence converges, so $X$ is complete and (4) implies (2).
+
+(1) => (4) is "easy" according to notes I found online. (http://www.econ.brown.edu/fac/Mark_Dean/Maths_RA5_10.pdf). It involves using "closed subsets of compact spaces are compact", somehow.
+
+If (1) fails to hold, then we have some open cover $\mathcal{O}$ of $X$, consisting entirely of open balls, and no finite subcollection of open balls covers $X$. So pick an arbitrary $x_0 \in S$. We can find a $B_0 \in \mathcal{O}$ such that $x_0 \in B_0$. By induction, for any $k \in \mathbb{N}$, if $x_k$ and $B_k$ are chosen such that $x_k \in B_k \in \mathcal{O}$, then we can find some $x_{k+1} \in S - \bigcup_1^k B_i$, and some $B_{k+1} \in \mathcal{O}$ such that $x_{k+1} \in B_{k+1}$. This gives a sequence $(x_n)$ which, by construction, has each term not in the union of the balls that contain the previous terms. If $(x_n)$ has a subsequence $(x_{n_k})$ that converges to some $c \in X$, then $ BLAH TODO FIXME
+
+If (1) is true
+
+TODO (1) iff [(2) or (3)]
+
+### Definition of sequential compactness
+Condition (4) of the previous proposition is called **sequential compactness**. The previous theorem, in particular, proves that a metric space is compact iff it is sequentially compact.
