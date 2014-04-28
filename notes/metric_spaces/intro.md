@@ -497,6 +497,9 @@ Hence, we can find a term $x_{n_1} \in T - a$ that is also in $B(a; 1)$, and giv
 
     *Proof:* If $(x_n)$ is bounded, then its set of terms is bounded, and hence by hypothesis totally bounded. This is equivalent to saying that every sequence in the set has a Cauchy subsequence. Hence $(x_n)$ has a Cauchy subsequence. But by hypothesis $X$ is complete, so that same Cauchy subsequence is a convergent subsequence.
 
+### Definition
+A metric space that has any one of the three equivalent properties above is said to have the **Bolzano-Weierstrass property**.
+
 
 ## Metrics and containment of open balls
 If $X$ is any set and $d$ and $e$ are two metrics on $X$, with $d(x,y) \leq e(x,y)$ for all $x, y \in X$, then $B_X^e(x; \epsilon) \subseteq B_X^d(x; \epsilon)$ for any $\epsilon > 0$.
@@ -573,6 +576,14 @@ For metric spaces $(X_i, d_i)$, $1 \leq i \leq n$ and any conserving metric $d$ 
 ### Definition of product topology
 The collection of open sets induced by any conserving metric is called the **product topology** on $(X_1, \ldots, X_n)$, and any metric which induces this topology on the metric space is called a **product metric** for $(X_1, \ldots, X_n)$.
 
+## Definition of projection operator
+If $X_1, \ldots, X_n$ are sets and $P = \prod_1^n X_i$, then we define for every $i \in \mathbb{N}$ with $1 \leq i \leq n$ a function $\pi_i: P \to X_i$ by $pi_i(x_1, \ldots, x_n) = x_i$.
+
+## Projection operator and containment
+If $X_1, \ldots, X_n$ are sets, $P = \prod_1^n X_i$, and $A \subseteq B \subseteq P$, then $pi_i(A) \subseteq pi_i(B)$.
+
+*Proof:* If $a \in pi_i(A)$, then there exists an $x = (x_1, \ldots, x_n) \in A$ with $x_i = a$. So $x \in B$ as well by hypothesis, hence $a \in pi_i(B)$.
+
 
 ## Convergent sequences in product space
 If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_n)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$, where $\pi_i(z_1, \ldots, z_n) = z_i$.
@@ -580,6 +591,30 @@ If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric s
 *Proof:* If $(x_n) \to c$ in $P$, then fixing $i$, we must prove that for every open $U$ \subseteq X_i$ containing $\pi_i(c)$, some tail of $(\pi_i(x_n))$ is contained in $U$. Form the product $S = \prod_1^n S_j$, where $S_i = U$ and $S_j = B_{X_j}(\pi_j(c); 1)$ for all $j \neq i$. This is open in $P$ by the product topology and it contains $c$, so some tail of $(x_n)$ starting at $k$ is contained in $S$. This means that the tail of $(\pi_i(x_n))$ starting at $k$ is contained in $U$, which implies that $(\pi_i(x_n)) \to \pi_i(c)$.
 
 Conversely, $(\pi_i(x_n)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_n))_{n \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_n))_{n \geq N}$ is contained in $U_i$, so $(x_n)_{n \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
+
+### Remark
+I think this theorem was generalized to any space with product topology (instaed of just using conserving metric) because it's true for general product topological spaces, so someone going on to study topology would certainly see it later.
+
+
+## Bounded subsets and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is bounded in $P$ iff $\pi_i(S)$ is bounded in $X_i$ for all $i$, where $\pi_i(x_1, \ldots, x_n) := x_i$.
+
+*Proof:* If $S$ is bounded, then by definition there is some $z \in P$ and some $\epsilon > 0$ such that $S \subseteq B_P^d(z; \epsilon)$. But $B_P^d(z; \epsilon) \subseteq B_P(z; \epsilon) = \prod_1^n B_{X_i}(\pi_i(z); \epsilon)$, and since $\pi_i(\prod_1^n B_{X_i}(\pi_i(z); \epsilon)) = B_{X_i}(\pi_i(z); \epsilon)$, we have $\pi_i(S) \subseteq B_{X_i}(\pi_i(z); \epsilon), so $\pi_i(S)$ is bounded.
+
+Conversely, if $\pi_i(S)$ is bounded in $X_i$, then there exists some $z_i \in X_i$ and some $\epsilon_i$ such that $B_{X_i}(z_i; \epsilon_i)$ contains $\pi_i(S)$. Let $\epsilon = max \{ \epsilon_1, \ldots, \epsilon_n \}$. Then $\pi_i(S) \subseteq B_{X_i}(z_i; \epsilon)$, so $prod_1^n \pi_i(S) \subseteq \prod_1^n B_{X_i}(z_i; \epsilon) = B_P^{\mu_{\infty}}(z; \epsilon)$, where $z = (z_1, \ldots, z_n)$. But $S \subseteq \prod_1^n \pi_i(S)$, and $B_P^{\mu_{\infty}}(z; \epsilon) \subseteq B_P^{\mu_1}(z; n \epsilon) \subseteq B_P^d(z; n \epsilon)$, so $S$ is bounded in $P$.
+
+### Corollary for bounded sequences
+A sequence $(x_n)$ in $P$ with conserving metric $d$ is bounded iff each sequence $(\pi_i(x_n))$ is bounded in $X_i$.
+
+
+## Bolzano-Weierstrass property on product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $(P, d)$ has the Bolzano-Weierstrass property iff each space $(X_i, d_i)$ has it.
+
+*Proof:* Assuming $(P, d)$ has the BW-property, then any bounded sequence $(a_n)$ in $X_i$ can be turned into a sequence $(p_n)$ in $P$ by picking arbitrary $x_j \in X_j$ for $j \neq i$ and defining $p_n = (z_1, \ldots, z_n)$ with $z_i = a_n$ and $z_j = x_j$ for $i \neq j$. Then $(\pi_j(p_n)) = (a_n)$ if $j = i$ and $(\pi_j(p_n))$ is the constant sequence of $x_j$ otherwise. Since each $(\pi_j(p_n))$ is bounded in $X_j$, we have $(p_n)$ bounded in $P$, so it has a convergent subsequence $(p_{n_k})$ converging to come $c \in P$. This implies that, in particular, $(\pi_i(p_{n_k}))$ converges in $X_i$ to $\pi_i(c)$. But this is a subsequence of $(a_n)$, so $(a_n)$ has a subsequence converging to $\pi_i(c)$.
+
+Conversely, if each $(X_i, d_i)$ has the BW-property, then for any bounded sequence $(x_n)$ in $P$, each sequence $(\pi_i(x_n))$ is bounded in $X_i$, and hence TODO
+
+
 
 ## Definition of continuity
 A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **continuous at $x \in X$** if for every open ball $B_Y(f(x); \epsilon)$ there is an open ball $B_X(x; \delta)$ for some $\epsilon$ and $\delta$, such that $f(B_X(x; \delta)) \subseteq B_Y(f(x); \epsilon)$.
