@@ -296,6 +296,11 @@ A sequence $(x_n)$ converges to $x$ in a metric space $(X, d)$ iff the sequence 
 
 *Proof:* If $(x_n) \to x$, then for any $\epsilon > 0$, we can find an $N$ such that $d(x_n, x) < \epsilon$ for all $n \geq N$. So the tail sequence of $(d(x_n, x))$ starting at $N$ is contained in an $\epsilon$-ball around $0$ in $\mathbb{R}$, proving the sequence $(d(x_n, x))$ converges to zero. Conversely, if some tail sequence of $(d(x_n, x))$ converges to $0$, then the tail seqence of $(x_n)$ starting at the same point has all terms within the $\epsilon$-ball around $x$.
 
+## Topological characterization of convergence
+If $(x_n)$ is a sequence in $(X, d)$, then $(x_n)$ converges to $c \in X$ iff every open set in $X$ containing $c$ also contains some tail of $(x_n)$.
+
+*Proof:* If every open set containing $c$ contains a tail of $(x_n)$, then $(x_n) \to c$ since it proves that every open ball around $c$ contains a tail. Conversely, if every open ball centered at $c$ contains some tail, then if $U$ is open and $c \in U$, then some open ball around $c$ is contained in $U$. This open ball contains a tail, so $U$ does as well.
+
 
 ## A sequential characterization of interior and closure points.
 If $(X, d)$ is a metric space and $S \subseteq X$, then $x$ is an interior point of $S$ iff no sequence in $X - S$ converges to $x$. Also, $x$ is a closure point of $S$ iff there is a sequence in $S$ that converges to $x$.
@@ -548,28 +553,33 @@ For metric spaces $(X_i, d_i)$, $1 \leq i \leq n$ and any conserving metric $d$ 
 
     *Proof:* if $y \in B_P^{\mu_{\infty}}(x; \epsilon)$, then $max \{ d_i(x_i, y_i) : 1 \leq i \leq n \} < \epsilon$, so $d_i(x_i, y_i) < \epsilon$ for all $i$. This means that $y_i \in B_{X_i}(x_i; \epsilon)$ for all $i$, so $y \in \prod_1^n B_{X_i}(x_i; \epsilon)$. Conversely, If $y \in \prod_1^n B_{X_i}(x_i; \epsilon)$, then $d_i(x_i, y_i) < \epsilon$, so $max \{ d_i(x_i, y_i) 1 \leq i \leq n \} < \epsilon$ as well, hence $y \in B_P^{\mu_{\infty}}(x; \epsilon)$.
 
- 3. For any $y \in P$, $B_P^d(x; \epsilon) \subseteq B_P^{\mu_{\infty}}(x; \epsilon)$
+ 3. $B_P^{\mu_1}(x; \epsilon) \subseteq B_P^d(x; \epsilon) \subseteq B_P^{\mu_{\infty}}(x; \epsilon)$
 
-    *Proof:* This holds because $\mu_{\infty}(x,y) \leq d(x,y)$ for any $y$.
+    *Proof:* This holds because $\mu_{\infty}(x,y) \leq d(x,y) \leq \mu_1(x, y)$ for any $y$.
 
  4. For any $U_1, \ldots, U_n$, with $U_i$ open in $X_i$, we have $U = \prod_1^n U_i$ is open in $P$.
 
     *Proof:* If $y \in U$, then each $y_i \in U_i$, and we can find $\epsilon_i$ such that $B_{X_i}(y_i; \epsilon_i) \subseteq U_i$ since by hypothesis $U_i$ is open in $X_i$. Let $\epsilon = min \{ \epsilon_1, \ldots, \epsilon_n \}$. Then we know that $\prod_1^n B_{X_i}(y_i; \epsilon) \subseteq U$ by definition of $\epsilon$. But $\prod_1^n B_{X_i}(y_i; \epsilon = B_P^{\mu_{\infty}}(y; \epsilon)$ by (2). In words, we have an open ball with respect to the $\mu_{\infty}$ metric centered around $y$ that is contained in $U$. We wanted to prove that $U$ was open with respect to the $d$ metric, however, but (3) provides us this since the open ball of radius $\epsilon$ centered at $y$ with respect to $d$ is contained in $B_P^{\mu_{\infty}}(y; \epsilon)$.
 
- 5. If $W$ is open in $P$, then $W$ is the union of sets $\prod_1^n U_i$ for $U_i$ open in $X_i$.
+ 5. $B_P^{\mu_{\infty}}(x; \epsilon / n) \subseteq B_P^{\mu_1}(x; \epsilon)$
 
-    *Proof:* TODO
+    *Proof:*  If $y \in B_P^{\mu_{\infty}}(x; \epsilon / n)$, then $d_i(x_i, y_i) < \epsilon / n$, so $\sum_1^n d_i(x_i, y_i) < \epsilon$, hence $y \in B_P^{\mu_1}(x; \epsilon)$.
 
-TODO
+ 6. If $W$ is open in $P$, then $W$ is the union of sets $\prod_1^n U_i$ for $U_i$ open in $X_i$.
+
+    *Proof:* For all $w \in W$, there is some $B_P^d(w; \epsilon) \subseteq W$. But by (3) we have B_P^{\mu_1}(w; \epsilon) \subseteq B_P^d(w; \epsilon) \subseteq W$, and by (5) we have $B_P^{\mu_{\infty}}(w; \epsilon / n) \subseteq W$. So every point in $W$ has a product of open balls around it that is contained in $W$, hence $W$ is the union of products of open balls.
+
 
 ### Definition of product topology
 The collection of open sets induced by any conserving metric is called the **product topology** on $(X_1, \ldots, X_n)$, and any metric which induces this topology on the metric space is called a **product metric** for $(X_1, \ldots, X_n)$.
 
 
 ## Convergent sequences in product space
-If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_n)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$.
+If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_n)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$, where $\pi_i(z_1, \ldots, z_n) = z_i$.
 
-*Proof:* TODO
+*Proof:* If $(x_n) \to c$ in $P$, then fixing $i$, we must prove that for every open $U$ \subseteq X_i$ containing $\pi_i(c)$, some tail of $(\pi_i(x_n))$ is contained in $U$. Form the product $S = \prod_1^n S_j$, where $S_i = U$ and $S_j = B_{X_j}(\pi_j(c); 1)$ for all $j \neq i$. This is open in $P$ by the product topology and it contains $c$, so some tail of $(x_n)$ starting at $k$ is contained in $S$. This means that the tail of $(\pi_i(x_n))$ starting at $k$ is contained in $U$, which implies that $(\pi_i(x_n)) \to \pi_i(c)$.
+
+Conversely, $(\pi_i(x_n)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_n))_{n \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_n))_{n \geq N}$ is contained in $U_i$, so $(x_n)_{n \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
 
 ## Definition of continuity
 A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **continuous at $x \in X$** if for every open ball $B_Y(f(x); \epsilon)$ there is an open ball $B_X(x; \delta)$ for some $\epsilon$ and $\delta$, such that $f(B_X(x; \delta)) \subseteq B_Y(f(x); \epsilon)$.
