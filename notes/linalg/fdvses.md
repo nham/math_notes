@@ -312,6 +312,8 @@ Combining the last two propositions, we have that linear maps send independent s
 ### Corollary
 For any linear map $T: V \to W$ and basis $B$ for $V$, $T$ is an isomorphism iff $T(B)$ is a basis.
 
+*Proof:* We already have one direction. To prove that any $T$ which maps each basis to a basis must be an isomorphism, let $B$ be a basis for $V$. Then if $T(u) = T(v)$, we have $\sum_1^n c_i T(b_i) = \sum_1^n d_i T(b_i)$, so if $c_i \neq d_i$ for any $i$, the vectors $T(b_i)$ are not independent. So in fact $u = v$. Also, for any $w \in W$, $w = \sum_1^n a_i T(b_i)$ since $T(b_i)$'s are a basis, so $w = T(\sum_1^n a_i b_i)$.
+
 ### Corollary 
 $V$ and $W$ are isomorphic iff $dim V = dim W$.
 
