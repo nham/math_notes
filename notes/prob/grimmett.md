@@ -118,4 +118,58 @@ $$\mathbb{P}(\bigcap_{j \in J} A_j | B) = \prod_{j \in J} \mathbb{P}(A_j | B)$$
 
 
 ## Definition of random variable
-A **random variable** on a probability space $(\Omega, F, \mathbb{P})$ is a function $f: \Omega \to \mathbb{R}$ such that $\{\omega \in \Omega : f(\omega) \leq x \}$ is an event for every $x \in \mathbb{R}$.
+A **random variable** on a probability space $(\Omega, F, \mathbb{P})$ is a function $X: \Omega \to \mathbb{R}$ such that $\{\omega \in \Omega : X(\omega) \leq x \}$ is an event for every $x \in \mathbb{R}$.
+
+The event $\{\omega \in \Omega : X(\omega) \leq x \}$ will be notated $X(\omega) \leq x$, or just $X \leq x$ for short.
+
+## Definition of a distribution function
+If $X$ is a random variable in some probabiity space, then the **distribution function** of $X$ is the function $F: \mathbb{R} \to \mathbb{R}$ defined by
+
+$$F(x) := \mathbb{P}(X \leq x)$$
+
+
+## Facts about distribution functions
+If $F$ is the distibution of a random variable $X$, then
+
+ 1. $X(\omega) > x$ is an event for any $x \in \mathbb{R}$ and $\mathbb{P}(X(\omega) > x) = 1 - F(x)$.
+ 2. $x < X(\omega) \leq y$ is an event for any $x, y \in \mathbb{R}$, and $\mathbb{P}(x < X(\omega) \leq y) = F(y) - F(x)$
+ 3. $X(w) = x$ is an event and $\mathbb{P}(X(\omega) = x) = F(x) - lim_{y \to x^-} F(y)$.
+
+*Proof:* For (1), letting $A = \{\omega \in \Omega : X(\omega) \leq x\}$, we have $A^c = \{ \omega \in \Omega : X(\omega) > x \}$, which we notate by $X(\omega) > x$. So it holds.
+
+For (2), we define $x < X(\omega) \leq y$ by $(X(\omega) \leq y) \cap (X(\omega) > x)$. Then $(X(\omega) \leq y) = [(X(\omega) \leq x) \cup (X(\omega) > x)] \cap (X(\omega) \leq y)$ since $(X(\omega) \leq x) \cup (X(\omega) > x) = \Omega$ by (1). By distributivity, we have
+
+$$(X(\omega) \leq y) = (X(\omega) \leq x) \cup (x < X(\omega) \leq y)$$
+
+Since this is a disjoint union, by additivity we have the statement.
+
+For (3), we know for all $n$ that $(X(\omega) \leq x + 1/n)$ is an event, so 
+
+$$A = \bigcap_1^{\infty} (X(x - 1/n < \omega) \leq x)$$
+
+is an event. if $\omega \in \Omega$ such that $X(\omega) = x$, then $x - 1/n \leq x$ for any $n$, hence $\omega \in A$. Conversely, if $a \in A$, then $x - 1/n \leq X(a)$ for all $n$, so we could not have $X(a) < x$, since otherwise we'd be able to find an $n$ such that $1/n < x - X(a)$, excluding it from the intersection. We can't have $X(a) > x$ since $X(a) \leq x$ by definition of $A$. So $X(a) = x$. Hence $X(\omega) = x$ is an event, is equal to $A$, and so
+
+$$\mathbb{P}(A) = lim_{n \to \infty} F(x) - F(x - 1/n)$$
+
+or
+
+$$\mathbb{P}(A) = F(x) - lim_{n \to \infty} F(x - 1/n)$$
+
+But by the non-decreasingness of $F$, we have $lim_{n \to \infty} F(x - 1/n) = lim_{y \to x^-} F(y)$.
+
+
+## Distribution function properties
+For any distribution function $F$ for a random variable $X$, we have
+
+ 1. $x < y$ implies $F(x) \leq F(y)$ ($F$ is non-decreasing)
+ 2. $lim_{x \to - \infty} F(x) = 0$ and $lim_{x \to \infty} F(x) = 1$
+ 3. $F$ is *right-continuous*: $lim_{h \to 0} F(x + h) = F(x)$
+
+*Proof:* if $x < y$, then $X(\omega) \leq x \subseteq X(\omega) \leq y$, so by basic properties of the probability measure, $F(x) \leq F(y)$.
+
+For (2), first note that for $A_n = X(\omega) \leq -n$ and $B_n = X(\omega) \leq n$, we have $(A_n)$ a non-increasing sequence of events and $(B_n)$ a non-decreasing sequence of events, so $lim_{n \to \infty} \mathbb{P}(A_n) = \mathbb{P}(\bigcap A_n) =: \mathbb{P}(A)$ and $lim_{n \to \infty} \mathbb{P}(B_n) = \mathbb{P}(\bigcup B_n) = \mathbb{P}(B)$. But there can be no outcome $o \in A$, since we can find a natural $k$ such that $-k < X(o)$, so that the event $X(w) \leq -k$ does not contain $o$. Also every outcome $o \in B$, since we can find a natural $j$ such that $j \geq X(o)$, so that $X(w) \leq j$ contains $o$. So $A = \emptyset$ and $B = \Omega$, hence $\mathbb{P}(A) = 0$ and $\mathbb{P}(B) = 1$.
+
+To complete (2), we need to prove that for all $\epsilon > 0$ there is a $y$ such that for all $x < y$, $|F(x)| < \epsilon$, and that there is a $z$ such that for all $x > z$, $|F(x) - 1| < \epsilon$. But we can make $F(k)$ arbitrarily close to $0$ for integer $k$, so because the function is non-decreasing we can make it arbitrarily close for real $x$. Ditto for the other end.
+
+For (3), prove that for all $\epsilon > 0$, there is a $y$ such that for all $z$ with $x < z < y$, we have $|F(z) - F(x)| < \epsilon$. But it can be proven that $lim_{n \to \infty} \mathbb{P}(X(\omega) \leq x + 1/n) = F(x)$, so we can always find an $n$ such that $F(x + 1/n)$ is $\epsilon$-close to $F(x)$, meaning all $y$ such that $x < y < x + 1/n$ are as well by non-decreasingness of $F$.
+
