@@ -191,6 +191,12 @@ We denote the set of all isolated points of $S$ by $iso(S)$.
 Whether an isolated point is in the interior of $S$ depends on whether the singleton set consisting of that point is open. Some metric spaces have isolated points in the interior, others do not. (Most familiar ones, like $\mathbb{R}^n$, do not).
 
 
+## Subspace topology
+If $S$ is a subspace of $X$, then the collection of open subsets of $S$ is precisely the set $\{ U \cap S : U \text{open in} X\}$
+
+*Proof:* $B_S(x; \epsilon) = B_X(s; \epsilon) \cap S$, so if $U$ is open in $S$, then $U$ is a union of open balls in $S$, meaning it is the union of sets which are the intersection of an open ball of $X$ and $S$, which means $U = A \cap S$, where $A$ is the union of the corresponding open balls in $X$. Conversely, any open set in $X$ is a union of open balls, so by intersecting the open set with $S$ we obtain a union of open balls of $S$, hence an open set.
+
+
 ## Definition of diameter
 A subset $A$ of a metric space $(X, d)$ has a **diameter** defined by $diam(A) := sup \{ d(a, b) : a, b \in A \}$. This is the supremum defined using the extended reals, so that the diameter of the empty set is $- \infty$ and the diameter of any set with the $d(a, b)$'s not having a finite upper bound is $+ \infty$.
 
@@ -658,6 +664,19 @@ TODO: review
 
 Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
 
+## Definition of uniform continuity
+For metric spaces $(X, d)$ and $(Y, e)$, a function $f: X \to Y$ is **uniformly continuous$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $x, y$ with $d(x, y) < \delta$, $e(f(x), f(y)) < \epsilon$.
+
+### Remark
+Another way of looking at it is: for every $\epsilon > 0$, there is a $\delta > 0$ such that every $x \in X$ has the image of $B_X(x; \delta)$ contained in $B_Y(f(x); \epsilon)$. 
+
+This contrasts with continuity, which is: for every $\epsilon > 0$, for every $x \in X$ there is a $\delta > 0$ such that the image of $B_X(x; \delta)$ is contained in $B_Y(f(x); \epsilon)$. In words, the difference is that the same $\delta$ works for every $x$ in the case of uniform continuity, but for vanilla continuous functions, each point might have a different $\delta$.
+
+## Uniformly continuous functions are continuous
+If $f: X \to Y$ is uniformly continuous, it is also continuous.
+
+*Proof:* See the previous remark. Each point in fact has a $\delta$ that works (the same $\delta$, in fact).
+
 
 ## Compact sets
 
@@ -674,7 +693,7 @@ A compact set $S$ in a metric space is totally bounded, hence also bounded.
 
 *Proof:* For any $\epsilon > 0$, form the collection $S_{\epsilon} = \{ B(s; \epsilon) : s \in S \}$. $S_{\epsilon}$ is an open cover of $S$, hence has a finite subcover since $S$ is compact. This proves that $S$ is totally bounded since $\epsilon$ was arbitrary. Since totally bounded subsets are bounded, the result is established.
 
-## compact subsets are closed
+## Compact subsets are closed
 A compact subset $S$ of some metric space $X$ is closed.
 
 *Proof:* Let $y$ be any point in $X-S$. For any $x \in S$, $B(x; d(x, y) / 2)$ and $B(y; d(x,y)/2)$ are disjoint. Take the collection of open balls around points of $S$. This is an open cover of $S$, and hence has a finite subcover of balls $B(x_i; d(x_i; y)/2)$ for some $x_1, \ldots, x_n$. Then $\bigcap B(y; d(x_i, y)/2)$ is an open ball around $y$ that is disjoint from $S$, hence contained in $X - S$, so $X - S$ is open.
