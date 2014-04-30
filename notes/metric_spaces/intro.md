@@ -711,6 +711,14 @@ A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has 
        *Proof:* (2.4) proves it.
 
 
+## Sequential characterization of continuity
+If $(X, d)$ and $(Y, e)$ are metric spaces and $f: X \to Y$, then $f$ is continuous at $a \in X$ iff every sequence $(x_n)$ in $X$ converging to $a$ has $(f(x_n))$ converging to $f(a)$ in $Y$.
+
+*Proof:*  If $f$ continuous at $a$ and $(x_n) \to a$, then for every $\epsilon > 0$, there is some $\delta > 0$ such that $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$ by continuity. But some tail $(x_n)_{n \geq k}$ is contained within that $\delta$-ball around $a$ because $a$ is the limit of the sequence, so the tail $(f(x_n))_{n \geq k}$ is contained within the $\epsilon$-ball around $f(a)$, which proves that $(f(x_n))$ converges to $f(a)$.
+
+Conversely, if $f$ is not continuous at $a$, then some $\epsilon$-ball around $f(a)$ is such that every open ball around $a$ contains points that are not mapped to the $\epsilon$-ball. So we can pick an $x_1$ such that $x_1 \in B_X(a; 1)$ but $f(x_1) \notin B_Y(f(a); \epsilon)$, and in general we can pick an $x_k \in B_x(a; 1/k)$ with $f(x_k) \notin B_Y(f(a); \epsilon)$. By construction the sequence $(x_n)$ converges to $a$, but $(f(x_n))$ does not converge to $f(a)$ since it stays perpertually outside the $\epsilon$-ball around $f(a)$.
+
+
 ## Definition of uniform continuity
 For metric spaces $(X, d)$ and $(Y, e)$, a function $f: X \to Y$ is **uniformly continuous$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $x, y$ with $d(x, y) < \delta$, $e(f(x), f(y)) < \epsilon$.
 
@@ -723,6 +731,17 @@ This contrasts with continuity, which is: for every $\epsilon > 0$, for every $x
 If $f: X \to Y$ is uniformly continuous, it is also continuous.
 
 *Proof:* See the previous remark. Each point in fact has a $\delta$ that works (the same $\delta$, in fact).
+
+## Definition of Lipschitz continuity
+If $(X, d)$ and $(Y, e)$ are metric spaces, then a function $f: X \to Y$ is **Lipschitz continuous** if there is a $k > 0$ such that $e(f(a), f(b)) \leq k d(a, b)$ for all $a, b \in X$. $k$ is called the **Lipschitz constant** of the function.
+
+## Lipschitz continuous functions are uniformly continuous
+If $f: X \to Y$ is Lipschitz continuous between metric spaces $(X, d)$ and $(Y, e)$ for some $k$, then it is uniformly continuous.
+
+*Proof:* For any $\epsilon > 0$, if we take any $a$ and $b$ with $d(a, b) < \epsilon / k$, then by Lipschitz continuity, $e(f(a), f(b)) \leq k d(a, b) < \epsilon$.
+
+## Definition of a contraction map
+A map $f: X \to Y$ between metric spaces is a **contraction map** if it is Lipschitz continuous with a Lipschitz constant $k$ such that $0 \leq k < 1$.
 
 
 ## Compact sets
@@ -810,3 +829,37 @@ TODO (1) iff [(2) or (3)]
 
 ### Definition of sequential compactness
 Condition (4) of the previous proposition is called **sequential compactness**. The previous theorem, in particular, proves that a metric space is compact iff it is sequentially compact.
+
+## Banach fixed point theorem
+If $f: X \to X$ is a contraction map on a complete metric space $X$, then there is a unique $x \in X$ such that $f(x) = x$.
+
+*Proof:* Let $(x_n)$ be the sequence in $X$ defined by $x_0$ being arbitrary and $x_n = f^n(x_0)$. Then 
+
+$$d(x_2, x_1) \leq k d(x_1, x_0)$$
+
+and in general:
+
+$$d(x_{n+1}, x_n) \leq k^n d(x_1, x_0)$$
+
+Also note for any $x, y \in X$,
+
+$$
+\begin{aligned}
+d(x, y) & \leq d(x, f(x)) + d(f(x), f(y)) + d(f(y), y) \\
+        & \leq k d(x, y) + d(x, f(x)) + d(y, f(y))
+\end{aligned}
+$$
+
+which leads to
+
+$$(1 - k) d(x, y) \leq d(x, f(x)) + d(y, f(y))$$
+
+For any $N$ and any $m, n \geq N$, we have
+
+$$d(x_n, x_m) \leq \frac{1}{1-k} [k^n + k^m] d(x_1, x_0)$$
+
+But since the sequence $(k^n)$ is strictly decreasing, $k^n \leq k^N$ and $k^m \leq k^N$, so
+
+$$d(x_n, x_m) \leq \frac{2 k^N}{1-k} d(x_1, x_0)$$
+
+So for any $\epsilon$< choose $N$ such that $\frac{2 k^N}{1-k} d(x_1, x_0) < \epsilon$ to ensure that all terms in the tail starting at $N$ are within $\epsilon$ of each other. This proves that $(x_n)$ is a Cauchy sequence, so it converges in $X$ since $X$ is complete. Let $y = lim_{n \to \infty} x_n$. By $f$'s continuity, we have that $(f(x_n))$ converges to $f(y)$. But $(f(x_n))$ is tail of $(x_n)$ starting at the second term, so it has the same limit as $(x_n)$, namely $y$. In other words, $f(y) = y$.
