@@ -656,13 +656,60 @@ A function $f: X \to Y$ is continuous at $a \in X$ iff either $lim_{x \to a} f(x
 
 
 ## "Topological" definition of continuity
-TODO: review
+A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
-**Lemma:** A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
+ 1. If $f$ continuous, then every open subset $V$ of $Y$ has $f^{pre}(V)$ open in $X$.
 
-*Proof:* If $V \subset Y$ is open in $Y$, then if $f^{pre}(V)$ is non-empty (the empty set is open), then any $x \in f^{pre}(V)$ has $f(x) \in V$, so some $\epsilon$-ball around $f(x)$ fits in $V$. By continuity some $\delta$-ball around $x$ maps into the $\epsilon$-ball around $f(x)$, which shows in particular that $x$ has some open ball around it that is contained in $f^{pre}(V)$. So the set is open.
+    1. It suffices to assume 
 
-Conversely if the inverse image of any open set in $Y$ is an open set in $X$, then  for any $x \in X$, any $\epsilon$-ball around $f(x)$ is open in $Y$, so the inverse image of that ball is open. Call that inverse image $A$. Then $A$, being open, contains some open ball around $x$. This open ball is the $\delta$-ball we seek. $\Box$
+         - $V$ be an open subset of $Y$
+         - $a \in f^{pre}(V)$
+
+       and prove $a$ has an open ball around it contained in $f^{pre}(V)$.
+
+       *Proof:* If $f^{pre}(V)$ is empty, then it is open, so we ignore that case below.
+
+    2. There is an $\epsilon > 0$ such that $B_Y(f(a); \epsilon) \subseteq V$
+
+       *Proof:* $f(a) \in V$ and $V$ is open.
+
+    3. There is a $\delta > 0$ such that $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$
+
+       *Proof:* $f$ is continuous, so in particular it is continuous at $a$.
+
+    4. $B_X(a; \delta) \subseteq f^{pre}(V)$
+
+       *Proof:* By (1.2) and (1.3), $f(B_X(a; \delta)) \subseteq V$.
+
+    5. Q.E.D.
+    
+       *Proof:* (1.4) provides the open ball of $a$ that is contained in $f^{pre}(V)$.
+
+ 2. If every open subset of $V$ has an open preimage under $f: X \to Y$, then $f$ is continuous.
+
+    1. It suffices to assume 
+
+         - $a \in X$ 
+         - $\epsilon > 0$
+
+       and prove some $\delta > 0$ is such that the $\delta$-ball around $a$ gets mapped into the $\epsilon$-ball around $f(a)$
+
+    2. $f^{pre}(B_Y(f(a); \epsilon))$ is open
+
+        *Proof:* $B_Y(f(a); \epsilon)$ is open in $Y$, so the statement holds by hypothesis.
+
+    3. There is a $\delta > 0$ such that $B_X(a; delta) \subseteq f^{pre}(B_Y(f(a); \epsilon))$
+
+       *Proof:* By definition of an open set and by (2.2).
+
+    4. $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$
+
+       *Proof:* every element of the $\delta$-ball around $a$ is in the pre-image of the $\epsilon$-ball around $f(a)$.
+
+    5. Q.E.D.
+
+       *Proof:* (2.4) proves it.
+
 
 ## Definition of uniform continuity
 For metric spaces $(X, d)$ and $(Y, e)$, a function $f: X \to Y$ is **uniformly continuous$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $x, y$ with $d(x, y) < \delta$, $e(f(x), f(y)) < \epsilon$.
@@ -705,9 +752,35 @@ If $S$ is a compact subset of $X$ and $C$ is a closed subset of $S$, then $C$ is
 *Proof:* Any open cover $\mathcal{O}$ of $C$ can be transformed into an open cover of $S$ via $\mathcal{O} \cup \{ X - C \}$ since $X - C$ is open on account of $C$ being closed. So we have some finite subcover of $S$, call it $\mathcal{S}$. If it contains $X - C$, then $\mathcal{S} - (X - C)$ is a finite subcover of $\mathcal{O}$. If not, then $\mathcal{S}$ is a finite subcover of $\mathcal{O}$. So $C$ is compact.
 
 
-**Lemma:** If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ arbitrary, then the image $f(K)$ is compact in $Y$.
+## Continuous image of a compact space is compact
+If $K$ is a compact metric space, $f: K \rightarrow Y$ is a continuous function, with $Y$ an arbitrary metric space, then the image $f(K)$ is compact in $Y$.
 
 *Proof:* Let $\mathcal{U}$ be an open cover of in $img(f)$, define $\mathcal{U}^{pre} = \{f^{pre}(A) : A \in \mathcal{U}\}$. Then $\mathcal{U}^{pre}$ covers $K$ since every $k \in K$ is mapped by $f$ to some $f(k) \in img(f)$, and $\mathcal{U}$, covering all of $img(f)$, has some $A_k$ containing $f(k)$, so $f^{pre}(A_k)$ contains $k$. But $K$ is compact, so $\mathcal{U}^{pre}$ has a finite subcover $\mathcal{F}$. All the sets in the subcover are the pre-images of sets in $img(f)$, i.e. of the form $f^{pre}(S)$ for some $S$. So $\mathcal{F} = \{ f^{pre}(S_1), \ldots, f^{pre}(S_n)\}$, and the $S_i$ form an open cover of $img(f)$ (since $f(f^{pre}(X)) = X$. Furthermore, the $S_i$'s are a subcollection of $\mathcal{U}$ by definition of $\mathcal{F}$. So $f(K)$ is compact. $\Box$
+
+
+## Continuous function on a compact space is uniformly continuous
+If $f: X \to Y$ is a continuous map between metric spaces $(X, d)$ and $(Y, e)$ and $X$ is compact, then $f$ is uniformly continuous.
+
+ 1. It suffices to assume $\epsilon > 0$ and prove that there is some $\delta > 0$ such that for any $x, y \in X$, $d(x, y) < \delta$ implies $e(f(x), f(y)) < \epsilon$,
+
+ 2. For any $\gamma > 0$, there is some $n \in \mathbb{N}$ and some $x_1, \ldots, x_n \in X$ and $\delta_1, \ldots, \delta_n > 0$ such that the collection of $B_X(x_k; \delta_k / 2)$'s covers $X$ and $f(B_X(x_k; \delta_k / 2)) \subseteq B_Y(f(x_k); \gamma)$ for all $1 \leq k \leq n$.
+
+    *Proof:* By $f$'s continuity, for every $x$ there is some $\delta_x > 0$ such that $f(B_X(x; \delta_x)) \subseteq B_Y(f(x); \gamma)$. The collection $\{ B_X(x; \delta_x / 2) \}$ is an open cover of $X$, so it has a finite subcover. The proposition holds since $f(B_X(x; \delta_x / 2)) \subseteq f(B_X(x; \delta_x))$.
+
+ 3. Define $\delta = min \{ \delta_k : 1 \leq k \leq n \}, where $\delta_k$'s are defined by setting $\gamma = \epsilon / 2$ in (2).
+
+ 4. For any $x, y \in X$ with $d(x, y) < \delta$, there is a $k$ such that $x$ and $y$ are elements of $B_X(x_k; \delta_k)$.
+
+    *Proof:* There is a $k$ such that $x \in B_X(x_k; \delta_k)$, since they cover $X$. If $y$ is such that $d(x,y) < \delta$, then $d(x_k, y) \leq d(x_k, x) + d(x, y) < \delta_k$, so $y \in B_X(x_k; \delta_k)$ as well.
+
+ 5. If $x$ and $y$ are such that $d(x, y) < \delta$, then $e(f(x), f(y)) < \epsilon$.
+
+    *Proof:* By triangle inequality, $e(f(x), f(y)) \leq e(f(x), f(x_k)) + e(f(x_k), f(y)) < \epsilon/2 + \epsilon/2 = \epsilon$< where $k$ is the integer that we know exists by (4), and where the inequality holds by the properties of the finite cover in (2).
+
+ 6. Q.E.D.
+
+    *Proof:* The $\delta$ we wanted to define is established in (3), and it has the desired properties by (5).
+
 
 ## Definition of finite intersection property
 A collection $\mathcal{S}$ of subsets of a metric space $(X, d)$ has the **finite intersection property** if every non-empty finite subcollection of $\mathcal{S}$ has a non-empty intersection.
