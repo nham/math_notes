@@ -42,6 +42,18 @@ For (2), note that $\|x - y\| = \|y - x\|$ by homogeneity.
 For (3), we must prove $\|x - z\| \leq \|x - y\| = \|y - z\|$. This, however, is a direct consequence of the triangle inequality.
 
 
+## Limit laws
+If $V$ is a normed vector space and $(x_n)$ and $(y_n)$ are sequences in $V$, $u, v \in V$, $(x_n) \to u$ and $(y_n) \to v$, and $c \in \mathbb{F}$, then
+
+ - $(x_n + y_n) \to u + v$
+ - $(c x_n) \to c u$
+
+*Proof:* We are considering convergence in the metric space induced by the norm on $V$. For any $\epsilon > 0$, we can find tails $(x_n){n \geq j}$ and $(y_n)_{n \geq k}$ that are contained entirely in the $\epsilon / 2$-ball around $u$ and the $\epsilon / 2$-ball around $v$, respectively. Taking $N = max \{j, k\}$, we have, for any $m \geq N$, $\|x_m + y_m - u - v\| \leq \|x_m - u\| + \|y_m - v\| < \epsilon$. This tail of $(x_n + y_n)$ starting at $N$ is entirely contained in the $\epsilon$-ball around $u + v$, so $u + v$ must be the limit of the sequence since $\epsilon$ was arbitrary.
+
+For the remaining proposition, we can find a tail of $(x_n)$, starting at some $k$, which is contained in an $\epsilon / |c|$-ball around $u$, so $\|c x_n - cu\| = |c| \|x_n - u \| < \epsilon$ for any $n \geq k$.
+
+
+
 ## Definition of real inner product space
 A **real inner product space** is a vector space $(V, \mathbb{R})$ along with an operation $V \times V \to \mathbb{R}$, written $\langle x, y \rangle$ for $x, y \in V$, that satisfies:
 
