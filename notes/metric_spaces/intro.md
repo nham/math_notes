@@ -603,20 +603,35 @@ If $X_1, \ldots, X_n$ are sets, $P = \prod_1^n X_i$, and $A \subseteq B \subsete
 
 
 ## Convergent sequences in product space
-If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_n)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$, where $\pi_i(z_1, \ldots, z_n) = z_i$.
+If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric spaces $(X_i, d_i)$. Then if $(x_m)$ is a sequence in $P = \prod_1^n X_i$, and $c \in P$, then $(x_n) \to c$ iff for all $i$, $(\pi_i(x_n)) \to \pi_i(c)$.
 
-*Proof:* If $(x_n) \to c$ in $P$, then fixing $i$, we must prove that for every open $U$ \subseteq X_i$ containing $\pi_i(c)$, some tail of $(\pi_i(x_n))$ is contained in $U$. Form the product $S = \prod_1^n S_j$, where $S_i = U$ and $S_j = B_{X_j}(\pi_j(c); 1)$ for all $j \neq i$. This is open in $P$ by the product topology and it contains $c$, so some tail of $(x_n)$ starting at $k$ is contained in $S$. This means that the tail of $(\pi_i(x_n))$ starting at $k$ is contained in $U$, which implies that $(\pi_i(x_n)) \to \pi_i(c)$.
+*Proof:* If $(x_m) \to c$ in $P$, then fixing $i$, we must prove that for every open $U$ \subseteq X_i$ containing $\pi_i(c)$, some tail of $(\pi_i(x_m))$ is contained in $U$. Form the product $S = \prod_1^n S_j$, where $S_i = U$ and $S_j = B_{X_j}(\pi_j(c); 1)$ for all $j \neq i$. This is open in $P$ by the product topology and it contains $c$, so some tail of $(x_m)$ starting at $k$ is contained in $S$. This means that the tail of $(\pi_i(x_m))$ starting at $k$ is contained in $U$, which implies that $(\pi_i(x_m)) \to \pi_i(c)$.
 
-Conversely, $(\pi_i(x_n)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_n))_{n \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_n))_{n \geq N}$ is contained in $U_i$, so $(x_n)_{n \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
+Conversely, $(\pi_i(x_m)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_m))_{m \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_m))_{m \geq N}$ is contained in $U_i$, so $(x_m)_{m \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
 
 ### Remark
 I think this theorem was generalized to any space with product topology (instaed of just using conserving metric) because it's true for general product topological spaces, so someone going on to study topology would certainly see it later.
 
 
-## Bounded subsets and product spaces
-If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is bounded in $P$ iff $\pi_i(S)$ is bounded in $X_i$ for all $i$, where $\pi_i(x_1, \ldots, x_n) := x_i$.
+## Cauchy sequences and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then for any sequence $(x_m)$ in $P$, we have $(x_m)$ Cauchy in $P$ iff $(\pi_i(x_m))$ is Cauchy in $X_i$ for all $i$.
 
-*Proof:* If $S$ is bounded, then by definition there is some $z \in P$ and some $\epsilon > 0$ such that $S \subseteq B_P^d(z; \epsilon)$. But $B_P^d(z; \epsilon) \subseteq B_P(z; \epsilon) = \prod_1^n B_{X_i}(\pi_i(z); \epsilon)$, and since $\pi_i(\prod_1^n B_{X_i}(\pi_i(z); \epsilon)) = B_{X_i}(\pi_i(z); \epsilon)$, we have $\pi_i(S) \subseteq B_{X_i}(\pi_i(z); \epsilon), so $\pi_i(S)$ is bounded.
+*Proof:* If $(x_m)$ is Cauchy in $(P, d)$, then for every $\epsilon > 0$ there is an $N$ such that for $k, m \geq N$, $d(x_k, x_m) < \epsilon$. But for each $i$, we have $d_i(\pi_i(x_k), \pi_i(x_m)) \leq \mu_{\infty}(x_k, x_m) \leq d(x_k, x_m) < \epsilon$. So each sequence $(\pi_i(x_m))$ is also Cauchy.
+
+Conversely, if $(x_m)$ is a sequence in $P$ and $(\pi_i(x_m))$ is Cauchy in $X_i$ for every $i$, then for every $\epsilon > 0$ there is an $M_i$ for every $i$ such that for any $k, m \geq M_i$, $d_i(\pi_i(x_k), \pi_i(x_m)) < \epislon / n$. So for every $k, m \geq M = max \{M_1, \ldots, M_n\}$ we have $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$ for all $i$. Hence for all $k, m \geq M$, we have $\mu_1(x_k, x_m) = \sum_1^n d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon$. But $d(x_k, x_m) \leq \mu_1(x_k, x_m)$, so the tail starting at $M$ of $(x_m)$ has all terms within the $\epsilon$ of one another. So $(x_m)$ must also be Cauchy.
+
+## Completeness and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then $(P, d)$ is complete iff each $(X_i, d_i)$ is complete.
+
+*Proof:* If $P$ is complete, then for any collection of Cauchy sequences $(x_{im})$ in $X_i$, the sequence $(p_m)$ in $P$ defined by $p_m = (x_{1m}, \ldots, x_{nm})$ is a Cauchy sequence (since $d$ is conserving, by the previously proved proposition), so $(p_m)$ converges in $P$ to some $c \in P$ (since $P$ is complete by hypothesis). So this implies that each $(x_{im})$ converges to $\pi_i(c)$, since the $(P, d)$ has a product metric (due to $d$ being conserving). Since $(x_{im})$'s were arbitrary sequences, each $X_i$ must be complete.
+
+Conversely, if each $X_i$ is complete, for any Cauchy sequence $(p_m)$ in $P$, we have that each $(\pi_i(p_m))$ is Cauchy as well, so each sequence converges to some $c_i$ by hypothesis (completeness of $X_i$). But since each sequence $(\pi_i(p_m))$ converges, $(p_m)$ must converge as well to $c = (c_1, \ldots, c_n)$ since $P$ has the product metric. So $P$ is complete.
+
+
+## Bounded subsets and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is bounded in $P$ iff $\pi_i(S)$ is bounded in $X_i$ for all $i$.
+
+*Proof:* If $S$ is bounded, then by definition there is some $z \in P$ and some $\epsilon > 0$ such that $S \subseteq B_P^d(z; \epsilon)$. But $B_P^d(z; \epsilon) \subseteq B_P^{\mu_{\infty}}(z; \epsilon) = \prod_1^n B_{X_i}(\pi_i(z); \epsilon)$, and since $\pi_i(\prod_1^n B_{X_i}(\pi_i(z); \epsilon)) = B_{X_i}(\pi_i(z); \epsilon)$, we have $\pi_i(S) \subseteq B_{X_i}(\pi_i(z); \epsilon), so $\pi_i(S)$ is bounded.
 
 Conversely, if $\pi_i(S)$ is bounded in $X_i$, then there exists some $z_i \in X_i$ and some $\epsilon_i$ such that $B_{X_i}(z_i; \epsilon_i)$ contains $\pi_i(S)$. Let $\epsilon = max \{ \epsilon_1, \ldots, \epsilon_n \}$. Then $\pi_i(S) \subseteq B_{X_i}(z_i; \epsilon)$, so $prod_1^n \pi_i(S) \subseteq \prod_1^n B_{X_i}(z_i; \epsilon) = B_P^{\mu_{\infty}}(z; \epsilon)$, where $z = (z_1, \ldots, z_n)$. But $S \subseteq \prod_1^n \pi_i(S)$, and $B_P^{\mu_{\infty}}(z; \epsilon) \subseteq B_P^{\mu_1}(z; n \epsilon) \subseteq B_P^d(z; n \epsilon)$, so $S$ is bounded in $P$.
 
@@ -624,14 +639,20 @@ Conversely, if $\pi_i(S)$ is bounded in $X_i$, then there exists some $z_i \in X
 A sequence $(x_n)$ in $P$ with conserving metric $d$ is bounded iff each sequence $(\pi_i(x_n))$ is bounded in $X_i$.
 
 
+## Totally bounded subsets and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is totally bounded in $P$ iff $\pi_i(S)$ is totally bounded in $X_i$ for all $i$.
+
+*Proof:* If $S \subseteq P$ is totally bounded, then for any $\epsilon > 0$, there are some $p_1, \ldots, p_k$ that form an $\epsilon$-net for $S$ w.r.t. $(P, d)$. But each $B_P^d(p_i; \epsilon) \subseteq B_P^{\mu_{\infty}}(p_i; \epsilon = \prod_{j = 1}^n B_{X_j}(\pi_i(p_i); \epsilon)
+
+TODO
+
+
 ## Bolzano-Weierstrass property on product spaces
 If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $(P, d)$ has the Bolzano-Weierstrass property iff each space $(X_i, d_i)$ has it.
 
 *Proof:* Assuming $(P, d)$ has the BW-property, then any bounded sequence $(a_n)$ in $X_i$ can be turned into a sequence $(p_n)$ in $P$ by picking arbitrary $x_j \in X_j$ for $j \neq i$ and defining $p_n = (z_1, \ldots, z_n)$ with $z_i = a_n$ and $z_j = x_j$ for $i \neq j$. Then $(\pi_j(p_n)) = (a_n)$ if $j = i$ and $(\pi_j(p_n))$ is the constant sequence of $x_j$ otherwise. Since each $(\pi_j(p_n))$ is bounded in $X_j$, we have $(p_n)$ bounded in $P$, so it has a convergent subsequence $(p_{n_k})$ converging to come $c \in P$. This implies that, in particular, $(\pi_i(p_{n_k}))$ converges in $X_i$ to $\pi_i(c)$. But this is a subsequence of $(a_n)$, so $(a_n)$ has a subsequence converging to $\pi_i(c)$.
 
-Conversely, if each $(X_i, d_i)$ has the BW-property, then for any bounded subset $S$ of $P$, we must have $\pi_i(S)$ bounded as well for all $i$. If $S$ is additionally infinite, then we must have some $i$ such that $\pi_i(S)$ is infinite, otherwise $\prod_1^n \pi_i(S)$ is finite and a superset of $S$, implying $S$ is finite as well. So $\pi_i(S)$ is an infinite bounded subset of $X_i$, and hence by the BW-property it has an accumulation point $a \in X_i$. Let $x_j \in \pi_j(S)$ be arbitrary for every $j \neq i$. Define $c = (c_1, \ldots, c_n)$, where $c_i = a$ and $c_j = x_j$ for all $j \neq i$. We want to prove that $c$ is an accumulation point of $
-
-TODO
+Conversely, if each $(X_i, d_i)$ has the BW-property, then each $X_i$ is complete and every bounded subset of $X_i$ is totally bounded. This implies that $(P, d)$ is complete since $d$ is a conserving metric for $P$. If $S \subset P$ is bounded in $P$, then $\pi_i(S)$ is bounded for every $i$, so $\pi_i(S)$ is also totally bounded. This implies that $S$ is totally bounded.
 
 
 
@@ -853,6 +874,8 @@ $$
 which leads to
 
 $$(1 - k) d(x, y) \leq d(x, f(x)) + d(y, f(y))$$
+
+Note that this implies that if $x$ and $y$ are fixed points of $f$, then $d(x, y) \leq 0/(1 -k)$, or $d(x,y) = 0$, so $x = y$. Hence the fixed point, if it exists, is unique.
 
 For any $N$ and any $m, n \geq N$, we have
 
