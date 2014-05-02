@@ -61,12 +61,7 @@ If $V = A \oplus B$ for vector spaces $A$ and $B$, then $V \cong A \times B$.
 *Proof:* We define a mapping $f: V \to A \times B$ by $v \mapsto (a, b)$ where $(a, b)$ is the unique pair such that $v = a + b$. Obviously this mapping is injective, and it must be surjective as well since for any $c \in A$, $d \in B$, $c + d \in V$. It's linear because, supposing $v = a + b$ and $w = c + d$, for any scalars $\alpha$ and $\beta$ we have $f(\alpha v + \beta w) = (\alpha a + \beta c, \alpha b + \beta d) = \alpha f(v) + \beta f(w)$.
 
 ## Vector spaces of functions, linear functionals, dual spaces
-For any set $X$ and field $\mathbb{F}$, consider the set $\mathbb{F}^X$ of all functions $X \to \mathbb{F}$. We can define a vector space on $\mathbb{F}^X$ by:
-
- - $(f+g)(x) = f(x) + g(x)$
- - $(c \cdot f)(x) = c f(x)$
-
-This is a vector space for essentially the same reason the direct product was: addition of functions is defined component wise, and component-wise addition is commutative, associative, has an additive identity and additive inverses, due to the components belonging to a field. Similarly the scalar multiplication properties hold.
+For any set $X$ and field $\mathbb{F}$, the set $\mathbb{F}^X$ of all functions $X \to \mathbb{F}$ can be turned into a vector space.
 
 Since $X$ was arbitrary, in particular $X$ could be the underlying set of a vector space, say $V$. We are in particular interested in a subspace of this vector space: the space of all linear functions from $V \to \mathbb{F}$, where $V$ is a vector space whose field is $\mathbb{F}$. 
 

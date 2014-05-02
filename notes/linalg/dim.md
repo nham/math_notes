@@ -1,5 +1,5 @@
 # Finite dimensional vector spaces
-These notes introduce vector spaces and prove the dimension theorem for finitely-generated vector spaces.
+These notes introduce vector spaces and prove the dimension theorem for finitely-generated vector spaces. We also introduce some fundamental notions like vector spaces of scalar-valued functions.
 
 
 ## Definition of a group
@@ -250,3 +250,12 @@ Any two bases in a finite dimensional vector space have the same number of eleme
 
 ## Definition of dimension
 The last corollary allows us to define the **dimension** of a finite-dimensional vector space, which is the (unique) number of elements in any basis.
+
+
+## Vector spaces of functions
+For any set $X$ and field $\mathbb{F}$, consider the set $\mathbb{F}^X$ of all functions $X \to \mathbb{F}$. We can define a vector space on $\mathbb{F}^X$ by:
+
+ - $(f+g)(x) = f(x) + g(x)$
+ - $(c \cdot f)(x) = c f(x)$
+
+This is a vector space for essentially the same reason the direct product was: addition of functions is defined component wise, and component-wise addition is commutative, associative, has an additive identity and additive inverses, due to the components belonging to a field. Similarly the scalar multiplication properties hold.
