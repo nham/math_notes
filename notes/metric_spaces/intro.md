@@ -850,9 +850,11 @@ Up til now, we've proven that (2) through (5) are equivalent.
 
 If (1) is true, then for any infinite subset $S$ of $X$, if there are no accumulation points of $S$ in $X$, then every $s \in S$ is an isolated point and every $x \in X - S$ has an open ball around $x$ disjoint from $S$. In either case, every $x \in X$ has some $B(x; \epsilon_x)$ that contains, at most, one element from $S$, which could only be $x$ if it exists. The collection of $B(x; \epsilon_x)$'s is an open cover of $X$, but there could not be any finite subcover, since that would imply a finite cover of $S$, which is an impossibility since each cover element contains at most one element of $S$, which is infinite. So (1) implies (5).
 
+If (4) is true, then for every open cover $\mathcal{O}$ of $X$, we can find an $\epsilon > 0$ such that every $x \in X$ has a $U \in \mathcal{O}$ such that $x \in B(x; \epsilon) \subseteq U$. If not, for every $n \in \mathbb{N}$, we can find (in particular) an $x_n \in X$ such that every $U \in \mathcal{O}$ that contains $x_n$ does not contain $B(x; 1/n)$. We now have a sequence $(x_n)$, so by hypothesis it has a convergent subsequence $(x_{n_k})$ converging to some $c \in X$. But $c$ is contained in some $U_c \in \mathcal{O}$, and since $U_c$ is open, there is an  $\epsilon > 0$ such that $B(c; \epsilon) \subseteq U_c$. We can find a $j$ such that $(x_{n_k})_{k \geq j}$ is contained in $B(c; \epsilon / 2)$. We can also find an $N$ such that $1/N < \epsilon / 2$. This implies that for all $m \geq max \{j, N\}$ we have, for all $y \in B(x_m; 1/m)$, $d(c, y) \leq d(c, x_m) + d(x_m, y) < \epsilon / 2 + \epsilon / 2 = \epsilon$. So $y \in B(c; \epsilon)$, hence $B(x_m; 1/m) \subseteq U_c$, which contradicts how $x_m$ was chosen, namely that the $1/m$-ball around $x_m$ is not completely contained by any element.
+
+Now, since we know $X$ is totally bounded, there is an $\epsilon$-net of $X$. Each of those $\epsilon$-balls is contained in some $U \in \mathcal{O}$, so the collection of those cover elements is a finite subcover, hence $X$ is compact.
 
 
-TODO
 
 ### Definition of sequential compactness
 Condition (4) of the previous proposition is called **sequential compactness**. The previous theorem, in particular, proves that a metric space is compact iff it is sequentially compact.
