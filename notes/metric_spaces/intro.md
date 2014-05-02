@@ -832,21 +832,27 @@ For a metric space $(X, d)$, the following are equivalent:
  2. $X$ is complete and totally bounded
  3. $X$ is bounded and has the Bolzano-Weierstrass property.
  4. Every sequence in $X$ has a convergent subsequence
- 5. Every collection of subsets of $X$ that possesses the finite intersection property has a non-empty intersection
+ 5. Every infinite subset of $X$ has an accumulation point in $X$
+ 6. Every collection of subsets of $X$ that possesses the finite intersection property has a non-empty intersection
 
 *Proof:* If (3) is true, then $X$ is bounded and has the Bolzano-Weierstrass property, so $X$ is complete and every bounded subset is totally bounded. But since $X$ is bounded, it must be totally bounded as well. So (3) implies (2). Assuming (2), we have that $X$ is complete and totaly bounded. So $X$ must be bounded. Also, any bounded subset of $X$ is totally bounded since every subset is totally bounded. This proves that (2) implies (3).
 
 If (3) holds, then every sequence in $X$ is bounded and so has a convergent subsequence, which implies (4).
 
-If (4) holds, TODO: apparently you can prove that $X$ is totally bounded. Also if every sequence has a convergent sequence, every Cauchy sequence converges, so $X$ is complete and (4) implies (2).
+If (4) holds, then every sequence in $X$ has a convergent, hence Cauchy subsequence. This implies that $X$ is totally bounded. Also if every sequence has a convergent sequence, then in particular every Cauchy sequence has a convergent subsequence, implying every Cauchy sequence converges, so $X$ is complete and (4) implies (2).
 
-(1) => (4) is "easy" according to notes I found online. (http://www.econ.brown.edu/fac/Mark_Dean/Maths_RA5_10.pdf). It involves using "closed subsets of compact spaces are compact", somehow.
+If (3) holds, we know that for every bounded infinite subset there is an accumulation point in $X$. But we also know it's bounded, so every subset is bounded. Hence for every infinite subset there is an accumulation point in $X$, proving that (3) implies (5).
 
-If (1) fails to hold, then we have some open cover $\mathcal{O}$ of $X$, consisting entirely of open balls, and no finite subcollection of open balls covers $X$. So pick an arbitrary $x_0 \in S$. We can find a $B_0 \in \mathcal{O}$ such that $x_0 \in B_0$. By induction, for any $k \in \mathbb{N}$, if $x_k$ and $B_k$ are chosen such that $x_k \in B_k \in \mathcal{O}$, then we can find some $x_{k+1} \in S - \bigcup_1^k B_i$, and some $B_{k+1} \in \mathcal{O}$ such that $x_{k+1} \in B_{k+1}$. This gives a sequence $(x_n)$ which, by construction, has each term not in the union of the balls that contain the previous terms. If $(x_n)$ has a subsequence $(x_{n_k})$ that converges to some $c \in X$, then $ BLAH TODO FIXME
+If (5) holds, then any sequence's set of terms is either finite (in which case it certainly contains a convergent subsequence, namely any subsequence of a term that repeats infinitely often), or the set of terms is infinite, in which case there is an accumulation point of the set in $X$. But this implies that we can find a subsequence that converges to it. So (4) holds.
 
-If (1) is true
 
-TODO (1) iff [(2) or (3)]
+Up til now, we've proven that (2) through (5) are equivalent.
+
+If (1) is true, then for any infinite subset $S$ of $X$, if there are no accumulation points of $S$ in $X$, then every $s \in S$ is an isolated point and every $x \in X - S$ has an open ball around $x$ disjoint from $S$. In either case, every $x \in X$ has some $B(x; \epsilon_x)$ that contains, at most, one element from $S$, which could only be $x$ if it exists. The collection of $B(x; \epsilon_x)$'s is an open cover of $X$, but there could not be any finite subcover, since that would imply a finite cover of $S$, which is an impossibility since each cover element contains at most one element of $S$, which is infinite. So (1) implies (5).
+
+
+
+TODO
 
 ### Definition of sequential compactness
 Condition (4) of the previous proposition is called **sequential compactness**. The previous theorem, in particular, proves that a metric space is compact iff it is sequentially compact.
