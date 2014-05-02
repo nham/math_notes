@@ -1,65 +1,6 @@
 # Preface
 These notes depend on the "fdvses" notes.
 
-## Definition of quotient space
-### Cosets of a subspace
-If $U$ is a subspace of a vector space $V$, then define *cosets* of $U$ by $[a] = \{a + u : u \in U\}$. Then:
-
- 1. if $b \in [a]$, then $[b] \subseteq [a]$
- 2. if $b \in [a]$, then $a \in [b]$.
-
-These two facts prove that the cosets partition $V$.
-
-*Proof:* If $b \in [a]$, $\exists u \in U$ with $b = a + u$. Let $c \in [b]$, with some $v \in U$ such that $c = b + v$. Then $c = a + (u + v)$, and since $u + v \in U$ we have $c \in [a]$. This proves (1). To prove (2), note that if $b \in [a]$ then $b - a \in U$, so $a - b \in U$ as well since subspaces are closed under linear combination of vectors.
-
-### A vector space of cosets
-We can define a vector space on the collection of all cosets of $U$ by $[a] + [b] = [a + b]$ and $c [a] = [ca]$. Then:
-
- 1. the above two definitions are well-defined binary operations, and
- 2. they turn the set $V/U$ of cosets into a vector space over $\mathbb{F}$.
-
-$V/U$ is called the **quotient space** of $V$ by $U$.
-
- 1. Coset addition is well-defined.
-
-    *Proof:* We must prove that for any $a, b, c, d \in V$, if $[a] = [b]$ and $[c] = [d]$, then $[a] + [c] = [b] + [d]$. It suffices to prove that $b+d \in [a+c]$. But there are $u, v \in U$ such that $b = a + u$ and $d = c + v$, so $b + d = (a + c) + (u + v)$, which establishes the proposition.
-
- 2. Coset scalar multiplication is well-defined
-
-    *Proof:* We must prove that if $a, b \in V$ and $[a] = [b]$, then $c[a] = c[b]$ for any $c \in \mathbb{F}$. It suffices to prove that $cb \in [ca]$, but this is true since $b = a + u$ for some $u \in U$, so certainly by distributivity $cb = ca + cu$.
-
- 3. Coset addition turns $V/U$ into an abelian group.
-
-    *Proof:* $[a] + [b] = [a + b] = [b + a] = [b] + [a]$, $([a] + [b]) + [c] = [a + b] + [c] = [(a + b) + c] = [a + (b + c)] = [a] + ([b] + [c])$, $[a] + [0] = [a + 0] = [a] = [0 + a] = [0] + [a]$, and $[a] + [-a] = 0 = [-a] + [a]$.
-
- 4. Coset scalar multiplication turns  $V/U$ into a vector space.
-
-    *Proof:* $c([a] + [b]) = c[a+b] = [ca + cb] = c[a] + c[b]$. $(c + d)[a] = [(c+d)a] = [ca + da] = c[a] + d[a]$. $1[a] = [1a] = [a]$, $(cd)[a] = [(cd)a] = [c(da)] = c[da] = c(d[a])$.
-
-
-## Dimension of quotient space
-If $V$ vector space, $U$ subspace of $V$, and $W$ another subspace of $V$ such that $V = U \oplus W$, then $V/U$ is isomorphic to $W$ and $dim V/U + dim U = dim V$.
-
-*Proof:* We define a map $f: W \to V/U$ by $w \mapsto [w]$. It's linear by definition of the operations on $V/U$. If $[w_1] = [w_2]$ for $w_1, w_2 \in W$, then $[w_1 - w_2] = [0] = U$, so $w_1 - w_2 \in U \cap W$, hence $w_1 = w_2$ and $f$ is injective. For every $[a] \in V/U$, since $a \in V$ we have $a = u + w$ for some $u \in U$, $w \in W$, so $[a] = [u + w] = [u] + [w] = [0] + [w] = [w]$, so $f$ is surjective.
-
-## Definition of direct product of vector spaces
-If $A$ and $B$ are two vector spaces, then the **direct product space** $A \times B$ is defined as a vector space whose set is the cartesian product $A \times B$ and whose operations are
-
- - vector addition: $(a, b) + (c, d) := (a + c, b + d)$
- - scalar multiplication: $c \cdot (a, b) := (ca, cb)$.
-
-these are both clearly well-defined. $A \times B$ forms an abelian group under this addition operation since all the properties hold for each component. Scalar multiplication obeys the proper vector space axioms for the same reason. So $A \times B$ is a vector space. Note that it can be thought of as the two vector spaces $A$ and $B$ operating "in parallel".
-
-## Unique representation in direct sums
-If $V = A \oplus B$, then for all $v \in V$ there is a unique pair $(a, b)$ with $a \in A$, $b \in B$, such that $v = a + b$.
-
-*Proof:* It was previously proved that at least one such pair exists. To prove it unique, assume $(a_1, b_1)$ is a pair that works. Then $v = a + b = a_1 + b_1$, so we can group together elements of the same vector spaces on the same side of the equation, i.e. $a - a_1 = b_1 - b$. So $a - a_1$ is an element of $A \cap B$. But since we assumed that $V$ was a direct sum of $A$ and $B$, we must have $a - a_1 = 0$. So in fact the pair is unique.
-
-## Direct product is isomorphic to direct sum
-If $V = A \oplus B$ for vector spaces $A$ and $B$, then $V \cong A \times B$.
-
-*Proof:* We define a mapping $f: V \to A \times B$ by $v \mapsto (a, b)$ where $(a, b)$ is the unique pair such that $v = a + b$. Obviously this mapping is injective, and it must be surjective as well since for any $c \in A$, $d \in B$, $c + d \in V$. It's linear because, supposing $v = a + b$ and $w = c + d$, for any scalars $\alpha$ and $\beta$ we have $f(\alpha v + \beta w) = (\alpha a + \beta c, \alpha b + \beta d) = \alpha f(v) + \beta f(w)$.
-
 ## Vector spaces of functions, linear functionals, dual spaces
 For any set $X$ and field $\mathbb{F}$, the set $\mathbb{F}^X$ of all functions $X \to \mathbb{F}$ can be turned into a vector space.
 
