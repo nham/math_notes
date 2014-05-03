@@ -36,6 +36,17 @@ If $A: V \to W$ and $B: W \to X$ are linear maps, then $B \circ A$ is linear as 
 
 *Proof:* $(B \circ A) (a u + b v) = B(aAu + bAv) = a (B \circ A)(u) + b (B \circ A)(v)$
 
+## Additivity of composition
+For any $f,g \in Hom(V, W)$ and $h \in Hom(U, V)$, $(f + g) \circ h = f \circ h + g \circ h$. Also, for $t \in Hom(V, W)$ and $r, s \in Hom(U, V)$, $t \circ (r + s)$.
+
+*Proof:* $[(f + g) \circ h](u) = (f + g)(h(u)) = f(h(u)) + g(h(u)) = (f \circ h)(u) + (g \circ h)(u)$. $[t \circ (r + s)](u) = t((r + s)(u)) = t(r(u) + s(u)) = (t \circ r)(u) + (t \circ s)(u)$.
+
+## Homogeneity of composition
+for $f \in Hom(U, V)$ and $g \in Hom(V, W)$, for any $a \in \mathbb{F}$ we have $a(g \circ f) = (ag) \circ f = g \circ (af)$.
+
+*Proof:* $[g \circ (af)](u) = g((af)(u)) = g(a f(u)) = a g(f(u)) = [a (g \circ f)](u)$. Also, $[(ag) \circ f](u) = (ag)(f(u)) = a g(f(u)) = [a (g \circ f)](u)$.
+
+
 ## Invertibility
 A basic definition from set theory is that a function $f: X \to Y$ is **left invertible** if there is a $g: Y \to X$ such that $g \circ f = id_X$, and is **right invertible if there's an $h: Y \to X$ such that $f \circ h = id_Y$. if a function is both left invertible and right invertible, we say it is just **invertible**. It is easy to prove that if a function is invertible, then there is a unique function which serves as both left and right inverses. Also, it is well-known from set theory that a function $f$ is an injection iff it has a left-inverse, a surjectin iff it has a right-inverse, and a bijection iff it is invertible.
 
@@ -95,3 +106,41 @@ Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
+
+
+## Dimension of hom space
+$dim Hom(V, W) = (dim V) (dim W)$
+
+*Proof:* Let $\{v_1, \ldots, v_m \}$ be a basis for $V$ and $\{w_1, \ldots, w_n\}$ be a basis for $W. Then the collection of functions $f_{ij}: V \to W$ which maps $u_i \mapsto w_j$ and $u_k \mapsto 0$ for all $k \neq i$ forms a basis for $Hom(V, W)$. This collections of linear maps must be independent, since if we have a linear combination of $f_{{i_k}{j_k}}$'s that results in $f_{ij}$, then if we have any $i_k \neq i$, the result of the linear combination is a function that maps some $u_j$ to a nonzero vector, for $j \neq i$, contradicting the definition of $f_{ij}$. The set spans since for any $f: V \to W$, $f(u_i) = \sum_1^n b_{ki} w_k$ for each $i$ and some $b_{ki}$'s, so
+
+$$f = \sum_{i=1}^m \sum_{j=1}^n b_{ji} f_ij$$
+
+since $f(u_i) = \sum_{j=1}^n b_{ji} w_j$. Since the two functions agree on the image of every basis element, they agree elsewhere.
+
+
+## Definition of an associative algebra
+An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear and associative.
+
+## Algebra of endomorphisms
+For any vector space $V$, $Hom(V)$ is an algebra with the associative, bilinear product taken to be composition.
+
+*Proof:* Theorems above prove bilinearity. All function composition is associative.
+
+## Definition of automorphism
+An **automorphism** is any bijective endomorphism, i.e. a linear map defined $V \to V$ for some $V$ which is an isomorphism.
+
+
+## Definition of general linear group
+The **general linear group** of $V$ is the group of automorphisms, denoted $GL(V)$. The group is well defined since the composition of linear maps is linear and the composition of isomorphisms is an isomorphism.
+
+## Conjugate operators in the general linear group
+If $f, g \in GL(V)$, then $f$ and $g$ are **conjugate** iff there is an $h \in GL(V)$ such that $f = h \circ g \circ h^{-1}$.
+
+## Conjugation relation is an equivalence relation
+For any $f, g, h \in GL(V)$ and writing $f \sim g$ if $f$ and $g$ are conjugate, we have
+
+ - $f \sim f$
+ - $f \sim g$ implies $g \sim f$
+ - $f \sim g$ and $g \sim h$ implies $f \sim h$
+
+*Proof:* $id_V$ is an automorphism of $V$, and $f = id_V \circ f \circ id_V$. If $f = h g h^{-1}$, then $g = h^{-1} f h$. Also if $f = r^{-1} g r$ and $g = s^{-1} h s$, then $f = r^{-1} s^{-1} h s r$. $(sr)^{-1} = r^{-1} s^{-1}$.
