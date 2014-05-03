@@ -50,10 +50,10 @@ Note that $\sum \mathcal{S}$ is the smallest subspaces that contains every subsp
 A **lattice** is a partially ordered set with, for any two elements $x$ and $y$, a *least upper bound* $sup(x, y)$ in the lattice, and also a *greatest lower bound* $inf(x, y)$. The set of all subspaces of $V$ forms a partial order under set inclusion, and intersection and sum form the greatest lower bound and least upper bound, respectively. In fact, the lattice is a **complete lattice**, meaning any subset $S$ of the lattice has a least upper bound and a greatest lower bound.
 
 
-## Sums of pairs
-If $V$ is a subspace and $W_1$ and $W_2$ are subspaces of $V$, then the sum $W_1 + W_2$ is the same as the set $S = \{u + v : u \in W_1, v \in W_2\}$.
+## Concrete representation of sums
+If $V$ is a subspace and $W_1, \ldots, W_n$ are subspaces of $V$, then the sum $\sum_1^n W_i$ is the same as the set $S = \{\sum_1^n u_i : u_i \in W_i \}$.
 
-*Proof:* Certainly $S \subseteq W_1 + W_2$ since $W_1 + W_2$ is a subspace containing $W_1 \cup W_2$, and so must contain any linear combinations from this set. If $x \in W_1 + W_2$, then $x$ is a linear combination of vectors in $W_1 \cup W_2$. But this means that, if we gather up the vectors belonging to each subspace, that $x = \sum a_i u_i + \sum b_i v_i$  for $u_i \in W_1$ and $v_i \in W_2$. So $x = u + v$ for $u \in W_1$ and $v \in W_2$ (since $W_1$ and $W_2$ are undoubtedly closed under linear combinations).
+*Proof:* $S$ consists entirely of linear combinations of elements from $\bigcup_1^n W_i$, so $S \subseteq \sum_1^n W_i$. Also, if $x = \sum_1^m a_i x_i$ is any linear combination of elements from $\bigcup_1^n W_i$, then each $x_i$ is in some $W_j$, so $a_i x_i \in W_j$ as well. Hence $x = \sum_1^m y_i$, $y_i = a_i x_i$. Now write $z_i = \sum \{ y_j : y_j \in W_i \}$, where $\sum \emptyset = 0$. Then $x = \sum_1^n z_i \in S$.
 
 ## Definition of direct sums of pairs, complements
 If $V$ is a vector space and $A$ and $B$ are subspaces of $V$, then the sum $A + B$ is called a **direct sum** if $A \cap B = \{ 0 \}$. This state of affairs is denoted $A \oplus B$. If $V = A \oplus B$, then $B$ is called the **complement** of $A$ in $V$.
@@ -77,6 +77,25 @@ For direct products of two vectors, we will often use notation $A \times B$.
 If $V = A \oplus B$ for vector spaces $A$ and $B$, then $V \cong A \times B$.
 
 *Proof:* We define a mapping $f: V \to A \times B$ by $v \mapsto (a, b)$ where $(a, b)$ is the unique pair such that $v = a + b$. Obviously this mapping is injective, and it must be surjective as well since for any $c \in A$, $d \in B$, $c + d \in V$. It's linear because, supposing $v = a + b$ and $w = c + d$, for any scalars $\alpha$ and $\beta$ we have $f(\alpha v + \beta w) = (\alpha a + \beta c, \alpha b + \beta d) = \alpha f(v) + \beta f(w)$.
+
+## Definition of generalized direct sums
+We previously defined direct sums of pairs of vectors. We use the previous fact as inspiration for a generalization: the sum $\sum_1^n V_i$ is said to be a **direct sum** of spaces $V_1, \ldots, V_n$ if it is isomorphic to the direct product $\prod_1^n V_i$. When true, we denote this fact by $\bigoplus_1^n V_i$.
+
+## Definition of independent subspaces
+If $U$ is a vector space and $V_1, \ldots, V_n$ are subspaces of $U$, then the collection $\{V_1, \ldots, V_\}$ is **independent** iff for every collection $S$ of vectors of U$ that consists of $n$ vectors, and for each $i$, $1 \leq i \leq n$ there is exactly one $v_i \in S$ such that $v_i \in V_i$, then $\sum_1^n v_i = 0$ implies that $v_i = 0$ for all $i$.
+
+## Definition of linear map from direct product to sum
+There is a standar linear map $\phi: \prod_1^n V_i \to \sum_1^n V_i$ by:
+
+$$\phi(v_1, \ldots, v_n) = \sum_1^n v_i$$
+
+*Proof:* It's well-defined as a function. If $u, v \in \prod_1^n V_i$, then $\phi(u + v) = \sum_1^n (u_i + v_i) = \sum_1^n u_i + \sum_1^n v_i = \phi(u) + \phi(v)$. Also, $\phi(cu) = \sum_1^n c u_i = c \sum_1^n u_i = c \phi(u)$. This establishes the proposition.
+
+
+## Direct products, direct sums, isomorphism and independent subspaces
+If $V_1, \ldots, V_n$ are subspaces of $U$, then the standard linear map $\phi: \prod_1^n V_i \to \sum_1^n V_i$ is an isomorphism iff the $V_i$'s are independent.
+
+*Proof:* Supposing $\phi$ is an isomorphism, then let $v_1, \ldots, v_n$ be a collection of vectors such that $v_i \in V_i$. If $\sum_1^n v_i = 0$, then we must have $v_i = 0$ since we would have $\phi(v_1, \ldots, v_n) = 0$, and the only such element of $\prod_1^n$ mapped to $0$ is $(0, \ldots, 0)$. Conversely, if the $V_i$'s are independent, then if $\phi(u) = \phi(v)$ for some $u$ and $v$, we have $\sum_1^n (u_i - v_i) = 0$, so $u = v$. Also if $v \in \sum_1^n V_i$, then $v = \sum_1^n v_i$ for some $v_i \in V_i$, so $\phi(v_1, \ldots, v_n) = v$. So $\phi$ is an isomorphism.
 
 
 ## Definition of quotient space
