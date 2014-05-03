@@ -1,93 +1,5 @@
-First, prove that the parity of a permutation is well-defined by counting the parity of the number of transposes for any transpose-representation of the permutation. (First, any permutation can be decomposed into disjoint cycles. Second, any cycle can be represented as a product of transpositions, so every permutation is a product of transpositions. Third, starting with some permutation, every transposition added changes the number of disjoint cycles by one. A permutation has a fixed, unique disjoint cycle, so in order for a series of transpositions to represent it, it must at least have the same number of disjoint cycles. Any odd number of transpositions added or removed changes the number of disjoint cycles. So all transposition representations for a permutation are either an odd or an even number of transposes, hence parity makes sense.)
-
-For an $n \times n$ matrix $A$ of elements from a field $\mathbb{F}$, we define
-
-$$det A := \sum_{\alpha} sgn(\alpha) a_{\alpha_1, 1} \cdot a_{\alpha_n, n}$$
-
-where $\alpha$ ranges over all permutations on $\{1, \ldots, n\}$ and $sgn(\alpha)$ is the parity of permutation $\alpha$.
-
-Note that this is the sum of all weighted products of "selections" of $n$ elements such that each row and each column is represented exactly once, and where the "weight" is the parity of the permutation.
-
-$det(A^T) = det(A)$ very clearly, since the transpose is basically inverting each permutation. This yields another permutation. (i.e. if $b_{i j}$ are the elements of the transpose of a $3 \times 3$ matrix, $b_{21} b_{12} b){33} = a_{12} a_{21} a{33}$ and $b_{12} b_{21} b_{33} = a_{21} a_{12} a_{33}$.
-
-This means that anything proved about columns and determinants also holds for rows and determinants.
-
-Antisymmetry of the determinant holds because swapping two columns is applying a transpose to the permutation. Corollary: if any two columns are equal, the determinant is zero.
-
-Linearity of the determinant in each column is a straightforward proof from the definition.
-
-The fact that saxpy doesnt change the determinant follows directly from linearity and the corollary to antisymmetry.
-
-
-## Cofactors and minors
-Let's sum up the determinant so far. So let's say a "selection" from an $n \times n$ matrix $A$ is the set of cells $a_{\alpha(i) i}$, where $\alpha$ is a permutation on $n$. Multiplying the elements $a_{\alpha(i) i}$ together is called the "selection product". Then the determinant is the sum of all selection products where each product is multiplied by the parity of the permutation that forms that product.
-
-We can slice the determinant up by selecting any column $j$ and picking some $i$, and then taking all of the selection products that involve $a_{ij}$. If we factor out $a_{ij}$ from each of these products when we are left with an expression
-
-$$a_{ij}A_{ij}$$
-
-where $A_{ij}$ is the sum of the selection products involving $a_{ij}$, but with $a_{ij}$ factored out. So clearly for any $j$,
-
-$$det A = \sum_{i=1}^n a_{ij} A_{ij}$$
-
-This $A_{ij}$ is called the **cofactor**.
-
-The $(i, j)$ **minor** of $A$ is the determinant of the submatrix of $A$ formed by deleting row $i$ and column $j$. The minor involves almost the same terms as the the cofactor, but the sign might be different since we are perhaps using a slightly different permutation.
-
-Theorem: $M_{ij} = (-1)^{i+j} A_{ij}$
-
-*Proof scribbles:* Consider the matrix $B_{kj}$ obtained by moving $a_{ij}$ to $(n, n)$ by swapping columns $j$ and $j+1$, then $j+1$ and $j+2$, etc. until the original column $j$ has been moved to $n$, and then repeating the same procedure on rows until row $i$ has been moved to row $n$ via adjacent row swaps. Any selection $\alpha$ of $A$ can be converted into a selection $B_{kj}$ that involves $b_{nn}$ (aka $a_{ij}$) via
-
-$$\phi_c^{-1} ; \alpha ; \phi_r^{-1}$$
-
-where I'm writing function composition in postfix notation. ($(x f g)$ is $g$ applied to $f$ applied to $x$).
-
-$$
-    \Phi_n[k](x) = 
-    \cases{
-    x  & \text{if } x < k\cr
-    x-1 & \text{if } x > k\cr
-    n & \text{o.w.}
-    }
-$$
-
-$$ \phi_c = \Phi_n[j] $$
-
-and
-
-$$ \phi_r = \Phi_n[i] $$
-
-The meaning of $\phi_c$ and $\phi_r$ is that these map the column and row (resp.) indices of $B_{kj}$ into $A$ column and row indices.
-
-We have that
-
-$$\phi_c = (j n n-1 \cdots j+1)$$
-
-and
-
-$$\phi_r = (i n n-1 \cdots i+1)$$
-
-That is, $\phi_c$ is an $(n-j+1)$-length cyclic permutation, and $\phi_r$ is an $(n-i+1)$-length cyclic permutation. So the result $\phi_c^{-1} ; \alpha \phi_r^{-1}$ changes $\alpha$'s parity by the parity of $2n - 2 i - j$, i.e. the parity of $i + j$. That is:
-
-$$sgn(\alpha) = (-1)^{i+j} sgn(\phi_c^{-1} ; \alpha \phi_r^{-1})$$
-
-I haven't proven it, but the function $\eta: \alpha \mapsto \phi_c^{-1} ; \alpha \phi_r^{-1}$ should be a bijection between the subset $F$ of $S_n$ of permutations that fix $n$ and the subset $G$ of $S_n$ of permutations that map $j$ to $i$. TODO prove.
-
-The permutations in $G$ are exactly those involved in calculating $a_{ij}A_{ij}$. We have
-
-$$a_{ij} A_{ij} = \sum_{\alpha \in G} sgn(\alpha) a_{\alpha_1 1} \cdots a_{\alpha_n n}$$
-
-We also have
-
-$$b_{nn} (B_{kj})_{nn} = \sum_{\alpha \in G} sgn(\alpha) b_{{\beta_{\alpha}}_1 1} \cdots b_{{\beta_{\alpha}}_n n}$$
-
-By the above, $sgn(\alpha) = (-1)^{i+j} sgn(\beta_{\alpha})$. Also, $(B_{kj})_{nn}$ is exactly the $(n, n)$ minor of $B_{kj}$. Also, the $(n, n)$ minor of $B_{kj}$ is precisely the $(i, j)$ minor of $A$ (TODO: prove). So this establishes what we wanted to prove.
-
-
-==============
-
-
-The above notes were from Shilov. The axiomatic approach from LADW is clearly better.
+# LADW
+These are notes from LADW.
 
 The desiderata for determinant: for any field $\mathbb{F}$, a function $D: {\mathbb{F}^n}^n \to \mathbb{R}$ satisfying:
 
@@ -139,3 +51,59 @@ Now consider the general case of invertible $A$. Then there are elementary matri
 If $Ax = b$ is a square linear system with a non-zero determinant, and if it has a solution $x$, then $x_i = det A^i / det A$, where $A^i$ is the matrix formed by replacing the $i$-th column of $A$ with $b$.
 
 *Proof:* Let $A_i$ be the $i$-th column of $A$. Then $b = Ax = \sum_1^n x_i A_i$, we have $det A^i = det(A_1, \ldots, A_{i-1}, \sum_1^n x_i A_i, A_{i+1}, \ldots, A_n)$, which equals $x det A$ by multilinearity and because any matrix with duplicate columns has a zero determinant.
+
+
+
+# Katznelson & Katznelson
+
+## Permutations
+
+## Notation
+For $n \in \mathbb{N}$, write $[n] = \{1, \ldots, n\}$.
+
+## Definition of the symmetric group $S_n$
+$S_n$ is the group of all permutations on $[n]$ (or any $n$-element set), with the group operation taken as composition. It is called the **symmetric group** on $n$ elements.
+
+## Definition of orbit
+For any $f \in S_n$, the **orbit** of $x \in [n]$ under $f$ is the collection $O_f(x) = \{ f^k(x) : k \in \mathbb{N} \}$. In other words, it is the set of all integers we reach by starting at $x$ and repeatedly applying $f$.
+
+An orbit is **trivial** if it it contains a single element. Note that in this case, the orbit of $x$ under $f$ could only be trivial if it equals $\{x \}$, since if $f(x) \neq x$, then $f(f(x)) \neq f(x)$ (because $f$ is injective), so the orbit contains at least two elements.
+
+Note that the identity map has all trivial orbits.
+
+## Definition of a cycle
+A **cycle** of $S_n$ is any $f \in S_n$ that has no more than one non-trivial orbit.
+
+## Definition of disjoint cycles
+If $f, g \in S_n$ are cycles, then they are **disjoint** if either $f$ or $g$ is the identity map, or if the unique non-trivial orbits of $f$ and $g$ are disjoint sets.
+
+## Composition of disjoint cycles is commutative
+If $f, g \in S_n$ are disjoint cycles, then $f \circ g = g \circ f$
+
+*Proof:* First, if $f$ or $g$ is identity, it clearly holds. So assume $f$ has a non-trivial orbit $O_f$ and $g$ has a non-trivial orbit $O_g$. TODO
+
+## Disjoint cycle decomposition
+Any permutation $f \in S_n$ has a unique set $\{c_1, \ldots, c_k\}$ of disjoint cycles such that $f = c_1 \circ \cdots \circ c_k$.
+
+*Proof:* If $f$ is the identity map, then $\emptyset$ works as long as we define the composition of no permutations to be the identity. It's also the only set that works since we must have all trivial orbits  (so any non-empty collection if disjoint cycles will yield a permutation with non-trivial orbits).
+
+Assume $f$ is not the identity map, hence it has at least one non-trivial orbit. Let $S_0 = [n]$, pick $x_0 \in S_0$. Then the permutation $g_0$ defined by $g_0(y) = f(y)$ if $y \in O_f(x_0)$ and $g_0(y) = y$ otherwise is a cycle (possibly the identity map). Let $S_1 = S_0 - O_f(x_0)$, pick $s_1 \in S_1$, and pick $g_1$ in the same way. Continue until some $S_k = \emptyset$. Then $g_j$'s are all cycles, and by construction they are disjoint (once $g_i$ has some non-trivial orbit, all its elements are removed from consideration, so the non-trivial orbits of any subsequent cycles do not intersect that orbit).
+
+## Definition of transposition
+A **transposition** is a cycle with a non-trivial orbit of exactly two elements.
+
+## Every cycle has a transposition representation
+If $f \in S_n$ is a cycle, then there are transpositions $g_1, \ldots, g_k$ such that $f = g_1 \circ \cdots \circ g_k$.
+
+*Proof:* TODO
+
+### Corollary
+Every permutation has a (non-unique) representation as a product of transpositions.
+
+*Proof:* Every permutation is a product of disjoint cycles, and every cycle is a product of transpositions.
+
+
+It is also possible to prove that each permutation has a well-defined **sign** or **parity**, which is the parity of the number of transposition in any representation for that permutation. To prove that such a definition is well-defined, it suffices to prove that the identity permutation can only be represented by an even number of transpositions. To prove that this in fact the case, some kind of induction proof works, I guess, but the main idea is that for any permutation, composing by a transposition always either increases the number of cycles by one or decreases the number of cycles by one, so that any odd number of transpositions must change the number of cycles, and hence it could not represent the identity permutation, which definitely must have $n$ disjoint cycles (all one-element cycles).
+
+The last thing to note is that the subset of $S_n$ of all even permutations must be closed under composition, so it's a subgroup of $S_n$ called the alternating group of order $n$.
+
