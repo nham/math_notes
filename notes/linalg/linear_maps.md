@@ -134,7 +134,7 @@ An **automorphism** is any bijective endomorphism, i.e. a linear map defined $V 
 The **general linear group** of $V$ is the group of automorphisms, denoted $GL(V)$. The group is well defined since the composition of linear maps is linear and the composition of isomorphisms is an isomorphism.
 
 ## Conjugate operators in the general linear group
-If $f, g \in GL(V)$, then $f$ and $g$ are **conjugate** iff there is an $h \in GL(V)$ such that $f = h \circ g \circ h^{-1}$.
+If $f, g \in Hom(V)$, then $f$ and $g$ are **conjugate** iff there is an $h \in GL(V)$ such that $f = h \circ g \circ h^{-1}$.
 
 ## Conjugation relation is an equivalence relation
 For any $f, g, h \in GL(V)$ and writing $f \sim g$ if $f$ and $g$ are conjugate, we have
