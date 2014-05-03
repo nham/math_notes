@@ -12,6 +12,25 @@ If $T: V \to W$ is linear and $B$ is a basis for $V$, then by fixing $T(b)$ for 
 *Proof:* For any $v \in V$, we have $v = \sum a_i b_i$ for some scalars $a_i$. So $T(v) = T(\sum a_i b_i) = \sum a_i T(b_i)$ by linearity. So every $T(v)$ is defined in terms of the $T(b_i)$.
 
 
+## Field as a vector space
+We can consider any field $\mathbb{F}$ as a vector space over itself: vector addition is field addition, scalar multiplication is field multiplication. It is easy to verify, from the field properties, that all the vector space axioms hold.
+
+
+## Hom spaces
+If $V$ and $W$ are vector spaces, then the collection of linear maps $V \to W$ forms a vector space under the operations:
+
+ - $(f+g)(v) = f(v) + g(v)$
+ - $(cf)(v) = c f(v)$
+
+This space is notated $Hom(V, W)$
+
+*Proof:* $Hom(V,W)$ is an abelian group since addition is defined component-wise and the components are elemetns of an abelian group. The rest of the vector space axioms hold since they also hold for $W$.
+
+$Hom(V, V)$ is notated $Hom(V)$, and is the space of all linear endomoprhisms. $Hom(V, \mathbb{F})$ (where $\mathbb{F}$ is the scalar field of $V$) is called the **dual space** of $V$, denoted $V'$
+
+$Hom(V, V)$ is notated $Hom(V)$, and is the space of all linear endomoprhisms. $Hom(V, \mathbb{F})$ (where $\mathbb{F}$ is the scalar field of $V$) is called the **dual space** of $V$, denoted $V'$.
+
+
 ## Composition of linear maps is linear
 If $A: V \to W$ and $B: W \to X$ are linear maps, then $B \circ A$ is linear as well.
 
@@ -76,12 +95,3 @@ Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
-
-
-## Hom spaces
-If $V$ and $W$ are vector spaces, then the collection of linear maps $V \to W$ forms a vector space under the operations:
-
- - $(f+g)(v) = f(v) + g(v)$
- - $(cf)(v) = c f(v)$
-
-TODO
