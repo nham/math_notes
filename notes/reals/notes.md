@@ -202,3 +202,15 @@ Every bounded sequence $(x_n)$ contains a convergent subsequence.
 $\mathbb{R}$ with the metric we defined above is a complete metric space. (This is really just repetition of the metric space notes. Repeating it here because it's both easy and important)
 
 *Proof:* If $(x_n)$ is Cauchy in $\mathbb{R}$, it is bounded, so by the Bolzano-Weierstrass theorem it contains a convergent subsequence. But any Cauchy sequence with a convergent subsequence itself converges to the limit of the subsequence, so $(x_n)$ converges.
+
+
+## Bolzano-Weierstrass for $\mathbb{R}^n$
+Every bounded sequence in $\mathbb{R}^n$ contains a convergent subsequence.
+
+*Proof:* It holds from metric space notes, that if Bolzano-Weierstrass holds in each of $n$ metric spaces, then it holds in the metric space provided that the metric is a "conserving" metric space. The usual norm for $\mathbb{R}^n$ is the euclidean norm, which is conserving.
+
+
+## Compact subsets of $\mathbb{R}^n$
+$S \subseteq \mathbb{R}^n$ is compact iff it is closed and bounded.
+
+*Proof:* Every compact set is closed and bounded. Conversely, for any space that obeys the Bolzano-Weierstrass property, a bounded subset is totally bounded, and a closed subset is complete as a metric space, so a closed, bounded subset is complete and totally bounded, hence compact.
