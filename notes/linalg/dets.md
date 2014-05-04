@@ -142,3 +142,10 @@ $$0 = f(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) + f(v_1, \ldots, v_j, \ldots
 A multilinear function is alternating iff $f(v_{\sigma(i)}, \ldots, v_{\sigma(n)}) = sgn \sigma f(v_1, \ldots, v_n)$ for all $(v_1, \ldots, v_n) \in \prod_1^n V_i$ and all permutations $\sigma$.
 
 *Proof:* $sgn \sigma$ is the parity of the number of transpositions that make up $\sigma$.
+
+
+## The subspace of alternating multilinear forms
+The set $ML_{alt}(V^{\oplus k})$ of all alternating $k$-linear forms is a subspace of $ML(V^{\oplus k})$.
+
+*Proof:* If $f$ and $g$ are alternating and $v \in V^k$ is a $k$-tuple with duplicate elements, then $(f+g)(v) = f(v) + g(v) = 0$, and for any $c \in \mathbb{F}$, $(cf)(v) = c f(v) = c 0 = 0$. So $ML_{alt}(V^{\oplus k})$ is a subspace.
+
