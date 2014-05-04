@@ -16,7 +16,7 @@ If $T: V \to W$ is linear and $B$ is a basis for $V$, then by fixing $T(b)$ for 
 We can consider any field $\mathbb{F}$ as a vector space over itself: vector addition is field addition, scalar multiplication is field multiplication. It is easy to verify, from the field properties, that all the vector space axioms hold.
 
 
-## Hom spaces
+## Definition of Hom spaces
 If $V$ and $W$ are vector spaces, then the collection of linear maps $V \to W$ forms a vector space under the operations:
 
  - $(f+g)(v) = f(v) + g(v)$
@@ -26,9 +26,8 @@ This space is notated $Hom(V, W)$
 
 *Proof:* $Hom(V,W)$ is an abelian group since addition is defined component-wise and the components are elemetns of an abelian group. The rest of the vector space axioms hold since they also hold for $W$.
 
-$Hom(V, V)$ is notated $Hom(V)$, and is the space of all linear endomoprhisms. $Hom(V, \mathbb{F})$ (where $\mathbb{F}$ is the scalar field of $V$) is called the **dual space** of $V$, denoted $V'$
+$Hom(V, V)$ is notated $Hom(V)$, and is the space of all linear endomoprhisms. $Hom(V, \mathbb{F})$ (where $\mathbb{F}$ is the scalar field of $V$) is called the **dual space** of $V$, denoted $V'$. The elements of $V'$ are called **linear functionals** or **linear forms**.
 
-$Hom(V, V)$ is notated $Hom(V)$, and is the space of all linear endomoprhisms. $Hom(V, \mathbb{F})$ (where $\mathbb{F}$ is the scalar field of $V$) is called the **dual space** of $V$, denoted $V'$.
 
 
 ## Composition of linear maps is linear
@@ -108,14 +107,23 @@ If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis fo
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
 
 
-## Dimension of hom space
-$dim Hom(V, W) = (dim V) (dim W)$
+## Dimension of hom spaces
+$dim Hom(V, W) = (dim V) (dim W)$ for any vector spaces $V$ and $W$ over the same field.
 
-*Proof:* Let $\{v_1, \ldots, v_m \}$ be a basis for $V$ and $\{w_1, \ldots, w_n\}$ be a basis for $W. Then the collection of functions $f_{ij}: V \to W$ which maps $u_i \mapsto w_j$ and $u_k \mapsto 0$ for all $k \neq i$ forms a basis for $Hom(V, W)$. This collections of linear maps must be independent, since if we have a linear combination of $f_{{i_k}{j_k}}$'s that results in $f_{ij}$, then if we have any $i_k \neq i$, the result of the linear combination is a function that maps some $u_j$ to a nonzero vector, for $j \neq i$, contradicting the definition of $f_{ij}$. The set spans since for any $f: V \to W$, $f(u_i) = \sum_1^n b_{ki} w_k$ for each $i$ and some $b_{ki}$'s, so
+*Proof:* Let $\{v_1, \ldots, v_m \}$ be a basis for $V$ and $\{w_1, \ldots, w_n\}$ be a basis for $W. Then the collection of functions $f_{ij}: V \to W$ which maps $u_i \mapsto w_j$ and $u_k \mapsto 0$ for all $k \neq i$ forms a basis for $Hom(V, W)$, as we now prove.
+
+If $g = \sum_{i=1}^m \sum_{j=1}^n a_{ij} f_ij$ is the zero map from $V$ to $W$, then $g(v_i) = 0$ for all $i$. But $g(v_i) = \sum_{j=1}^n a_{ij} f_{ij}(v_i) = \sum_{j=1}^n a_{ij} w_j$ since $f_{kj}(v_i) = 0$ for all $j$ and all $k \neq i$, by definition. Since $w_j$ are independent in $W$, we must have $a_{ij} = 0$. So the f_{ij}$'s are indepenent.
+
+The set spans since for any $f: V \to W$, $f(u_i) = \sum_1^n b_{ki} w_k$ for each $i$ and some $b_{ki}$'s, so
 
 $$f = \sum_{i=1}^m \sum_{j=1}^n b_{ji} f_ij$$
 
 since $f(u_i) = \sum_{j=1}^n b_{ji} w_j$. Since the two functions agree on the image of every basis element, they agree elsewhere.
+
+## Definition of dual basis
+If $B$ is a basis for $V$, then $B'$ defined by, for each $b_i \in B$, the linear functional that maps $b_i$ to $1$ and $b_j$ to $0$ for all $j \neq i$ is a basis for $V'$. This is called the **dual basis**.
+
+*Proof:* $\{ 1 \}$ is a basis for $\mathbb{F}$, so it's the same construction that was used in "Dimension of hom spaces"
 
 
 ## Definition of an associative algebra

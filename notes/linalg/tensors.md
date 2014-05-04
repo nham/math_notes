@@ -5,24 +5,6 @@ These notes depend on the "fdvses" notes.
 For any vector space $V$, we can construct a function $V \times V' \to \mathbb{F}$ defined by $[v, f] \mapsto f(v)$. In words, the linear functional in the second component is applied to the vector in the first component to obtain the scalar $f(v)$. Since each $f \in V'$ is linear, this operation is clearly linear in the first argument. But also, since $V'$ is a vector space and since addition and scalar multiplication are defined component-wise, the operation is linear in the second argument as well. In other words, the operation $[v, f] \mapsto f(v)$ is **bilinear**.
 
 ## Dual bases
-### A preliminary
-If $V$ is a vector space and $B$ is a basis for $V$, then let $\alpha: B \to \mathbb{F}$ be any scaling of $B$. Then there is exactly one linear functional $f \in V'$ such that $f(b) = \alpha(b)$ for all $b \in B$.
-
-*Proof:* Any linear functional, being a linear map, is completely determined by the image of any basis in $V$. So such a scaling $\alpha$ uniquely defines a linear functional.
-
-### Dual bases exist
-If $\beta = (b_1, \ldots, b_n)$ is an ordered basis in $V$, then there is a unique ordered basis $\gamma = (c_1, \ldots, c_n)$ in $V'$ such that $[b_i, c_j] = \delta_{ij}$, where $\delta_{ij}$ is Kronecker's delta function.
-
-*Proof:* For each scaling $t_j = (\delta_{1j}, \ldots, \delta_{nj})$, the previous lemma guarantees there is a unique functional $c_j$ such that $[b_i, c_j] = \delta_{ij}$ for all $b_i$. (Note that the functional $c_j$ maps $b_j$ to $1$ and all other basis elements to $0$). This gives us a unique tuple $(c_1, \ldots, c_n)$ of linear functionals in $V'$ (it if wasn't unique, we would get two different functionals for one of the $t_j$ scalings, contradicting the previous lemma.
-
-Recall also that the image of a basis completely determines a linear map, so that if two functions agree on the values of the basis elements, then they are identical. So for any $f \in V'$, let's define a linear combination of functionals $\sum f(b_i) c_i$. For any $b_k \in \beta$, $[\sum f(b_i) c_i](b_k) = f(b_k) c_k(b_k) = f(b_k)$ since $c_i(b_k) = 0$ for all $i \neq k$. In other words, $f = \sum f(b_i) c_i$. This proves that $(c_1, \ldots, c_n)$ is an ordered generating set for $V'$. To prove independence, assume some $c_k = \sum_{i \neq k} d_i c_i$. This is a blatant contradiction, since $c_k(b_k) = 1$ but $[\sum_{i \neq k} d_i c_i](b_k) = 0$. So $(c_1, \ldots, c_n)$ is an ordered basis for $V'$, and is the unique such ordered basis.
-
-### Corollary
-$dim V = dim V'$, so the two are isomorphic.
-
-### Definition of dual basis
-The above proposition gave a well-defined map from bases in $V$ to bases in $V'$. For any basis $B$ in $V$, we call the unique basis in $V'$ the **dual basis** and denote it $B'$.
-
 ## We can find functionals that assign non-zero scalars to non-zero vectors
 If $V$ is a vector space and $v \in V$ isn't zero, then there is a functional $f \in V'$ such that $f(v) \neq 0$.
 
@@ -260,20 +242,22 @@ $$ = \{[(u_1, v_1), a_1], [(u_2, v_2), a_2 + b_1], [(u_3, v_3), a_3], [(u_4, v_4
 The dual space of $F(U \times V)$ is the space of linear functionals mapping "formal sums" in $F(U \times V)$ to scalars. These look a little like bilinear forms, except we have no guarantee that they are in fact bilinear. We can introduce bilinearity, however, by taking a quotient space of $F(U \times V)$. We first form the sets:
 
 
-$$A_1 = \{(a_1, b) + (a_2, b) - (a_1 - a_2, b) : \forall a_1, a_2 \in U, b \in V \}$$
+$$A_1 = \{(a_1, b) + (a_2, b) - (a_1 + a_2, b) : \forall a_1, a_2 \in U, b \in V \}$$
 $$A_2 = \{(a, b_1) + (a, b_2) - (a, b_1 + b_2) : \forall a \in U, b_1, b_2 \in V \}$$
 $$S_1 = \{(c a, b) - c (a, b) : \forall a \in U, b \in V, c \in \mathbb{F} \}$$
 $$S_2 = \{(a, c b) - c (a, b) : \forall a \in U, b \in V, c \in \mathbb{F} \}$$
 
-In the above I'm using the shorthand notation $a (x, y)$ to stand for the function that maps $(x, y) \mapsto a$ and all other pairs mapped to zero. Now we form the subspace of $F(U \times V)$ defined by $E = span A_1 \cup A_2 \cup S_1 \cup S_2$. From here we form the quotient space $F(U \times V) \ E$. The elements
+In the above I'm using the shorthand notation $a (x, y)$ to stand for the function that maps $(x, y) \mapsto a$ and all other pairs mapped to zero. Now we form the subspace of $F(U \times V)$ defined by $E = span A_1 \cup A_2 \cup S_1 \cup S_2$. From here we form the quotient space $F(U \times V) \ E$. This quotient space is called the **tensor product** of $U$ and $V$, denoted $U \otimes V$.
 
 TODO: prove the dual space of $F(U \times V) \ E$ is the set of all bilinear forms on $U \times V$.
 
 
 
-## Permutations
-This is a brief summary of some sections in Halmos that I'm not going to prove in detail at this moment because I feel I have a good grasp on them.
+## Definition of dual transformation
+For a linear map $T: V \to W$, we can define a map $\phi_T: W' \to V'$ defined by $w \mapsto w \circ T$. Then $\phi_T$ is a linear map, called the **dual transformation** of $T$.
 
-The set of all permutations on a finite set with, say, $n$ elements, forms a group, the symmetric group $S_n$ of order $n$. Every permutation can be uniquely decomposed into a composition of disjoint cycles, and every cycle has a non-unique representation as a composition of transpositions. Hence every permutation can be represented as a composition of transpositions. Such a representation is highly non-unique. It is also possible to prove that each permutation has a well-defined **sign** or **parity**, which is the parity of the number of transposition in any representation for that permutation. To prove that such a definition is well-defined, it suffices to prove that the identity permutation can only be represented by an even number of transpositions. To prove that this in fact the case, some kind of induction proof works, I guess, but the main idea is that for any permutation, composing by a transposition always either increases the number of cycles by one or decreases the number of cycles by one, so that any odd number of transpositions must change the number of cycles, and hence it could not represent the identity permutation, which definitely must have $n$ disjoint cycles (all one-element cycles).
+*Proof:* For $a, b \in W'$, $\phi_T(a + b) = (a + b) \circ T = a \circ T + b \circ T = \phi_T(a) + \phi_T(b)$. Also if $c \in \mathbb{F}$, $\phi_T(ca) = (ca) \circ T = c (a \circ T) = c \phi_T(a)$, so it's linear.
 
-The last thing to note is that the subset of $S_n$ of all even permutations must be closed under composition, so it's a subgroup of $S_n$ called the alternating group of order $n$.
+## Representation of the dual transformation is the transpose of the original
+TODO : type up proof.
+
