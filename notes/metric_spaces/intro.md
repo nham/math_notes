@@ -822,9 +822,6 @@ If $f: X \to Y$ is a continuous map between metric spaces $(X, d)$ and $(Y, e)$ 
     *Proof:* The $\delta$ we wanted to define is established in (3), and it has the desired properties by (5).
 
 
-## Definition of finite intersection property
-A collection $\mathcal{S}$ of subsets of a metric space $(X, d)$ has the **finite intersection property** if every non-empty finite subcollection of $\mathcal{S}$ has a non-empty intersection.
-
 ## Equivalent characterization of compactness
 For a metric space $(X, d)$, the following are equivalent:
 
@@ -833,7 +830,6 @@ For a metric space $(X, d)$, the following are equivalent:
  3. $X$ is bounded and has the Bolzano-Weierstrass property.
  4. Every sequence in $X$ has a convergent subsequence
  5. Every infinite subset of $X$ has an accumulation point in $X$
- 6. Every collection of subsets of $X$ that possesses the finite intersection property has a non-empty intersection
 
 *Proof:* If (3) is true, then $X$ is bounded and has the Bolzano-Weierstrass property, so $X$ is complete and every bounded subset is totally bounded. But since $X$ is bounded, it must be totally bounded as well. So (3) implies (2). Assuming (2), we have that $X$ is complete and totaly bounded. So $X$ must be bounded. Also, any bounded subset of $X$ is totally bounded since every subset is totally bounded. This proves that (2) implies (3).
 
