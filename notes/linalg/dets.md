@@ -107,3 +107,38 @@ It is also possible to prove that each permutation has a well-defined **sign** o
 
 The last thing to note is that the subset of $S_n$ of all even permutations must be closed under composition, so it's a subgroup of $S_n$ called the alternating group of order $n$.
 
+
+## Definition of multilinear function
+A function $\phi: \prod_1^k V_i \to W$ for vector spaces $V_1, \ldots, V_k, W$ over a common field $\mathbb{F}$ is said to be **multilinear** or **$k$-linear** if it is linear in each argument (i.e. currying $\phi$ by all but one of the arguments yields a linear map).
+
+If $W = \mathbb{F}$, then $\phi$ is called a **$k$-linear form** instead.
+
+
+## Vector space of $k$-linear maps
+If $\phi, \psi : \prod_1^k V_i \to W$ are $k$-linear maps into $W$, then $\phi + \psi$ defined by standard function addition is also $k$-linear, as is $c \phi$ for any scalar $c$. So we can form the vector space of $k$-linear maps. It is denoted by $ML(\{V_j\}_1^k, W)$. If $V_i = V$ for all $i$, then it is denoted by $ML(V^{\oplus k}, W)$, and when $W = \mathbb{F}$, it is thes pace of all $k$-linear forms, denoted by $ML(V^{\oplus k})$.
+
+
+
+## Definition of symmetric multilinear function
+A multilinear $f: \prod_1^n V_i \to W$ is **symmetric** if for any permutation on $\sigma$ on $\{1, \ldots, n\}$ we have
+
+$$f(v_{\sigma(i)}, \ldots, v_{\sigma(n)}) = f(v_1, \ldots, v_n)$$
+
+for all $(v_1, \ldots, v_n) \in \prod_1^n$.
+
+
+## Definition of alternating multilinear function
+A multilinear $f: \prod_1^n V_i \to W$ is **alternating** iff $f(v_1, \ldots, v_n) = 0$ for all $(v_1, \ldots, v_n)$ such that $v_i = v_j$ for some $i \neq j$.
+
+## Equivalent characterization for alternating multilinear functions
+A multilinear function $f: \prod_1^n V_i \to W$ is alternating iff for every $(v_1, \ldots, v_n) \in \prod_1^n V_i$ and every transposition $\sigma$, we have $f(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = - f(v_1, \ldots, v_n)$.
+
+*Proof:* If $f$ is alternating and $(v_1, \ldots, v_n) \in \prod_1^n V_k$ and $\sigma$ a transpose of $i$ and $j$, $i < j$. Then $(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = (v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)$ Then $f(v_1, \ldots, v_i + v_j, \ldots, v_i + v_j, \ldots, v_n) = 0$ by $f$ being alternating. But by multilinearity of $f$:
+
+$$0 = f(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) + f(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)$$
+
+
+### Corollary
+A multilinear function is alternating iff $f(v_{\sigma(i)}, \ldots, v_{\sigma(n)}) = sgn \sigma f(v_1, \ldots, v_n)$ for all $(v_1, \ldots, v_n) \in \prod_1^n V_i$ and all permutations $\sigma$.
+
+*Proof:* $sgn \sigma$ is the parity of the number of transpositions that make up $\sigma$.
