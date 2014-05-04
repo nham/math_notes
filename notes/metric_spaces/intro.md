@@ -396,6 +396,13 @@ If $(X, d)$ is a metric space and $(x_n)$ a Cauchy sequence in $X$, then $(x_n)$
 ## Definition of complete metric spaces
 A metric space is **complete** if every Cauchy sequence converges.
 
+## Closed subsets of complete metric spaces are complete
+If $(X, d)$ is complete and $S \subseteq X$ is closed in $X$, then the subspace $(S, d|S)$ is complete.
+
+*Proof:*  If $(x_n)$ is a Cauchy sequence contained in $S$, then it converges to some $c \in X$. Because $S$ is closed, we must have $c \in S$. Finally, every Cauchy sequence in a metric space is a Cauchy sequence in any superspace, so 
+
+If $(y_n)$ is Cauchy in the subspace of $S$, then it is Cauchy in $X$ since $X$ is a superspace. $X$ being complete, we have some $c \in X$ such that $(y_n)$ converges to c$ in $X$. But $S$ is closed in $X$, so $c \in S$. This means that $(y_n)$ must converge to $c$ in $S$ (due to the metric on $S$ being a restriction of $d$).
+
 
 ## Definition of bounded subsets
 A subset $S$ of a metric space $X$ is **bounded** if some $z \in X$ is such that an open ball centered at $z$ contains $S$.
