@@ -686,6 +686,11 @@ For any metric spaces $(X,d)$ and $(Y,e)$, if $S \subseteq X$, $a \in acc(S)$, t
 
 Conversely, if $lim_{x \to a} f(x) \neq L$, then for some $\epsilon > 0$, for every $\delta > 0$, there is some $x \in S \cap D_X(a; \delta)$ such that $f(x) \notin B_Y(L; \epsilon)$. So we can construct a sequence $(x_n)$ entirely contained in $S - a$ that converges to $a$ but such that $(f(x_n))$ does not converge to $L$ (in fact, all terms remain outside the $\epsilon$-ball around $L$).
 
+## Function limits are unique
+For any metric spaces $(X,d)$ and $(Y,e)$, if $S \subseteq X$ and $a \in acc(S)$ and $f: S \to Y$, then $lim_{x \to a} f(x) = L$ and $lim_{x \to a} f(x) = M$ implies that $L = M$.
+
+*Proof:* If both are true, then every $(x_n)$ in $S - a$ that converges to $a$ has $(f(x_n)) \to L$ and $(f(x_n)) \to M$, so since sequence limits are unique, $L = M$, hence function limits are unique.
+
 
 ## Alternative characterization of continuity
 A function $f: X \to Y$ is continuous at $a \in X$ iff either $lim_{x \to a} f(x) = f(a)$ or $a$ is an isolated point of $X$.
