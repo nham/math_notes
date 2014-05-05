@@ -668,13 +668,23 @@ A function $f: X \to Y$ between two metric spaces $(X, d)$ and $(Y, e)$ is **con
 
 $f$ is **continuous** if it is continuous at every point $x \in X$.
 
-## Definition of function limits
-Let $\r{B}(x; \epsilon) := B(x; \epsilon) - \{x \}$ be called the **deleted open ball** of radius $\epsilon$ centered at $x$.
 
-If $(X, d)$ and $(Y, e)$ are two metric spaces, $S \subseteq X$, and $a$ is an accumulation point of $S$, then any function $f: S \to Y$ is said to have a **limit** $L$ at $a \in X$ if for every open ball $B_Y(L, \epsilon)$ in $Y$ around $L$, there is a deleted open ball $\r{B}_X(a; \delta$ in $X$ around $a$ such that
-$f(\r{B}_X(a; \delta) \subseteq B_Y(L; \epsilon)$.
+## Definition of deleted open ball
+For any metric space $(X, d)$, $D_X(a; \epsilon)$ denotes the **deleted open ball** of radius $\epsilon$ centerde at $a \in X$, defined to be $B_X(a; \epsilon) - a$.
+
+
+## Definition of function limits
+If $(X, d)$ and $(Y, e)$ are two metric spaces, $S \subseteq X$, and $a$ is an accumulation point of $S$, then any function $f: S \to Y$ is said to have a **limit** $L$ at $a \in X$ if for every open ball $B_Y(L, \epsilon)$ in $Y$ around $L$, there is a deleted open ball $D_X(a; \delta$ in $X$ around $a$ such that
+$f(D_X(a; \delta)) \subseteq B_Y(L; \epsilon)$.
 
 If $f$ has a limit of $L$ at $a$, we denote this $lim_{x \to a} f(x) = L$.
+
+## Sequential characterization of function limit
+For any metric spaces $(X,d)$ and $(Y,e)$, if $S \subseteq X$, $a \in acc(S)$, then for any $f: S \to Y$, then $lim_{x \to a} f(x) = L$ iff every sequence $(x_n)$ in $S - a$ converging to $a$ is such that $(f(x_n))$ converges to $L$
+
+*Proof:* If $lim_{x \to a} f(x) = L$ and $(x_n) \subseteq S - a$ converges to $a$, then for every $\epsilon > 0$ we can find a $\delta$ such that $f(S \cap D(a; \delta)) \subseteq B(L; \epsilon)$.  But since $(x_n) \to a$, some tail of $(x_n)$ is contained within the deleted $\delta$-ball around $a$ (since no term is $a$), so the tail of $(f(x_n))$ starting at the same index is contained within $B_Y(L; \epsilon)$.
+
+Conversely, if $lim_{x \to a} f(x) \neq L$, then for some $\epsilon > 0$, for every $\delta > 0$, there is some $x \in S \cap D_X(a; \delta)$ such that $f(x) \notin B_Y(L; \epsilon)$. So we can construct a sequence $(x_n)$ entirely contained in $S - a$ that converges to $a$ but such that $(f(x_n))$ does not converge to $L$ (in fact, all terms remain outside the $\epsilon$-ball around $L$).
 
 
 ## Alternative characterization of continuity
@@ -897,3 +907,28 @@ But since the sequence $(k^n)$ is strictly decreasing, $k^n \leq k^N$ and $k^m \
 $$d(x_n, x_m) \leq \frac{2 k^N}{1-k} d(x_1, x_0)$$
 
 So for any $\epsilon$< choose $N$ such that $\frac{2 k^N}{1-k} d(x_1, x_0) < \epsilon$ to ensure that all terms in the tail starting at $N$ are within $\epsilon$ of each other. This proves that $(x_n)$ is a Cauchy sequence, so it converges in $X$ since $X$ is complete. Let $y = lim_{n \to \infty} x_n$. By $f$'s continuity, we have that $(f(x_n))$ converges to $f(y)$. But $(f(x_n))$ is tail of $(x_n)$ starting at the second term, so it has the same limit as $(x_n)$, namely $y$. In other words, $f(y) = y$.
+
+
+
+## Definition of connected metric space
+A space $(X, d)$ is **disconnected** iff there are open, non-empty, disjoint $U_1, U_2$ such that $X = U_1 \cup U_2$. A space is **connected** iff it is not disconnected.
+
+
+## Equivalent characterization of connected metric spaces
+For a metric space $(X, d)$, the following are equivalent:
+
+ 1. $X$ is connected
+ 2. there is no $S \subseteq X$, $S \neq X$, $S \neq \emptyset$ which is both closed and open
+ 3. For every $S \subseteq X$ such that $X \neq S \neq \emptyset$, $S$ has a non-empty boundary
+
+
+*Proof:* If $X$ is connected, then if $S \subseteq X$ with $X \neq S \neq \emptyset$ and $S$ both closed and open, then $X - S$ is also open, non-empty, and disjoint from $S$. $X = S \cup (X - S)$, so $X$ is disconnected, a contradiction. So (1) implies (2).
+
+If (2) is true, then for any $S$ such that $X \neq S \neq \emptyset$, $S$ could not be both closed and open. If $S$ is not closed, then there is at least one boundary point of $S$ that is not contained in $S$. If $S$ is not open, then it contains at least one boundary point of $S$. In either case, a boundary point exists, so (3) is true.
+
+If $X$ is disconnected, then $X = U_1 \cup U_2$ for open, non-empty, disjoint $U_1$ and $U_2$. Recall that $\partial U_1 = \partial U_2$, so if $U_1$ has a boundary point in $X$, then either $U_1$ or $U_2$ contains one of its boundary points, contradicting the fact that both are open. So $\partial U_1 = \emptyset$. This proves that (3) implies (1).
+
+## Continuous image of a connected space
+If $(X, d)$ is a connected metric space and $f: X \to Y$ continuous for some $(Y, e)$, then $img f$ is connected.
+
+*Proof:* If $S = img f$ is disconnected, then $S = U_1 \cup U_2$ for open, non-empty, disjoint $U_1, U_2$. Because $f$ is continuous, $A_1 = f^{pre}(U_1)$ and $A_2 = f^{pre}(U_2)$ are open. $A_1, A_2$ are non-empty by definition, and also disjoint (no $x \in X$ could be mapped to both $U_1$ and $U_2$ since they are disjoint). $f^{pre}(img f) = X$, so $A_1 \cup A_2 = X$ as well. Hence $X$ is disconnected.
