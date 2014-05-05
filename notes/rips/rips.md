@@ -53,6 +53,26 @@ If $V$ is a normed vector space and $(x_n)$ and $(y_n)$ are sequences in $V$, $u
 For the remaining proposition, we can find a tail of $(x_n)$, starting at some $k$, which is contained in an $\epsilon / |c|$-ball around $u$, so $\|c x_n - cu\| = |c| \|x_n - u \| < \epsilon$ for any $n \geq k$.
 
 
+## Functional limit laws
+If $(X, d)$ is any metric space and $V$ is a normed vector space, then for any set $S \subseteq X$, any $a \in acc(S)$, and any functions $f, g: S \to V$ such that
+
+$$lim_{x \to a} f(x) = c$$
+
+and
+
+$$lim_{x \to a} g(x) = d$$
+
+Then $lim_{x \to a} (f+g)(x) = c + d$.
+
+Also, for any $k \in \mathbb{F}$, $lim_{x \to a} (kf)(x) = kc$.
+
+*Proof:* First we want to prove that for any $\epsilon > 0$, $\|c + d - f(x) - g(x)\| < \epsilon$
+
+
+For any $\epsilon > 0$, let $\delta$ be such that $\|f(x) - c\| < \epsilon / 2$ and $\|g(x) - d\| < \epsilon / 2$ for all $x \in D_X(a; \delta)$, which we know exists by hypothesis. So $\|f(x) + g(x) - c - d\| < \epsilon$ for all $x \in D_X(a; \delta)$, proving the first statement.
+
+For the second, find a $\delta$ for which all elements of $X$ in the deleted $\delta$-ball around $a$ get mapped into the $\epsilon / k$-ball around $c$ by $f$. Then $(kf)$ maps all the same elements into the $\epsilon$-ball around $c$.
+
 
 ## Definition of real inner product space
 A **real inner product space** is a vector space $(V, \mathbb{R})$ along with an operation $V \times V \to \mathbb{R}$, written $\langle x, y \rangle$ for $x, y \in V$, that satisfies:
