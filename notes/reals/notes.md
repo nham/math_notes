@@ -214,3 +214,41 @@ Every bounded sequence in $\mathbb{R}^n$ contains a convergent subsequence.
 $S \subseteq \mathbb{R}^n$ is compact iff it is closed and bounded.
 
 *Proof:* Every compact set is closed and bounded. Conversely, for any space that obeys the Bolzano-Weierstrass property, a bounded subset is totally bounded, and a closed subset is complete as a metric space, so a closed, bounded subset is complete and totally bounded, hence compact.
+
+
+## Continuous, real-valued functions on compact spaces attain maximum/minimum
+If $(X, d)$ is a compact metric space and $f: X \to \mathbb{R}$ is continuous, then there exist $a, b \in X$ such that $f(a) \leq f(x) \leq f(b)$ for all $x \in X$. In other words, $f$ attains a minimum and a maximum on $a$ and $b$, respectively.
+
+*Proof:* $img f$ is compact, so it's closed and bounded since it is in $\mathbb{R}$. $sup(img f)$ and $inf(img f)$ are closure points of $img f$, so both are in $img f$.
+
+## Definition of interval
+A set $I \subseteq \mathbb{R}$ is an **interval** if for all $a, b \in I$ with $a < b$, we have $c \in I$ for all $c$ such that $a < c < b$.
+
+## Definition of derivative
+If $f: (a, b) \to \mathbb{R}$ is any function, then $f$ is said to be **differentiable** at $x \in (a, b)$ if the function $\phi: (a, b) - x \to \mathbb{R}$ defined by
+
+$$\phi(t) = \frac{f(t) - f(x)}{t - x}$$
+
+has
+
+$$lim_{t \to x} \phi(t) = c$$
+
+for some $c \in \mathbb{R}$
+
+Since functional limits are unique, $c$ is called **the derivative** of $f$ at $x$, and is notated $f'(x)$ or $Df(x)$.
+
+## Equivalent definition of derivative
+If $f: (a, b) \to \mathbb{R}$ is any function, then $f$ is differentiable at $x \in (a, b)$ iff there is a $c \in \mathbb{R}$ such that the function $\psi: (a, b) - x \to \mathbb{R}$ defined by
+
+$$\psi(t) = \frac{f(t) - f(x) - c(t - x)}{t-x}$$
+
+has
+
+$$lim_{t \to x} \psi(t) = 0$$
+
+
+*Proof:* If $f$ is differentiable at $x$, then letting $c = f'(x)$, we have $g: (a - b) - x \to \mathbb{R}$ defined by $g(t) = c(t - x)/(t - x)$. Then $lim_{t \to x} g(t) = c$, so by function limit laws we have
+
+$$lim_{t \to x} \phi(t) - g(t) = 0$$
+
+But $\psi = \phi - g$.
