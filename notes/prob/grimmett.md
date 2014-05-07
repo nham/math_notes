@@ -173,3 +173,39 @@ To complete (2), we need to prove that for all $\epsilon > 0$ there is a $y$ suc
 
 For (3), prove that for all $\epsilon > 0$, there is a $y$ such that for all $z$ with $x < z < y$, we have $|F(z) - F(x)| < \epsilon$. But it can be proven that $lim_{n \to \infty} \mathbb{P}(X(\omega) \leq x + 1/n) = F(x)$, so we can always find an $n$ such that $F(x + 1/n)$ is $\epsilon$-close to $F(x)$, meaning all $y$ such that $x < y < x + 1/n$ are as well by non-decreasingness of $F$.
 
+
+## Definition of random vector
+If $X_1, \ldots, X_n$ are random variables for a probability space, then $X: \Omega^n \to \mathbb{R}^n$ defined by $X(\omega) = (X_1(\omega), \ldots, X_n(\omega))$ is a **random vector**.
+
+## Partial order on $\mathbb{R}^n$.
+If $x, y \in \mathbb{R}^n$, we define $x \leq y$ iff $x_i \leq y_i$ for all $i$. $\leq$ is a partial order.
+
+*Proof:* Clearly reflexive. If $x \leq y$ and $y \leq x$, $x_i = y_i$ by $\leq$ being antisymmetric for $\mathbb{R}$. Also transitivity similarly holds.
+
+## Joint probability
+For any random vector $X$ on $X_1, \ldots, X_n$, the event $X(\omega) \leq x$ for $x = (x_1, \ldots, x_n) \in \mathbb{R}^n$ is defined to be the event
+
+$$\bigcap_1^n (X_i(\omega) \leq x_i)$$
+
+This is obviously a well-defined event since it is a finite intersection of events.
+
+## Definition of joint distribution
+For any random vector $X$ on $X_1, \ldots, X_n$, the **joint distribution function** of $X$ is a function $F: \mathbb{R}^n \to \mathbb{R}$ defined by $F(x) = \mathbb{P}(X(\omega) \leq x)$
+
+## Alternate characterization of joint distribution
+Letting $\pi_i: \mathbb{R}^n \to \mathbb{R}$ be the $i$-th projection function, if $X = (X_1, \ldots, X_n)$ is a random vector and $F$ is the joint distribution for $X$, then $\pi_i \circ F$ is the distribution for $X_i$.
+
+*Proof:* TODO
+
+
+
+## Joint distribution function properties
+For any joint distribution function $F$ for a random vector $X$, we have
+
+ 1. $x < y$ implies $F(x) \leq F(y)$ ($F$ is non-decreasing)
+ 2. $lim_{x \to - \infty} F(x) = 0$ and $lim_{x \to \infty} F(x) = 1$
+ 3. $F$ is *right-continuous*: $lim_{h \to 0} F(x + h) = F(x)$
+
+*Proof:* $x < y$ implies $x_i < y_i$, so $X \leq x$ is a subset of $X \leq y$, hence $F(x) \leq F(y)$. This establishes 1.
+
+TODO
