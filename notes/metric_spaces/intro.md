@@ -1,8 +1,4 @@
-# in $X - S$.
-
-*Proof:* If $S$ is closed and $(x_n)$ is entirely in $S$ and convergent in $X$, then the limit of $(x_n)$, call it $L$, is a closure point of $S$ by the previous proposition, so $L \in S$. Conversely if every convergent sequence contained in $S$ converges to a limit in $S$, then since every closure point of $S$ has a limit in $S$ converging to it, $S$ must contain it.
-
-$S$ is open iff $X - S$ is closed, so the second statement holds from the first.# Definition of metric spaces
+# Definition of metric spaces
 
 A **metric space** is a pair $(X, d)$ where $d$ is a function $X \times X \rightarrow \mathbb{R}$ such that:
 
@@ -83,7 +79,7 @@ A set $S$ is **closed** in metric space $X$ if its complement $X - S$ is open. A
 ## Closed balls are closed
 Every closed ball $C(x_0; r)$ is a closed set.
 
-*Proof:* We have to prove that $C(x_0; r)$'s complement is open. So let $U = X - C(x_0; r)$, and let $y \in U$. This means that $d(y, x_0) > r$ by definition of $C(x_0; r)$. Suppose further that there isn't any open ball around $y$ that is contained entirely in $U$ (which is allowable since we are assuming $U$ is not open). Then every $\epsilon$-ball of $y$ intersects $C(x_0; r)$ In particular, $\epsilon = (d(y, x_0) - r) / 2$ > 0$, so some $z \in B(y; \epsilon)$ is also in $C(x_0; r)$.
+*Proof:* We have to prove that $C(x_0; r)$'s complement is open. So let $U = X - C(x_0; r)$, and let $y \in U$. This means that $d(y, x_0) > r$ by definition of $C(x_0; r)$. Suppose further that there isn't any open ball around $y$ that is contained entirely in $U$ (which is allowable since we are assuming $U$ is not open). Then every $\epsilon$-ball of $y$ intersects $C(x_0; r)$ In particular, $\epsilon = (d(y, x_0) - r) / 2 > 0$, so some $z \in B(y; \epsilon)$ is also in $C(x_0; r)$.
 
 We know
 
@@ -614,7 +610,7 @@ If $(\prod_1^n X_i, d)$ is a metric space with a product metric $d$ for metric s
 
 *Proof:* If $(x_m) \to c$ in $P$, then fixing $i$, we must prove that for every open $U$ \subseteq X_i$ containing $\pi_i(c)$, some tail of $(\pi_i(x_m))$ is contained in $U$. Form the product $S = \prod_1^n S_j$, where $S_i = U$ and $S_j = B_{X_j}(\pi_j(c); 1)$ for all $j \neq i$. This is open in $P$ by the product topology and it contains $c$, so some tail of $(x_m)$ starting at $k$ is contained in $S$. This means that the tail of $(\pi_i(x_m))$ starting at $k$ is contained in $U$, which implies that $(\pi_i(x_m)) \to \pi_i(c)$.
 
-Conversely, $(\pi_i(x_m)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_m))_{m \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_m))_{m \geq N}$ is contained in $U_i$, so $(x_m)_{m \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
+Conversely, $(\pi_i(x_m)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P$ with $c \in W$. By hypothesis $P$ has the product topology, so $W$ is the union of products of open sets. So there must be $U_1, \ldots, U_n$ with $U_i \subseteq X_i$ and $c \in \prod_1^n U_i$. By hypothesis again, we can find for all $i$, an $N_i \in \mathbb{N}$ such that $(\pi_i(x_m))_{m \geq N_i}$ is contained in $U_i$ because $U_i$ is an open set containing $\pi_i(c)$ in $X_i$. Taking $N = max \{ N_1, \ldots, N_n \}$, we have that each $(\pi_i(x_m))_{m \geq N}$ is contained in $U_i$, so $(x_m)_{m \geq N}$ is contained in $\prod_1^n U_i \subseteq W$.
 
 ### Remark
 I think this theorem was generalized to any space with product topology (instaed of just using conserving metric) because it's true for general product topological spaces, so someone going on to study topology would certainly see it later.
@@ -625,7 +621,7 @@ If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n 
 
 *Proof:* If $(x_m)$ is Cauchy in $(P, d)$, then for every $\epsilon > 0$ there is an $N$ such that for $k, m \geq N$, $d(x_k, x_m) < \epsilon$. But for each $i$, we have $d_i(\pi_i(x_k), \pi_i(x_m)) \leq \mu_{\infty}(x_k, x_m) \leq d(x_k, x_m) < \epsilon$. So each sequence $(\pi_i(x_m))$ is also Cauchy.
 
-Conversely, if $(x_m)$ is a sequence in $P$ and $(\pi_i(x_m))$ is Cauchy in $X_i$ for every $i$, then for every $\epsilon > 0$ there is an $M_i$ for every $i$ such that for any $k, m \geq M_i$, $d_i(\pi_i(x_k), \pi_i(x_m)) < \epislon / n$. So for every $k, m \geq M = max \{M_1, \ldots, M_n\}$ we have $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$ for all $i$. Hence for all $k, m \geq M$, we have $\mu_1(x_k, x_m) = \sum_1^n d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon$. But $d(x_k, x_m) \leq \mu_1(x_k, x_m)$, so the tail starting at $M$ of $(x_m)$ has all terms within the $\epsilon$ of one another. So $(x_m)$ must also be Cauchy.
+Conversely, if $(x_m)$ is a sequence in $P$ and $(\pi_i(x_m))$ is Cauchy in $X_i$ for every $i$, then for every $\epsilon > 0$ there is an $M_i$ for every $i$ such that for any $k, m \geq M_i$, $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$. So for every $k, m \geq M = max \{M_1, \ldots, M_n\}$ we have $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$ for all $i$. Hence for all $k, m \geq M$, we have $\mu_1(x_k, x_m) = \sum_1^n d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon$. But $d(x_k, x_m) \leq \mu_1(x_k, x_m)$, so the tail starting at $M$ of $(x_m)$ has all terms within the $\epsilon$ of one another. So $(x_m)$ must also be Cauchy.
 
 ## Completeness and product spaces
 If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then $(P, d)$ is complete iff each $(X_i, d_i)$ is complete.
@@ -755,7 +751,7 @@ A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has 
 
         *Proof:* $B_Y(f(a); \epsilon)$ is open in $Y$, so the statement holds by hypothesis.
 
-    3. There is a $\delta > 0$ such that $B_X(a; delta) \subseteq f^{pre}(B_Y(f(a); \epsilon))$
+    3. There is a $\delta > 0$ such that $B_X(a; \delta) \subseteq f^{pre}(B_Y(f(a); \epsilon))$
 
        *Proof:* By definition of an open set and by (2.2).
 
@@ -843,7 +839,7 @@ If $f: X \to Y$ is a continuous map between metric spaces $(X, d)$ and $(Y, e)$ 
 
     *Proof:* By $f$'s continuity, for every $x$ there is some $\delta_x > 0$ such that $f(B_X(x; \delta_x)) \subseteq B_Y(f(x); \gamma)$. The collection $\{ B_X(x; \delta_x / 2) \}$ is an open cover of $X$, so it has a finite subcover. The proposition holds since $f(B_X(x; \delta_x / 2)) \subseteq f(B_X(x; \delta_x))$.
 
- 3. Define $\delta = min \{ \delta_k : 1 \leq k \leq n \}, where $\delta_k$'s are defined by setting $\gamma = \epsilon / 2$ in (2).
+ 3. Define $\delta = min \{ \delta_k : 1 \leq k \leq n \}$, where $\delta_k$'s are defined by setting $\gamma = \epsilon / 2$ in (2).
 
  4. For any $x, y \in X$ with $d(x, y) < \delta$, there is a $k$ such that $x$ and $y$ are elements of $B_X(x_k; \delta_k)$.
 
