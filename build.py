@@ -11,9 +11,9 @@ def ensure_dir(f):
         os.makedirs(d)
 
 
-def compile(foldername, filename):
-    in_file = src_dir + '/' + foldername + '/' + filename
-    out_file = out_dir + '/' + foldername + '/' + filename.replace('.md', '.html')
+def compile(folder, filename):
+    in_file = src_dir + '/' + folder + filename
+    out_file = out_dir + '/' + folder + filename.replace('.md', '.html')
 
     ensure_dir(out_file)
 
@@ -29,6 +29,7 @@ def compile(foldername, filename):
 
 
 files = {}
+files[''] = ['index.md']
 files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md', 
                    'linear_maps.md', 'linear_systems.md', 'subspaces.md', 
                    'tensors.md']
@@ -36,6 +37,8 @@ files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md',
 files['metric_spaces'] = ['intro.md']
 
 
-for k, lst in files.items():
+for folder, lst in files.items():
     for i in lst:
-        compile(k, i)
+        if folder != '':
+            folder += '/'
+        compile(folder, i)
