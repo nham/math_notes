@@ -692,6 +692,20 @@ For any metric spaces $(X,d)$ and $(Y,e)$, if $S \subseteq X$ and $a \in acc(S)$
 *Proof:* If both are true, then every $(x_n)$ in $S - a$ that converges to $a$ has $(f(x_n)) \to L$ and $(f(x_n)) \to M$, so since sequence limits are unique, $L = M$, hence function limits are unique.
 
 
+## Composition of function limits
+If $(X, d)$, $(Y, e)$ and $(Z, f)$ are metric spaces, $S \subseteq X$, $T \subseteq Y$, $a \in acc(S)$, $b \in acc(T)$, $c \in Z$, $f: S \to Y$ and $g: T \to Z$, and if
+
+$$lim_{x \to a} f(x) = b$$
+
+and
+
+$$lim_{y \to b} g(y) = c$$
+
+Then if $g$ is continuous at $b$ or if for all $x \in S - a$, $f(x) \neq b$, then $lim_{x \to a} g(f(x)) = c$.
+
+*Proof:* For any $\epsilon$, we can find a $\delta$ such that $g(D_Y(b; \delta) \cap T) \subseteq B_Z(c; \epsilon)$, and we can find a $\gamma$ such that $f(D_X(a; \gamma) \cap S) \subseteq B_Y(b; \delta)$. If $f(x) \neq b$ for all $x \in S - a$, then in fact $f(D_X(a; \gamma) \cap S) \subseteq D_Y(b; \delta)$, so the statement is proved. If instead $g$ is continuous, then $c = g(b)$, so $g(B_Y(b; \delta) \cap T) \subseteq B_Z(c; \epsilon)$, hence the statement holds again.
+
+
 ## Alternative characterization of continuity
 A function $f: X \to Y$ is continuous at $a \in X$ iff either $lim_{x \to a} f(x) = f(a)$ or $a$ is an isolated point of $X$.
 
