@@ -35,6 +35,9 @@ files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md',
                    'tensors.md']
 
 files['metric_spaces'] = ['intro.md']
+files['prob'] = ['grimmett.md']
+files['reals'] = ['notes.md']
+files['gibson_euclidean'] = ['1.md']
 
 
 for folder, lst in files.items():

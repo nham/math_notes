@@ -8,3 +8,12 @@
 
 # Metric spaces
  - [main](metric_spaces/intro.html)
+
+# Probability
+ - [notes from grimmett and stirzaker](prob/grimmett.html)
+
+# Real analysis
+ - [axiomatic real analysis, using metric space notes](reals/notes.html)
+
+# Euclidean geometry
+ - [notes from C.G. Gibson's Elementary Euclidean Geometry](gibson_euclidean/1.html)
