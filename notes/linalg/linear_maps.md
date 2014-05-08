@@ -2,7 +2,7 @@
 If $(V, \mathbb{F})$ and $(W, \mathbb{F})$ are vector spaces, a linear map is a function $T: V \to W$ such that
 
  - for all vectors $u, v \in V$, T(u + v) = T(u) + T(v)$
- - $for any vector $v \in V$ and any scalar $a \in \mathbb{F}$, $T(a \cdot v) = a \cdot T(v)$
+ - for any vector $v \in V$ and any scalar $a \in \mathbb{F}$, $T(a \cdot v) = a \cdot T(v)$
 
 Note: by induction we can extend the linearity properties to any finite linear combination: $T(\sum_{v \in S} a_v \cdot v) = \sum_{v \in S} a_v \cdot T(v)$.
 
@@ -110,7 +110,7 @@ If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then
 ## Dimension of hom spaces
 $dim Hom(V, W) = (dim V) (dim W)$ for any vector spaces $V$ and $W$ over the same field.
 
-*Proof:* Let $\{v_1, \ldots, v_m \}$ be a basis for $V$ and $\{w_1, \ldots, w_n\}$ be a basis for $W. Then the collection of functions $f_{ij}: V \to W$ which maps $u_i \mapsto w_j$ and $u_k \mapsto 0$ for all $k \neq i$ forms a basis for $Hom(V, W)$, as we now prove.
+*Proof:* Let $\{v_1, \ldots, v_m \}$ be a basis for $V$ and $\{w_1, \ldots, w_n\}$ be a basis for $W$. Then the collection of functions $f_{ij}: V \to W$ which maps $u_i \mapsto w_j$ and $u_k \mapsto 0$ for all $k \neq i$ forms a basis for $Hom(V, W)$, as we now prove.
 
 If $g = \sum_{i=1}^m \sum_{j=1}^n a_{ij} f_ij$ is the zero map from $V$ to $W$, then $g(v_i) = 0$ for all $i$. But $g(v_i) = \sum_{j=1}^n a_{ij} f_{ij}(v_i) = \sum_{j=1}^n a_{ij} w_j$ since $f_{kj}(v_i) = 0$ for all $j$ and all $k \neq i$, by definition. Since $w_j$ are independent in $W$, we must have $a_{ij} = 0$. So the f_{ij}$'s are indepenent.
 

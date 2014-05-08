@@ -14,35 +14,35 @@ If $W$ is a subspace of $V$ and $S$ is a finite subset of $W$, then every linear
 *Proof:* Any scaling of $S$ gives us a finite set of elements that are all in $W$, and adding them together gives the linear combination. Since $W$ is closed under addition, it's closed under any finite number of additions as well.
 
 ## The span is a subspace
-For any subset $S$ of a vector space $V$, $span S$ is a subspace of $V$.
+For any subset $S$ of a vector space $V$, $\text{span} S$ is a subspace of $V$.
 
-*Proof:* We need merely prove that $span S$ is closed under vector addition and scalar multiplication. But $span S$ is the set of all linear combinations of vectors in $S$. But clearly we can add $\sum_1^n a_i s_i$ and $\sum_1^k b_i t_i$ to a linear combination of $\{s_1, \ldots, s_n, t_1, \ldots, t_k\}$. Also, scaling any linnear combination of vectors of $S$ is again a linear combination of those same vectors in $S$.
+*Proof:* We need merely prove that $\text{span} S$ is closed under vector addition and scalar multiplication. But $\text{span} S$ is the set of all linear combinations of vectors in $S$. But clearly we can add $\sum_1^n a_i s_i$ and $\sum_1^k b_i t_i$ to a linear combination of $\{s_1, \ldots, s_n, t_1, \ldots, t_k\}$. Also, scaling any linnear combination of vectors of $S$ is again a linear combination of those same vectors in $S$.
 
 ### Intersections of subspaces
 If $V$ is a vector space and $\mathcal{S}$ is a collection of subspaces of $V$, then $\bigcap \mathcal{S}$ is a subspace. Note that $\bigcap \mathcal{S}$ is the biggest subspace contained in all subspaces of $\mathcal{S}$.
 
 *Proof:* If $u, v \in \bigcap \mathcal{S}$, then $u$ and $v$ are in every subspace of $\mathcal{S}$, so certainly $u+v$ is in every subspace as well, meaning $\bigcap \mathcal{S}$ is closed under addition. For the same reason, it's closed under scalar multiplication, hence is a subspace.
 
-## $span S$ is the smallest subspace containing $S$
+## $\text{span} S$ is the smallest subspace containing $S$
 ### Preliminary definition
-Let's notate by $V_{sub}$ the collection of all subspaces of $V$. Then for any subset $S$ of $V$, define $<S> := \bigcap \{ W \in V_{sub} : S \subseteq W \}$. In words, $<S>$ is the intersection of all subspaces that contain $S$.
+Let's notate by $V_{sub}$ the collection of all subspaces of $V$. Then for any subset $S$ of $V$, define $\langle S \rangle := \bigcap \{ W \in V_{sub} : S \subseteq W \}$. In words, $\langle S \rangle$ is the intersection of all subspaces that contain $S$.
 
-Then $<S>$ is the smallest subspace of $V$ that contains $S$ (in the sense that if $W$ is a subspace of $V$ that contains $S$, then $<S> \subseteq W$)
+Then $\langle S \rangle$ is the smallest subspace of $V$ that contains $S$ (in the sense that if $W$ is a subspace of $V$ that contains $S$, then $\langle S \rangle \subseteq W$)
 
-*Proof:* This is by definition. By hypothesis $W$ is an element of the collection whose intersection is $<S>$.
+*Proof:* This is by definition. By hypothesis $W$ is an element of the collection whose intersection is $\langle S \rangle$.
 
 ### Alternate characterization of the span
-For any subset $S$ of a vector space $V$, $span S = <S>$.
+For any subset $S$ of a vector space $V$, $\text{span} S = \langle S \rangle$.
 
-*Proof:* Certainly $span S$ is a subspace that contains $S$, as recently proved, so $<S> \subseteq span S$.  Letting $\mathcal{S}$ be the collection of subspaces of $V$ that contain $S$, we have $\forall W \in \mathcal{S}$, $S \subseteq W$, so $span S \subseteq W$ as well, hence $span S \subseteq <S>$. So they are the same set.
+*Proof:* Certainly $\text{span} S$ is a subspace that contains $S$, as recently proved, so $\langle S \rangle \subseteq \text{span} S$.  Letting $\mathcal{S}$ be the collection of subspaces of $V$ that contain $S$, we have $\forall W \in \mathcal{S}$, $S \subseteq W$, so $\text{span} S \subseteq W$ as well, hence $\text{span} S \subseteq \langle S \rangle$. So they are the same set.
 
 ### Remark
-We can alternatively call $<S>$ the *span* of $S$. Even though the two operations are superficially different, we have proved that they are completely identical.
+We can alternatively call $\langle S \rangle$ the *span* of $S$. Even though the two operations are superficially different, we have proved that they are completely identical.
 
 
 ## The lattice of subspaces
 ### Definition of sums
-If $V$ is a vector space and $\mathcal{S}$ is a collection of subspaces of $V$, then define the **sum** $\sum \mathcal{S}$ to be the intersection of all subspaces that contain $\bigcup \mathcal{S}$. In symbols, $\sum \mathcal{S} := <\bigcup \mathcal{S}>$.
+If $V$ is a vector space and $\mathcal{S}$ is a collection of subspaces of $V$, then define the **sum** $\sum \mathcal{S}$ to be the intersection of all subspaces that contain $\bigcup \mathcal{S}$. In symbols, $\sum \mathcal{S} := \langle \bigcup \mathcal{S} \rangle$.
 
 Note that $\sum \mathcal{S}$ is the smallest subspaces that contains every subspace in $\mathcal{S}$ due to it being the span of the union of all the subspaces.
 
