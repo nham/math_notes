@@ -8,7 +8,7 @@ A **$\sigma$-field** on a set $\Omega$ is a collection $E$ of subsets of $\Omega
 ## sigma-fields are closed under countable intersection
 Using DeMorgan's law, complements, and closure under countable union, you can prove closure under countable intersection.
 
-The set $\Sigma$ is called the **sample space**, and it contains the possible outcomes off an experiment. A $\sigma$-field is the collection of **events** or subsets of $\Omega$ that we can assign probability to. We cannot, in general, assign probability to every subset of $\Omega$, since some sample spaces are too large. (Vague, don't really understand. Likely some techical reason revealed in measure theory).
+The set $\Omega$ is called the **sample space**, and it contains the possible outcomes off an experiment. A $\sigma$-field is the collection of **events** or subsets of $\Omega$ that we can assign probability to. We cannot, in general, assign probability to every subset of $\Omega$, since some sample spaces are too large. (Vague, don't really understand. Likely some techical reason revealed in measure theory).
 
 ## Probability measure
 A **measure** on a sigma-field $(\Omega, F)$ is a function $\mu: F \to [0, 1] \subseteq \mathbb{R}$ satisfying
@@ -22,7 +22,7 @@ A **probability measure** is a measure $\mathbb{P}$ such that $\mathbb{P}(\Omega
 An event $A$ is said to be **null** of $\mathbb{P}(A) = 0$ and **almost certain** if $\mathbb{P}(A) = 1$. The empty event $\emptyset$ is null, but is not necessarily the only null event, and the whole sample space $\Omega$ is almost certain, but not necessarily the only almost certain event.
 
 ## Basic properties
-For any probability space $(\Sigma, F, \mathbb{P})$, and for any events $A$ and $B$ in $F$, we have
+For any probability space $(\Omega, F, \mathbb{P})$, and for any events $A$ and $B$ in $F$, we have
 
  1. $\mathbb{P}(A) + \mathbb{P}(A^c) = 1$
  2. if $A \subseteq B$, then $\mathbb{P}(A) \leq \mathbb{P}(A) + \mathbb{P}(B - A) = \mathbb{P}(B)$
@@ -58,7 +58,7 @@ If $B$ is an event with $\mathbb{P}(B) > 0$, we can define the **conditional pro
 ## Decomposing into partitions
 If $B_1, \ldots, B_n$ are events with $\mathbb{P}(B_i) \neq 0$ for all $i$ and $\Omega = \bigcup_1^n B_i$, then for any event $A$ we have $A = \bigcup_1^n (A \cap B_i)$, so
 
-$$\mathbb{P}(A) = \sum_1^n \mathbb{P}(A \cap B_i) = \sum_1^n \mathbb{P)(A | B) \mathbb{P}(B)$$
+$$\mathbb{P}(A) = \sum_1^n \mathbb{P}(A \cap B_i) = \sum_1^n \mathbb{P}(A | B) \mathbb{P}(B)$$
 
 ## Bayes' theorem
 If $A$ and $B$ are events with $\mathbb{P}(A) \neq 0 \neq \mathbb{P}(B)$, then we can say that
@@ -108,7 +108,7 @@ If $A$ and $B$ are two events, then $A$ and $B$ are independent if $A$ is null o
 
 *Proof:* In the null case, $\mathbb{P}(A \cap B) \leq \mathbb{P}(A) = 0$, so $\mathbb{P}(A \cap B) = 0 = 0 \mathbb{P}(B) = \mathbb{P}(A) \mathbb{P}(B)$.
 
-In the almost certain case, we know that $A^c$ is null, so $\mathbb{P}(A^c \cap B) = 0, implying $\mathbb{P}(A \cap B) = \mathbb{P}(B)$, which implies independence since $\mathbb{P}(A) = 1$.
+In the almost certain case, we know that $A^c$ is null, so $\mathbb{P}(A^c \cap B) = 0$, implying $\mathbb{P}(A \cap B) = \mathbb{P}(B)$, which implies independence since $\mathbb{P}(A) = 1$.
 
 
 ## Definition of conditional independence
