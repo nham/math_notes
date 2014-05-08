@@ -1,10 +1,10 @@
 # Linear algebra
 
- - [basic linear algebra up to dimension theorem](dim.html)
- - [subspaces](subspaces.html)
- - [linear maps](linear_maps.html)
- - [linear systems](linear_systems.html)
- - [determinants](dets.html)
+ - [basic linear algebra up to dimension theorem](linalg/dim.html)
+ - [subspaces](linalg/subspaces.html)
+ - [linear maps](linalg/linear_maps.html)
+ - [linear systems](linalg/linear_systems.html)
+ - [determinants](linalg/dets.html)
 
 # Metric spaces
- - [main](intro.html)
+ - [main](metric_spaces/intro.html)
