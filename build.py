@@ -21,7 +21,7 @@ def compile(folder, filename):
     pandoc_call = (['pandoc', '-s', in_file,
                   '-t', 'html5',
                   '-o', out_file,
-                  '-c', '/' + css_dir + '/style.css'
+                  '-c', '/' + css_dir + '/style.css',
                   '--include-in-header', include_dir + '/header.html',
                   '--include-before-body', include_dir + '/before_body.html',
                   '--include-after-body', include_dir + '/after_body.html',
