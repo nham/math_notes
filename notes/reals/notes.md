@@ -228,31 +228,102 @@ If $(X, d)$ is a compact metric space and $f: X \to \mathbb{R}$ is continuous, t
 ## Definition of interval
 A set $I \subseteq \mathbb{R}$ is an **interval** if for all $a, b \in I$ with $a < b$, we have $c \in I$ for all $c$ such that $a < c < b$.
 
-## Definition of derivative
-If $f: (a, b) \to \mathbb{R}$ is any function, then $f$ is said to be **differentiable** at $x \in (a, b)$ if the function $\phi: (a, b) - x \to \mathbb{R}$ defined by
+## Definition of difference set
+If $A \subseteq \mathbb{R}^n$ and $a \in A$, then we denote the set $\{x - a : x \in A, x \neq a \}$ by $diff(A, a)$.
 
-$$\phi(t) = \frac{f(t) - f(x)}{t - x}$$
+## Definition of a directional derivative
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, $a \in int(A)$ and $0 \neq u \in \mathbb{R}^n$, then $f$ has a **directional derivative at $a$ in the direction of $u$** if there is a $c \in \mathbb{R}^p$ such that the function $g_a : \mathbb{R} - 0 \to \mathbb{R}^p$ is defined by
 
-has
-
-$$lim_{t \to x} \phi(t) = c$$
-
-for some $c \in \mathbb{R}$
-
-Since functional limits are unique, $c$ is called **the derivative** of $f$ at $x$, and is notated $f'(x)$ or $Df(x)$.
-
-## Equivalent definition of derivative
-If $f: (a, b) \to \mathbb{R}$ is any function, then $f$ is differentiable at $x \in (a, b)$ iff there is a $c \in \mathbb{R}$ such that the function $\psi: (a, b) - x \to \mathbb{R}$ defined by
-
-$$\psi(t) = \frac{f(t) - f(x) - c(t - x)}{t-x}$$
+$$g_a(h) = \frac{f(a + tu) - f(a)}{t}$$
 
 has
 
-$$lim_{t \to x} \psi(t) = 0$$
+$$lim_{t \to 0} g_a(t) = c$$
+
+The $c$ is clearly uniqe since functional limits are uniqe and will be denoted $D_u f(a)$.
 
 
-*Proof:* If $f$ is differentiable at $x$, then letting $c = f'(x)$, we have $g: (a - b) - x \to \mathbb{R}$ defined by $g(t) = c(t - x)/(t - x)$. Then $lim_{t \to x} g(t) = c$, so by function limit laws we have
+## Equivalent characterization of a directional derivative
+$f: A \to \mathbb{R}^p$ has $D_u f(a)$ existing for $a \in A$, $u \in \mathbb{R}^n$ iff there is a function $\epsilon_a: \mathbb{R} \to \mathbb{R}^p$ such that $lim_{t \to 0} \epsilon_a(t) / t = 0$ and $f(a + tu) = f(a) + t D_u f(a) + \epsilon_a(t)$.
 
-$$lim_{t \to x} \phi(t) - g(t) = 0$$
+**Proof:* If $D_u f(a)$ exists then by defining $\epsilon_a(t) = f(a + tu) - f(a) - t D_u f(a)$, the statement holds by the definition of $D_u f(a)$. Conversely, we have  (omitting a few steps):
 
-But $\psi = \phi - g$.
+$$lim_{t \to 0} \frac{f(a + tu) - f(a) - tc}{t} = 0$$
+
+So $lim_{t \to 0} tc / t = c = lim_{t \to 0} \frac{f(a + tu) - f(a)}{t}$, hence $c = D_u f(a)$.
+
+
+## Definition of a derivative
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then $f$ is **differentiable at $a$** if there is a $\phi \in Hom(\mathbb{R}^n, \mathbb{R}^p)$ such that the function $g_a : diff(A, a) \to \mathbb{R}^p$ is defined by
+
+$$g_a(h) = \frac{f(a+h) - f(a) - \phi(h)}{\|h\|}$$
+
+has
+
+$$lim_{h \to 0} g_a(h) = 0$$
+
+Such a $\phi$ is said to be a **derivative** of $f$ at $a$.
+
+
+## Equivalent characterization of a derivative
+If $f: A \to \mathbb{R}^p$, $a \in A$, $\phi \in Hom(\mathbb{R}^n, \mathbb{R}^p)$, then the following are equivalent:
+
+ 1. $\phi$ is the derivative of a function $f$ at $a$
+ 2. there is a function $\epsilon_a: diff(A, a) \to \mathbb{R}^p$ such that $f(a + h) = f(a) + \phi(h) + \epsilon_a(h)$ and $lim_{h \to 0} \frac{\epsilon_a(h)}{\| h \|} = 0$.
+
+*Proof:* If $\phi$ is the derivative of $f$ at $a$, then by defining $\epsilon_a(h) = f(a + h) - f(a) - \phi(h)$ for $h \in diff(A, a)$, we have $lim_{h \to 0} \epsilon_a(h) / \|h\| = 0$. Also, $f(a + h) = f(a) + \phi(h) + \epsilon_a(h)$ for all $h \in diff(A, a)$.
+
+Conversely, if (2) is true, then $\epsilon_a(h) = f(a+h) - f(a) - \phi(h)$ for all $h \in diff(A, a)$, so $lim_{h \to 0} \frac{f(a+h) - f(a) - \phi(h)}{\| h \|} = 0$, hence $\phi$ is the derivative of $f$ at $a$.
+
+
+## Derivatives are unique
+### Lemma
+$f: A \to \mathbb{R}^p$ is a function, $a \in acc(A)$ and $lim_{x \to a} f(x) = c$, then for any $0 \neq u \in \mathbb{R}^n$,
+
+$$lim_{t \to 0} f(a + tu) = c$$
+
+*Proof:* 
+
+ 1. $g: \mathbb{R} \to \mathbb{R}^p$ defined by $g(t) = a + tu$ is a function such that $g(t) \neq a$ for all $t \neq 0$
+
+    *Proof:* Since $u \neq 0$.
+
+ 2. $lim_{t \to 0} g(t) = a$
+
+    *Proof:* For any $\epsilon$, we can make $\|a + tu - a \| = |t| \|u \| < \epsilon$ by choosing any $t$ such that $|t| < \epsilon / \|u\|$.
+
+
+ 3. Q.E.D.
+
+    *Proof:* By (1) and (2), we can use composition of function limits to obtain the result.
+
+
+## Proof
+If $\phi$ and $\psi$ are derivatives of $f: A \to \mathbb{R}^p$, at $a \in A$, then $\phi = \psi$.
+
+*Proof:* We know from the previous proposition that there is an $\epsilon_a: \diff(A, a) \to \mathbb{R}^p$ such that $\phi(h) = f(a + h) - f(a) - \epsilon_a(h)$. Since $a \in int(A)$, for any $u \in \mathbb{R}^n$, $u \neq 0$, we can find a $\delta such that for all $0 < |t| < \delta$, $a + tu \in A$. For all such $t$, we have:
+
+$$\phi(tu) = f(a + tu) - f(a) - \epsilon_a(tu)$$
+
+Since $\phi$ is linear (and $t \neq 0$), we have
+
+$$\phi(u) = \frac{f(a + tu) - f(a) - \epsilon_a(tu)}{t}$$
+
+or, taking limits:
+
+$$\phi(u) = lim_{t \to 0} \frac{f(a + tu) - f(a) - \epsilon_a(tu)}{t}$$
+
+By the lemma and by hypothesis we have $lim_{t \to 0} \epsilon_a(tu) / \| tu \| = 0$, so $lim_{t \to 0} \epsilon_a(tu) / |t| =0 \|u\| = 0$, hence
+
+$$\phi(u) = lim_{t \to 0} \frac{f(a + tu) - f(a)}{t} = D_u f(a)$$
+
+Since $\phi$ was an arbitrary derivative, the derivative must be unique.
+
+
+## Corollary
+We speak of **the derivative** of $f$ at $a$, denoted $Df(a)$.
+
+## Corollary
+If $f$ has a derivative at $a$, then every directional derivative at $a$ exists.
+
+*Proof:* $D_u f(a) = Df(a)(u)$
