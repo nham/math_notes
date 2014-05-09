@@ -430,7 +430,7 @@ To prove the triangle inequality, we need $e(f, h) \leq e(f, g) + e(g, h)$ for a
 
 $$sup \{ d(f(s), h(s) : s \in S \} \leq sup \{ d(f(s), g(s)) : s \in S \} + sup \{ d(g(s), h(s)) : s \in S \}$$
 
-We generalize slightly for more compact notation. We have an index set $I$, and 3 subsets of $\mathbb{R}$ that are bounded above: $X = \{x_i : i \in I \}$, $Y = \{y_i : i \in I \}$, $Z = \{z_i : i \in I \}$. For all $i$, $x_i \leq y_i + z_i$. Prove that $sup X \leq sup Y + sup Z$. The key is to note that for all $w_i \in W = \{ y_i + z_i : i \in I \}$, x_i \leq w_i$. So any upper bound $u$ of $W$ is an upper bound of $X$ as well, and hence $sup X \leq u$. Now just note that $sup Y + sup Z$ is an upper bound of $W$ since $y_i \leq sup Y$ for all $i$ and $z_i \leq sup Z$ for all $i$. This establishes the triangle inequality.
+We generalize slightly for more compact notation. We have an index set $I$, and 3 subsets of $\mathbb{R}$ that are bounded above: $X = \{x_i : i \in I \}$, $Y = \{y_i : i \in I \}$, $Z = \{z_i : i \in I \}$. For all $i$, $x_i \leq y_i + z_i$. Prove that $sup X \leq sup Y + sup Z$. The key is to note that for all $w_i \in W = \{ y_i + z_i : i \in I \}$, $x_i \leq w_i$. So any upper bound $u$ of $W$ is an upper bound of $X$ as well, and hence $sup X \leq u$. Now just note that $sup Y + sup Z$ is an upper bound of $W$ since $y_i \leq sup Y$ for all $i$ and $z_i \leq sup Z$ for all $i$. This establishes the triangle inequality.
 
 ## Convergence in $Bf(S, X)$ implies pointwise convergence
 If $S$ is any set, $(X, d)$ any metric space, and $(f_n)$ is a sequence in $Bf(S, X)$ that converges to $g$ in $Bf(S, X)$, then for all $s \in S$, the sequence $(f_n(s))$ converges to $g(s)$ in $X$.
@@ -542,7 +542,7 @@ Then $\mu_{\infty}(a,b) \leq \mu_2(a, b) \leq \mu_1(a, b)$ for all $a, b \in \pr
 
  2. $\prod_1^n X_i$ is a metric space under $\mu_2$
 
-    *Proof:* $\sum_1^n d_i(a_i, b_i)^2$ is non-negative, so the square root is well defined and non-negative. For $\mu_2(a, b) = 0$, we must have $d_i(a_i, b_i)^2 = 0$ for all $i$. This means we must have $d_i(a_i, b_i) = 0$, or $a_i = b_i$ for all $i$. This proves that $\mu_2$ is positive definite. Symmetricity is proved once again from symmetricity for $d_i$'s. To prove the triangle inequality, we must prove $(\sum_1^n d_i(a_i, c_i)^2)^{1/2} \leq (\sum_1^n d_i(a_i, c_i)^2)^{1/2}. It's a lot of work to write it out here, but it essentially holds from the triangle inequality for each $d_i$ and the Cauchy-Schwarz inequality in $\mathbb{R}^n$.
+    *Proof:* $\sum_1^n d_i(a_i, b_i)^2$ is non-negative, so the square root is well defined and non-negative. For $\mu_2(a, b) = 0$, we must have $d_i(a_i, b_i)^2 = 0$ for all $i$. This means we must have $d_i(a_i, b_i) = 0$, or $a_i = b_i$ for all $i$. This proves that $\mu_2$ is positive definite. Symmetricity is proved once again from symmetricity for $d_i$'s. To prove the triangle inequality, we must prove $(\sum_1^n d_i(a_i, c_i)^2)^{1/2} \leq (\sum_1^n d_i(a_i, c_i)^2)^{1/2}$. It's a lot of work to write it out here, but it essentially holds from the triangle inequality for each $d_i$ and the Cauchy-Schwarz inequality in $\mathbb{R}^n$.
 
 
  3. $\prod_1^n X_i$ is a metric space under $\mu_1$
@@ -590,7 +590,7 @@ For metric spaces $(X_i, d_i)$, $1 \leq i \leq n$ and any conserving metric $d$ 
 
  6. If $W$ is open in $P$, then $W$ is the union of sets $\prod_1^n U_i$ for $U_i$ open in $X_i$.
 
-    *Proof:* For all $w \in W$, there is some $B_P^d(w; \epsilon) \subseteq W$. But by (3) we have B_P^{\mu_1}(w; \epsilon) \subseteq B_P^d(w; \epsilon) \subseteq W$, and by (5) we have $B_P^{\mu_{\infty}}(w; \epsilon / n) \subseteq W$. So every point in $W$ has a product of open balls around it that is contained in $W$, hence $W$ is the union of products of open balls.
+    *Proof:* For all $w \in W$, there is some $B_P^d(w; \epsilon) \subseteq W$. But by (3) we have $B_P^{\mu_1}(w; \epsilon) \subseteq B_P^d(w; \epsilon) \subseteq W$, and by (5) we have $B_P^{\mu_{\infty}}(w; \epsilon / n) \subseteq W$. So every point in $W$ has a product of open balls around it that is contained in $W$, hence $W$ is the union of products of open balls.
 
 
 ### Definition of product topology
