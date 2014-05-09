@@ -1,0 +1,9 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+div#body {
+    width: 800px;
+    margin: 20px;
+}
