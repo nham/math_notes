@@ -32,6 +32,8 @@ For any $x, y, z \in \mathbb{F}$ for ordered field $(\mathbb{F}, \leq)$, we have
  4. $x > y$ and $z < 0$ implies $xz < yz$
  5. $x^2 \geq 0$ and $x^2 = 0$ iff $x = 0$
 
+*Proof:*
+
 
  1. $x > y$ iff $x - y > 0$
 
@@ -70,6 +72,8 @@ For any $x, y \in \mathbb{R}$:
  5. $-|x| \leq x \leq |x|$
  6. $|x + y| \leq |x| + |y|$
  7. $||x| - |y|| \leq |x - y|$
+
+*Proof:*
 
  1. $|x| > 0$ and $|x| = 0$ iff $x = 0$
 
@@ -143,7 +147,7 @@ Define a function $d: \mathbb{R}^2 \to \mathbb{R}$ by $d(x,y) = |x-y|$. Then $\m
 At this point we've plugged into the theory of metric spaces, so we will freely use facts proved in the metric space notes.
 
 
-## Equivalent condition for bounded sequence in $\mathbb{R}
+## Equivalent condition for bounded sequence in $\mathbb{R}$
 If $(x_n)$ is bounded, then there is a $M > 0$ such that $|x_n| < M$ for all $n$.
 
 *Proof:* Bounded means there's a $z \in \mathbb{R}$ and an open ball around $z$ that contains all terms. So $x_n \in B(z; \epsilon)$ for some $\epsilon > 0$. In other words, $d(z, x_n) < \epsilon$ for all $n$. But this means $|x_n| \leq |z| + |z - x_n| < |z| + \epsilon$. So $M = |z| + \epsilon$ works.
