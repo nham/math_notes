@@ -246,9 +246,9 @@ The $c$ is clearly uniqe since functional limits are uniqe and will be denoted $
 ## Equivalent characterization of a directional derivative
 $f: A \to \mathbb{R}^p$ has $D_u f(a)$ existing for $a \in A$, $u \in \mathbb{R}^n$ iff there is a function $\epsilon_a: \mathbb{R} \to \mathbb{R}^p$ such that $lim_{t \to 0} \epsilon_a(t) / t = 0$ and $f(a + tu) = f(a) + t D_u f(a) + \epsilon_a(t)$.
 
-**Proof:* If $D_u f(a)$ exists then by defining $\epsilon_a(t) = f(a + tu) - f(a) - t D_u f(a)$, the statement holds by the definition of $D_u f(a)$. Conversely, we have  (omitting a few steps):
+**Proof:* If $D_u f(a)$ exists then by defining $\epsilon_a(t) = f(a + tu) - f(a) - t D_u f(a)$, the statement holds by the definition of $D_u f(a)$. Conversely, after rearrangement we have:
 
-$$lim_{t \to 0} \frac{f(a + tu) - f(a) - tc}{t} = 0$$
+$$lim_{t \to 0} \frac{f(a + tu) - f(a) - tc}{t} = lim_{t \to 0} \epsilon_a(t) / t = 0$$
 
 So $lim_{t \to 0} tc / t = c = lim_{t \to 0} \frac{f(a + tu) - f(a)}{t}$, hence $c = D_u f(a)$.
 
