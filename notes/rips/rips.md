@@ -74,6 +74,18 @@ For any $\epsilon > 0$, let $\delta$ be such that $\|f(x) - c\| < \epsilon / 2$ 
 For the second, find a $\delta$ for which all elements of $X$ in the deleted $\delta$-ball around $a$ get mapped into the $\epsilon / k$-ball around $c$ by $f$. Then $(kf)$ maps all the same elements into the $\epsilon$-ball around $c$.
 
 
+## Scalar multiplication of continuous functions is continuous
+If $V$ and $W$ are normed vector spaces over $\mathbb{F}$, $f,g: V \to W$ is continuous, and $c \in \mathbb{F}$, then
+
+ - $f + g$ is continuous
+ - $c \cdot f$ is continuous
+
+
+*Proof:* For any $a \in V$, and any $\epsilon > 0$, we can find $\delta_1$ and $\delta_2$ such that for all $x \in V$ with $\|x - a\| < \delta_1$, $\|f(x) - f(a)\| < \epsilon / 2$ and for all $y in V$ with $\|y - a\| < \delta_2$, $\|g(y) - g(a)\| < \epsilon / 2$. So for all $z$ such that $\|z - x\| < \delta = min \{ \delta_1, \delta_2 \}$, we have $\|f(z) + g(z) - f(a) - g(a)\| \leq \|f(z) - f(a)\| + \|g(z) - g(a)\| < \epsilon$, proving that $f+g$ is continuous at $a$ as well.
+
+Also, we can find a $\gamma$ such that for all $x \in V$ with $\|x - a\| < \delta$ we have $\|f(x) - f(a)\| < \epsilon / |c|$. Hence for the same set of $x$'s, we have $\|cf(x) - cf(a)\| = |c| \|f(x) - f(a)\| < \epsilon$, so $cf$ is continuous at $a$.
+
+
 ## Definition of real inner product space
 A **real inner product space** is a vector space $(V, \mathbb{R})$ along with an operation $V \times V \to \mathbb{R}$, written $\langle x, y \rangle$ for $x, y \in V$, that satisfies:
 
