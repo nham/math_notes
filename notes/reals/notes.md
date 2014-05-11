@@ -327,3 +327,25 @@ We speak of **the derivative** of $f$ at $a$, denoted $Df(a)$.
 If $f$ has a derivative at $a$, then every directional derivative at $a$ exists.
 
 *Proof:* $D_u f(a) = Df(a)(u)$
+
+
+## A limit law lemma
+If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$ with $0 \notin A$, and $g: A \to \mathbb{R}$ such that $lim_{h \to 0} g(h) = 0$ and $lim_{h \to 0} f(h) / g(h) = 0$, then $lim_{h \to 0} f(h) = 0$
+
+*Proof:* For every $\epsilon > 0$ there is a $\delta > 0$ such that for all $h \in A$ with $0 < \| h \| < \delta$ we have $\|f(h)\| < \|g(h)\| \epsilon$. There's also a $\gamma > 0$ such that for all $0 < \| h \| < \gamma$, $\| g(h) \| < 1$. So for all $h \in A$ with $0 < \| h \| < min \{ \delta, \gamma \}$ we have $\|f(h)\| < \epsilon$. So $\lim_{h \to 0} f(h) = 0$.
+
+
+## Differentiable implies continuous
+If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $a$.
+
+*Proof:*
+
+ 1. $lim_{h \to 0} f(a + h) - f(a) = 0$
+
+    *Proof:* For all $h \in diff(A, a)$ we have $f(a + h) - f(a) = -Df(a)(h) - \epsilon_a(h)$ for some $\epsilon_a$. So $lim_{h \to 0} f(a + h) - f(a) = - lim_{h \to 0} Df(a)(h) + \epsilon_a(h)$.  $lim_{h \to 0} \epsilon_a(h) = 0$ by the previous limit law lemma.
+
+For any $h \in diff(A, a)$, $Df(a)(h) = \sum_1^p a_i e_i$ for some $a_i$'s, so $\| Df(a)(h) \| \leq \sum_1^p |a_i| \|e_i\| = \sum_1^p |a_i|$. So if $\|h\| < \epsilon / n$, then certainly each $|a_i| < \epsilon / n$, so $\|f(h)\| < \epsilon$. Hence $lim_{h \to 0} Df(a)(h) = 0$, so $lim_{h \to 0} f(a + h) - f(a)$ = 0$
+
+ 2. Q.E.D.
+
+    *Proof:* (1) gives us $lim_{h \to 0} f(a + h) = f(a)$. It is straightforward to prove that $lim_{x \to a} f(x) = f(a)$.
