@@ -243,6 +243,11 @@ $$lim_{t \to 0} g_a(t) = c$$
 The $c$ is clearly uniqe since functional limits are uniqe and will be denoted $D_u f(a)$.
 
 
+## Definition of partial derivatives
+If $f: A \to \mathbb{R}^p$ for $A \subesteq \mathbb{R}^n$, then letting $\{e_1, \ldots, e_n\}$ be the standard basis of $\mathbb{R}^n, we define the **$i$-th partial derivative** of $f$ at $a$ to be (if it exists) the directional derivative of $f$ w.r.t. $e_i$. These are denoted $D_i f(a)$.
+
+
+
 ## Equivalent characterization of a directional derivative
 $f: A \to \mathbb{R}^p$ has $D_u f(a)$ existing for $a \in A$, $u \in \mathbb{R}^n$ iff there is a function $\epsilon_a: \mathbb{R} \to \mathbb{R}^p$ such that $lim_{t \to 0} \epsilon_a(t) / t = 0$ and $f(a + tu) = f(a) + t D_u f(a) + \epsilon_a(t)$.
 
