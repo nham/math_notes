@@ -217,7 +217,7 @@ Every bounded sequence in $\mathbb{R}^n$ contains a convergent subsequence.
 ## Compact subsets of $\mathbb{R}^n$
 $S \subseteq \mathbb{R}^n$ is compact iff it is closed and bounded.
 
-*Proof:* Every compact set is closed and bounded. Conversely, for any space that obeys the Bolzano-Weierstrass property, a bounded subset is totally bounded, and a closed subset is complete as a metric space, so a closed, bounded subset is complete and totally bounded, hence compact.
+*Proof:* Every compact set is closed and bounded. Conversely, for any space that obeys the Bolzano-Weierstrass property has, equivalently, that the space is complete and every bounded subset is totally bounded. Every closed subset of a complete metric space is complete as a subspace, and every bounded subset is totally bounded, so a bounded, closed subset is complete and totally bounded, whichis equivalent to being compact.
 
 
 ## Continuous, real-valued functions on compact spaces attain maximum/minimum
