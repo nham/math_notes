@@ -235,15 +235,23 @@ If $I \subseteq \mathbb{R}$, then it is an interval iff it is connected.
 
  2. If $I$ is an interval, then it is connected
 
-    1. It suffices to assume that $A$ and $B$ are non-empty, disjoint and open in $I$ such that $I = A \cup B$ and derive a contradiction.
+    1. It suffices to assume that $A$ and $B$ are open subsets of $\mathbb{R}$ such that
+
+      - $A \cap I \neq \emptyset \neq B \cap I$
+      - $A \cap B \cap I = \emptyset$
+      - $I \subseteq A \cap B$
+
+    and derive a contradiction
+
+    *Proof:* See metric space notes on connected spaces
 
     2. We can find $a \in A$ and $b \in B$ such that $a < b$.
 
        *Proof:* Existence of the elements is hypothesized. The relation $a < b$ is assumed without loss of generality.
 
-    3. Let $A' = A \cap (a, b)$. Then $A'$ is open in $I$.
+    3. Let $A' = A \cap (a, b)$. Then $A'$ is open in $\mathbb{R}$.
 
-       *Proof:* $I \cap (a, b)$ is open in $I$, so $A \cap I \cap (a, b)$ is open in $I$. But $A \subseteq I$, so $A \cap I = A$ and $A \cap (a, b)$ is open in $I$.
+       *Proof:* $A$ and $(a, b)$ are both open.
 
     4. Let $c = sup A'$
 
@@ -251,7 +259,7 @@ If $I \subseteq \mathbb{R}$, then it is an interval iff it is connected.
 
     5. $c > a$
 
-       *Proof:* By definition of supremum, $c > x$ for all $x \in A'$. Also, $x > a$ for all $x \in A'$.
+       *Proof:* By definition of supremum, $c \geq x$ for all $x \in A'$. Also, $x > a$ for all $x \in A'$.
 
     6. $c \leq b$
 
@@ -259,7 +267,7 @@ If $I \subseteq \mathbb{R}$, then it is an interval iff it is connected.
 
     7. $c \notin B$
 
-       *Proof:* If $c \in B$, because $B$ is open we have some $\epsilon > 0$ such that $B(c; \epsilon) \subseteq B$. So $d = c - \epsilon/2$ is in that $\epsilon$-ball and is smaller than $c$. Also no elements of $A$ are in $[d, c]$ since $A$ and $B$ are disjoint. So $d$ is an upper bound of $A'$, a contradiction
+       *Proof:* If $c \in B$, because $B$ is open we have some $\epsilon > 0$ such that $B(c; \epsilon) \subseteq B$. So $d = c - \epsilon/2$ is in that $\epsilon$-ball and is smaller than $c$.  All $x \in [d, c)$ have $x < b$, hence $x \in I$. Since $[d, c) \subseteq B$, we have $[d, c) \cap A = \emptyset$. So no element of $x \in A'$ has $x \geq d$. Hence $d$ is an upper bound of $A'$ smaller than $c$, contradicting the definition of $c$.
 
     8. $c \neq b$
 
@@ -275,9 +283,9 @@ If $I \subseteq \mathbb{R}$, then it is an interval iff it is connected.
 
     11. Q.E.D.
 
-        *Proof:* (2.7), (2.10) and (2.11) form a contradiction since by hypothesis $I = A \cup B$.
+        *Proof:* (2.7), (2.10) and (2.11) form a contradiction since by hypothesis $I \subseteq A \cup B$.
 
 
  3. If $I$ is connected, then it is an interval
 
-    *Proof:* if $I$ is not an interval, then there are $a, b \in I$ with $a < b$ but there is some $c \in \mathbb{R}$ such that $a < c < b$ and $c \notin I$.
+    *Proof:* if $I$ is not an interval, then there are $a, b \in I$ with $a < b$ but there is some $c \in \mathbb{R}$ such that $a < c < b$ and $c \notin I$. Then $A = (- \infty, c)$ and $B = (c, \infty)$ have $I \subseteq A \cup B$. $A \cap I \neq \emptyset$ since $a \in A \cap I$, and similarly $B \cap I \neq \emptyset$. Also, $A \cap B = \emptyset$. So $I$ is disconnected.
