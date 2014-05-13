@@ -1,5 +1,11 @@
 # Derivatives
 
+## Preliminary lemma on magnitude in $\mathbb{R}^n$
+If $v = (v_1, \ldots, v_n) \in \mathbb{R}^n$ and $\|v\| < \epsilon$, then $|v_i| < \epsilon$ for all $i$
+
+*Proof:* $\|v\|_{\infty} < \|v\|_2$ for all $v$ is already known (see metric space notes).
+
+
 ## Infinitesimal functions
 If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$ is said to be **infinitesimal** as $x \to a \in X$ if $lim_{x \to a} f(x) = 0$. If $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in D_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
 
@@ -143,3 +149,19 @@ If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $
  2. Q.E.D.
 
     *Proof:* (1) gives us $lim_{h \to 0} f(a + h) = f(a)$. It is straightforward to prove that $lim_{x \to a} f(x) = f(a)$.
+
+
+## Functions differentiable iff component functions are differentiable
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, $a \in int(A)$, then $Df(a)$ exists iff $pi_i \circ f$ is differentiable at $a$ for each $i$ with $1 \leq i \leq p$.
+
+*Proof:* If $f$ differentiable at $a$, then let
+
+$$f_i := \pi_i \circ f$$
+
+$$Df(a)_i := \pi_i \circ Df(a)$$
+
+$$\alpha_i := \pi_i \circ \alpha$$
+
+Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(h)$ as well since $\alpha \in o_0(h)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $0 < \|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
+
+Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $0 < \|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $0 < \|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
