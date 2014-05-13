@@ -11,7 +11,7 @@ A (real) **normed vector space** is a vector space $(V, \mathbb{R})$ with an ope
 If $V$ is a normed vector space, then
 
  1. For any $x, y \in V$, $\|x\| - \|y\| \leq \|x - y\|$
- 2. for any $x_1, \ldots, x_n \in V, $\| \sum_1^n x_i \| \leq \sum_1^n ||x_i\|
+ 2. for any $x_1, \ldots, x_n \in V$, $\| \sum_1^n x_i \| \leq \sum_1^n \|x_i\|$
 
 *Proof:* (1) is proved by applying the triangle inequality applied to $y = x + (y-x)$ yields $\|y\| \leq \|x\| + \|y - x\|$. Re-arrangement proves the statment.
 
@@ -19,8 +19,7 @@ For (2), we know it holds for $n = 1$ and $n = 2$. Suppose it holds for some $k$
 
 $$
 \begin{aligned}
-
-\| \sum_1^{k+1} x_i \| & \leq \| sum_1^k x_i \| + \| x_{k+1} \| \\
+\| \sum_1^{k+1} x_i \| & \leq \| \sum_1^k x_i \| + \| x_{k+1} \| \\
                        & \leq \sum_1^{k+1} \|x_i\| 
 \end{aligned}
 $$
@@ -111,7 +110,7 @@ For all $v \in V$, with $V$ an inner product space, $\|v\|^2 = \langle v, v \ran
 ## Normalizing vectors
 For non-zero vector $x$, we can define $\hat{x} = x / \|x\|$. Then $\| \hat{x} \| = 1 = \langle \hat{x}, \hat{x} \rangle$.
 
-*Proof:* $\|x\| = 0$ iff $x = 0$, so we can define $\hat{x}$. $\langle \hat{x}, \hat{x} \rangle$ = \langle x , x \rangle / \|x\|^2 = 1$, where the first equality holds by linearity and the second holds from the previous proposition that $\|x\|^2 = \langle x, x \rangle$. But this implies $\| \hat{x} \| = \sqrt 1 = 1$.
+*Proof:* $\|x\| = 0$ iff $x = 0$, so we can define $\hat{x}$. $\langle \hat{x}, \hat{x} \rangle = \langle x , x \rangle / \|x\|^2 = 1$, where the first equality holds by linearity and the second holds from the previous proposition that $\|x\|^2 = \langle x, x \rangle$. But this implies $\| \hat{x} \| = \sqrt 1 = 1$.
 
 
 ### Remark
