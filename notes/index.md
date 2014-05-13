@@ -15,5 +15,8 @@
 # Real analysis
  - [axiomatic real analysis, using metric space notes](reals/notes.html)
 
+# Real inner product spaces
+ - [real inner product space notes](rips/rips.html)
+
 # Euclidean geometry
  - [notes from C.G. Gibson's Elementary Euclidean Geometry](gibson_euclidean/1.html)
