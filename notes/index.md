@@ -13,7 +13,8 @@
  - [notes from grimmett and stirzaker](prob/grimmett.html)
 
 # Real analysis
- - [axiomatic real analysis, using metric space notes](reals/notes.html)
+ - [introduction and basics](reals/intro.html)
+ - [derivatives](reals/derivatives.html)
 
 # Real inner product spaces
  - [real inner product space notes](rips/rips.html)
