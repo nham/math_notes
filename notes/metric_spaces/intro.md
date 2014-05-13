@@ -943,6 +943,14 @@ If (2) is true, then for any $S$ such that $X \neq S \neq \emptyset$, $S$ could 
 
 If $X$ is disconnected, then $X = U_1 \cup U_2$ for open, non-empty, disjoint $U_1$ and $U_2$. Recall that $\partial U_1 = \partial U_2$, so if $U_1$ has a boundary point in $X$, then either $U_1$ or $U_2$ contains one of its boundary points, contradicting the fact that both are open. So $\partial U_1 = \emptyset$. This proves that (3) implies (1).
 
+
+## Connected subsets
+If $(X, d)$ is a metric space and $S \subseteq X$, then $S$ is connected as a subspace of $X$ iff there are no open sets $U$ and $V$ in $X$ such that $U \cap S \neq \emptyset \neq V \cap S$, $U \cap V \cap S = \emptyset$ and $S \subseteq U \cup V$.
+
+*Proof:* $S$ is connected as a subspace iff there are no subsets $A$, $B$ of $S$ that are open in $S$ such that $A \neq \emptyset \neq B$, $A \cap B = \emptyset$ and $S = A \cup B$. But a subset $Z$ of $S$ is open in $S$ iff there is a $W \subseteq X$ with $W$ open in $X$ such that $W \cap S = Z$. So the statement holds.
+
+
+
 ## Continuous image of a connected space
 If $(X, d)$ is a connected metric space and $f: X \to Y$ continuous for some $(Y, e)$, then $img f$ is connected.
 
