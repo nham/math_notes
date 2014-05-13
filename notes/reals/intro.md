@@ -225,3 +225,59 @@ If $(X, d)$ is a compact metric space and $f: X \to \mathbb{R}$ is continuous, t
 
 *Proof:* $img f$ is compact, so it's closed and bounded since it is in $\mathbb{R}$. $sup(img f)$ and $inf(img f)$ are closure points of $img f$, so both are in $img f$.
 
+
+## Characterization of connected subsets of $\mathbb{R}$
+If $I \subseteq \mathbb{R}$, then it is an interval iff it is connected.
+
+ 1. It suffices to assume $I$ contains at least two distinct elements and prove the statement.
+
+    *Proof:* The empty set is both an interval and connected, as is any singleton.
+
+ 2. If $I$ is an interval, then it is connected
+
+    1. It suffices to assume that $A$ and $B$ are non-empty, disjoint and open in $I$ such that $I = A \cup B$ and derive a contradiction.
+
+    2. We can find $a \in A$ and $b \in B$ such that $a < b$.
+
+       *Proof:* Existence of the elements is hypothesized. The relation $a < b$ is assumed without loss of generality.
+
+    3. Let $A' = A \cap (a, b)$. Then $A'$ is open in $I$.
+
+       *Proof:* $I \cap (a, b)$ is open in $I$, so $A \cap I \cap (a, b)$ is open in $I$. But $A \subseteq I$, so $A \cap I = A$ and $A \cap (a, b)$ is open in $I$.
+
+    4. Let $c = sup A'$
+
+       *Proof:* $A'$ is bounded above since it is a subset of $(a, b)$
+
+    5. $c > a$
+
+       *Proof:* By definition of supremum, $c > x$ for all $x \in A'$. Also, $x > a$ for all $x \in A'$.
+
+    6. $c \leq b$
+
+       *Proof:* $b$ is an upper bound of $A'$.
+
+    7. $c \notin B$
+
+       *Proof:* If $c \in B$, because $B$ is open we have some $\epsilon > 0$ such that $B(c; \epsilon) \subseteq B$. So $d = c - \epsilon/2$ is in that $\epsilon$-ball and is smaller than $c$. Also no elements of $A$ are in $[d, c]$ since $A$ and $B$ are disjoint. So $d$ is an upper bound of $A'$, a contradiction
+
+    8. $c \neq b$
+
+       *Proof:* If $c = b$, $c \in B$, contradicting (2.7).
+
+    9. $c \in I$
+       
+       *Proof:* (2.5) through (2.8) prove $a < c < b$. The statement follows by definition of intervals
+
+    10. $c \notin A$
+
+       *Proof:*  If $c \in A$, then $c \in A'$. But $A'$ is open, so it must contain some $\epsilon$-ball around $c$, contradicting that $c = sup A'$.
+
+    11. Q.E.D.
+
+        *Proof:* (2.7), (2.10) and (2.11) form a contradiction since by hypothesis $I = A \cup B$.
+
+
+ 3. If $I$ is connected, then it is an interval
+
+    *Proof:* if $I$ is not an interval, then there are $a, b \in I$ with $a < b$ but there is some $c \in \mathbb{R}$ such that $a < c < b$ and $c \notin I$.
