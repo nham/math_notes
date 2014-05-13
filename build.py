@@ -38,7 +38,8 @@ files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md',
 
 files['metric_spaces'] = ['intro.md']
 files['prob'] = ['grimmett.md']
-files['reals'] = ['notes.md']
+files['rips'] = ['rips.md']
+files['reals'] = ['intro.md', 'derivatives.md']
 files['gibson_euclidean'] = ['1.md']
 
 
