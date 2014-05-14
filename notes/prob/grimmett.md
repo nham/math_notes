@@ -226,12 +226,32 @@ Where, for (2) and (3), we define for any $g: \mathbb{R}^n \to \mathbb{R}$
  - $lim_{x \to \infty} g(x) = L$ iff for all $\epsilon > 0$ there is an $h \in \mathbb{R}^n$ such that for all $x > h$, $|L - g(x)| < \epsilon$
  - $lim_{h \to 0+} g(x + h) = L$ iff for all $\epsilon > 0$ there is an $a \in \mathbb{R}^n$, $a > 0$, such that for all $h$ with $0 < h < a$, $|L - g(x + h)| < \epsilon$
 
-*Proof:* $x < y$ implies $x_i < y_i$, so $X \leq x$ is a subset of $X \leq y$, hence $F(x) \leq F(y)$. This establishes (1).
+*Proof:* 
 
-Let $f_i$ be the distribution function for random variable $X_i$.
+ 1. $x < y$ implies $F(x) \leq F(y)$ ($F$ is non-decreasing)
 
-For (2), for any $x = (x_1, \ldots, x_n) \in \mathbb{R}^n$, the event $(X(\omega) \leq x)$ is a subset of the event $(X_i(\omega) \leq x_i)$ for all $i$, so $F(x) \leq f_i(x_i)$. For any $\epsilon > 0$ and any $i$, we already know we can find an $h_i \in \mathbb{R}$ such that for all $x < h_i$, $0 \leq f_i(x) < \epsilon$. So for any $v \in \mathbb{R}^n$ whose $i$-th component is $h_i$, we have for all $x < v$, $0 \leq F(x) \leq f_i(h_i) < \epsilon$. This proves that $lim_{x \to - \infty} F(x) = 0$.
+    *Proof:* $x < y$ implies $x_i < y_i$, so $X \leq x$ is a subset of $X \leq y$, hence $F(x) \leq F(y)$.
 
+ 2. Let $f_i$ be the distribution function for random variable $X_i$.
+
+ 3. $lim_{x \to - \infty} F(x) = 0$
+
+    *Proof:* For any $x = (x_1, \ldots, x_n) \in \mathbb{R}^n$, the event $(X(\omega) \leq x)$ is a subset of the event $(X_i(\omega) \leq x_i)$ for all $i$, so $F(x) \leq f_i(x_i)$. For any $\epsilon > 0$ and any $i$, we already know we can find an $h_i \in \mathbb{R}$ such that for all $x < h_i$, $0 \leq f_i(x) < \epsilon$. So for any $v \in \mathbb{R}^n$ whose $i$-th component is $h_i$, we have for all $x < v$, $0 \leq F(x) \leq f_i(h_i) < \epsilon$. This proves that $lim_{x \to - \infty} F(x) = 0$.
+
+ 4. If $lim_{a \to - \infty} \mathbb{P}(X \leq a) = 0$, then also $lim_{a \to - \infty} \mathbb{P}(X < a) = 0$.
+
+    *Proof:* For all $a \in \mathbb{R}$, $\mathbb{P}(Z < a) < \mathbb{P}(Z \leq a)$, so since by hypothesis we have some $v \in \mathbb{R}^n$ such that $\mathbb{P}(Z \leq a) < \epsilon$ for all $a < v$, then clearly also $\mathbb{P}(Z < a) < \epsilon$ for all $a < v$.
+
+ 5. $lim_{x \to \infty} F(x) = 1$
+
+    *Proof:* Define a new random vector $Y = (- X_1, \ldots, - X_n)$. By (3), $lim_{x \to - \infty} \mathbb{P}(Y \leq x) = 0$, so by (4) $lim_{x \to - \infty} \mathbb{P}(Y < x) = 0 = lim_{x \to - \infty} \mathbb{P}(-X < x) = lim_{x \to - \infty} \mathbb{P}(X > -x)$. This is equivalent to saying that for every $\epsilon > 0$, there is a $v \in \mathbb{R}^n$ such that for all $x < v$, $\mathbb{P}(X > -x) < \epsilon$. So for all $y > -v$, $-y < v$, so $\mathbb{P}(X > y) < \epsilon$. Hence
+    
+    $$0 = lim_{x \to \infty} \mathbb{P}(X > x) = 1 - lim_{x \to \infty \mathbb{P}(X \leq x) = 1 - lim_{x \to \infty} F(x)$$
+
+
+ 6. $F$ is *right-continuous*: $lim_{h \to 0+} F(x + h) = F(x)$
+
+    *Proof:* TODO
 
 
 TODO
