@@ -134,6 +134,8 @@ If $F$ is the distibution of a random variable $X$, then
  1. $X(\omega) > x$ is an event for any $x \in \mathbb{R}$ and $\mathbb{P}(X(\omega) > x) = 1 - F(x)$.
  2. $x < X(\omega) \leq y$ is an event for any $x, y \in \mathbb{R}$, and $\mathbb{P}(x < X(\omega) \leq y) = F(y) - F(x)$
  3. $X(w) = x$ is an event and $\mathbb{P}(X(\omega) = x) = F(x) - lim_{y \to x^-} F(y)$.
+ 4. $X(w) \geq x$ is an event and $\mathbb{P}(X(\omega) \geq x) = \mathbb{P}(X(\omega) > x) + \mathbb{P}(X(\omega) = x)$
+ 5. $X(w) < x$ is an event and $\mathbb{P}(X(\omega) < x) = \mathbb{P}(X(\omega) \leq x) - \mathbb{P}(X(\omega) = x)$
 
 *Proof:* For (1), letting $A = \{\omega \in \Omega : X(\omega) \leq x\}$, we have $A^c = \{ \omega \in \Omega : X(\omega) > x \}$, which we notate by $X(\omega) > x$. So it holds.
 
@@ -156,6 +158,10 @@ or
 $$\mathbb{P}(A) = F(x) - lim_{n \to \infty} F(x - 1/n)$$
 
 But by the non-decreasingness of $F$, we have $lim_{n \to \infty} F(x - 1/n) = lim_{y \to x^-} F(y)$.
+
+For (4), by (1) and (3) we have $(X(\omega) \geq x) = (X(\omega) > x) \cup (X(\omega) = x). It's a disjoint union since for any $\omega$, $X(\omega)$ can't be both greater than $x$ and equal to $x$.
+
+For (5), $\mathbb{P}(X(\omega) < x) = 1 - \mathbb{P}(X(\omega) \geq x) = 1 - \mathbb{P}(X(\omega) > x) - \mathbb{P}(X(\omega) = x) = \mathbb{P}(X(\omega) \leq x) - \mathbb{P}(X(\omega) = x)$.
 
 
 ## Distribution function properties
@@ -185,7 +191,7 @@ A **constant random variable** $X: \Omega \to \mathbb{R}$ defined by $X(\omega) 
 ## Scalar multiples, added constants for a random variable
 If $X$ is a random variable, then for any $c, d \in \mathbb{R}$, $cX + d$ defined by $(cX + d)(\omega) = c X(\omega) + d$ is a random variable.
 
-*Proof:* If $c = 0$, then $cX + d$ is the constant random variable taking a value of $d$. Otherwise, $c \neq 0$, so for any $x \in \mathbb{R}$, if $c > 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \leq (x - d)/c)$, which we know is an event since $X$ is a random variable. Else if $c < 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) > (x - d)/c)$, which is again an event.
+*Proof:* If $c = 0$, then $cX + d$ is the constant random variable taking a value of $d$. Otherwise, $c \neq 0$, so for any $x \in \mathbb{R}$, if $c > 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \leq (x - d)/c)$, which we know is an event since $X$ is a random variable. Else if $c < 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \geq (x - d)/c)$, which is again an event.
 
 
 ## Definition of random vector
