@@ -165,3 +165,50 @@ $$\alpha_i := \pi_i \circ \alpha$$
 Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(h)$ as well since $\alpha \in o_0(h)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $0 < \|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
 
 Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $0 < \|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $0 < \|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
+
+
+## Jacobian matrix
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$ is differentiable at $a$, then the matrix representation of $Df(a)$ is a matrix $A$ where $a_ij = D_j f_i(a)$ This matrix is called the **Jacobian matrix**.
+
+*Proof:* We know that the $i$-th row of $A$ is the row-vector representation of $D f_i(a)$ from the previous proposition.
+
+From the previous proposition we know that $Df(a)(v) = (D f_1(a)(v), \ldots, D f_p(a)(v))$ for all $v \in \mathbb{R}^n$. In other words,
+
+$$Df(a)(v) = \sum_1^p D f_i(a)(v) e_i$$
+
+But $v = \sum_1^n v_i e_i$ for some $v_i$'s, and each $D f_i(a)$ is linear, so
+
+$$Df(a)(v) = \sum_{i=1}^p e_i \sum_{j=1}^n v_j D_j f_i(a)$$
+
+This establishes the statement.
+
+
+
+## Definition of local extrema
+If $(X, d)$ is a metric space and $f: X \to \mathbb{R}$, then $f$ has a **local maximum** at $a \in X$ if there is some $\delta > 0$ such that for all $x \in B(a; \delta)$ we have $f(x) \leq $f(a)$. $f$ has a **local minimum** at $a$ iff there is a $\delta$ such that $f(x) \geq f(a)$ for all $x \in B(a; \delta)$. Both local maxima and local minima are called **local extrema**.
+
+## Characterizing local extrema
+If $f: [a, b] \to \mathbb{R}$ has a local extremum at $c \in (a, b)$ and is differentiable at $c$, then $Df(c) = 0$.
+
+*Proof:* If $f$ has a local maximum at $c$, then there is some $\delta > 0$ such that $\Delta f(c; h) \leq 0$ for all $h \in \mathbb{R}$ such that $|h| < \delta$. For all such $h$ we have the function defined by
+
+$$\psi(h) := \Delta f(c; h) - Df(c)h$$
+
+has $\psi o_0(h)$. Hence for all $\epsilon > 0$ there is a $\gamma$ such that for all $0 < |h| < min \{ \delta, \gamma \}$, $| \psi(h) | < \epsilon |h|$ and $\Delta f(c; h) \leq 0$. 
+
+If $Df(c) > 0$, then for all $h$ with $0 < h < \delta $, | \psi(h) | \geq |Df(c)| |h|$ since $Df(c)h > 0$. This contradicts $\psi$ being $o_0(h)$.
+
+If $Df(c) < 0$, then for all $h$ with $0 > h > - \delta $, | \psi(h) | \geq |Df(c)| |h|$ since, once again, $Df(c)h > 0$. This again contradicts $\psi$ being $o_0(h)$.
+
+Hence $Df(c) = 0$.
+
+If $f$ has a local minimum at $c$ instead, $g(x) := -f(x)$ has a local maximum at $c$, $g(a + h) - g(a) = f(a) - f(a + h) = - Df(c)h - \psi(h)$, so $Dg(c) = -Df(c)$. Hence by what was just proved, $Df(c) = 0$.
+
+
+
+## Rolle's theorem
+If $f: [a, b] \to \mathbb{R}$ for $a < b$ is continuous and differentiable on $(a, b)$ such that $f(a) = f(b)$, then there is a $c \in (a, b)$ such that $Df(c) = 0$.
+
+*Proof:* We know that $f$, being a continuous function defined on a compact set, takes on a minimum and maximum value at some input. If both minimum and maximum are on $a$ (and hence $b$), then the function must be constant. So $c = (a+b)/2$ works.
+
+Otherwise $f$ either has a maximum or a minimum on a point in $(a,b)$, so the local extremum theorem applies, giving us what we want.
