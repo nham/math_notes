@@ -163,7 +163,7 @@ For any distribution function $F$ for a random variable $X$, we have
 
  1. $x < y$ implies $F(x) \leq F(y)$ ($F$ is non-decreasing)
  2. $lim_{x \to - \infty} F(x) = 0$ and $lim_{x \to \infty} F(x) = 1$
- 3. $F$ is *right-continuous*: $lim_{h \to 0} F(x + h) = F(x)$
+ 3. $F$ is *right-continuous*: $lim_{h \to 0^+} F(x + h) = F(x)$
 
 *Proof:* if $x < y$, then $X(\omega) \leq x \subseteq X(\omega) \leq y$, so by basic properties of the probability measure, $F(x) \leq F(y)$.
 
@@ -172,6 +172,20 @@ For (2), first note that for $A_n = X(\omega) \leq -n$ and $B_n = X(\omega) \leq
 To complete (2), we need to prove that for all $\epsilon > 0$ there is a $y$ such that for all $x < y$, $|F(x)| < \epsilon$, and that there is a $z$ such that for all $x > z$, $|F(x) - 1| < \epsilon$. But we can make $F(k)$ arbitrarily close to $0$ for integer $k$, so because the function is non-decreasing we can make it arbitrarily close for real $x$. Ditto for the other end.
 
 For (3), prove that for all $\epsilon > 0$, there is a $y$ such that for all $z$ with $x < z < y$, we have $|F(z) - F(x)| < \epsilon$. But it can be proven that $lim_{n \to \infty} \mathbb{P}(X(\omega) \leq x + 1/n) = F(x)$, so we can always find an $n$ such that $F(x + 1/n)$ is $\epsilon$-close to $F(x)$, meaning all $y$ such that $x < y < x + 1/n$ are as well by non-decreasingness of $F$.
+
+
+## Examples of random variables
+TODO: Need more. For now just constant. Maybe add Bernoulli r.v.'s, indicator r.v.'s?
+
+A **constant random variable** $X: \Omega \to \mathbb{R}$ defined by $X(\omega) = c$ for some $c \in \mathbb{R}$ and all $\omega \in \Omega$ is a random variable.
+
+*Proof:* If $x < c$, $(X(\omega) \leq x) = \emptyset$. If $x \geq c$, $(X(\omega) \leq x) = \Omega$ since $X(\omega) = c \leq x$ for all $\omega$.
+
+
+## Scalar multiples, added constants for a random variable
+If $X$ is a random variable, then for any $c, d \in \mathbb{R}$, $cX + d$ defined by $(cX + d)(\omega) = c X(\omega) + d$ is a random variable.
+
+*Proof:* If $c = 0$, then $cX + d$ is the constant random variable taking a value of $d$. Otherwise, $c \neq 0$, so for any $x \in \mathbb{R}$, if $c > 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \leq (x - d)/c)$, which we know is an event since $X$ is a random variable. Else if $c < 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) > (x - d)/c)$, which is again an event.
 
 
 ## Definition of random vector
@@ -192,20 +206,27 @@ This is obviously a well-defined event since it is a finite intersection of even
 ## Definition of joint distribution
 For any random vector $X$ on $X_1, \ldots, X_n$, the **joint distribution function** of $X$ is a function $F: \mathbb{R}^n \to \mathbb{R}$ defined by $F(x) = \mathbb{P}(X(\omega) \leq x)$
 
-## Alternate characterization of joint distribution
-Letting $\pi_i: \mathbb{R}^n \to \mathbb{R}$ be the $i$-th projection function, if $X = (X_1, \ldots, X_n)$ is a random vector and $F$ is the joint distribution for $X$, then $\pi_i \circ F$ is the distribution for $X_i$.
-
-*Proof:* TODO
-
-
 
 ## Joint distribution function properties
-For any joint distribution function $F$ for a random vector $X$, we have
+For any joint distribution function $F$ for a random vector $X = (X_1, \ldots, X_n)$, we have
 
  1. $x < y$ implies $F(x) \leq F(y)$ ($F$ is non-decreasing)
  2. $lim_{x \to - \infty} F(x) = 0$ and $lim_{x \to \infty} F(x) = 1$
- 3. $F$ is *right-continuous*: $lim_{h \to 0} F(x + h) = F(x)$
+ 3. $F$ is *right-continuous*: $lim_{h \to 0+} F(x + h) = F(x)$
 
-*Proof:* $x < y$ implies $x_i < y_i$, so $X \leq x$ is a subset of $X \leq y$, hence $F(x) \leq F(y)$. This establishes 1.
+Where, for (2) and (3), we define for any $g: \mathbb{R}^n \to \mathbb{R}$
+
+ - $lim_{x \to - \infty} g(x) = L$ iff for all $\epsilon > 0$ there is an $h \in \mathbb{R}^n$ such that for all $x < h$, $|L - g(x)| < \epsilon$
+ - $lim_{x \to \infty} g(x) = L$ iff for all $\epsilon > 0$ there is an $h \in \mathbb{R}^n$ such that for all $x > h$, $|L - g(x)| < \epsilon$
+ - $lim_{h \to 0+} g(x + h) = L$ iff for all $\epsilon > 0$ there is an $a \in \mathbb{R}^n$, $a > 0$, such that for all $h$ with $0 < h < a$, $|L - g(x + h)| < \epsilon$
+
+*Proof:* $x < y$ implies $x_i < y_i$, so $X \leq x$ is a subset of $X \leq y$, hence $F(x) \leq F(y)$. This establishes (1).
+
+Let $f_i$ be the distribution function for random variable $X_i$.
+
+For (2), for any $x = (x_1, \ldots, x_n) \in \mathbb{R}^n$, the event $(X(\omega) \leq x)$ is a subset of the event $(X_i(\omega) \leq x_i)$ for all $i$, so $F(x) \leq f_i(x_i)$. For any $\epsilon > 0$ and any $i$, we already know we can find an $h_i \in \mathbb{R}$ such that for all $x < h_i$, $0 \leq f_i(x) < \epsilon$. So for any $v \in \mathbb{R}^n$ whose $i$-th component is $h_i$, we have for all $x < v$, $0 \leq F(x) \leq f_i(h_i) < \epsilon$. This proves that $lim_{x \to - \infty} F(x) = 0$.
+
+
 
 TODO
+
