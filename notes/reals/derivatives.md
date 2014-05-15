@@ -51,6 +51,16 @@ $$f(a+h) - f(a) = L(h) + \alpha(h)$$
 where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $\alpha \in o_0(h)$, where $h$ is shorthand for the identity function on $diff(A,a)$.
 
 
+## Directional derivatives are derivatives
+If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $D_u f(a)$ exists for $a \in int(A)$, $0 \neq u \in \mathbb{R}^n$, then let $B = \{t \in \mathbb{R} : a + tu \in A \}$. Define $\psi: B \to \mathbb{R}^p$ by $\psi(t) = a + tu$. Define $\phi = f \circ \psi$. Then $D \phi (0) = D_u f(a)$.
+
+*Proof:* By definition $D_u f(a) = lim_{t \to 0} \frac{\phi(t) - \phi(0)}{t}$, so
+
+$$lim_{t \to 0} \frac{\phi(t) - \phi(0) - t D_u f(a)}{t}$$
+
+So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o_0(t)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
+
+
 
 ## Lemma for functions infinitesimal wrt identity
 If $\alpha \in o_a(h)$, then $lim_{h \to a} \alpha(h) = 0$.
@@ -152,11 +162,9 @@ If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $
 
 
 ## Functions differentiable iff component functions are differentiable
-If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, $a \in int(A)$, then $Df(a)$ exists iff $pi_i \circ f$ is differentiable at $a$ for each $i$ with $1 \leq i \leq p$.
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, $a \in int(A)$, then $Df(a)$ exists iff $f_i := pi_i \circ f$ is differentiable at $a$ for each $i$ with $1 \leq i \leq p$. In either case, we have $Df(a)[x] = (D f_1(a)[x], \ldots, D f_p(a)[x])$.
 
 *Proof:* If $f$ differentiable at $a$, then let
-
-$$f_i := \pi_i \circ f$$
 
 $$Df(a)_i := \pi_i \circ Df(a)$$
 
