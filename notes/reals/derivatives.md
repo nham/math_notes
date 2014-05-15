@@ -175,6 +175,27 @@ Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ fo
 Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $0 < \|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $0 < \|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
 
 
+### Corollary
+If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, $a \in int(A)$, then for any $u \neq 0$, $D_u f(a)$ exists iff for every component function $f_i$, $D_u f_i(a)$ exists.
+
+*Proof:*  Let $B = \{ t \in \mathbb{R} : a + tu \in A \}$, $\phi: B \to \mathbb{R}^p$ defined by $t \mapsto f(a + tu)$.
+
+If $D_u f(a)$ exists, then we already know from a previous proposition that $D_u f(a) = D \phi(0)$. So defining $\phi_i = \pi_i \circ \phi$, we know (from what was just proved) that $D \phi_i(0)$ all exist. By definition of derivatives:
+
+$$\phi_i(t) - \phi_i(0) = t D \phi_i(0) + \alpha(t)$$
+
+such that $\alpha \in o_0(t)$. This implies that
+
+$$lim_{t \to 0} \frac{\phi_t(t) - \phi_i(0)}{t} = D \phi_i(0)$$
+
+However, $\phi_i(t) = f_i(a + tu)$, so $D \phi_i(0) = D_u f_i(a)$.
+
+
+Conversely, (TODO: prove this?) $\alpha: B \to \mathbb{R}$ defined by $\alpha(t) = f_i(a + tu) - f(a) - D_u f_i(a) t$ has $\alpha \in o_0(t)$. So the function which assigns $t \mapsto f(a + tu) - f(a) - D_u f(a) t$ has each component function in $o_0(t)$. TODO: prove that this means the function is in $o_0(h)$, hence $D_u f(a) = (D_u f_1(a), \ldots, D_u f_p(a)$.
+
+TODO: is there a cleaner proof? This is supposed to be a corollary, not a completely distinct proof.
+
+
 ## Jacobian matrix
 If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$ is differentiable at $a$, then the matrix representation of $Df(a)$ is a matrix $A$ where $a_ij = D_j f_i(a)$ This matrix is called the **Jacobian matrix**.
 
@@ -233,3 +254,13 @@ Otherwise $f$ either has a maximum or a minimum on a point in $(a,b)$, so the lo
 If $f: [a, b] \to \mathbb{R}$ for $a < b$ is continuous and differentiable on $(a, b)$, then there is a $c \in (a, b)$ such that $Df(c) = [f(b) - f(a)]/(b - a)$
 
 *Proof:* Let $k = [f(b) - f(a)]/(b - a)$. Then $g: [a, b] \to \mathbb{R}$ defined by $g(x) = f(x) - \phi(x)$, where $\phi: [a, b] \to \mathbb{R}$ defined by $\phi(x) = k(x-a)$ is continuous since $\phi$ is and differentiable on $(a, b)$ since $\phi$ is. But $g(b) = f(b) - k(b-a)  = f(b) - (f(b) - f(a)) = f(a) = g(a)$, so Rolle's theorem applies to find a $c$ such that $Dg(c) = 0$. But $Dg(c) = Df(c) - D \phi(c)$, so $Df(c) = D \phi(c) = k = [f(b) - f(a)]/(b-a)$.
+
+
+
+
+## Continuous partial derivatives implies differentiable
+If $f: A \to \mathbb{R}^p$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\phi_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\phi_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
+
+*Proof:* If suffices to prove that each component function $f_i: A \to \mathbb{R}$ is differentiable at $a$. From previously proved propositions, we know that for every directional derivative of a function that exists, the directional derivative of each component function also exists. We also know that if a function is continuous, then each of its component functions is continuous also. Hence it suffices to prove the statement for $p = 1$ (which would prove that each component of $f$ is differentiable at $a$).
+
+TODO
