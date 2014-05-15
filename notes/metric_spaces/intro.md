@@ -37,6 +37,9 @@ We shall on occasion need to specify the metric space that the ball is contained
 ## Definition of open sets
 An **open set** is a set $U$ such that every $x \in U$ has an open ball $B(x; \epsilon)$ which is entirely contained in $U$.
 
+## Definition of open neighborhood
+If $U \subseteq X$ is open in $X$ and $a \in U$, then $U$ is said to be an **open neighborhood** of $a$.
+
 
 ## Open balls are open
 Any open ball $B(x; \epsilon)$ is an open set.
@@ -709,59 +712,34 @@ A function $f: X \to Y$ is continuous at $a \in X$ iff either $lim_{x \to a} f(x
 
 
 ## "Topological" definition of continuity
-A function $f:X \rightarrow Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
+If $f: X \to Y$ and $a \in X$, then the following are equivalent:
 
- 1. If $f$ continuous, then every open subset $V$ of $Y$ has $f^{pre}(V)$ open in $X$.
+ 1. $f$ is continuous at $a$
+ 2. for every open neighborhood $V$ of $f(a) in $Y$, there is an open neighborhood $U$ of $a$ in $X$ such that $f(U) \subseteq V$.
 
-    1. It suffices to assume 
+*Proof:*
 
-         - $V$ be an open subset of $Y$
-         - $a \in f^{pre}(V)$
+ 1. (1) implies (2)
 
-       and prove $a$ has an open ball around it contained in $f^{pre}(V)$.
+    *Proof:* If $f(a) \in V \subseteq Y$, $V$ open in $Y$, then there is an $\epsilon$ such that $B_Y(f(a); \epsilon) \subseteq V$, since $V$ is open. Since $f$ is continuous at $a$, there is some $\delta such that $f(B_X(a; \delta)) \subseteq V$.
 
-       *Proof:* If $f^{pre}(V)$ is empty, then it is open, so we ignore that case below.
+ 2. (2) implies (1)
 
-    2. There is an $\epsilon > 0$ such that $B_Y(f(a); \epsilon) \subseteq V$
+    *Proof:* We must prove that for all $\epsilon > 0$ there is a $\delta > 0$ such that $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$. By hypothesis we know there is some $U \subseteq X$ such that $a \in U$ and $U$ open in $X$ and $f(U) \subseteq B_Y(f(a); \epsilon)$. But $U$ contains an open ball around $a$, so clearly that open ball gets mapped inside the $\epsilon$-ball around $f(a)$. Hence $f$ is continuous at $a$.
 
-       *Proof:* $f(a) \in V$ and $V$ is open.
 
-    3. There is a $\delta > 0$ such that $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$
+### Corollary
+$f: X \to Y$ is continuous iff every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
-       *Proof:* $f$ is continuous, so in particular it is continuous at $a$.
 
-    4. $B_X(a; \delta) \subseteq f^{pre}(V)$
+ 1. If $f: X \to Y$ is continuous then every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$.
 
-       *Proof:* By (1.2) and (1.3), $f(B_X(a; \delta)) \subseteq V$.
+    *Proof:* If $a \in f^{pre}(V)$, then $f(a) \in V$ so there is a $U_a$ open in $X$, $a \in U_a$ such that $f(U_a) \subseteq V$. This means that $U_a \subseteq f^{pre}(V)$. Hence $f^{pre}(V)$ is the union of open sets and is open.
 
-    5. Q.E.D.
-    
-       *Proof:* (1.4) provides the open ball of $a$ that is contained in $f^{pre}(V)$.
+ 2. If every open $V \subseteq Y$ has $f^{pre}(V)$ open in $X$, then $f: X \to Y$ is continuous 
 
- 2. If every open subset of $V$ has an open preimage under $f: X \to Y$, then $f$ is continuous.
+    *Proof:* For any $a \in X$, any open neighborhood $V$ of $f(a)$ in $Y$, $f^{pre}(V)$ is open in $X$ by hypothesis and $x \in f^{pre}(V)$. Also $f(f^{pre}(V)) \subseteq V$, so $f$ is continuous at $a$.
 
-    1. It suffices to assume 
-
-         - $a \in X$ 
-         - $\epsilon > 0$
-
-       and prove some $\delta > 0$ is such that the $\delta$-ball around $a$ gets mapped into the $\epsilon$-ball around $f(a)$
-
-    2. $f^{pre}(B_Y(f(a); \epsilon))$ is open
-
-        *Proof:* $B_Y(f(a); \epsilon)$ is open in $Y$, so the statement holds by hypothesis.
-
-    3. There is a $\delta > 0$ such that $B_X(a; \delta) \subseteq f^{pre}(B_Y(f(a); \epsilon))$
-
-       *Proof:* By definition of an open set and by (2.2).
-
-    4. $f(B_X(a; \delta)) \subseteq B_Y(f(a); \epsilon)$
-
-       *Proof:* every element of the $\delta$-ball around $a$ is in the pre-image of the $\epsilon$-ball around $f(a)$.
-
-    5. Q.E.D.
-
-       *Proof:* (2.4) proves it.
 
 
 ## Sequential characterization of continuity
