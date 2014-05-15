@@ -772,6 +772,25 @@ If $(X, d)$ and $(Y, e)$ are metric spaces and $f: X \to Y$, then $f$ is continu
 Conversely, if $f$ is not continuous at $a$, then some $\epsilon$-ball around $f(a)$ is such that every open ball around $a$ contains points that are not mapped to the $\epsilon$-ball. So we can pick an $x_1$ such that $x_1 \in B_X(a; 1)$ but $f(x_1) \notin B_Y(f(a); \epsilon)$, and in general we can pick an $x_k \in B_x(a; 1/k)$ with $f(x_k) \notin B_Y(f(a); \epsilon)$. By construction the sequence $(x_n)$ converges to $a$, but $(f(x_n))$ does not converge to $f(a)$ since it stays perpertually outside the $\epsilon$-ball around $f(a)$.
 
 
+## Composition of continuous function is continuous
+If $X, Y, Z$ are some metric spaces and $f: X \to Y$ is continuous at $a \in X$ and $g: Y \to Z$ is continuous at $f(a) \in Y$, then $g \circ f$ is continuous at $a$.
+
+*Proof:* Using the topological characterization, every open neighborhood $U$ in $Z$ that contains $g(f(a))$ has $g^{pre}(U)$ open in $Y$. Since $g(f(a)) \in U$, $f(a) \in g^{pre}(U)$, so $f^{pre}(g^{pre}(U))$ is open in $X$. But for all $V \subseteq Z$, $(g \circ f)^{pre}(V) = \{x \in X : g(f(x)) \in V \}$, and $f^{pre}(g^{pre}(V)) = \{x \in X : f(x) \in g^{pre}(V) \} = (g \circ f)^{pre}(V)$, so $g \circ f$ is continuous at $a$.
+
+
+
+## Projection operator is continuous
+If $(X_i, d_i)$ for $1 \leq i \leq n$ are metric spaces and $P = \prod_1^n X_i$ and $(P, d)$ is a product metric space, then $\pi_i: P \to X_i$ is continuous.
+
+*Proof:* If $U$ open in $X_i$, $\pi_i^{pre}(U) = $\prod_1^n A_j$ where $A_j = U$ if $j = i$ and $A_j = X_j$ otherwise. This is clearly open by the definition of product topology.
+
+## Components of a continuous function into a product space are continuous
+If $(X, d)$, $(Y_1, e_1), \ldots, (Y_n, e_n)$ are all metric spaces, $P = \prod_1^n Y_i$, $(P, e)$ is a product metric space and $f: X \to P$, then if $f$ is a continuous function, each $f_i := \pi_i \circ f$ is continuous.
+
+*Proof:* If $f$ is continuous, each $f_i$, being a composition of continuous functions, is continuous.
+
+
+
 ## Definition of uniform continuity
 For metric spaces $(X, d)$ and $(Y, e)$, a function $f: X \to Y$ is **uniformly continuous$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $x, y$ with $d(x, y) < \delta$, $e(f(x), f(y)) < \epsilon$.
 
