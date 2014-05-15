@@ -768,6 +768,11 @@ If $(X, d)$, $(Y_1, e_1), \ldots, (Y_n, e_n)$ are all metric spaces, $P = \prod_
 *Proof:* If $f$ is continuous, each $f_i$, being a composition of continuous functions, is continuous.
 
 
+## Restrictions of continuous functions are continuous
+If $X$ and $Y$ are metric spaces and $f: X \to Y$ is continuous at $a \in X$, and $S \subseteq X$ with $a \in S$, then the restriction $f|S: S \to Y$ to the subspace formed by $S$ is continuous at $a$.
+
+*Proof:* If $V$ is an open neighborhood of $f(a)$ in $Y$, then there is an open neighborhood $U$ of $a$ in $X$ with $f(U) \subseteq V$. $T = U \cap S$ is open in $S$ and $a \in T$, and $f|S(T) = f(T) \subseteq f(U) \subseteq V$, so $f|S$ is continuous at $a$.
+
 
 ## Definition of uniform continuity
 For metric spaces $(X, d)$ and $(Y, e)$, a function $f: X \to Y$ is **uniformly continuous$ if for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $x, y$ with $d(x, y) < \delta$, $e(f(x), f(y)) < \epsilon$.
