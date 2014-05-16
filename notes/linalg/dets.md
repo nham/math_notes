@@ -153,3 +153,23 @@ The set $ML_{alt}(V^{\oplus k})$ of all alternating $k$-linear forms is a subspa
 
 *Proof:* If $f$ and $g$ are alternating and $v \in V^k$ is a $k$-tuple with duplicate elements, then $(f+g)(v) = f(v) + g(v) = 0$, and for any $c \in \mathbb{F}$, $(cf)(v) = c f(v) = c 0 = 0$. So $ML_{alt}(V^{\oplus k})$ is a subspace.
 
+
+## Characterizing alternating $k$-linear forms
+If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any $k$-linear form on $V$, we have for any $v_1, \ldots, v_k \in V$:
+
+$$\phi(v_1, \ldots, v_k) = \sum_{f \in I_{kn}} \phi(u_{f(1)}, \ldots, u_{f(k)}) \prod_{i = 1}^k [v_i, u_{f(i)}^{\ast}]$$
+
+where 
+
+ - $I_{kn}$ is the collection of all injective functions from $\{1, \ldots, k\} \to \{1, \ldots, n\}$.
+ - $u_i^{\ast}$ is the dual basis element corresponding to $u_i$, 
+ - $[v_i, u_j^{\ast}]$ is the bracket notation for applying a linear functional $u_j^{\ast}$ to $v_i$.
+
+*Proof:* It's a fairly easy proof by induction using multilinearity and the fact that $f$ is alternating. It is tedious and requires juggling some symbols, so I won't reproduce it here.
+
+### Corollary
+If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any $n$-linear form on $V$, we have for any $v_1, \ldots, v_n \in V$:
+
+$$\phi(v_1, \ldots, v_k) = \sum_{\sigma \in S_n} (sgn \sigma) \phi(u_1, \ldots, u_n) \prod_{i = 1}^n [v_i, u_{\sigma(i)}^{\ast}]$$
+
+*Proof:* An injective function from $\{1, \ldots, n\}$ to itself is a permutation, so this is just the previous formula combined with the main fact about alternating multilinear forms, which is that $\phi(u_{\sigma(1)}, \ldots, u_{\sigma(n)}) = (sgn \sigma) \phi(u_1, \ldots, u_n)$.
