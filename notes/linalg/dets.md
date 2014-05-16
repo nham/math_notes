@@ -111,7 +111,7 @@ The last thing to note is that the subset of $S_n$ of all even permutations must
 ## Definition of multilinear function
 A function $\phi: \prod_1^k V_i \to W$ for vector spaces $V_1, \ldots, V_k, W$ over a common field $\mathbb{F}$ is said to be **multilinear** or **$k$-linear** if it is linear in each argument (i.e. currying $\phi$ by all but one of the arguments yields a linear map).
 
-If $W = \mathbb{F}$, then $\phi$ is called a **$k$-linear form** instead.
+If $V_i = V_j$ for all $i$ and $j$ and $W = \mathbb{F}$, then $\phi$ is called a **$k$-linear form** instead.
 
 
 ## Vector space of $k$-linear maps
@@ -133,9 +133,13 @@ A multilinear $f: \prod_1^n V_i \to W$ is **alternating** iff $f(v_1, \ldots, v_
 ## Equivalent characterization for alternating multilinear functions
 A multilinear function $f: \prod_1^n V_i \to W$ is alternating iff for every $(v_1, \ldots, v_n) \in \prod_1^n V_i$ and every transposition $\sigma$, we have $f(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = - f(v_1, \ldots, v_n)$.
 
-*Proof:* If $f$ is alternating and $(v_1, \ldots, v_n) \in \prod_1^n V_k$ and $\sigma$ a transpose of $i$ and $j$, $i < j$. Then $(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = (v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)$ Then $f(v_1, \ldots, v_i + v_j, \ldots, v_i + v_j, \ldots, v_n) = 0$ by $f$ being alternating. But by multilinearity of $f$:
+*Proof:* If $f$ is alternating and $(v_1, \ldots, v_n) \in \prod_1^n V_k$ and $\sigma$ a transpose of $i$ and $j$, $i < j$. Then $(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = (v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)$ Then $f(v_1, \ldots, v_i + v_j, \ldots, v_i + v_j, \ldots, v_n) = 0$ by $f$ being alternating. But by multilinearity of $f$ (and $f$ being alternating):
 
 $$0 = f(v_1, \ldots, v_i, \ldots, v_j, \ldots, v_n) + f(v_1, \ldots, v_j, \ldots, v_i, \ldots, v_n)$$
+
+So they  must be negations of one another.
+
+Conversely, if $f$ is such that for every transpose $\sigma$, we have $f(v_{\sigma(1)}, \ldots, v_{\sigma(n)}) = - f(v_1, \ldots, v_n)$, if $(w_1, \ldots, w_n)$ is such that $w_i = w_j$ for some $i \neq j$, then we can consider the transpose $\sigma$ of $i$ and $j$.  We have $(w_{\sigma(1)}, \ldots, w_{\sigma(n)}) = (w_1, \ldots, w_n)$, but by hypothesis must have $f(w_{\sigma(1)}, \ldots, w_{\sigma(n)}) = - f(w_1, \ldots, w_n)$. So $f(w_1, \ldots, w_n) = 0$, meaning $f$ is alternating
 
 
 ### Corollary
