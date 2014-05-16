@@ -117,6 +117,24 @@ A collection $\mathcal{A} = \{A_i : i \in I\}$ of events is said to be **conditi
 $$\mathbb{P}(\bigcap_{j \in J} A_j | B) = \prod_{j \in J} \mathbb{P}(A_j | B)$$
 
 
+
+## A lemma on infinite series
+If $(a_n)$ is a sequence of non-negative reals and $\sum_1^{\infty} a_n = 1$, then for any subsequence $(a_{n_k})$, $\sum_1^{\infty} a_{n_k} \leq 1$.
+
+*Proof:* By hypothesis the sequence of partial sums is monotone non-decreasing, so $1$ must be an upper bound for $(S_n)$ defined by $S_n = \sum_{i=0}^n a_i$. For any subsequence $(a_{n_k})$, we can define $(T_m)$ by $T_m = \sum_{k=0}^m a_{n_k}$. So for any $m$, $n_m = j \in \mathbb{N}$, so we know $T_m \leq S_j$ by definition of subsequences, so $(T_m)$ is a monotonically non-decreasing sequence bounded above by $1$. It therefore converges (by the monotone convergence theorem) and its limit is $\leq 1$.
+
+
+### Remark
+THe motivation for this is from at least two topics:
+
+ - proving that functions of independent rv's are independent. we need a generic "sum the probabilities of the rv taking on a set of values" operation, which is okay for rv's taking on finitely many values, but not for ones taking on countably many values
+
+ - summing the rows of a transition matrix for a Markov chain (matrix might be infinite) (actually maybe you dont need that there)
+
+TODO: revisit this
+
+
+
 ## Definition of random variable
 A **random variable** on a probability space $(\Omega, F, \mathbb{P})$ is a function $X: \Omega \to \mathbb{R}$ such that $\{\omega \in \Omega : X(\omega) \leq x \}$ is an event for every $x \in \mathbb{R}$.
 
@@ -258,5 +276,32 @@ Where, for (2) and (3), we define for any $g: \mathbb{R}^n \to \mathbb{R}$
     *Proof:* TODO
 
 
-## Independent discrete variables
+## Definition of independent discrete variables
 If $X$ and $Y$ are discrete random variables, then they are **independent** iff $(X(\omega) = x)$ and $(Y(\omega) = y)$ are independent events for all $x, y \in \mathbb{R}$. In other words, they are independent iff $\mathbb{P}(X = x, Y = y) = \mathbb{P}(X = x) \mathbb{P}(Y = y)$ for all $x, y$.
+
+
+## Definition of random process
+A **random process** is an indexed collection of random variables.
+
+## Definition of Markov chain
+A **Markov chain** is a random process indexed by $\mathbb{N}$ of all discrete random variables, each taking values in the same set $S$, such that for all $n \in \mathbb{N}$ and all $a_0, \ldots a_n \in \mathbb{R}$:
+
+$$\mathbb{P}(X_n = a_n | X_0 = a_0, \ldots, X_{n-1} = a_{n-1}) = \mathbb{P}(X_n = a_n | X_{n-1} = a_{n-1})$$
+
+The probabilities $\mathbb{P}(X_n = a_n | X_{n-1} = a_{n - 1})$ are called **transition probabilities** and they denote the probability of the process transitioning from state $a_{n-1}$ to $a_n$ at time $n-1$.
+
+
+## Definition of homogeneous Markov chains
+A Markov chain $(X_n)$ is **homogeneous** iff for all $n \in \mathbb{N}$, $a, b \in \mathbb{R}$, we have:
+
+$$\mathbb{P}(X_n = b | X_{n-1} = a) = \mathbb{P}(X_1 = b | X_0)$$
+
+In other words, the chain is homogeneous iff the probability of transitioning from state $a$ to state $b$ is the same at all times for every $a$ and $b$.
+
+When a chain is homogeneous, we can form the **transition matrix** whose $(i,j)$-th entry is $\mathbb{P}(X_n = j | X_{n-1} = i)$.
+
+
+## Definition of $n$-step transition matrices
+If $X$ is a Markov chain, we can define $P(m, n)$ the **$n$-step transition matrix**, whose $(i, j)$-th entry is $\mathbb{P}(X_{m+n} = j | X_m = i)$.
+
+If $X$ is homogeneous, then $P(m, m + 1) = P(0, 1) = P$ for all $m$ by definition.
