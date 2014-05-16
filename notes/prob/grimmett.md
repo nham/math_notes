@@ -133,9 +133,9 @@ If $F$ is the distibution of a random variable $X$, then
 
  1. $X(\omega) > x$ is an event for any $x \in \mathbb{R}$ and $\mathbb{P}(X(\omega) > x) = 1 - F(x)$.
  2. $x < X(\omega) \leq y$ is an event for any $x, y \in \mathbb{R}$, and $\mathbb{P}(x < X(\omega) \leq y) = F(y) - F(x)$
- 3. $X(w) = x$ is an event and $\mathbb{P}(X(\omega) = x) = F(x) - lim_{y \to x^-} F(y)$.
- 4. $X(w) \geq x$ is an event and $\mathbb{P}(X(\omega) \geq x) = \mathbb{P}(X(\omega) > x) + \mathbb{P}(X(\omega) = x)$
- 5. $X(w) < x$ is an event and $\mathbb{P}(X(\omega) < x) = \mathbb{P}(X(\omega) \leq x) - \mathbb{P}(X(\omega) = x)$
+ 3. $X(\omega) = x$ is an event and $\mathbb{P}(X(\omega) = x) = F(x) - lim_{y \to x^-} F(y)$.
+ 4. $X(\omega) \geq x$ is an event and $\mathbb{P}(X(\omega) \geq x) = \mathbb{P}(X(\omega) > x) + \mathbb{P}(X(\omega) = x)$
+ 5. $X(\omega) < x$ is an event and $\mathbb{P}(X(\omega) < x) = \mathbb{P}(X(\omega) \leq x) - \mathbb{P}(X(\omega) = x)$
 
 *Proof:* For (1), letting $A = \{\omega \in \Omega : X(\omega) \leq x\}$, we have $A^c = \{ \omega \in \Omega : X(\omega) > x \}$, which we notate by $X(\omega) > x$. So it holds.
 
@@ -192,6 +192,10 @@ A **constant random variable** $X: \Omega \to \mathbb{R}$ defined by $X(\omega) 
 If $X$ is a random variable, then for any $c, d \in \mathbb{R}$, $cX + d$ defined by $(cX + d)(\omega) = c X(\omega) + d$ is a random variable.
 
 *Proof:* If $c = 0$, then $cX + d$ is the constant random variable taking a value of $d$. Otherwise, $c \neq 0$, so for any $x \in \mathbb{R}$, if $c > 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \leq (x - d)/c)$, which we know is an event since $X$ is a random variable. Else if $c < 0$, then the event $((cX + d)(\omega) \leq x) = (X(\omega) \geq (x - d)/c)$, which is again an event.
+
+
+## Definition of discrete random variable
+A random variable $X$ is said to be **discrete** if $img X$ contains at most countably many elements. In such a case we define a **probability mass function $f: \Omega \to \mathbb{R}$ by $f(x) = \mathbb{P}(X = x)$.
 
 
 ## Definition of random vector
@@ -254,5 +258,5 @@ Where, for (2) and (3), we define for any $g: \mathbb{R}^n \to \mathbb{R}$
     *Proof:* TODO
 
 
-TODO
-
+## Independent discrete variables
+If $X$ and $Y$ are discrete random variables, then they are **independent** iff $(X(\omega) = x)$ and $(Y(\omega) = y)$ are independent events for all $x, y \in \mathbb{R}$. In other words, they are independent iff $\mathbb{P}(X = x, Y = y) = \mathbb{P}(X = x) \mathbb{P}(Y = y)$ for all $x, y$.
