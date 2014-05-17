@@ -619,21 +619,6 @@ Conversely, $(\pi_i(x_m)) \to \pi_i(c)$ for all $i$, then for $W$ open in $P$ wi
 I think this theorem was generalized to any space with product topology (instaed of just using conserving metric) because it's true for general product topological spaces, so someone going on to study topology would certainly see it later.
 
 
-## Cauchy sequences and product spaces
-If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then for any sequence $(x_m)$ in $P$, we have $(x_m)$ Cauchy in $P$ iff $(\pi_i(x_m))$ is Cauchy in $X_i$ for all $i$.
-
-*Proof:* If $(x_m)$ is Cauchy in $(P, d)$, then for every $\epsilon > 0$ there is an $N$ such that for $k, m \geq N$, $d(x_k, x_m) < \epsilon$. But for each $i$, we have $d_i(\pi_i(x_k), \pi_i(x_m)) \leq \mu_{\infty}(x_k, x_m) \leq d(x_k, x_m) < \epsilon$. So each sequence $(\pi_i(x_m))$ is also Cauchy.
-
-Conversely, if $(x_m)$ is a sequence in $P$ and $(\pi_i(x_m))$ is Cauchy in $X_i$ for every $i$, then for every $\epsilon > 0$ there is an $M_i$ for every $i$ such that for any $k, m \geq M_i$, $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$. So for every $k, m \geq M = max \{M_1, \ldots, M_n\}$ we have $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$ for all $i$. Hence for all $k, m \geq M$, we have $\mu_1(x_k, x_m) = \sum_1^n d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon$. But $d(x_k, x_m) \leq \mu_1(x_k, x_m)$, so the tail starting at $M$ of $(x_m)$ has all terms within the $\epsilon$ of one another. So $(x_m)$ must also be Cauchy.
-
-## Completeness and product spaces
-If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then $(P, d)$ is complete iff each $(X_i, d_i)$ is complete.
-
-*Proof:* If $P$ is complete, then for any collection of Cauchy sequences $(x_{im})$ in $X_i$, the sequence $(p_m)$ in $P$ defined by $p_m = (x_{1m}, \ldots, x_{nm})$ is a Cauchy sequence (since $d$ is conserving, by the previously proved proposition), so $(p_m)$ converges in $P$ to some $c \in P$ (since $P$ is complete by hypothesis). So this implies that each $(x_{im})$ converges to $\pi_i(c)$, since the $(P, d)$ has a product metric (due to $d$ being conserving). Since $(x_{im})$'s were arbitrary sequences, each $X_i$ must be complete.
-
-Conversely, if each $X_i$ is complete, for any Cauchy sequence $(p_m)$ in $P$, we have that each $(\pi_i(p_m))$ is Cauchy as well, so each sequence converges to some $c_i$ by hypothesis (completeness of $X_i$). But since each sequence $(\pi_i(p_m))$ converges, $(p_m)$ must converge as well to $c = (c_1, \ldots, c_n)$ since $P$ has the product metric. So $P$ is complete.
-
-
 ## Bounded subsets and product spaces
 If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is bounded in $P$ iff $\pi_i(S)$ is bounded in $X_i$ for all $i$.
 
@@ -645,21 +630,37 @@ Conversely, if $\pi_i(S)$ is bounded in $X_i$, then there exists some $z_i \in X
 A sequence $(x_n)$ in $P$ with conserving metric $d$ is bounded iff each sequence $(\pi_i(x_n))$ is bounded in $X_i$.
 
 
-## Totally bounded subsets and product spaces
-If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $S$ is totally bounded in $P$ iff $\pi_i(S)$ is totally bounded in $X_i$ for all $i$.
-
-*Proof:* If $S \subseteq P$ is totally bounded, then for any $\epsilon > 0$, there are some $p_1, \ldots, p_k$ that form an $\epsilon$-net for $S$ w.r.t. $(P, d)$. But each $B_P^d(p_i; \epsilon) \subseteq B_P^{\mu_{\infty}}(p_i; \epsilon = \prod_{j = 1}^n B_{X_j}(\pi_i(p_i); \epsilon)
-
-TODO
-
-
 ## Bolzano-Weierstrass property on product spaces
 If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $S \subseteq P$, then if $d$ is a conserving metric on $P$, then $(P, d)$ has the Bolzano-Weierstrass property iff each space $(X_i, d_i)$ has it.
 
-*Proof:* Assuming $(P, d)$ has the BW-property, then any bounded sequence $(a_n)$ in $X_i$ can be turned into a sequence $(p_n)$ in $P$ by picking arbitrary $x_j \in X_j$ for $j \neq i$ and defining $p_n = (z_1, \ldots, z_n)$ with $z_i = a_n$ and $z_j = x_j$ for $i \neq j$. Then $(\pi_j(p_n)) = (a_n)$ if $j = i$ and $(\pi_j(p_n))$ is the constant sequence of $x_j$ otherwise. Since each $(\pi_j(p_n))$ is bounded in $X_j$, we have $(p_n)$ bounded in $P$, so it has a convergent subsequence $(p_{n_k})$ converging to come $c \in P$. This implies that, in particular, $(\pi_i(p_{n_k}))$ converges in $X_i$ to $\pi_i(c)$. But this is a subsequence of $(a_n)$, so $(a_n)$ has a subsequence converging to $\pi_i(c)$.
 
-Conversely, if each $(X_i, d_i)$ has the BW-property, then each $X_i$ is complete and every bounded subset of $X_i$ is totally bounded. This implies that $(P, d)$ is complete since $d$ is a conserving metric for $P$. If $S \subset P$ is bounded in $P$, then $\pi_i(S)$ is bounded for every $i$, so $\pi_i(S)$ is also totally bounded. This implies that $S$ is totally bounded.
+ 1. If each $(X_i, d_i)$ have the BW-property, then $(P, d)$ does.
 
+    *Proof:* For what follows, if $g: \mathbb{N} \to \mathbb{N}$ is injective, then the subsequence of $(x_n)_{n \in \mathbb{N}}$ formed by $g$ is denoted $(x_n);g$.
+
+    If $(x_m)$ is bounded in $P$, then $(\pi_1 x_m)$ is bounded in $X_1$, so there is some some increasing function $f_1: \mathbb{N} \to \mathbb{N}$ and some $c_1 \in X_1$ such that $(\pi_1 x_m);f_1 \to c_1. Then $(\pi_2 x_m);f_1$ is bounded, so we can again find an increasing $f_2: \mathbb{N} \to \mathbb{N}$ and $c_2$ such that $(\pi_2 x_m);f_2 \circ f_1 \to c_2$. Continue this to obtain $f_3, \ldots, f_n$ and $c_3, \ldots, c_m$. For all $i$, $(\pi_i x_m); f_n \circ \cdots \circ f_1$ converges to $c_i$ since it is a subsequence of $(\pi_i x_m);f_i \circ \cdots \circ f_1$, and this latter sequence converges go to $c_i$ by construction. So $(x_m);f_n \circ \cdots \circ f_1$ is a convergent subsequence of $(x_m)$.
+
+
+ 2. If $(P, d)$ has to BW-property, then each $(X_i, d_i)$ does.
+
+    *Proof:* Any bounded sequence $(a_n)$ in $X_i$ can be turned into a sequence $(p_n)$ in $P$ by picking arbitrary $x_j \in X_j$ for $j \neq i$ and defining $p_n = (z_1, \ldots, z_n)$ with $z_i = a_n$ and $z_j = x_j$ for $i \neq j$. Then $(\pi_j(p_n)) = (a_n)$ if $j = i$ and $(\pi_j(p_n))$ is the constant sequence of $x_j$ otherwise. Since each $(\pi_j(p_n))$ is bounded in $X_j$, we have $(p_n)$ bounded in $P$, so it has a convergent subsequence $(p_{n_k})$ converging to come $c \in P$. This implies that, in particular, $(\pi_i(p_{n_k}))$ converges in $X_i$ to $\pi_i(c)$. But this is a subsequence of $(a_n)$, so $(a_n)$ has a subsequence converging to $\pi_i(c)$.
+
+
+## Cauchy sequences and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then for any sequence $(x_m)$ in $P$, we have $(x_m)$ Cauchy in $P$ iff $(\pi_i(x_m))$ is Cauchy in $X_i$ for all $i$.
+
+*Proof:* If $(x_m)$ is Cauchy in $(P, d)$, then for every $\epsilon > 0$ there is an $N$ such that for $k, m \geq N$, $d(x_k, x_m) < \epsilon$. But for each $i$, we have $d_i(\pi_i(x_k), \pi_i(x_m)) \leq \mu_{\infty}(x_k, x_m) \leq d(x_k, x_m) < \epsilon$. So each sequence $(\pi_i(x_m))$ is also Cauchy.
+
+Conversely, if $(x_m)$ is a sequence in $P$ and $(\pi_i(x_m))$ is Cauchy in $X_i$ for every $i$, then for every $\epsilon > 0$ there is an $M_i$ for every $i$ such that for any $k, m \geq M_i$, $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$. So for every $k, m \geq M = max \{M_1, \ldots, M_n\}$ we have $d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon / n$ for all $i$. Hence for all $k, m \geq M$, we have $\mu_1(x_k, x_m) = \sum_1^n d_i(\pi_i(x_k), \pi_i(x_m)) < \epsilon$. But $d(x_k, x_m) \leq \mu_1(x_k, x_m)$, so the tail starting at $M$ of $(x_m)$ has all terms within the $\epsilon$ of one another. So $(x_m)$ must also be Cauchy.
+
+
+## Completeness and product spaces
+If $(X_i, d_i)$ are metric spaces for $1 \leq i \leq n$, letting $P = \prod_1^n X_i$ and supposing $d$ is a conserving metric on $P$, then $(P, d)$ is complete iff each $(X_i, d_i)$ is complete.
+
+*Proof:* If $P$ is complete, then for any collection of Cauchy sequences $(x_{im})$ in $X_i$, the sequence $(p_m)$ in $P$ defined by $p_m = (x_{1m}, \ldots, x_{nm})$ is a Cauchy sequence (since $d$ is conserving, by the previously proved proposition), so $(p_m)$ converges in $P$ to some $c \in P$ (since $P$ is complete by hypothesis). So this implies that each $(x_{im})$ converges to $\pi_i(c)$, since the $(P, d)$ has a product metric (due to $d$ being conserving). Since $(x_{im})$'s were arbitrary sequences, each $X_i$ must be complete.
+
+
+Conversely, if each $X_i$ is complete, for any Cauchy sequence $(p_m)$ in $P$, we have that each $(\pi_i(p_m))$ is Cauchy as well, so each sequence converges to some $c_i$ by hypothesis (completeness of $X_i$). But since each sequence $(\pi_i(p_m))$ converges, $(p_m)$ must converge as well to $c = (c_1, \ldots, c_n)$ since $P$ has the product metric. So $P$ is complete.
 
 
 ## Definition of continuity
