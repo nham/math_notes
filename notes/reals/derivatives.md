@@ -259,8 +259,55 @@ If $f: [a, b] \to \mathbb{R}$ for $a < b$ is continuous and differentiable on $(
 
 
 ## Continuous partial derivatives implies differentiable
-If $f: A \to \mathbb{R}^p$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\phi_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\phi_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
+If $f: A \to \mathbb{R}$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\g_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\g_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
 
-*Proof:* If suffices to prove that each component function $f_i: A \to \mathbb{R}$ is differentiable at $a$. From previously proved propositions, we know that for every directional derivative of a function that exists, the directional derivative of each component function also exists. We also know that if a function is continuous, then each of its component functions is continuous also. Hence it suffices to prove the statement for $p = 1$ (which would prove that each component of $f$ is differentiable at $a$).
 
-TODO
+*Proof:* Let $B = B(0; \epsilon)$. We construct functions p_0, \ldots, p_n: B \to \mathbb{R}^n$ by, for all $h = \sum_1^n h_i e_i \in B$:
+
+$$p_0(h) = a$$
+$$p_k(h) = p_{k-1}(h) + h_k e_k$$
+
+This means that $p_n(h) = a + h$. Also we have $f(a+h) - f(a) = \sum_1^n f(p_k(h)) - f(p_{k-1}(h))$.
+
+We can define $\psi_j^h: [0, h_j] \to \mathbb{R}$ by $\psi_j^h(t) = f(p_{j-1}(h) + t e_j)$. Note that $\psi_j^h(0) = f(p_{j-1}(h))$ and $\psi_j^h(h_j) = f(p_j(h))$. Since the $j$-th partial derivative exists everywhere in $B(a; \epsilon)$, $\psi_j^h$ is continuous on $[0, h_j]$ and differentiable on $(0, h_j)$. We can apply the mean value theorem to find a $c_j \in \mathbb{R}$ such that $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$. Since we can do this for every $h$, we define a function $c_j: h \mapsto c_j(h)$ such that $D \psi_j^h(c_j(h)) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
+
+In other words:
+
+$$D_j f(p_{j-1}(h) + c_j(h) e_j) h_j = f(p_j(h)) - f(p_{j-1}(h))$$
+
+Define $q_j(h) = p_{j-1}(h) + c_j(h) e_j$. Then for any $h \in B$, $f(a + h) - f(a) = \sum_1^n D_k f(q_k(h)) h_k$.
+
+Recall the definition of the derivative, if it exists: $f(a + h) - f(a) = Df(a)(h) + \alpha(h)$, where $\alpha \in o_0(h)$.
+
+We know that $Df(a)$ should be defined such that $Df(a)(e_j) = D_j f(a)$. So our candidate for the derivative is $Df(a)(h) = \sum_1^n D_j f(a) h_j$.
+
+To prove that this is the derivative, we must prove that $\alpha$ defined by
+
+$$\alpha(h) = \sum_1^n D_k f(q_k(h)) h_k - D_k f(a) h_k$$
+
+is such that $\alpha \in o_0(h)$.
+
+But $p_k(h) \to a$ as $h \to 0$, and $c_k(h) \to 0$ as $h \to 0$, so $q_k(h) \to a$ as $h \to 0$. 
+
+
+$$\alpha(h) \leq \sum_1^n [D_j f(q_j(h)) - D_j f(a)] \|h\|$$
+
+Since $D_j f$ is continuous at $a$, for every $\epsilon$, there is a $\delta$ such that for all $x \in B(a; \delta)$,  $|D_j f(x) - D_j f(a)| < \epsilon / n$.
+
+But also there is a $\gamma$ such that for all $0 < \|h\| < \gamma$, $\| q_j(h) - a \|  < \delta$. So for all $h$ with magnitudes smaller than $\gamma$,
+
+$$\| D_j f(q_j(h)) - D_j f(a) \| < \epsilon / n$$
+
+So for the same $h$, $| \alpha(h)| < \epsilon \|h\|$.
+
+
+
+### Corollary
+If $f: A \to \mathbb{R}^p$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\g_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\g_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
+
+*Proof:* Previous propositions show that each component function $f_i: A \to \mathbb{R}$ has every partial derivative existing at every point of $B(a; \epsilon)$. To use the previous theorem, we just need to prove that for every $j$,
+
+$\pi_j \circ g_i$ maps $x \mapsto D_i f_j(x)$
+
+since this would imply that the function is a composition of continuous functions and hence continuous. $g_i(x) = D_i f(x)$, so indeed the $j$-th component is the $i$-th partial derivative of $f_j$.
+
