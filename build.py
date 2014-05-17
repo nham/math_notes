@@ -36,7 +36,7 @@ files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md',
                    'linear_maps.md', 'linear_systems.md', 'subspaces.md', 
                    'tensors.md']
 
-files['metric_spaces'] = ['intro.md']
+files['metric_spaces'] = ['intro.md', 'complete_compact.md']
 files['prob'] = ['grimmett.md']
 files['rips'] = ['rips.md']
 files['reals'] = ['intro.md', 'derivatives.md']

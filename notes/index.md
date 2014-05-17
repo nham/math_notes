@@ -7,7 +7,8 @@
  - [determinants](linalg/dets.html)
 
 # Metric spaces
- - [main](metric_spaces/intro.html)
+ - [intro](metric_spaces/intro.html)
+ - [notes on complete and compact spaces](metric_spaces/complete_compact.html)
 
 # Probability
  - [notes from grimmett and stirzaker](prob/grimmett.html)
