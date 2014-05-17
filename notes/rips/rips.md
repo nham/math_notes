@@ -1,10 +1,10 @@
 # Notes on real inner product spaces
 
-## Definition of a (real) normed vector space
+## Definition of a normed vector space
 A **normed vector space** is a vector space $(V, \mathbb{F})$ with $\mathbb{F} = \mathbb{R}$ or $\mathbb{C}$ and with an operation $\| \cdot \| : V \to \mathbb{R}$ satisfying:
 
  - for all $v \in V$, $\|v\| \geq 0$, and $\|v\| = 0$ iff $v = 0$
- - for all scalars $a \in \mathbb{R}$, $\|av\| = |a| \|v \|$
+ - for all scalars $a \in \mathbb{F}$, $\|av\| = |a| \|v \|$
  - for all $v, w \in V$, $\|v + w\| \leq \|v\| + \|w\|$.
 
 ## Some basic facts about normed vector spaces
