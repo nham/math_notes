@@ -311,3 +311,8 @@ $\pi_j \circ g_i$ maps $x \mapsto D_i f_j(x)$
 
 since this would imply that the function is a composition of continuous functions and hence continuous. $g_i(x) = D_i f(x)$, so indeed the $j$-th component is the $i$-th partial derivative of $f_j$.
 
+
+## Definition of continuously differentiable
+A function $f: U \to \mathbb{R}^p$, $U$ open in $\mathbb{R}^n$ is said to be **continuously differentiable** or a $C^1$ mapping iff every partial derivative exists at every point of $U$ and each function $D_j f: U \to \mathbb{R}^p$ is continuous.
+
+To go along with this, $f$ is said to be $C^0$ iff it is continuous.
