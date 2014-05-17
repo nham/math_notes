@@ -1,7 +1,7 @@
 # Notes on real inner product spaces
 
 ## Definition of a (real) normed vector space
-A (real) **normed vector space** is a vector space $(V, \mathbb{R})$ with an operation $\| \cdot \| : V \to \mathbb{R}$ satisfying:
+A **normed vector space** is a vector space $(V, \mathbb{F})$ with $\mathbb{F} = \mathbb{R}$ or $\mathbb{C}$ and with an operation $\| \cdot \| : V \to \mathbb{R}$ satisfying:
 
  - for all $v \in V$, $\|v\| \geq 0$, and $\|v\| = 0$ iff $v = 0$
  - for all scalars $a \in \mathbb{R}$, $\|av\| = |a| \|v \|$
@@ -83,6 +83,44 @@ If $V$ and $W$ are normed vector spaces over $\mathbb{F}$, $f,g: V \to W$ is con
 *Proof:* For any $a \in V$, and any $\epsilon > 0$, we can find $\delta_1$ and $\delta_2$ such that for all $x \in V$ with $\|x - a\| < \delta_1$, $\|f(x) - f(a)\| < \epsilon / 2$ and for all $y in V$ with $\|y - a\| < \delta_2$, $\|g(y) - g(a)\| < \epsilon / 2$. So for all $z$ such that $\|z - x\| < \delta = min \{ \delta_1, \delta_2 \}$, we have $\|f(z) + g(z) - f(a) - g(a)\| \leq \|f(z) - f(a)\| + \|g(z) - g(a)\| < \epsilon$, proving that $f+g$ is continuous at $a$ as well.
 
 Also, we can find a $\gamma$ such that for all $x \in V$ with $\|x - a\| < \delta$ we have $\|f(x) - f(a)\| < \epsilon / |c|$. Hence for the same set of $x$'s, we have $\|cf(x) - cf(a)\| = |c| \|f(x) - f(a)\| < \epsilon$, so $cf$ is continuous at $a$.
+
+
+## Definition of bounded linear operators
+If $V$ and $W$ are normed vector spaces over the same field $\mathbb{F}$, then a linear map $f: V \to W$ is **bounded** iff there is some $c \in \mathbb{R}_{\geq 0}$ such that for all $v \in V$, $\|f(v)\| \leq c \|v\|$.
+
+This is equivalent to saying that $f$ is Lipschitz continuous since for any $u, v \in V$, $\|f(u) - f(v)\| = \|f(u - v)\| \leq c \|u - v\|$.
+
+## Definition of operator norm
+If $V$ and $W$ are normed vector spaces and $f: V \to W$ is a bounded linear operator, then the **operator norm** of $f$ is defined to be a real number $\|f\|$:
+
+$$\|f\| := inf \{ c \in \mathbb{R}_{\geq 0} : \forall v \in V \|f(v)\| \leq c \|v\|\}$$
+
+This is well defined since bounded linear operators have at least one such $c$ by definition.
+
+
+## Definiton of equivalent norms
+Two norms $p$ and $q$ on a vector space $V$ are said to be **equivalent** iff there are $c, d \in \mathbb{R}_{\geq 0}$ such that
+
+$$c q(v) \leq p(v) \leq d q(v)$$
+
+for all $v \in V$
+
+## Norm equivalence an equivalence relation
+For any two norms $p$ and $q$ on vector space $V$, we write that $p \sim q$ if $p$ is equivalent to $q$. Then $\sim$ is an equivalence relation on the set of all norms of $V$.
+
+*Proof:* For reflexivity, $c = d = 1$ works for $p$ with itself. For symmetricity, if $c q(v) \leq p(v) \leq d q(v)$, then $(1/d) p(v) \leq q(v) \leq (1/c) p(v)$. For transitivity assuming that $p,q,r$ are norms such that $c q(v) \leq p(v) \leq d q(v)$ and $j r(v) \leq q(v) \leq k r(v)$ for all $v$, then $cj r(v) \leq p(v) \leq dk r(v)$.
+
+## Any two norms on a finite dimensional vector space are equivalent
+If $p$ and $q$ are norms on a finite dimensional vector space $V$, then they are equivalent.
+
+*Proof:* TODO
+
+
+## Every linear map between finite dimensional vector spaces is bounded
+If $V$ and $W$ are finite-dimensional normed vector spaces and $f: V \to W$ is linear, then $f$ is bounded.
+
+*Proof:* There's one on math stack exchange that's real slick using the fact that any two norms are equivalent. TODO
+
 
 
 ## Definition of real inner product space
