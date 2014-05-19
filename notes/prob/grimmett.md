@@ -60,6 +60,7 @@ If $B_1, \ldots, B_n$ are events with $\mathbb{P}(B_i) \neq 0$ for all $i$ and $
 
 $$\mathbb{P}(A) = \sum_1^n \mathbb{P}(A \cap B_i) = \sum_1^n \mathbb{P}(A | B) \mathbb{P}(B)$$
 
+
 ## Bayes' theorem
 If $A$ and $B$ are events with $\mathbb{P}(A) \neq 0 \neq \mathbb{P}(B)$, then we can say that
 
@@ -79,6 +80,15 @@ so we must have
 $$\mathbb{P}(B | A) / \mathbb{P}(B) > 1$$
 
 Rearrangement proves the proposition.
+
+
+## Decomposing into conditional partitions
+If $B_1, \ldots, B_n$ are events with $\mathbb{P}(B_i) \neq 0$ for all $i$ and $\Omega = \bigcup_1^n B_i$, then for any event $A$ and any event $C$ such that $\mathbb{P}(C) > 0$, we have $A = \bigcup_1^n (A \cap B_i)$, so
+
+$$\mathbb{P}(A | C) = \sum_1^n \mathbb{P}(A \cap B_i | C) = \sum_1^n \mathbb{P}(A | B) \mathbb{P}(B)$$
+
+*Proof:* $\sum_1^n \mathbb{P}(A \cap B_i | C) = \sum_1^n \mathbb{P}(A \cap B_i \cap C) / \mathbb{P}(C) = \mathbb{P}(A | C)$
+
 
 
 ## Definition of independence
