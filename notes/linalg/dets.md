@@ -65,11 +65,43 @@ For $n \in \mathbb{N}$, write $[n] = \{1, \ldots, n\}$.
 $S_n$ is the group of all permutations on $[n]$ (or any $n$-element set), with the group operation taken as composition. It is called the **symmetric group** on $n$ elements.
 
 ## Definition of orbit
-For any $f \in S_n$, the **orbit** of $x \in [n]$ under $f$ is the collection $O_f(x) = \{ f^k(x) : k \in \mathbb{N} \}$. In other words, it is the set of all integers we reach by starting at $x$ and repeatedly applying $f$.
+For any $f \in S_n$, the **orbit** of $x \in [n]$ under $f$ is the collection $O_f(x) = \{ f^k(x) : k \in \mathbb{N}, k > 0 \}$. In other words, it is the set of all integers we reach by starting at $x$ and repeatedly applying $f$.
 
-An orbit is **trivial** if it it contains a single element. Note that in this case, the orbit of $x$ under $f$ could only be trivial if it equals $\{x \}$, since if $f(x) \neq x$, then $f(f(x)) \neq f(x)$ (because $f$ is injective), so the orbit contains at least two elements.
+An orbit is **trivial** iff it contains a single element.
 
 Note that the identity map has all trivial orbits.
+
+## The orbit of any element contains itself
+If $x \in [n]$ and $f \in S_n$, then $x \in O_f(x)$.
+
+*Proof:* We must have some $i \neq j \in \mathbb{N}$ such that $f^i(x) = f^j(x)$ since $f$ is defined on a set with $n$-elements (and so $f^0(x), \ldots, f^{n+1}(x)$ is $n+1$ elements and so we must have a repetition. Without loss of generality we assume $i < j$, so $x = f^{j-i}(x)$. $j - i > 0$, which establishes the proposition.
+
+
+### Corollary
+If $x \in [n]$ has $O_f(x)$ trivial, then $O_f(x) = \{x\}$.
+
+*Proof:* $x \in O_f(x)$, so if its trivial then $x$ is the only element.
+
+
+## An elements orbit is trivial iff it is a fixed point
+For any $x \in [n]$, $f(x) = x$ iff $x \in
+
+*Proof:* If $f(x) = x$, then $O_f(x) = \{ f(x), f^2(x), \ldots \} = \{x\}$. Conversely, if $O_f(x)$ is trivial, then $f(x) = x$ since $f(x) \in O_f(x)$.
+
+
+## Non-disjoint orbits are identical
+### Preliminary lemma
+If $x \in [n]$, $f \in S_n$, $x \neq z \in [n]$, then if $i$ is the smallest natural such that $f^i(x) = z$ and $j$ is the smallest positive natural such that $f^j(x) = x$, then $i < j$.
+
+*Proof:* If not, then we must have $j < i$, so $i - j < i$ but $f^{i-j}(x) = f^{i-j}(f^j(x)) = f^i(x) = z$, contradicting that $i$ was the smallest.
+
+
+### Proof
+
+If $x, y \in [n]$ and $f \in S_n$ such that some $z \in [n]$ has $z \in O_f(x) \cap O_f(y)$, then $O_f(x) = O_f(y)$
+
+*Proof:* It suffices to prove that $O_f(x) \subseteq O_f(y)$ since the other direction follows by symmetricity. By hypothesis we can find $i, j \in \mathbb{N}$, $i, j > 0$ such that $f^i(x) = z = f^j(y)$. Then if $a \in O_f(x)$, there is some $k > 0$ such that $f^k(x) = a$. If it is not additionally the case that $k > i$, then we can find some $r \in \mathbb{N}$, $r > 0$ such that $f^r(x) = x$. So we can let $s = r + k$. Then $f^s(x) = f^k(f^r(x)) = f^k(x) = a$. and $i < s$ since $i < r$. So assuming $k > i$, we have $f^{k-i}(z) = f^{k-i}(f^i(x)) = f^k(x) = a$. Hence $f^{k-i+j}(y) = f^{k-i}(f^j(y)) = a$. This proves that $a \in O_f(y)$.
+
 
 ## Definition of a cycle
 A **cycle** of $S_n$ is any $f \in S_n$ that has no more than one non-trivial orbit.
@@ -80,7 +112,8 @@ If $f, g \in S_n$ are cycles, then they are **disjoint** if either $f$ or $g$ is
 ## Composition of disjoint cycles is commutative
 If $f, g \in S_n$ are disjoint cycles, then $f \circ g = g \circ f$
 
-*Proof:* First, if $f$ or $g$ is identity, it clearly holds. So assume $f$ has a non-trivial orbit $O_f$ and $g$ has a non-trivial orbit $O_g$. TODO
+*Proof:* First, if $f$ or $g$ is identity, it clearly holds. So assume $f$ has a non-trivial orbit $O_f(x)$ and $g$ has a non-trivial orbit $O_g(y)$. For all $z \in [n]$, if $z \in O_f(x)$ then $z \notin O_g(x)$ by disjointness, so $g(z) = z$ since $O_g(z)$ is trivial. So $f(g(z)) = f(z)$. But $f(z) \in O_f(z)$ by definition, and since $z \in O_f(x)$, $O_f(x) = O_f(z)$, so $f(z) \in O_f(z)$ and hence by disjointness $f(z) \notin O_g(z)$. So $g(f(z)) = f(z), proving $f(g(z)) = g(f(z))$. Since $z$ was arbitrary, the theorem is proved.
+
 
 ## Disjoint cycle decomposition
 Any permutation $f \in S_n$ has a unique set $\{c_1, \ldots, c_k\}$ of disjoint cycles such that $f = c_1 \circ \cdots \circ c_k$.
