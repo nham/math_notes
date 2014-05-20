@@ -7,11 +7,13 @@ If $v = (v_1, \ldots, v_n) \in \mathbb{R}^n$ and $\|v\| < \epsilon$, then $|v_i|
 
 
 ## Infinitesimal functions
-If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$ is said to be **infinitesimal** as $x \to a \in X$ if $lim_{x \to a} f(x) = 0$. If $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in D_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
+If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$ is said to be **infinitesimal** as $x \to a \in X$ if $lim_{x \to a} f(x) = 0$. If $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in B_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
 
 If $p: X \to V$ and $q: X \to W$ for some normed vector spaces $V$ and $W$, then we say that **$p$ is infinitesimal with respect to $q$ as $x \to a$** iff the functions $P, Q: X \to \mathbb{R}$ defined by $P(x) = \|p(x)\|$, $Q(x) = \|q(x)\|$ have $P$ infinitesimal with respect to $Q$ as $x \to a$.
 
 If $f$ is infinitesimal w.r.t. $g$ as $x \to a$, we write $f \in o_a(g)$.
+
+As shorthand for being infinitesimal w.r.t. the identity function on $\mathbb{R}^n$, we will often write $o_a(h)$ or $o_a(t)$ if $h$ or $t$ are vectors in $\mathbb{R}^n$.
 
 
 ## Limit of a linear function as input goes to zero
@@ -65,7 +67,7 @@ So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_
 ## Lemma for functions infinitesimal wrt identity
 If $\alpha \in o_a(h)$, then $lim_{h \to a} \alpha(h) = 0$.
 
-*Proof:* By hypothesis, for every $\epsilon > 0$ there is a $\delta$ such that for all $h \in dom \alpha$ with $0 < \|h\| < \delta$, then $\| \alpha(h) \| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < min(\delta, 1)$, $\| \alpha(h) \| < \epsilon$, which proves the statement
+*Proof:* By hypothesis, for every $\epsilon > 0$ there is a $\delta$ such that for all $h \in dom \alpha$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < min(\delta, 1)$, $\| \alpha(h) \| < \epsilon$, which proves the statement
 
 
 ## Lemma for the limit of a parameterized multivariable function
@@ -170,9 +172,9 @@ $$Df(a)_i := \pi_i \circ Df(a)$$
 
 $$\alpha_i := \pi_i \circ \alpha$$
 
-Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(h)$ as well since $\alpha \in o_0(h)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $0 < \|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
+Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(h)$ as well since $\alpha \in o_0(h)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
 
-Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $0 < \|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $0 < \|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
+Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $\|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $\|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
 
 
 ### Corollary
@@ -215,9 +217,9 @@ This establishes the statement.
 ## Linearity of the derivative
 If $f, g : A \to \mathbb{R}^p$, $A \subseteq \mathbb{R}^n$, $a \in int(A)$, $c \in \mathbb{R}$, then if $Df(a)$ and $Dg(a)$ exist, then $D(f+g)(a)$ and $D(cf)(a)$ also exist.
 
-*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o_0(h)$. For any $\epsilon > 0$, there are $\delta_1$, $\delta_2$ such that for all $h$, $0 < \|h\| < \delta_1$, $\| \alpha(h) \| < \epsilon \|h \| / 2$ and also for all $h$, $0 < \|h\| < \delta_2$, $\| \beta(h) \| < \epsilon \|h \| / 2$. So for all $h with $0 < \|h\| < min \{ \delta_1, \delta_2 \}$, \| (\alpha + \beta)(h) \| \leq \| \alpha(h) \| + \| \beta(h) \| < \epsilon \|h\|$. So $\alpha + \beta \in o_0(h)$ as well, hence $Df(a) + Dg(a) = D(f+g)(a)$.
+*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o_0(h)$. For any $\epsilon > 0$, there are $\delta_1$, $\delta_2$ such that for all $h$, $\|h\| < \delta_1$, $\| \alpha(h) \| < \epsilon \|h \| / 2$ and also for all $h$, $\|h\| < \delta_2$, $\| \beta(h) \| < \epsilon \|h \| / 2$. So for all $h with $\|h\| < min \{ \delta_1, \delta_2 \}$, \| (\alpha + \beta)(h) \| \leq \| \alpha(h) \| + \| \beta(h) \| < \epsilon \|h\|$. So $\alpha + \beta \in o_0(h)$ as well, hence $Df(a) + Dg(a) = D(f+g)(a)$.
 
-Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $0 < \|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(h)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
+Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(h)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
 
 
 
