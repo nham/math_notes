@@ -4,37 +4,6 @@ If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a
 *Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
 
 
-
-## Dimension of a subspace
-If $V$ is a vector space and $W$ is a subspace of $V$, then $dim W \leq dim V$.
-
-*Proof:* By convention $V$ is finite dimensional, so $dim V = n$ for some $n$. Start with $\emptyset$ as a subset of $W$. It is linearly independent in $W$, and so it can be extended to a basis for $W$. So $W$ has some basis $B$. $B$ must also be independent in $V$, since otherwise we would have a non-trivial linear combination of $B$ combining to $0$ in $W$, contradicting its status as a basis. So $dim V = |B| \leq n$ since by the Steinitz exchange lemma any independent set can not have more elements in it than any basis.
-
-## Subset of a basis for a vector space is a basis for a subspace
-If $W$ is a subspace of a vector space $V$, with $dim V = n$ and $dim W = m$, then we can find a basis $B$ of $V$ such that some $m$-subset of $V$ is a basis for $W$.
-
-*Proof:* This follows mostly from the previous proposition. $W$ has some basis, which is independent in $V$, so we can extend it to a basis of $V$.
-
-## Complements exist
-If $V$ is a finite dimensional vector space and $A$ is a subspace of $V$, then there is a subspace $B$ such that $V = A \oplus B$.
-
-*Proof:* Let $dim V = n$ and $dim A = k$. Let $B$ be some basis for $A$. Then $B$ is independent in $V$, so can be extended to a basis for $V$ by adding $n - k$ vectors. Let $C$ be this set of vectors. Then since $B \cup C$ is a basis for $V$ by definition, every $v \in V$ is a linear combination of $B \cup C$. This means there exist $a \in A$, $b \in span C$ such that $v = a + b$. Also for any vectors $u \in A$, $v \in span C$, $u + v \in V$ since $A$ and $span C$ are both elements of $V$. So $V = A + span C$. Were there to be any non-zero element $z \in A \cap span C$, we would have a non-trivial scaling of $B \cup C$ that combines to zero, which is a contradiction since $B \cup C$ is a basis. So we must have $V = A \oplus span C$.
-
-## Dimension of direct sums
-If $A$ and $B$ are finite-dimensional subspaces of some vector space $V$ (not-necessarily finite-dimensional) with $A \cap B = \{ 0 \}$. Then $dim(A \oplus B) = dim A + dim B$.
-
-*Proof:* Let $C$ and $D$ be bases for $A$ and $B$, respectively. $C \cap D = \emptyset$ since $0$ is not in any basis. If we can prove $C \cup D$ is a basis for $A \oplus B$, then the statement is proven. If $C \cup D$ fails to be independent in $A \oplus B$, we must have a non-trivial scaling of $C \cup D$ that results in $0$. This means that there is some non-zero $a \in A$ that is also a linear combination of the $D$, so $A \cap B$ has non-zero elements in it, a contradiction. So $C \cup D$ is independent. For generating, let $v \in A \oplus B$. Then $v = a + b$ for some $a \in A, b \in B$ by a previous proposition. Clearly there are scalings of $C$ and $D$, respectively that combine to $a$ and $b$, so this gives us a scaling of $C \cup D$ that combines to $v$. So $C \cup D$ is a basis.
-
-
-## Sum/intersection formula
-If $W$ is finite dimensional and $U$ and $V$ are two subspaces, then $dim(U+V) + dim(U \cap V) = dim U + dim V$
-
-*Proof:* We can find complements $U = S \oplus U \cap V$ and $V = T \oplus U \cap V$. Our strategy is to prove that $dim(U + V) = dim U + dim T$. From this we can prove that $dim(U + V) + dim(U \cap V) = dim U + dim(T) + dim (U \cap V) = dim U + dim V$, where the last equality holds by definition. of $T$.
-
-Let $A$ be a basis for $U \cap V$, and let $B$ be a basis for $U$ that contains $A$ (which we can find by a previous proposition). Also let $C$ be a basis for $T$. Note that $A \cup C$ is a basis for $V$. Since all the elements of $B$ and $C$ are non-zero, if $B \cap C$ is non-empty then we would have an element of $U \cap T$ which is not zero. But $T \subseteq V$, so this is an element of both $T$ and $U \cap V$ which isn't zero, contrary to $T$'s status as the complement of $U \cap V$ in $V$. So $B$ and $C$ are disjoint. We proceed to prove $B \cup C$ is a basis for $U + V$, which would imply that $dim(U+V) = |B| + |C| = dim U + dim T$.
-
-If $B \cup C$ isn't independent, some non-trivial scaling must combine to $0$, which implies that some non-zero element of $U$ is in $span C$. This again implies a non-zero element is in both $T$ and $U \cap V$, a contradiction. So $B \cup C$ is independent. Now for any $v \in A + B$, we know there exist $a \in A, b \in B$ such that $v = a + b$. There is a scaling such that $a = \sum f(i) b_i$ and $b = \sum g(i) c_i + \sum h(i) a_i$. We can form a scaling of $B \cup C$ that combines to $v = a + b$ since the $a_i$ are all in $B$ by definition. Since $v$ was arbitrary, $B \cup C$ generates as well, so it must be a basis.
-
 ## Definition of null space, range of a linear map
 If $T: V \to W$ is a linear map, then the subset $N = \{ v \in V : T(v) = 0\}$ is a subspace of $V$, called the **null space**, and the image of $T$, $R = \{ w \in W : \exists v \in V T(v) = w \}$ is a subspace of $W$, called the **range**.
 
