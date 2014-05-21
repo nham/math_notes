@@ -1,26 +1,6 @@
 # LADW
 These are notes from LADW.
 
-The desiderata for determinant: for any field $\mathbb{F}$, a function $D: {\mathbb{F}^n}^n \to \mathbb{R}$ satisfying:
-
- - linear in every argument
- - For all $j$ and $k$ and for all $x, y \in {\mathbb{F}^n}^n$ with $x_i = y_i$ for all $i \neq j, k$, $y_k = x_j$, $y_j = x_k$, we have $D(x) = -D(y)$.
- - $D(e_1, \ldots, e_n) = 1$, where the $e_i$ are the elements of the standard basis on $\mathbb{F}^n$.
-
-## Determinants of linearly dependent vectors
-If $(v_1, \ldots, v_n)$ are linearly dependent as a set, then $D(v_1, \ldots, v_n) = 0$.
-
-*Proof:* First notice that if we have some $i$ and $j$ such that $v_i = v_j$, we must have the determinant zero, since we could swap those two columns to get a $D(v_1, \ldots, v_n) = - D(v_1, \ldots, v_n)$, which can only happen if $D(v_1, \ldots, v_n) = 0$. Now, the vectors are linearly dependent iff one is in the span of the others, so we have $D(v_1, \ldots, v_n) = D(v_1, \ldots, \sum_{i \neq j} a_i v_i, \ldots, v_n)$ for some $v_j$ which is in the span of the others. Using linearity, we get $n-1$ determinants which each have duplicate columns, so the total determinant is zero since each of the $n-1$ determinants is.
-
-## Corollary
-For any $j$, adding a linear combination of the other $v_i$'s ($i \neq j$) does not change the determinant.
-
-## Determinant of diagonal matrices
-The determinant of a diagonal matrix is the product of terms on the diagonal, since we can scale each column down by its value to find the identity matrix (and by linearity).
-
-## Determinant of triangular matrices
-We just do "column elimination" on any triangular matrix to obtain a diagonal matrix. Column saxpy (adding a linear combination of one column to all the others) does not change the determinant, so the determinant of any triangular matrix is again the product of the terms on the diagonal.
-
 ## Determinants and elementary matrices
 If $E$ is elementary matrix, then $det(AE) = det A det E$. Also, $det E \neq 0$.
 
@@ -128,7 +108,10 @@ A **transposition** is a cycle with a non-trivial orbit of exactly two elements.
 ## Every cycle has a transposition representation
 If $f \in S_n$ is a cycle, then there are transpositions $g_1, \ldots, g_k$ such that $f = g_1 \circ \cdots \circ g_k$.
 
-*Proof:* TODO
+*Proof:* If $f$ is the identity, then any transposition $g$ has $f = g \circ g$. Otherwise there is some non-trivial orbit, so some $x \in [n]$ is such that $O_f(x)$ has $k$ elements in it, $k > 2$. So we have the tuple $(x, f(x), f^2(x), \ldots, f^{k-1}(x))$, all are distinct by a previous lemma.
+
+TODO
+
 
 ### Corollary
 Every permutation has a (non-unique) representation as a product of transpositions.
@@ -187,8 +170,14 @@ The set $ML_{alt}(V^{\oplus k})$ of all alternating $k$-linear forms is a subspa
 *Proof:* If $f$ and $g$ are alternating and $v \in V^k$ is a $k$-tuple with duplicate elements, then $(f+g)(v) = f(v) + g(v) = 0$, and for any $c \in \mathbb{F}$, $(cf)(v) = c f(v) = c 0 = 0$. So $ML_{alt}(V^{\oplus k})$ is a subspace.
 
 
+## Applying an alternating multilinear form to a dependent tuple results in zero
+If $\phi$ is an alternating $n$-linear form on $n$-dimensional $V$ and $(v_1, \ldots, v_n)$ are all vectors in $V$ with $v_i \in span_{j \neq i} v_j$, then $\phi(v_1, \ldots, v_n) = 0$
+
+*Proof:* By multilinearity we reduce this to a sum of $\phi$ applied to tuples with duplicated components, so each term is zero and the whole sum is zero.
+
+
 ## Characterizing alternating $k$-linear forms
-If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any $k$-linear form on $V$, we have for any $v_1, \ldots, v_k \in V$:
+If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any alternating $k$-linear form on $V$, we have for any $v_1, \ldots, v_k \in V$:
 
 $$\phi(v_1, \ldots, v_k) = \sum_{f \in I_{kn}} \phi(u_{f(1)}, \ldots, u_{f(k)}) \prod_{i = 1}^k [v_i, u_{f(i)}^{\ast}]$$
 
@@ -201,8 +190,71 @@ where
 *Proof:* It's a fairly easy proof by induction using multilinearity and the fact that $f$ is alternating. It is tedious and requires juggling some symbols, so I won't reproduce it here.
 
 ### Corollary
-If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any $n$-linear form on $V$, we have for any $v_1, \ldots, v_n \in V$:
+If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $\phi$ is any alternating $n$-linear form on $V$, we have for any $v_1, \ldots, v_n \in V$:
 
-$$\phi(v_1, \ldots, v_k) = \sum_{\sigma \in S_n} (sgn \sigma) \phi(u_1, \ldots, u_n) \prod_{i = 1}^n [v_i, u_{\sigma(i)}^{\ast}]$$
+$$\phi(v_1, \ldots, v_n) = \phi(u_1, \ldots, u_n) \sum_{\sigma \in S_n} (sgn \sigma) \prod_{i = 1}^n [v_i, u_{\sigma(i)}^{\ast}]$$
 
 *Proof:* An injective function from $\{1, \ldots, n\}$ to itself is a permutation, so this is just the previous formula combined with the main fact about alternating multilinear forms, which is that $\phi(u_{\sigma(1)}, \ldots, u_{\sigma(n)}) = (sgn \sigma) \phi(u_1, \ldots, u_n)$.
+
+### Corollary 2
+If $V$ is a vector space with $dim V = n$ and basis $B = \{u_1, \ldots, u_n\}$, then if $D_u$ is an alternating $n$-linear form on $V$ such that $D_u(u_1, \ldots, u_n) = 1$, then for any other alternating $n$-linear form $\phi$, we have for any $v_1, \ldots, v_n \in V$:
+
+$$\phi(v_1, \ldots, v_n) = \phi(u_1, \ldots, u_n) D_u(v_1, \ldots, v_n)$$
+
+*Proof:* Follows from the last corollary.
+
+### Corollary 3
+If $\phi$ is alternating, $n$-linear form on $n$-dimensional $V$ and $\phi$ is non-trivial, then for any ordered basis $(v_1, \ldots, v_n)$ for $V$, $\phi(v_1, \ldots, v_n) \neq 0$.
+
+*Proof:* If it is, then for any $w_1, \ldots, w_n$, $\phi(w_1, \ldots, w_n) = \phi(v_1, \ldots, v_n) D_v(w_1, \ldots, w_n) = 0$, contradicting that $\phi$ is non-trivial.
+
+### Remark
+This means that up to a scalar multiple, there is a unique non-trivial alternating $n$-linear form on an $n$-dimensional vector space.
+
+
+## Definition of determinant
+If $V$ is a vector space with $dim V = n$ and a basis $v = \{v_1, \ldots, v_n\}$, then for any linear operator $T: V \to V$, the **determinant with respect to $v$** of $T$ is defined
+
+$$det_v T := \frac{\phi(T(v_1), \ldots, T(v_n))}{\phi(v_1, \ldots, v_n)}$$
+
+where $\phi$ is any non-trivial alternating $n$-linear form on $V$. What's more, this equals
+
+$$det_v T := \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [T(v_i), v_{\sigma(i)}^{\ast}]}$$
+
+*Proof:* By corollary 2 of the last proposition we know this function is well defined since for any such $\phi$ we have
+
+$$det_v T = D_v(T(v_1), \ldots, T(v_n)) / D_v(v_1, \ldots, v_n)$$
+
+which is obviously independent of which $\phi$ we choose. Since $D_v(v_1, \ldots, v_n) = 1$, this simplifies to:
+
+$$det_v T := \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [T(v_i), v_{\sigma(i)}^{\ast}]}$$
+
+
+## The determinant does not depend on the basis
+Our definition of determinant was the same for any non-trivial alternating $n$-linear form, but depended on a fixed basis. But if $v = (v_1, \ldots, v_n)$ and $w = (w_1, \ldots, w_n)$ are both ordered bases for $n$-dimensional $V$, then for any linear $T: V \to V$, $det_v T = det_w T$.
+
+*Proof:* If $T$ is non-invertible, since it is an endomap it could not be injective (otherwise it would be invertible), so the image of any basis linearly dependent, hence the determinant is zero (since any alternating multilinear map applied to a linearly dependent tuple is zero). Hence $det_v T = det_w T$ whenever $T$ is non-invertible. 
+
+If $T$ is invertible, $w_i = \sum_1^n [w_i, v_j^{\ast}] v_j$, so $T(w_i) = \sum_1^n [w_i, v_j^{\ast}] T(v_j)$. We know that $\{T(v_1), \ldots, T(v_n)\}$ is a basis for $V$ since $T$ is invertible. Hence by a previous theorem, if $\phi$ is any alternating $n$-linear form on $V$, then
+
+$$\phi(T w_1, \ldots, T w_n) = \phi(T v_1, \ldots, T v_n) \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [T w_i, (T v_{\sigma(i)})^{\ast}]$$
+
+But $[T w_i, (T v_j)^{\ast}] = [w_i, v_j^{\ast}]$ for all $i$ and $j$, so
+
+$$\phi(T w_1, \ldots, T w_n) = \phi(T v_1, \ldots, T v_n) \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [w_i, v_{\sigma(i)}^{\ast}]$$
+
+which implies
+
+$$\phi(T w_1, \ldots, T w_n) = \phi(T v_1, \ldots, T v_n) D_v(w_1, \ldots, w_n)$$
+
+So we have
+
+$$\frac{\phi(T w_1, \ldots, T w_n)}{\phi(T v_1, \ldots, T v_n)} = \frac{\phi(w_1, \ldots, w_n)}{\phi(v_1, \ldots, v_n)}$$
+
+Rearrangement proves the theorem.
+
+
+### Corollary: invertible iff determinant is nonzero
+$det T \neq 0$ iff $T$ is invertible.
+
+*Proof:* We already proved that if $T$ is non-invertible, the determinant is zero. Conversely, if $T$ is invertible, we know for non-trivial $\phi$ that $\phi(v_1, \ldots, v_n) \neq 0$ since the $v_i$'s are a basis. Also the $T v_i$'s form a basis by $T$'s invertibility, so $\phi(T v_1, \ldots, T v_n) \neq 0$, implying $det T \neq 0$. 
