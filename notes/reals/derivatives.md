@@ -261,10 +261,22 @@ If $f: [a, b] \to \mathbb{R}$ for $a < b$ is continuous and differentiable on $(
 
 
 ## Continuous partial derivatives implies differentiable
-If $f: A \to \mathbb{R}$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\g_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\g_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
+If
 
+ - $A \subseteq \mathbb{R}^n$
+ - $a \in int(A)$ 
+ - $f: A \to \mathbb{R}$
 
-*Proof:* Let $B = B(0; \epsilon)$. We construct functions p_0, \ldots, p_n: B \to \mathbb{R}^n$ by, for all $h = \sum_1^n h_i e_i \in B$:
+then if there is some $\epsilon > 0$ such that 
+
+ - for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$
+ - each function $g_i: B(a; \epsilon) \to \mathbb{R}$ defined by $g_i(x) = D_i f(x)$ is continuous at $a$
+
+then $f$ is differentiable at $a$.
+
+ 1. Let $B = B(0; \epsilon)$. 
+
+ 2. Let $p_0, \ldots, p_n: B \to \mathbb{R}^n$ be defined by for all $h = \sum_1^n h_i e_i \in B$:
 
 $$p_0(h) = a$$
 $$p_k(h) = p_{k-1}(h) + h_k e_k$$
