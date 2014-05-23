@@ -159,6 +159,11 @@ If $\langle x, y \rangle = 0$, then $\|x + y\|^2 = \|x\|^2 + \|y\|^2$.
 
 *Proof:* $\|x + y\|^2 = \langle x + y, x + y \rangle = \|x\|^2 + \|y\|^2 + 2 \langle x, y \rangle$. The statement follows since $\langle x, y \rangle = 0$.
 
+### Corollary
+If $\{u_1, \ldots, u_n\}$ such that $\langle u_i, u_j \rangle = 0$ for all $i$ and $j$, then $\|\sum_1^n u_i\|^2 = \sum_1^n \|u_i\|^2$.
+
+*Proof:* By induction using the Pythagorean property.
+
 
 ## Cauchy-Schwarz inequality
 If $x, y \in V$ and $V$ is an inner product space, then $| \langle x, y \rangle | \leq \|x\| \|y\|$.
