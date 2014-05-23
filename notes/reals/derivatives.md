@@ -54,7 +54,7 @@ where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $\alpha \in o_0(h)$, where $h$ i
 
 
 ## Directional derivatives are derivatives
-If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $D_u f(a)$ exists for $a \in int(A)$, $0 \neq u \in \mathbb{R}^n$, then let $B = \{t \in \mathbb{R} : a + tu \in A \}$. Define $\psi: B \to \mathbb{R}^p$ by $\psi(t) = a + tu$. Define $\phi = f \circ \psi$. Then $D \phi (0) = D_u f(a)$.
+If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $D_u f(a)$ exists for $a \in int(A)$ and $0 \neq u \in \mathbb{R}^n$, then let $B = \{t \in \mathbb{R} : a + tu \in A \}$. Define $\psi: B \to \mathbb{R}^p$ by $\psi(t) = a + tu$. Define $\phi = f \circ \psi$. Then $D \phi (0) = D_u f(a)$.
 
 *Proof:* By definition $D_u f(a) = lim_{t \to 0} \frac{\phi(t) - \phi(0)}{t}$, so
 
@@ -222,6 +222,12 @@ If $f, g : A \to \mathbb{R}^p$, $A \subseteq \mathbb{R}^n$, $a \in int(A)$, $c \
 Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(h)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
 
 
+## Derivative of a restriction
+If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $a \in int(A)$ with $Df(a)$ existing, then if $B \subseteq A$ such that $a \in int(B)$, then for $g := f|B$,  $D(g)(a)$ exists and equals $Df(a)$.
+
+*Proof:* For all $h \in diff(B, a)$, $h \in diff(A, a)$, so $g(a+h) - g(a) = f(a+h) - f(a) = Df(a) + \alpha(h)$ for $\alpha$ infinitesimal w.r.t. $h$, which proves the statement.
+
+
 
 ## Definition of local extrema
 If $(X, d)$ is a metric space and $f: X \to \mathbb{R}$, then $f$ has a **local maximum** at $a \in X$ if there is some $\delta > 0$ such that for all $x \in B(a; \delta)$ we have $f(x) \leq $f(a)$. $f$ has a **local minimum** at $a$ iff there is a $\delta$ such that $f(x) \geq f(a)$ for all $x \in B(a; \delta)$. Both local maxima and local minima are called **local extrema**.
@@ -274,16 +280,31 @@ then if there is some $\epsilon > 0$ such that
 
 then $f$ is differentiable at $a$.
 
- 1. Let $B = B(0; \epsilon)$. 
+ 1. Let $p_0, \ldots, p_n: B \to \mathbb{R}^n$ be defined by for all $h = \sum_1^n h_i e_i \in B(0; \epsilon)$:
 
- 2. Let $p_0, \ldots, p_n: B \to \mathbb{R}^n$ be defined by for all $h = \sum_1^n h_i e_i \in B$:
+    $$p_0(h) = a$$
+    $$p_k(h) = p_{k-1}(h) + h_k e_k$$
 
-$$p_0(h) = a$$
-$$p_k(h) = p_{k-1}(h) + h_k e_k$$
+ 2. Each $p_k(h)$ is an element of $B(a; \epsilon)$.
 
-This means that $p_n(h) = a + h$. Also we have $f(a+h) - f(a) = \sum_1^n f(p_k(h)) - f(p_{k-1}(h))$.
+    *Proof:* $p_k(h) = a + \sum_1^k h_j e_j$, so by the pythagorean theorem, $\| \sum_1^k h_j e_j \|^2 \leq \|h\|^2$, so $p_k(h) \in B(a; \epsilon)$.
 
-We can define $\psi_j^h: [0, h_j] \to \mathbb{R}$ by $\psi_j^h(t) = f(p_{j-1}(h) + t e_j)$. Note that $\psi_j^h(0) = f(p_{j-1}(h))$ and $\psi_j^h(h_j) = f(p_j(h))$. Since the $j$-th partial derivative exists everywhere in $B(a; \epsilon)$, $\psi_j^h$ is continuous on $[0, h_j]$ and differentiable on $(0, h_j)$. We can apply the mean value theorem to find a $c_j \in \mathbb{R}$ such that $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$. Since we can do this for every $h$, we define a function $c_j: h \mapsto c_j(h)$ such that $D \psi_j^h(c_j(h)) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
+ 3. $f(a+h) - f(a) = \sum_1^n f(p_k(h)) - f(p_{k-1}(h))$.
+
+    *Proof:* $\sum_1^n f(p_k(h)) - f(p_{k-1}(h)) = f(p_n(h)) - f(p_0(h)) = f(a+h) - f(a)$ by definition in (1)
+
+ 4. Let $\psi_j^h: [0, h_j] \to \mathbb{R}$ be defined by $\psi_j^h(t) = f(p_{j-1}(h) + t e_j)$ for $1 \leq j \leq n$.
+
+ 5. For all $j$, $\psi_j^h(0) = f(p_{j-1}(h))$ and $\psi_j^h(h_j) = f(p_j(h))$. 
+
+    *Proof:* By definition in (1)
+
+ 6. Each $\psi_j^h$ is continuous on $[0, h_j]$ and differentiable on $(0, h_j)$
+
+    *Proof:*  Since $p_{j-1}(h)$, $p_j(h)$ are in $B(a; \epsilon)$ by (2), we can find $\delta$ and $\gamma$ such that $p_{j-1} - \delta e_j$ and $p_j + (h_j + \gamma) e_j$ are in $B(a; \epsilon)$ as well. So the function $[- \delta, h_j + \gamma] \to \mathbb{R}$ defined by $t \mapsto f(p_{j-1} + t e_j)$ is differentiable on $[0, h_j]$ since its derivative at $t$ is $D_j f(a + t e_j)$, which exists everywhere in $B(a; \epsilon)$. So this function is continuous on that interval since it is differentiable, and $\psi_j^h is a restriction of this function to $[0, h_j]$, so it is continuous on its domain and differentiable on $(0, h_j)$.
+
+
+We can apply the mean value theorem to find a $c_j \in \mathbb{R}$ such that $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$. Since we can do this for every $h$, we define a function $c_j: h \mapsto c_j(h)$ such that $D \psi_j^h(c_j(h)) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
 
 In other words:
 
