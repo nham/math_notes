@@ -280,7 +280,7 @@ then if there is some $\epsilon > 0$ such that
 
 then $f$ is differentiable at $a$.
 
- 1. Let $p_0, \ldots, p_n: B \to \mathbb{R}^n$ be defined by for all $h = \sum_1^n h_i e_i \in B(0; \epsilon)$:
+ 1. Let $p_0, \ldots, p_n: B(0; \epsilon) \to \mathbb{R}^n$ be defined by for all $h = \sum_1^n h_i e_i \in B(0; \epsilon)$:
 
     $$p_0(h) = a$$
     $$p_k(h) = p_{k-1}(h) + h_k e_k$$
@@ -303,14 +303,20 @@ then $f$ is differentiable at $a$.
 
     *Proof:*  Since $p_{j-1}(h)$, $p_j(h)$ are in $B(a; \epsilon)$ by (2), we can find $\delta$ and $\gamma$ such that $p_{j-1} - \delta e_j$ and $p_j + (h_j + \gamma) e_j$ are in $B(a; \epsilon)$ as well. So the function $[- \delta, h_j + \gamma] \to \mathbb{R}$ defined by $t \mapsto f(p_{j-1} + t e_j)$ is differentiable on $[0, h_j]$ since its derivative at $t$ is $D_j f(a + t e_j)$, which exists everywhere in $B(a; \epsilon)$. So this function is continuous on that interval since it is differentiable, and $\psi_j^h is a restriction of this function to $[0, h_j]$, so it is continuous on its domain and differentiable on $(0, h_j)$.
 
+ 7. For each $h \in B(0; \epsilon)$ and each $j$, there is a $c_j \in \mathbb{R}$ such that  $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
 
-We can apply the mean value theorem to find a $c_j \in \mathbb{R}$ such that $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$. Since we can do this for every $h$, we define a function $c_j: h \mapsto c_j(h)$ such that $D \psi_j^h(c_j(h)) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
+    *Proof:* By (6) and the mean value theorem.
 
-In other words:
+ 8. Define a function $c_j: h \mapsto c_j(h)$ such that $D \psi_j^h(c_j(h)) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
 
-$$D_j f(p_{j-1}(h) + c_j(h) e_j) h_j = f(p_j(h)) - f(p_{j-1}(h))$$
+    *Proof:* Such $c_j$'s exist for each $j$ and each $h$ by (7)
 
-Define $q_j(h) = p_{j-1}(h) + c_j(h) e_j$. Then for any $h \in B$, $f(a + h) - f(a) = \sum_1^n D_k f(q_k(h)) h_k$.
+ 9. Define, for all $j$, $q_j: B(0; \epsilon) \to \mathbb{R}^n$, $q_j(h) = p_{j-1}(h) + c_j(h) e_j$. 
+
+ 10. For any $h \in B(0; \epsilon)$ and $j$ such that $1 \leq j \leq n$, $f(a + h) - f(a) = \sum_1^n D_j f(q_j(h)) h_j$.
+
+     *Proof:* $f(a+h) - f(a) = \sum_1^n f(p_k(h)) - f(p_{k-1}(h))$ holds by (3), so by (7) and the definition of the $\psi_j^h$'s it holds.
+
 
 Recall the definition of the derivative, if it exists: $f(a + h) - f(a) = Df(a)(h) + \alpha(h)$, where $\alpha \in o_0(h)$.
 
