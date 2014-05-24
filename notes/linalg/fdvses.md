@@ -1,9 +1,3 @@
-## A linear endomap is invertible iff it has a one-sided inverse
-If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a right-inverse.
-
-*Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
-
-
 ## Definition of null space, range of a linear map
 If $T: V \to W$ is a linear map, then the subset $N = \{ v \in V : T(v) = 0\}$ is a subspace of $V$, called the **null space**, and the image of $T$, $R = \{ w \in W : \exists v \in V T(v) = w \}$ is a subspace of $W$, called the **range**.
 

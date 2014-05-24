@@ -101,6 +101,12 @@ $V$ and $W$ are isomorphic iff $dim V = dim W$.
 Conversely, if $dim V = dim W$, then there are bases $B$ and $C$ for $V$ and $W$, respectively with $|B| = |C|$. We can define a mapping $T$ by starting with a bijection between $B$ and $C$. The rest of the linear map follows since the image of a basis determines the rest of the linear map. Then the image of $B$ is a basis, so by the previous proposition $T$ is an isomorphism.
 
 
+## A linear endomap is invertible iff it has a one-sided inverse
+If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a right-inverse.
+
+*Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
+
+
 ## The coordinate isomorphism
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
@@ -140,6 +146,7 @@ An **automorphism** is any bijective endomorphism, i.e. a linear map defined $V 
 
 ## Definition of general linear group
 The **general linear group** of $V$ is the group of automorphisms, denoted $GL(V)$. The group is well defined since the composition of linear maps is linear and the composition of isomorphisms is an isomorphism.
+
 
 ## Conjugate operators in the general linear group
 If $f, g \in Hom(V)$, then $f$ and $g$ are **conjugate** iff there is an $h \in GL(V)$ such that $f = h \circ g \circ h^{-1}$.
