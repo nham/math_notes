@@ -1,7 +1,7 @@
 ## Defining matrices
 (This is a new section that I'm writing to take the place of the old introduction).
 
-The fact that the set of all $m \times n$ matrices forms an abelian group under matrix addition holds immediately, associativity of matrix multiplication holds immediately, the homogeneity property holds immediately. We didn't prove distributivity for abstract linear maps, but we certainly can do that. Furthermore, matrix invertibility is all defined, with the properties we expect, like that any matrix with both a left-inverse and a right-inverse has the two equal, and hence it must be an inverse. This proves that inverses are unique, and also that invertible matrices must be square. We also get that the inverse of $AB$ for invertible matrices $A$ and $B$ is $B^{-1} A^{-1}$, since we've already proven that for arbitrary linear maps. Also we get that any left-invertible or right-invertible square matrix is invertible, since we proved that for arbitrary linear maps.
+The fact that the set of all $m \times n$ matrices forms an abelian group under matrix addition holds immediately. Also the homogeneity property for matrix multiplication holds immediately. 
 
 The key to explaining the pivot analysis is the following theorems. For any functions $f, g$ such that $f \circ g$ is well-defined, if $f$ is bijective, then:
 
@@ -27,6 +27,8 @@ $$
 
 The set of all $k \times n$ matrices with elements in $\mathbb{F}$ is notated $\mathbb{F}^{k \times n}$.
 
+When $k = n$, the matrix is said to be **square**.
+
 
 ## There is a one-to-one correspondence between matrices and linear maps
 For any linear $T: \mathbb{F}^n \to \mathbb{F}^k$, there is exactly one $k \times n$ matrix $A$ such that $A_{ij} = [T(e_j), e_i^{\ast}]$. We will often denote $A$ by $[T]$, meaning that $A$ is the matrix representation of $T$.
@@ -40,6 +42,35 @@ If $id_n: \mathbb{F}^n \to \mathbb{F}^n$ is the identity map on $\mathbb{F}^n$, 
 For any $k, n, p \in \mathbb{N} - 0$, there is an operation called **matrix multiplication** defined by, for all $A \in \mathbb{F}^{k \times n}$, $B \in \mathbb{F}^{n \times p}$, $A \times B := [S \circ T]$, where $S$ and $T$ are the unique linear maps $S: \mathbb{F}^n \to \mathbb{F}^k$ and $T: \mathbb{F}^p \to \mathbb{F}^n$ such that $A = [S]$ and $B = [T]$.
 
 
+## Matrix multiplication is associative
+Matrix multiplication is associative.
+
+*Proof:* It holds by associativity of function composition.
+
+
+## Definition of matrix invertibility
+$A \in \mathbb{F}^{k \times m}$ is **invertible** iff there is a $B \in \mathbb{F}^{m \times k}$ such that If $S$ and $T$ are the unique linear maps such that $A = [S]$ and $B = [T]$, then $S$ is the inverse of $T$. 
+
+In such a case, $B$ is said to be the **inverse** of $A$.
+
+## Invertible matrices must be square
+If $A$ is invertible, it is square.
+
+*Proof:* $A$ represents some invertible $T: \mathbb{F}^k \to \mathbb{F}^n$. However, $T$ being invertible means it is an isomorphism, so $dim \mathbb{F}^k = dim \mathbb{F}^n$. Clearly we must have $k = n$.
+
+
+## The product of invertible matrices is invertible
+If $A$ and $B$ are invertible and their dimensions are such that $AB$ is a valid matrix multiplication, then $AB$ is invertible and $(AB)^{-1} = B^{-1} A^{-1}$.
+
+*Proof:* Holds by the corresponding proof for invertible maps and the definition of matrix invertibility.
+
+
+## Square matrices and one-sided inverses
+A square matrix $A$ is invertible iff $A$ has a left-inverse iff $A$ has a right-inverse.
+
+*Proof:* A matrix is invertible iff the map it represents is invertible, and since the map that a square matrix represents is some map $\mathbb{F}^n \to \mathbb{F}^n$, the theorem holds by the corresponding theorem proved for linear endomaps.
+
+
 
 ## Motivating matrices
 
@@ -49,26 +80,10 @@ $$[T]_{\beta}^{\gamma] ([v]_{\beta}) = [T(v)]_{\gamma}$$
 
 If we represent elements of $\mathbb{F}^n$ as a "column vector" of scalar numbers and if we fill a rectangular array with $m$ rows and $n$ columns, with the $i$-th column equal to $[T(b_i)]_{\gamma}$, then we can represent the operation of $[T]_{\beta}^{\gamma}$ by  multiplying each component of $[v]_{\beta}$ with its corresponding column $[T(b_i)]_{\gamma}$. We will soon  generalize this operation and call it **matrix multiplication**
 
-What we have just defined allows us to concretely represent a linear map between finite-dimensional vector spaces by versus choosing "coordinate axes" (i.e. ordered bases). The coordinate axes allow us to represent vectors as a tuple of scalar elements (i.e. as coordinates) and linear maps as a rectangular array of scalar elements.
-
-## Defining matrix multiplication
-TODO: Flesh this out. But basically you prove that matrix multiplication as everyone knows it results in the matrix representing the composition of the linear maps. (i.e. the product of the matrix representations of the linear maps is equal to the matrix representation of the composition of the linear maps). In symbols:
+## Tying in arbitrary linear maps with matrices
+TODO: Show how matrices can represent linear maps between arbitrary spaces by first choosing bases. Have to show:
 
 $$[S]_{\gamma}^{\delta} [T]_{\beta}^{\gamma} = [S \circ T]_{\beta}^{\delta}$$
-
-
-## Definition of matrix invertibility
-A $k \times m$ matrix $A$ is **invertible** iff there is an $m \times k$ matrix $B$ such that $BA = I_k$ and $AB = I_m$, and $B$ is called an **inverse** for $B$.
-
-## Matrix inverse is unique
-If $B$ and $C$ are inverses for $A$, then $B = C$.
-
-*Proof:* $B = B(AC) = (BA)C = C$.
-
-## The product of invertible matrices is invertible
-If $A$ and $B$ are invertible and their dimensions are such that $AB$ is a valid matrix multiplication, then $AB$ is invertible and $(AB)^{-1} = B^{-1} A^{-1}$.
-
-*Proof:* Basic matrix algebra proves this.
 
 ## Linear systems
 
@@ -244,12 +259,6 @@ TODO: prove that the RREE form of a matrix is unique?
 **Corollary^3:** An invertible matrix must be square.
 
 *Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched), hence we could not have a pivot in every row and every column, hence not invertible.
-
-
-## Square matrices and one-sided inverses
-A square matrix $A$ is invertible iff $A$ has a left-inverse iff $A$ has a right-inverse.
-
-*Proof:* A square matrix represents a linear map $\mathbb{F}^n \to \mathbb{F}^n$. This was already proved for general linear endomaps.
 
 
 ## Hashtag columnfacts
