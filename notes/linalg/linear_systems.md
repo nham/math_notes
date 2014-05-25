@@ -1,7 +1,7 @@
 ## Defining matrices
 (This is a new section that I'm writing to take the place of the old introduction).
 
-The new idea to define $k \times m$ matrices with elements in $\mathbb{F}$ as representations of linear transformations from $\mathbb{F}^m \to \mathbb{F}^k$. One can prove that, by choosing the standard bases of $\mathbb{F}^m$ and $\mathbb{F}^k$, there is a one-to-one correspondence between linear maps and matrices. So then all of the properties of linear maps between abstract vector spaces hold nearly immediately for vectors once you define matrix multiplication to represent map composition. The fact that the set of all $m \times n$ matrices forms an abelian group under matrix addition holds immediately, associativity of matrix multiplication holds immediately, the homogeneity property holds immediately. We didn't prove distributivity for abstract linear maps, but we certainly can do that. Furthermore, matrix invertibility is all defined, with the properties we expect, like that any matrix with both a left-inverse and a right-inverse has the two equal, and hence it must be an inverse. This proves that inverses are unique, and also that invertible matrices must be square. We also get that the inverse of $AB$ for invertible matrices $A$ and $B$ is $B^{-1} A^{-1}$, since we've already proven that for arbitrary linear maps. Also we get that any left-invertible or right-invertible square matrix is invertible, since we proved that for arbitrary linear maps.
+The fact that the set of all $m \times n$ matrices forms an abelian group under matrix addition holds immediately, associativity of matrix multiplication holds immediately, the homogeneity property holds immediately. We didn't prove distributivity for abstract linear maps, but we certainly can do that. Furthermore, matrix invertibility is all defined, with the properties we expect, like that any matrix with both a left-inverse and a right-inverse has the two equal, and hence it must be an inverse. This proves that inverses are unique, and also that invertible matrices must be square. We also get that the inverse of $AB$ for invertible matrices $A$ and $B$ is $B^{-1} A^{-1}$, since we've already proven that for arbitrary linear maps. Also we get that any left-invertible or right-invertible square matrix is invertible, since we proved that for arbitrary linear maps.
 
 The key to explaining the pivot analysis is the following theorems. For any functions $f, g$ such that $f \circ g$ is well-defined, if $f$ is bijective, then:
 
@@ -15,27 +15,7 @@ So most of the messy proofs about properties of elimination and analyzing the pi
 The only thing I see that might need to be proved specially for matrices is facts regarding transposition (not sure that makes sense for arbitrary linear maps) and I currently don't see how to prove that if $A$ is invertible, then it must be the product of elementary matrices. I suppose we just need to prove that for any invertible matrix $A$ we can, in fact, construct an inverse for $A$ out of elementary matrices. That might be another matrix-specific proof. The converse, that any product of elementary matrices is invertible, holds directly from facts about linear maps (in fact about composition of bijective functions).
 
 
-
-
-## Motivating matrices
-
-A **finite-dimensional** vector space is defined to be any vector space with a finite basis. We just finished proving that if $V$ and $W$ are vector spaces over some field $\mathbb{F}$ and $V$ has some $n$-basis and $W$ has some $m$-basis, that $V$ is isomorphic to $\mathbb{F}^n$ and $W$ is isomorphic to $\mathbb{F}^m$. This "coordinatizing" of any finite-dimensional vector space leads to the idea of representing a linear map $T: V \to W$ as a linear map $A: \mathbb{F}^n \to \mathbb{F}^m$. We can obtain such a representation by first selecting an ordered basis $\beta$ in $V$ and an ordered basis $\gamma$ in $W$. The "coordinate isomorphisms" $\phi_{\beta} : V \to \mathbb{F}^n$ and $\phi_{\gamma} : W \to \mathbb{F}^m$ that $\beta$ and $\gamma$ induce give us a way to represent $T$ since we have
-
-$$\phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$$
-
-is a function $\mathbb{F}^n \to \mathbb{F}^m$.
-
-What do we gain from representing $T$ in this way?
-
-Let's notated $[T}_{\beta}^{\gamma} = \phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$. Also denote by $[v]_{\beta$ the tuple $(x_1, \ldots, x_n)$, provided that $v = \sum x_i b_i$, where $\beta = (b_1, \ldots, b_n)$ is an ordered basis. Then $\phi_{\beta}^{-1} ([v]_{\beta}) = v$, and $T(v) = \sum x_i T(b_i)$, so $\phi_{\gamma} (T(v)) = \sum x_i [T(b_i)]_{\gamma}$, meaning that
-
-$$[T]_{\beta}^{\gamma] ([v]_{\beta}) = [T(v)]_{\gamma}$$
-
-If we represent elements of $\mathbb{F}^n$ as a "column vector" of scalar numbers and if we fill a rectangular array with $m$ rows and $n$ columns, with the $i$-th column equal to $[T(b_i)]_{\gamma}$, then we can represent the operation of $[T]_{\beta}^{\gamma}$ by  multiplying each component of $[v]_{\beta}$ with its corresponding column $[T(b_i)]_{\gamma}$. We will soon  generalize this operation and call it **matrix multiplication**
-
-What we have just defined allows us to concretely represent a linear map between finite-dimensional vector spaces by versus choosing "coordinate axes" (i.e. ordered bases). The coordinate axes allow us to represent vectors as a tuple of scalar elements (i.e. as coordinates) and linear maps as a rectangular array of scalar elements.
-
-Let's clean this up slightly:
+## Definition of matrix
 
 For any $n \in \mathbb{N}$, $n > 0$, we denote the set $\{1, \ldots, n\}$ by $[n]$. Then a **matrix in $\mathbb{F}$** where $\mathbb{F}$ is a field is a function $[k] \times [n] \to \mathbb{F}$ for positive integers $k$ and $n$. Usually this is depicted as a rectangular array of field elements:
 
@@ -45,19 +25,37 @@ $$
 a_{k1} & \cdots & a_{kn} \end{bmatrix}
 $$
 
+The set of all $k \times n$ matrices with elements in $\mathbb{F}$ is notated $\mathbb{F}^{k \times n}$.
+
+
+## There is a one-to-one correspondence between matrices and linear maps
+For any linear $T: \mathbb{F}^n \to \mathbb{F}^k$, there is exactly one $k \times n$ matrix $A$ such that $A_{ij} = [T(e_j), e_i^{\ast}]$. We will often denote $A$ by $[T]$, meaning that $A$ is the matrix representation of $T$.
+
+For any $k \times n$ matrix $B$, we can define a linear map $S: \mathbb{F}^n \to \mathbb{F}^k$ such that $B = [S]$: $S(e_j) := \sum_{k=1}^n B_{kj} e_k$. We already know that defining the image of a basis determines the rest of the linear map, and clearly $B_{kj} = [S(e_j), e_k^{\ast}]$. Clearly such a linear map is unique.
+
+If $id_n: \mathbb{F}^n \to \mathbb{F}^n$ is the identity map on $\mathbb{F}^n$, then we denote $[id_n]$ by $I_n$. Since $id_n(e_j) = e_j$, $I_n$ consists of zeroes everywhere except the diagonal elements $a_{jj}$, which are all one.
+
+
+## Definition of matrix multiplication
+For any $k, n, p \in \mathbb{N} - 0$, there is an operation called **matrix multiplication** defined by, for all $A \in \mathbb{F}^{k \times n}$, $B \in \mathbb{F}^{n \times p}$, $A \times B := [S \circ T]$, where $S$ and $T$ are the unique linear maps $S: \mathbb{F}^n \to \mathbb{F}^k$ and $T: \mathbb{F}^p \to \mathbb{F}^n$ such that $A = [S]$ and $B = [T]$.
+
+
+
+## Motivating matrices
+
+Let's notated $[T}_{\beta}^{\gamma} = \phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$. Also denote by $[v]_{\beta$ the tuple $(x_1, \ldots, x_n)$, provided that $v = \sum x_i b_i$, where $\beta = (b_1, \ldots, b_n)$ is an ordered basis. Then $\phi_{\beta}^{-1} ([v]_{\beta}) = v$, and $T(v) = \sum x_i T(b_i)$, so $\phi_{\gamma} (T(v)) = \sum x_i [T(b_i)]_{\gamma}$, meaning that
+
+$$[T]_{\beta}^{\gamma] ([v]_{\beta}) = [T(v)]_{\gamma}$$
+
+If we represent elements of $\mathbb{F}^n$ as a "column vector" of scalar numbers and if we fill a rectangular array with $m$ rows and $n$ columns, with the $i$-th column equal to $[T(b_i)]_{\gamma}$, then we can represent the operation of $[T]_{\beta}^{\gamma}$ by  multiplying each component of $[v]_{\beta}$ with its corresponding column $[T(b_i)]_{\gamma}$. We will soon  generalize this operation and call it **matrix multiplication**
+
+What we have just defined allows us to concretely represent a linear map between finite-dimensional vector spaces by versus choosing "coordinate axes" (i.e. ordered bases). The coordinate axes allow us to represent vectors as a tuple of scalar elements (i.e. as coordinates) and linear maps as a rectangular array of scalar elements.
+
 ## Defining matrix multiplication
 TODO: Flesh this out. But basically you prove that matrix multiplication as everyone knows it results in the matrix representing the composition of the linear maps. (i.e. the product of the matrix representations of the linear maps is equal to the matrix representation of the composition of the linear maps). In symbols:
 
 $$[S]_{\gamma}^{\delta} [T]_{\beta}^{\gamma} = [S \circ T]_{\beta}^{\delta}$$
 
-From this perspective, associativity of matrix multiplications follows nearly immediately (from associativity of function composition) since $[(S \circ T) \circ U]_{\beta}^{\gamma} = [S \circ (T \circ U)]_{\beta}^{\gamma}$.
-
-These other two properties can be easily proved:
-
- - Distributivity $A(B + C) = AB + AC$ and $(A + B)C = AC + BC$.
- - Homogeneity: $c(AB) = (cA)B = A(cB)$
-
-Note that for any finite dimensional vector space $V$ and any ordered basis $\beta$ in $V$, we have $[id_V]_{\beta}^{\beta}$ is the matrix with $1$'s in all the diagonal elements and zeroes elsewhere. We designate this $n \times n$ matrix by $I_n$.
 
 ## Definition of matrix invertibility
 A $k \times m$ matrix $A$ is **invertible** iff there is an $m \times k$ matrix $B$ such that $BA = I_k$ and $AB = I_m$, and $B$ is called an **inverse** for $B$.
