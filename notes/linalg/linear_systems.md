@@ -256,11 +256,6 @@ TODO: prove that the RREE form of a matrix is unique?
 *Proof:* If the reduced, row-eliminated matrix has a pivot in every row and column, we can actually just apply swaps until it's an identity matrix. So it must be invertible since its RREE is an identity matrix. Conversely, $A$ invertible implies a unique solution for every right-hand side, so it must have pivots in each row and column.
 
 
-**Corollary^3:** An invertible matrix must be square.
-
-*Proof:* If not square, we're missing a pivot in either a row or a column (the number of columns and number of rows are mismatched), hence we could not have a pivot in every row and every column, hence not invertible.
-
-
 ## Hashtag columnfacts
 
 **Theorem:** For a set $S = \{v_1, \ldots, v_m\}$ of vectors of $\mathbb{F}^n$, let $A$ be the $n \times m$ matrix with entries in $\mathbb{F}$ such that column $i$ is $v_i$. Then
