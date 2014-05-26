@@ -1,3 +1,9 @@
+## Definition of polynomials over an associative algebra with identity
+If $(A, +, \cdot, \ast, e)$ is an associative algebra over $\mathbb{F}$ and $e$ is an identity under $\ast$, then for any $a_0, \ldots, a_n \in \mathbb{F}$, we can define $p(x) := \sum_{k=0}^n a_k \cdot x^k$ where $x^k$ is defined over $A$'s product and $x^0 := e$. $p$ is called a **polynomial** over $A$.
+
+The **degree** of a polynomial $q$ defined by $q(x) = \sum{k=0}^n a_k x^k$ is the biggest $j$ such that $a_j \neq 0$. It is denoted $deg q$. The degree is not defined for the so-called **zero polynomial**, $q(x) = 0$.
+
+
 ## Definition of invariant subspace
 If $T: V \to V$ is a linear operator and $W$ is a subspace of $V$ such that $T(W) \subseteq W$, then $W$ is an **invariant subspace** under $T$.
 
