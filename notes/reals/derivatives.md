@@ -357,3 +357,28 @@ since this would imply that the function is a composition of continuous function
 A function $f: U \to \mathbb{R}^p$, $U$ open in $\mathbb{R}^n$ is said to be **continuously differentiable** or a $C^1$ mapping iff every partial derivative exists at every point of $U$ and each function $D_j f: U \to \mathbb{R}^p$ is continuous.
 
 To go along with this, $f$ is said to be $C^0$ iff it is continuous.
+
+
+
+## Chain rule
+If $U$ open in $\mathbb{R}^n$, $V$ open in $\mathbb{R}^p$, $f: U \to V$, $g: V \to \mathbb{R}^q$, $a \in U$, $f$ is differentiable at $a$, $g$ is differentiable at $b = f(a)$, then $g \circ f$ is differentiable at $a$ and $D(g \circ f)(a) = $D g(b) \circ D f(a)$.
+
+*Proof:*
+
+For all $h \in diff(U, a)$, we have:
+
+$$(g \circ f)(a + h) - (g \circ f)(a) = g(f(a+h)) - g(f(a)) = g(b + t) - g(b)$$
+
+where $t = f(a + h) - f(a)$. $g(b + t)$ is well-defined since $f(a+h) \in f(U) \subseteq V$.
+
+But $g(b + t) - g(b) = Dg(b)(t) + \beta(t)$ for some $\beta \in o_0(t)$.
+
+Since $t = Df(a)(h) + \alpha(h)$ for some $\alpha in o_0(h)$, we have:
+
+$$(g \circ f)(a + h) - (g \circ f)(a) = Dg(b)(f(a+h) - f(a))  + \beta(f(a+h) - f(a))$$
+
+By definition of the derevative, $f(a+h) - f(a) = Df(a)(h) + \alpha(h)$, with $\alpha \in o_0(h)$, so
+
+$$(g \circ f)(a + h) - (g \circ f)(a) - Dg(b)[Df(a)(h)] = Dg(b)[Df(a)(h) + \alpha(h)] - Dg(b)[Df(a)(h)] + \beta[f(a+h) - f(a)]$$
+
+We knoe $lim_{h \to 0} f(a+h) - f(a) = 0$ and $lim_{h \to 0} \beta(h) = 0$
