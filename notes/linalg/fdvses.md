@@ -1,7 +1,38 @@
 ## Definition of polynomials over an associative algebra with identity
-If $(A, +, \cdot, \ast, e)$ is an associative algebra over $\mathbb{F}$ and $e$ is an identity under $\ast$, then for any $a_0, \ldots, a_n \in \mathbb{F}$, we can define $p(x) := \sum_{k=0}^n a_k \cdot x^k$ where $x^k$ is defined over $A$'s product and $x^0 := e$. $p$ is called a **polynomial** over $A$.
+If $(A, +, \cdot, \ast, e)$ is an associative algebra over $\mathbb{F}$ and $e$ is an identity under $\ast$, then for any $a_0, \ldots, a_n \in \mathbb{F}$, we can define $p: A \to A$ by $p(x) := \sum_{k=0}^n a_k \cdot x^k$ where $x^k$ is defined over $A$'s product and $x^0 := e$. $p$ is called a **polynomial** over $A$.
 
-The **degree** of a polynomial $q$ defined by $q(x) = \sum{k=0}^n a_k x^k$ is the biggest $j$ such that $a_j \neq 0$. It is denoted $deg q$. The degree is not defined for the so-called **zero polynomial**, $q(x) = 0$.
+The **degree** of a polynomial $q$ defined by $q(x) = \sum{k=0}^n a_k x^k$ is the biggest $j$ such that $a_j \neq 0$. It is denoted $deg q$. The degree is not defined for the so-called **zero polynomial**, $q(x) = 0$. Some sources define it to be $-1$ or $- \infty$. I'm not sure on the arguments here yet, so I will leave it undefined for now.
+
+
+## Definition of polynomial multiplication
+For any polynomials $p$ and $q$ of degrees $m = deg p$, $n = deg q$, their multiplication $pq$ is defined by $(pq)(x) = p(x) \ast q(x)$ is a polynomial of degree $m + n$.
+
+*Proof:* $p(x) \ast q(x) = (\sum_{k=0}^m a_k x^k) \ast (\sum_{k=0}^n b_k x^k)$, so
+
+$$p(x) \ast q(x) = \sum_{j=0}^m a_j \sum_{k=0}^n b_k x^{k+j} = \sum_{k=0}^{m+n} x^k \sum_{i+j = k, (i,j) \in [m] \times [n]} a_i b_j$$
+
+Since $a_m \neq 0 \neq b_n$, $a_m b_n \neq 0$, so $deg(p \ast q) = m + n$
+
+
+## Polynomial division and roots
+If $p$ is a polynomial over an associative unital algebra $A$ and $deg p > 0$ and $p(a) = 0$, then there is a polynomial $q$ with $deg q = (deg p) - 1$ such that $p(x) = (x - a) q(x)$ for all $x \in A$.
+
+*Proof:* Let $m = deg p$.  Also suppose that $p(x) := \sum_0^m a_k x^k$. If $a = 0$ and $a_0 \neq 0$, then $p(a) = a_0 \neq 0$, a contradiction. So $p(x) = \sum_1^m a_k x_k = x (\sum_0^{m-1} a_{k+1} x^k$.
+
+Now assume that $a \neq 0$. Then for $0 \leq k \leq m-2$, define $b_k = - \sum_{j=0}^k a_j / a^{k - j + 1}$ and define $b_{m-1} = a_m$. If $r$ is the polynomial $r(x) - (x - a)$, then 
+
+$$(q \ast r)(x) = (\sum_1^{m-1} b_k x^k)(x - a) = b_{m-1} x^m - a b_0 x^0 + \sum_{k=1}^{m-1} (b_{k-1} - a b_k) x^k$$
+
+But $-a b_k = \sum_{j=0}^k a_j / a^{k - j} = a_k + \sum_{j=0}^{k-1} a_j / a^{k-j} = a_k - b_{k-1}$, so $b_{k-1} - a b_k = a_k$. Hence
+
+$$(q \ast r)(x) = b_{m-1} x^m - a b_0 x^0 + \sum_{k=1}^{m-1} a_k x^k$$
+
+Since $b_0 = - a_0 / a$ by definition, $-a b_0 = a_0$, so
+
+$$(q \ast r)(x) = \sum_{k=0}^{m} a_k x^k = p(x)$$
+
+
+
 
 
 ## Definition of invariant subspace
