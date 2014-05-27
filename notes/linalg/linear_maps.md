@@ -128,6 +128,9 @@ A similar proof holds for when $g$ is bijective.
 ## The coordinate isomorphism
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
+The **coordinate isomorphism** of $V$ induced by $\beta$ is the map $C_{V,\beta} : V \to \mathbb{F}^n$ defined by $\pi_i(C_{V, \beta}(v)) = [v, v_i^{\ast}]$ for all $i$. (See the dual basis notes for a definition of the bracket notation). In words, this map assigns to each vector its "coordinates" under the ordered basis $\beta$. It's injective by the definition of bases since $C_{V, \beta}(v)$ is a scaling of $v$ and surjective again by the definition of a basis. It is linear by each $v_i^{\ast}$'s linearity, proving it is an isomorphism.
+
+
 If $\beta = (b_1, \ldots, b_n)$ is an ordered basis for a vector space $V$, then the map $\phi_{\beta}: \mathbb{F}^n \to V$ defined by mapping to each tuple $(a_1, \ldots, a_n)$ the vector $\sum_1^n a_i b_i$ is well defined since there is exactly one vector it could be. It is also a bijection by definition of the basis. It is straightforward to prove $\phi_{\beta}$'s linearity, so in fact it is an isomorphism.
 
 
@@ -177,7 +180,7 @@ If $B$ is a basis for $V$, then $B'$ defined by, for each $b_i \in B$, the linea
 
 
 ## Definition of an associative algebra
-An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear and associative.
+An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear. If $\ast$ is associative, then the algebra is an **associative algebra**. If there is an $e \in V$ such that $e \ast v = v \ast e = v$ for all $v \in V$, then $V$ is a **unital algebra**.
 
 ## Algebra of endomorphisms
 For any vector space $V$, $Hom(V)$ is an algebra with the associative, bilinear product taken to be composition.
