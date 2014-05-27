@@ -8,17 +8,6 @@ If $E$ is elementary matrix, then $det(AE) = det A det E$. Also, $det E \neq 0$.
 
 Note that in each case, the determinant of an elementary matrix is non-zero.
 
-## Fundamental fact about determinants and invertibility
-Any matrix $A$ is invertible iff $det A \neq 0$.
-
-*Proof:* If $A$ is invertible, then $A$ is a product of elementary matrices, so $A = I E_k \cdots E_1$, hence $det A = det E_k \cdots det E_1$. Since the determinant of an elementary matrix is non-zero, the determinant of $A$ must be as well. Conversely, if $det A \neq 0$, the columns of $A$ must be independent. This latter property is true iff $A$ is invertible.
-
-
-## Product rule for determinants
-$det AB = det A det B$
-
-*Proof:* If $B$ invertible, $B = E_k \cdots E_1$ for elementary matrices $E_i$, so $det AB = det A det E_k \cdots det E_1 = det A det B$ by the previous proposition. If $B$ is not invertible, then we prove $AB$ is not invertible: If it is, then there is some $C$ such that $CAB = I_n$, which provides $CA$ as a left-inverse for $B$. Since $B$ is a square matrix, this proves $B$ is invertible, a contradiction.
-
 ## Determinant of transpose
 $det A = det A^T$
 
@@ -258,3 +247,15 @@ Rearrangement proves the theorem.
 $det T \neq 0$ iff $T$ is invertible.
 
 *Proof:* We already proved that if $T$ is non-invertible, the determinant is zero. Conversely, if $T$ is invertible, we know for non-trivial $\phi$ that $\phi(v_1, \ldots, v_n) \neq 0$ since the $v_i$'s are a basis. Also the $T v_i$'s form a basis by $T$'s invertibility, so $\phi(T v_1, \ldots, T v_n) \neq 0$, implying $det T \neq 0$. 
+
+
+## Product rule for determinants
+If $S, T \in Hom(V)$, $det S \circ T = (det S)(det T)$.
+
+*Proof*  If $S$ and $T$ are both non-invertible, then they must both be non-injective, so in particular there are $u, v \in V$ such that $u \neq v$ but $T(u) = T(v)$. So $(S \circ T)(u) = (S \circ T)(v)$, hence $S \circ T$ is non-invertible since no function could map one element $(S \circ T)(u)$ to both $x$ and $y$. Hence $det S \circ T = 0 = 0 0 = (det S)(det T)$.
+
+If one is invertible and the other not, then we can apply a previous theorem to obtain that $S \circ T$ is non-invertible, (when $f$ is invertible, $g$ is invertible iff $f \circ g$ is invertible. when $g$ is invertible, $f$ is invertible iff $f \circ g$ is invertible).
+
+If both are invertible and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then $T(B)$ is a basis for $V$ since $T$ is invertible, so
+
+$$(det S)(det T) := \frac{\phi(S(T(v_1)), \ldots, S(T(v_n))) \phi(T(v_1), \ldots, T(v_n))}{\phi(T(v_1), \ldots, T(v_n)) \phi(v_1, \ldots, v_n)} = det S \circ T$$
