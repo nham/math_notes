@@ -107,6 +107,24 @@ If $T: V \to V$, then $T$ is invertible iff $T$ has a left-inverse iff $T$ has a
 *Proof:* Suppose that $dim V = n$. One direction is proved. We have to prove that $T$ with a left- or right-inverse implies $T$ is invertible. If $T$ has a left-inverse, we know it's injective, so any basis $B$ in $V$ has $T(B)$ independent. But we can expand any independent set to a basis, and we can't have more than $n$ elements in a basis, so $T(B)$ is a basis. This implies that $T$ must be surjective after all, so it's invertible. On the other hand, if $T$ is a right-inverse, then we know $T$ is surjective, so for any basis $B$, we have $T(B)$ generating for $V$. But we can pare down any generating set to a basis, and no basis has less than $n$ elements in it, so $T(B)$ must have $n$ elements, and hence be a basis itself. This implies that $T$ is injective as well, hence invertible.
 
 
+
+## Compositions and invertibility
+If $f: Y \to Z$ and $g: X \to Y$, then if $f$ is bijective, we have
+
+ - $g$ is injective iff $f \circ g$ is injective
+ - $g$ is surjective iff $f \circ g$ is surjective
+
+If $g$ is bijective, then
+
+ - $f$ is injective iff $f \circ g$ is injective
+ - $f$ is surjective iff $f \circ g$ is surjective
+
+*Proof:* If $f$ is bijective, then $g$ injective/surjective implies that $f \circ g$ is injective/surjective, respectively, since composition of injective/surjective maps is injective/surjective. Conversely, if $f \circ g$ is injective/surjective, then $f^{-1} \circ (f \circ g) = g$ is injective/surjective, being the composition of injective/surjective functions, respectively.
+
+A similar proof holds for when $g$ is bijective.
+
+
+
 ## The coordinate isomorphism
 If $V$ is a vector space and $\beta = (b_1, \ldots, b_n)$ is an ordered basis for $V$, then any $v \in V$ has a unique representation $v = \sum_1^n a_i \cdot b_i$ for some scalars $a_i$. The vector of $\mathbb{F}^n$ defined by $(a_1, \ldots, a_n)$ is a **representation of $v$ with respect to the ordered basis $\beta$**. This is often notated $[v]_{\beta}$.
 
