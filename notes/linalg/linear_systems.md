@@ -71,19 +71,20 @@ A square matrix $A$ is invertible iff $A$ has a left-inverse iff $A$ has a right
 *Proof:* A matrix is invertible iff the map it represents is invertible, and since the map that a square matrix represents is some map $\mathbb{F}^n \to \mathbb{F}^n$, the theorem holds by the corresponding theorem proved for linear endomaps.
 
 
+## Matrices as representations of general linear maps
+## Preliminary discussion
+Recall the coordinate isomorphism induced by any basis: if $V$ is a vector space and $\beta = (v_1, \ldots, v_n)$ is an ordered basis for $V$, then $C_{V,\beta} : V \to \mathbb{F}^n$ for $n = dim V$ is an isomorphism defined by $\pi_i(C_{V, \beta}(z)) := [z, v_i^{\ast}]$.
 
-## Motivating matrices
+## Definition of matrix representations of a linear map
+If $T: V \to W$ is a linear map and $\beta, \gamma$ are ordered bases for $V$ and $W$, respectively, then $C_{W, \gamma} \circ T \circ C_{V, \beta)^{-1}$ is $\mathbb{F}^n \to \mathbb{F}^p$. Then $[C_{W, \gamma} \circ T \circ C_{V, \beta}^{-1}]$ is the **matrix representation of $T$ w.r.t. $\beta$ and $\gamma$**, which we denote $[T]_{\beta}^{\gamma}$.
 
-Let's notated $[T}_{\beta}^{\gamma} = \phi_{\gamma}^ \circ T \circ \phi_{\beta}^{-1}$. Also denote by $[v]_{\beta$ the tuple $(x_1, \ldots, x_n)$, provided that $v = \sum x_i b_i$, where $\beta = (b_1, \ldots, b_n)$ is an ordered basis. Then $\phi_{\beta}^{-1} ([v]_{\beta}) = v$, and $T(v) = \sum x_i T(b_i)$, so $\phi_{\gamma} (T(v)) = \sum x_i [T(b_i)]_{\gamma}$, meaning that
 
-$$[T]_{\beta}^{\gamma] ([v]_{\beta}) = [T(v)]_{\gamma}$$
+## Contents of a matrix representation
+If $T: V \to W$ is a linear map and $\beta = (u_1, \ldots, u_n), \gamma = (v_1, \ldots, v_p)$ are ordered bases for $V$ and $W$, then the $i$-th column of $[T]_{\beta}^{\gamma}$ is $C_{W, \gamma}(T(u_i))$.
 
-If we represent elements of $\mathbb{F}^n$ as a "column vector" of scalar numbers and if we fill a rectangular array with $m$ rows and $n$ columns, with the $i$-th column equal to $[T(b_i)]_{\gamma}$, then we can represent the operation of $[T]_{\beta}^{\gamma}$ by  multiplying each component of $[v]_{\beta}$ with its corresponding column $[T(b_i)]_{\gamma}$. We will soon  generalize this operation and call it **matrix multiplication**
+*Proof:* By definition, for a $S: \mathbb{F}^n \to \mathbb{F}^p$, the $i$-th column of $[S]$ is $S(e_i)$. So the $i$-th column of $[T]_{\beta}^{\gamma}$ is $C_{W, \gamma} \circ T \circ C_{V, \beta)^{-1}(e_i) = C_{W, \gamma}(T(u_i))$
 
-## Tying in arbitrary linear maps with matrices
-TODO: Show how matrices can represent linear maps between arbitrary spaces by first choosing bases. Have to show:
 
-$$[S]_{\gamma}^{\delta} [T]_{\beta}^{\gamma} = [S \circ T]_{\beta}^{\delta}$$
 
 ## Linear systems
 
