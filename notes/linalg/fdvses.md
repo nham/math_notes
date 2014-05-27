@@ -33,8 +33,6 @@ $$(q \ast r)(x) = \sum_{k=0}^{m} a_k x^k = p(x)$$
 
 
 
-
-
 ## Definition of invariant subspace
 If $T: V \to V$ is a linear operator and $W$ is a subspace of $V$ such that $T(W) \subseteq W$, then $W$ is an **invariant subspace** under $T$.
 
@@ -54,22 +52,57 @@ If zero is an eigenvalue, then we must have some $v \neq 0$ such that $T(v) = 0v
 
 ## Definition of eigenspace and geometric multiplicity for an eigenvalue
 
-Note that if $u$ and $v$ are two eigenvectors for a given eigenvalue $a$, that $u+v$ is also an eigenvector provided that $u+v \neq 0$, since $T(u+v) = T(u) + T(v) = au + av = a(u + v)$. Also, if $c$ is a scalar, then $cu$ is an eigenvector if $u$ is, again provided that $cu \neq 0$: $T(cu) = c T(u) = c(au) = a(cu)$. If we let $S_a$ be the set of all eigenvectors for an eigenvalue $a$, then $S_a \cup \{0\}$ is a subspace of $V$, called the **eigenspace** of $a$. The dimension of this subspace is called the **geometric multiplicity** of the eigenvector $a$.
+Note that if $u$ and $v$ are two eigenvectors for a given eigenvalue $a$, that $u+v$ is also an eigenvector provided that $u+v \neq 0$, since $T(u+v) = T(u) + T(v) = au + av = a(u + v)$. Also, if $c \neq 0$ is a scalar, then $cu$ is an eigenvector: $T(cu) = c T(u) = c(au) = a(cu)$. If we let $S_a$ be the set of all eigenvectors for an eigenvalue $a$, then $S_a \cup \{0\}$ is a subspace of $V$, called the **eigenspace** of $a$. The dimension of this subspace is called the **geometric multiplicity** of the eigenvector $a$.
 
-## Equivalent definition of eigenspace
-If $T: V \to V$ is a linear operator, $a$ is an eigenvalue, then the eigenspace $V_a$ of $a$ is equal to the null space of $(T - aI)$, denoted $N(T - aI)$.
 
-*Proof:* If $v \in V_a$, then $T(v) = av$, so $(T - aI)(v) = av - av = 0$. Conversely if $(T - aI)(v) = 0, then $T(v) = aI(v) = av$.
+## Definition of spectrum
+The set of all eigenvalues for a linear map is called its **spectrum**.
+
+
+## Definition of characteristic polynomial
+If $T: V \to V$ is a linear operator, then $\chi_T: \mathbb{F} \to \mathbb{F}$ defined by $\chi(a) = det(T - a I_n)$, where $n = dim V$, is called the **characteristic polynomial** of $T$.
+
+## The characteristic polynomial is a polynomial
+For any linear operator $T: V \to V$, $\chi_T$ is a polynomial.
+
+*Proof:* By definition, if $\{v_1, \ldots, v_n\}$ is a basis for $V$, then
+
+$$det(T - a I_n) := \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [T(v_i) - a v_i, v_{\sigma(i)}^{\ast}]$$
+
+by bilinearity:
+
+$$det(T - a I_n) := \sum_{\sigma in S_n} (sgn \sigma) \prod_{i = 1}^n [T(v_i), v_{\sigma(i)}^{\ast}] - a [v_i, v_{\sigma(i)}^{\ast}]$$
+
+So $\chi_T$ a linear combination of a product of linear polynomials, hence is also a polynomial.
+
 
 ## Equivalent characterization of eigenvalue
-$a$ is an eigenvalue for a linear operator $T: V \to V$ iff the null space of $T - aI$ is non-trivial.
+If $T: V \to V$ is a linear operator and $a \in \mathbb{F}$, then the following are equivalent:
 
-*Proof:* If $a$ is an eigenvalue, then its eigenspace is never equal to $\{0\}$ because it must, by definition, have an associated (nonzero) eigenvector. Conversely, if no nonzero $v$ has $(T - aI)(v) = 0$, then no nonzero $v$'s have $T(v) = av$, so $a$ is not an eigenvalue.
+ 1. $a$ is an eigenvalue for $T$
+ 2. the null space of $T - a I_n$ is non-trivial
+ 3. $T - a I_n$ is not invertible
+ 4. $a$ is root of $\chi_T$
 
-## Eigenvalue iff the characteristic polynomial is invertible
-We can extend the previous proposition: since $T - aI$ is an operator (a linear endomap), $T - aI$ is not invertible iff $a$ is an eigenvalue for $T$.
+*Proof:* If there is a $v \in V$, $v \neq 0$, such that $T(v) = av$, then $(T - a I_n)(v) = 0$. In other words, $v$ in the null space of $T - a I_n$. But $v$ is nonzero, so that means the null space of $T - a I_n$ is non-trivial. 
 
-*Proof:* $T - aI$ is invertible iff $T - aI$ is injective iff the null space of $T - aI$ is trivial all hold by previously proved propositions. We use the previously proved proposition to obtain the statement.
+Conversely, If $v \in V$, $v \neq 0$ is in the null space of $T - a I_n$, then $T(v) = av$, so $a$ is an eigenvalue of $T$. This establishes that (1) and (2) are equivalent. 
+
+If (2) is true, then it is not injective, hence not invertible. If (3) is true, since $T - a I_n$ is a function $V \to V$, its injectivity would imply invertibility, so $T - a I_n$ is not invertible, hence its null space must be non-trivial. So (2) and (3) are equivalent.
+
+Any $a$ is a root of $\chi_T$ iff $det(T - a I_n) = 0$, which is true iff $T - a I_n$ is singular. So (3) and (4) are equivalent.
+
+### Corollary: equivalent definition of spectrum
+The spectrum of $T$ is the set of all roots of $\chi_T$.
+
+
+## Equivalent definition of eigenspace
+If $T: V \to V$ is a linear operator, $a$ is an eigenvalue, then the eigenspace $V_a$ of $a$ under $T$ is equal to the null space of $(T - a I_n)$, denoted $N(T - a I_n)$.
+
+*Proof:* If $v \in V_a$, then $T(v) = av$, so $(T - a I_n)(v) = av - av = 0$. Conversely if $(T - a I_n)(v) = 0, then $T(v) = aI(v) = av$.
+
+### Corollary
+The set of eigenvectors of an eigenvalue $a$ of $T$ is all nonzero elements of the null space of $T - a I_n$.
 
 
 ## Eigenspaces are invariant subspaces
@@ -77,8 +110,6 @@ If $T: V \to V$ is a linear operator and $E$ is the eigenspace of the operator, 
 
 *Proof:* For all nonzero $v \in E$, $v$ is an eigenvector, so $T(v) = av$ for some a, which is certainly in $E$.
 
-## Definition of spectrum
-The set of all eigenvalues for a linear map is called its **spectrum**.
 
 ## A collection of eigenvectors is independent
 If $S$ is a finite collection of eigenvectors of an operator $T: V \to V$ and $A$ is a collection of eigenvalues such that there is a bijection $A \to S$ that assigns to every eigenvalue one of its eigenvectors, then $S$ is independent.
