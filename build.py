@@ -32,7 +32,7 @@ def compile(folder, filename):
 
 files = {}
 files[''] = ['index.md']
-files['linalg'] = ['dets.md', 'dim.md', 'fdvses.md', 
+files['linalg'] = ['dets.md', 'dim.md', 'invariant.md', 
                    'linear_maps.md', 'linear_systems.md', 'subspaces.md', 
                    'tensors.md']
 

@@ -5,6 +5,7 @@
  - [linear maps](linalg/linear_maps.html)
  - [linear systems](linalg/linear_systems.html)
  - [determinants](linalg/dets.html)
+ - [invariant subspaces, eigenvalues, etc.](linalg/invariant.html)
 
 # Metric spaces
  - [intro](metric_spaces/intro.html)

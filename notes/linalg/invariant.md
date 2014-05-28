@@ -111,6 +111,13 @@ If $T: V \to V$ is a linear operator and $E$ is the eigenspace of the operator, 
 *Proof:* For all nonzero $v \in E$, $v$ is an eigenvector, so $T(v) = av$ for some a, which is certainly in $E$.
 
 
+## Conjugate operators have the same characteristic polynomials
+If $S, T \in Hom(V)$ are conjugate linear operators, then $\chi_S = \chi_T$.
+
+*Proof:* By hypothesis, there is an invertible $R \in Hom(V)$ such that $S = R^{-1} T R$, so for any $a \in \mathbb{F}$, $R^{-1}(T - a I_n)R = R(R^{-1}T - a R^{-1})R = S - a I_n$. This proves that $det(S - a I_n) = det(R^{-1}) det(T - a I_n) det(R) = (det R)^{-1} det(T - a I_n) (det R) = det(T - a I_n)$. This proves that $S$ and $T$'s characteristic polynomials are the same.
+
+
+
 ## A collection of eigenvectors is independent
 If $S$ is a finite collection of eigenvectors of an operator $T: V \to V$ and $A$ is a collection of eigenvalues such that there is a bijection $A \to S$ that assigns to every eigenvalue one of its eigenvectors, then $S$ is independent.
 
