@@ -55,7 +55,30 @@ $$((p + q) r)(k) = \sum_{i=0}^k (p(i) + q(i)) r(k-i) = (p r)(k) + (q r)(k)$$
 Ditto for $p (q + r)$. So the product distributes over addition.
 
 
-TODO: prove that $\mathbb{F}[x]$ is an associative algebra. Need it to talk about $x^n$ below. Also prove commutativity of mult?
+## Reformulating matrix multiplication
+If $p, q \in \mathbb{F}[x]$, then $(p q)(k) = \sum_{i, j \in \mathbb{N}, i + j = k} p(i) q(j)$, where the sum is well defined because addition in $\mathbb{F}$ is both commutative and associative.
+
+*Proof:* If $i + j = k$, then $i \in \{0, \ldots, k\}$ since $j$ can't be negative, and then we must have $j = k - i$. Conversely, any pair $(i, j)$ such that $i \in \{0, \ldots, k\}$ and $j = k - i$ has $i + j = k$.
+
+
+## Polynomial multiplication is associative
+If $p, q, r \in \mathbb{F}[x]$, then $(pq)r = p(qr)$.
+
+*Proof:*
+
+$$[(pq)r](m) = \sum_{j+k = m} (pq)(j) r(k) = \sum_{j+k=m} (\sum_{a+b=j} p(a) q(b)) r(k) = \sum_{j+k=m} \sum_{a + b = j} p(a) q(b) r(k)$$
+
+$$[p(qr)](m) = \sum_{j+k = m} p(j) (qr)(k) = \sum_{j+k=m} p(j) (\sum_{a+b=j} q(a) r(b)) = \sum_{j+k=m} \sum_{a + b = j} p(j) q(a) r(b)$$
+
+But if $(a,b,k)$ is such that $a + b = j$ and $j+k=m$ for some $0 \leq j \leq m$, then $a + b + k = m$. Conversely, if $x + y + z = m$ for $x, y, z \in \mathbb{N}$, then $j := y + z \in \{0, \ldots, m\}$  and $x + j = m$. So
+
+$$[(pq)r](m) = \sum_{i+j+k = m} p(i) q(j) r(k)$$ 
+
+holds by commutativity and associativity. The same holds for $p(qr)$.
+
+
+(I realize this is handwavy, but it seems a bit tedious to prove this and it is intuitively clear why it should be true)
+
 
 
 ## Notation for formal polynomials
