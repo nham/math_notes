@@ -259,3 +259,9 @@ If one is invertible and the other not, then we can apply a previous theorem to 
 If both are invertible and $B = \{v_1, \ldots, v_n\}$ is a basis for $V$, then $T(B)$ is a basis for $V$ since $T$ is invertible, so
 
 $$(det S)(det T) := \frac{\phi(S(T(v_1)), \ldots, S(T(v_n))) \phi(T(v_1), \ldots, T(v_n))}{\phi(T(v_1), \ldots, T(v_n)) \phi(v_1, \ldots, v_n)} = det S \circ T$$
+
+
+### Corollary for invertible operators
+If $T \in Hom(v)$ invertible, then $det T^{-1} = (det T)^{-1}$.
+
+*Proof:* $det T^{-1} det T = 1$.
