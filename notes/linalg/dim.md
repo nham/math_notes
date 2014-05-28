@@ -84,10 +84,20 @@ For all $v \in V$, $0 \cdot v = 0 \in V$.
 
 *Proof:* $0 \cdot v = (0 + 0) \cdot v = 0 \cdot v + 0 \cdot v. Add inverses to both sides to obtain the statement.
 
+### Scaling the zero vector results in zero
+For all $c \in \mathbb{F}$, $c \cdot 0 = 0$.
+
+*Proof:* $c \cdot 0 = c \cdot (0 + 0) = c \cdot 0 + c \cdot 0$. Add inverses to both sides to obtain the statement.
+
 ### $-1 \in \mathbb{F}$ negates the vector
 For all $v \in V$, $(-1) \cdot v = -v \in V$.
 
 *Proof:* $v + -1 \cdot v = 1 \cdot v + -1 \cdot v = (1 + -1) \cdot v = 0 \cdot v = 0$ by distributivity and the previous proposition. The additive inverse of any group is unique, so $-v = -1 \cdot v$.
+
+### Cancellation law for scalar multiplication
+If $c \in \mathbb{F}$ and $v \in V$, if $c \cdot v = 0$ then either $c = 0 \in \mathbb{F}$$ or $v = 0 \in V$.
+
+*Proof:* If $c \neq 0$, then $v = 1 \cdot v = c^{-1} \cdot (c \cdot v) = c^{-1} \cdot 0 = 0$.
 
 
 ## Definition of linear combinations
