@@ -85,6 +85,17 @@ If $T: V \to W$ is a linear map and $\beta = (u_1, \ldots, u_n), \gamma = (v_1, 
 *Proof:* By definition, for a $S: \mathbb{F}^n \to \mathbb{F}^p$, the $i$-th column of $[S]$ is $S(e_i)$. So the $i$-th column of $[T]_{\beta}^{\gamma}$ is $C_{W, \gamma} \circ T \circ C_{V, \beta)^{-1}(e_i) = C_{W, \gamma}(T(u_i))$
 
 
+## Product of matrix representations
+If $U, V, W$ are vector spaces and $\beta, \gammma, \delta$ are bases for $U, V, W$ respectively, then for any linear $S: U \to V$ and $T: V \to W$, we have
+
+$$[T]_{\gamma}^{\delta} [S]_{\beta}^{\gamma} = [T \circ S]_{\beta}^{\delta}$$
+
+*Proof:* By definition, $[S]_{\beta}^{\gamma} = [C_{V, \gamma} \circ S \circ C_{U, \beta}^{-1}]$ and $[T]_{\gamma}^{\delta} = [C_{W, \delta} \circ T \circ C_{V, \gamma}^{-1}]$. By definition of matrix multiplication, then, we have
+
+$$[T]_{\gamma}^{\delta} [S]_{\beta}^{\gamma} = [C_{W, \delta} \circ T \circ C_{V, \gamma}^{-1} \circ C_{V, \gamma} \circ S \circ C_{U, \beta}^{-1}] = [C_{W, \delta} \circ T \circ S \circ C_{U, \beta}^{-1}]$$
+
+which proves the statement.
+
 
 ## Linear systems
 
