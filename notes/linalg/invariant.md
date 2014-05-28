@@ -1,4 +1,4 @@
-## Definition of an associative algebra
+## Definition of an algebra
 An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear. If $\ast$ is associative, then the algebra is an **associative algebra**. If there is an $e \in V$ such that $e \ast v = v \ast e = v$ for all $v \in V$, then $V$ is a **unital algebra**.
 
 
@@ -8,32 +8,82 @@ Any field $\mathbb{F}$ is an associative, unital algebra.
 *Proof:* We know that a field is a vector space over itself. If we define $\ast$ to be field multiplication, then it holds since $\mathbb{F}$, being a field, is a ring, so the identity under the bilinear product is the multiplicative identity of the field.
 
 
+## Algebra products with zero
+If $a \in A$, where $A$ is an algebra, then $a \ast 0 = 0 \ast a = 0$.
+
+*Proof:* $a \ast 0 = a \ast (0 + 0) = a \ast 0 + a \ast 0$. Use the vector cancellation law to obtain $a \ast 0 = 0$. A similar proof proves the other proposition.
+
+
 ## Algebra of endomorphisms
 For any vector space $V$, $Hom(V)$ is an associative, unital algebra with the associative, bilinear product taken to be composition.
 
 *Proof:* Theorems above prove bilinearity. All function composition is associative. The identity element is the identity map on $V$.
 
 
-## Definition of polynomials over an associative algebra with identity
-If $(A, +, \cdot, \ast, e)$ is an associative algebra over $\mathbb{F}$ and $e$ is an identity under $\ast$, then for any $a_0, \ldots, a_n \in \mathbb{F}$, we can define $p: A \to A$ by $p(x) := \sum_{k=0}^n a_k \cdot x^k$ where $x^k$ is defined over $A$'s product and $x^0 := e$. $p$ is called a **polynomial** over $A$.
+## Definition of formal polynomial over a field
+A **formal polynomial over $\mathbb{F}$** is a function $\mathbb{N} \to \mathbb{F}$ with finite support. It has already been proven (see the tensor notes) that the set $\mathbb{F}[x]$ of all formal polynomials over $\mathbb{F}$ is a vector space.
 
-The **degree** of a polynomial $q$ defined by $q(x) = \sum{k=0}^n a_k x^k$ is the biggest $j$ such that $a_j \neq 0$. It is denoted $deg q$. The degree is not defined for the so-called **zero polynomial**, $q(x) = 0$. Some sources define it to be $-1$ or $- \infty$. I'm not sure on the arguments here yet, so I will leave it undefined for now.
+The **degree** of a formal polynomial $p$ is the biggest $i \in \mathbb{N}$ such that $p(i) \neq 0$. This is denoted $deg p$. This measure is undefined for the **zero polynomial** $n \mapsto 0$.
 
 
-## Definition of polynomial multiplication
-For any polynomials $p$ and $q$ of degrees $m = deg p$, $n = deg q$, their multiplication $pq$ is defined by $(pq)(x) = p(x) \ast q(x)$ is a polynomial of degree $m + n$.
+## Definition of polynomial root
+If $p$ is a $m$-degree formal polynomial over $\mathbb{F}$, then $a \in \mathbb{F}$ is said to be a **root** of $p$ iff $\sum_{i=0}^m p(i) a^i = 0$.
 
-*Proof:* $p(x) \ast q(x) = (\sum_{k=0}^m a_k x^k) \ast (\sum_{k=0}^n b_k x^k)$, so
 
-$$p(x) \ast q(x) = \sum_{j=0}^m a_j \sum_{k=0}^n b_k x^{k+j} = \sum_{k=0}^{m+n} x^k \sum_{i+j = k, (i,j) \in [m] \times [n]} a_i b_j$$
+## Definition of a monic polynomial
+A $p \in \mathbb{F}[x]$ is **monic** iff $p(deg p) = 1$.
 
-Since $a_m \neq 0 \neq b_n$, $a_m b_n \neq 0$, so $deg(p \ast q) = m + n$
+
+## Definition of formal polynomial multiplication
+If $p$ and $q$ are formal polynomials over $\mathbb{F}$, then we define $p \ast q$ by $(p \ast q)(k) = \sum_{i=0}^k p(i) q(k - i)$. $p \ast q$ is a polynomial of degree $deg p + deg q$.
+
+
+**Proof:* We first need to check that there are finitely many $k$ such that $(p \ast q)(k) \neq 0$. If $z > m + n$, then $(p \ast q)(z) = \sum_{i = 0}^{z} p(i) q(z - i)$.
+
+Since $q(z-i) = 0$ for all $0 \leq i \leq m$ (on account of z-i > m + n - i \geq n$ for all such $i$), and since $p(i) = 0$ for all $m+1 \leq i \leq m + n$, we have $(p \ast q)(z) = 0$.
+
+However, $(p \ast q)(m + n) = \sum_{i=0}^{m+n} p(i) q(m+n-i) = p(m) q(n)$ since for all $i < m$, $m + n - i > n$ (and hence $q(m+n-i) = 0$),and for all $i > m$, $p(i) = 0$ since $deg p = m$.
+
+
+## $\mathbb{F}[x]$ is an algebra
+The space $\mathbb{F}[x]$ is an algebra under polynomial multiplication.
+
+*Proof:* The only thing we need to prove is that multiplication distributes over polynomial addition. So if $p, q, r \in \mathbb{F}[x]$, then
+
+$$((p + q) r)(k) = \sum_{i=0}^k (p(i) + q(i)) r(k-i) = (p r)(k) + (q r)(k)$$
+
+Ditto for $p (q + r)$. So the product distributes over addition.
+
+
+TODO: prove that $\mathbb{F}[x]$ is an associative algebra. Need it to talk about $x^n$ below. Also prove commutativity of mult?
+
+
+## Notation for formal polynomials
+For any field $\mathbb{F}$, denote by $x$ the polynomial $(a_n)$ such that $a_1 = 1$ and $a_k = 0$ for all $k \neq 1$. 
+
+We also denote, for any $c \in \mathbb{F}$, the polynomial $(b_n)$ such that $b_0 = c$ and $b_k = 0$ for all $k \neq 0$ by $c$. Such a polynomial is a **constant polynomial**. We will rely on context to disambiguate whether we mean the polynomial or the field element.
+
+
+## $\mathbb{F}[x]$ is a unital, associative algebra
+For any $p \in \mathbb{F}[x]$, $p 1 = 1 p = p$.
+
+*Proof:* $1$ here is the constant polynomial. $(p 1)(k) = \sum_{i=0}^k p(i) 1(k-i)$. But $1(k-i)$ is only nonzero when $i = k$, so $(p 1)(k) = p(k) 1(0) = p(k)$. The same proof holds for $(1 p)$.
+
+
+## Monic monomials are products of $x$
+$x^n$ is the formal polynomial $(a_k)$ such that $a_n = 1$ and $a_k = 0$ for $k \neq n$.
+
+*Proof:* $x^2(k) = \sum_{i=0}^k x(i) x(k - i)$. This is only nonzero when $i = k - i = 1$, which happens only when $i = 1$ and $k = 2$.
+
+Suppose now that it's true for $x^{n-1}$. Then $x^n = x^{n-1} x$, so $x^n(k) = \sum_{i=0}^k x^{n-1}(i) x(k - i)$. This is only nonzero when $i = n-1$ and $k - i = 1$, so $k = n$.
 
 
 ## Polynomial division and roots
-If $p$ is a polynomial over an associative unital algebra $A$ and $deg p > 0$ and $p(a) = 0$, then there is a polynomial $q$ with $deg q = (deg p) - 1$ such that $p(x) = (x - a) q(x)$ for all $x \in A$.
+If $p$ is a formal polynomial over $\mathbb{F}$, $deg p > 0$ and $a$ is a root of $p$, then there is a $q \in \mathbb{F}[x]$ with $deg q = (deg p) - 1$ such that $p = (x - a) \ast q$.
 
-*Proof:* Let $m = deg p$.  Also suppose that $p(x) := \sum_0^m a_k x^k$. If $a = 0$ and $a_0 \neq 0$, then $p(a) = a_0 \neq 0$, a contradiction. So $p(x) = \sum_1^m a_k x_k = x (\sum_0^{m-1} a_{k+1} x^k$.
+TODO: redo this using formal polynomials.
+
+*Proof:* Let $m = deg p$.  Also suppose that $p(x) := \sum_0^m a_k x^k$. If $a = 0$ and $a_0 \neq 0$, then $p(a) = a_0 e \neq 0$, a contradiction. So $p(x) = \sum_1^m a_k x_k = x (\sum_0^{m-1} a_{k+1} x^k$.
 
 Now assume that $a \neq 0$. Then for $0 \leq k \leq m-2$, define $b_k = - \sum_{j=0}^k a_j / a^{k - j + 1}$ and define $b_{m-1} = a_m$. If $r$ is the polynomial $r(x) - (x - a)$, then 
 
@@ -46,6 +96,13 @@ $$(q \ast r)(x) = b_{m-1} x^m - a b_0 x^0 + \sum_{k=1}^{m-1} a_k x^k$$
 Since $b_0 = - a_0 / a$ by definition, $-a b_0 = a_0$, so
 
 $$(q \ast r)(x) = \sum_{k=0}^{m} a_k x^k = p(x)$$
+
+
+### Corollary
+If $p$ is a polynomial over an associative unital algebra $A$, $deg p > 0$, and $a$ is a root of $p$, then if $q$ is the polynomial such that $p(x) = (x - a) \ast q(x)$, then every root $b$ of $p$ with $b \neq a$ is a root of $q$.
+
+*Proof:* Let $e$ be the identity in $A$ under $\ast$. By hypothesis $p(b) = 0 = (b - a e) \ast q(b)$. By 
+If $
 
 
 
