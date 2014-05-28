@@ -1,3 +1,19 @@
+## Definition of an associative algebra
+An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear. If $\ast$ is associative, then the algebra is an **associative algebra**. If there is an $e \in V$ such that $e \ast v = v \ast e = v$ for all $v \in V$, then $V$ is a **unital algebra**.
+
+
+## A field is an associative, unital algebra
+Any field $\mathbb{F}$ is an associative, unital algebra.
+
+*Proof:* We know that a field is a vector space over itself. If we define $\ast$ to be field multiplication, then it holds since $\mathbb{F}$, being a field, is a ring, so the identity under the bilinear product is the multiplicative identity of the field.
+
+
+## Algebra of endomorphisms
+For any vector space $V$, $Hom(V)$ is an associative, unital algebra with the associative, bilinear product taken to be composition.
+
+*Proof:* Theorems above prove bilinearity. All function composition is associative. The identity element is the identity map on $V$.
+
+
 ## Definition of polynomials over an associative algebra with identity
 If $(A, +, \cdot, \ast, e)$ is an associative algebra over $\mathbb{F}$ and $e$ is an identity under $\ast$, then for any $a_0, \ldots, a_n \in \mathbb{F}$, we can define $p: A \to A$ by $p(x) := \sum_{k=0}^n a_k \cdot x^k$ where $x^k$ is defined over $A$'s product and $x^0 := e$. $p$ is called a **polynomial** over $A$.
 
@@ -35,6 +51,8 @@ $$(q \ast r)(x) = \sum_{k=0}^{m} a_k x^k = p(x)$$
 
 ## Definition of invariant subspace
 If $T: V \to V$ is a linear operator and $W$ is a subspace of $V$ such that $T(W) \subseteq W$, then $W$ is an **invariant subspace** under $T$.
+
+If $W \neq \{0\}$ and $W \neq V$, then $W$ is a **proper invariant subspace**.
 
 ## Example: 1-dimensional invariant subspace
 If $T: V \to V$ is a linear operator and $W$ is a 1-dimensional subspace of $V$, then if $W$ is an invariant subspace, for all $w \in W$ with $w \neq 0$, we have $T(w) \in W$, or $T(w) = aw$ for some scalar $a$. Furthermore, since any other element of $W$ is a scalar multiple of $w$, by linearity we have $T(z) = az$ for all $z \in W$. So $T$ just scales all the elements of $W$ by some scalar $a$.

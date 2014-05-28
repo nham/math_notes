@@ -179,14 +179,6 @@ If $B$ is a basis for $V$, then $B'$ defined by, for each $b_i \in B$, the linea
 *Proof:* $\{ 1 \}$ is a basis for $\mathbb{F}$, so it's the same construction that was used in "Dimension of hom spaces"
 
 
-## Definition of an associative algebra
-An **algebra** is any vector space $(V, \mathbb{F})$ with a multiplication $\ast: V \times V \to V$ which is bilinear. If $\ast$ is associative, then the algebra is an **associative algebra**. If there is an $e \in V$ such that $e \ast v = v \ast e = v$ for all $v \in V$, then $V$ is a **unital algebra**.
-
-## Algebra of endomorphisms
-For any vector space $V$, $Hom(V)$ is an algebra with the associative, bilinear product taken to be composition.
-
-*Proof:* Theorems above prove bilinearity. All function composition is associative.
-
 ## Definition of automorphism
 An **automorphism** is any bijective endomorphism, i.e. a linear map defined $V \to V$ for some $V$ which is an isomorphism.
 
