@@ -55,7 +55,13 @@ $$((p + q) r)(k) = \sum_{i=0}^k (p(i) + q(i)) r(k-i) = (p r)(k) + (q r)(k)$$
 Ditto for $p (q + r)$. So the product distributes over addition.
 
 
-## Reformulating matrix multiplication
+## Polynomial multiplication is commutative
+If $p, q \in \mathbb{F}[x]$, then $pq = qp$.
+
+*Proof:* $(pq)(k) = \sum_{i=0}^k p(i) q(k-i) = \sum_{i=0}^k p(k-i) q(i) = (qp)(k)$ by commutativity of addition in the field.
+
+
+## Reformulating polynomial multiplication
 If $p, q \in \mathbb{F}[x]$, then $(p q)(k) = \sum_{i, j \in \mathbb{N}, i + j = k} p(i) q(j)$, where the sum is well defined because addition in $\mathbb{F}$ is both commutative and associative.
 
 *Proof:* If $i + j = k$, then $i \in \{0, \ldots, k\}$ since $j$ can't be negative, and then we must have $j = k - i$. Conversely, any pair $(i, j)$ such that $i \in \{0, \ldots, k\}$ and $j = k - i$ has $i + j = k$.
@@ -89,6 +95,12 @@ We also denote, for any $c \in \mathbb{F}$, the polynomial $(b_n)$ such that $b_
 For any $p \in \mathbb{F}[x]$, $p 1 = 1 p = p$.
 
 *Proof:* $1$ here is the constant polynomial. $(p 1)(k) = \sum_{i=0}^k p(i) 1(k-i)$. But $1(k-i)$ is only nonzero when $i = k$, so $(p 1)(k) = p(k) 1(0) = p(k)$. The same proof holds for $(1 p)$.
+
+
+### Corollary, ring of polynomials
+$\mathbb{F}[x]$ is a commutative ring under polynomial addition and multiplication.
+
+*Proof:* We know that it's an abelian group under addition. $\mathbb{F}[x]$ being a unital, associative algebra proves that it's also a ring. Since multiplication is commutative, the ring is commutative.
 
 
 
