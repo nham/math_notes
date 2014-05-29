@@ -11,6 +11,9 @@
  - [intro](metric_spaces/intro.html)
  - [notes on complete and compact spaces](metric_spaces/complete_compact.html)
 
+# Rings 
+ - [ring theory for linear algebra (PIDs, etc.)](rings/integral_pid_euclidean.html)
+
 # Probability
  - [notes from grimmett and stirzaker](prob/grimmett.html)
 
