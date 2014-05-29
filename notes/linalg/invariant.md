@@ -76,13 +76,11 @@ $$[(pq)r](m) = \sum_{i+j+k = m} p(i) q(j) r(k)$$
 
 holds by commutativity and associativity. The same holds for $p(qr)$.
 
-
 (I realize this is handwavy, but it seems a bit tedious to prove this and it is intuitively clear why it should be true)
 
 
-
 ## Notation for formal polynomials
-For any field $\mathbb{F}$, denote by $x$ the polynomial $(a_n)$ such that $a_1 = 1$ and $a_k = 0$ for all $k \neq 1$. 
+For any field $\mathbb{F}$, denote by $X$ the polynomial $(a_n)$ such that $a_1 = 1$ and $a_k = 0$ for all $k \neq 1$. 
 
 We also denote, for any $c \in \mathbb{F}$, the polynomial $(b_n)$ such that $b_0 = c$ and $b_k = 0$ for all $k \neq 0$ by $c$. Such a polynomial is a **constant polynomial**. We will rely on context to disambiguate whether we mean the polynomial or the field element.
 
@@ -93,39 +91,64 @@ For any $p \in \mathbb{F}[x]$, $p 1 = 1 p = p$.
 *Proof:* $1$ here is the constant polynomial. $(p 1)(k) = \sum_{i=0}^k p(i) 1(k-i)$. But $1(k-i)$ is only nonzero when $i = k$, so $(p 1)(k) = p(k) 1(0) = p(k)$. The same proof holds for $(1 p)$.
 
 
-## Monic monomials are products of $x$
-$x^n$ is the formal polynomial $(a_k)$ such that $a_n = 1$ and $a_k = 0$ for $k \neq n$.
 
-*Proof:* $x^2(k) = \sum_{i=0}^k x(i) x(k - i)$. This is only nonzero when $i = k - i = 1$, which happens only when $i = 1$ and $k = 2$.
+## Definition of powers of formal polynomials
+If $p \in \mathbb{F}[x]$, then we define $p^0 = 1$, $p^n := p^{n-1} p$. This is well-defined since $\mathbb{F}[x]$ is a monoid under polynomial multiplication.
 
-Suppose now that it's true for $x^{n-1}$. Then $x^n = x^{n-1} x$, so $x^n(k) = \sum_{i=0}^k x^{n-1}(i) x(k - i)$. This is only nonzero when $i = n-1$ and $k - i = 1$, so $k = n$.
+
+
+## Monic monomials are products of $X$
+$X^n$ is the formal polynomial $(a_k)$ such that $a_n = 1$ and $a_k = 0$ for $k \neq n$.
+
+*Proof:* $X^2(k) = \sum_{i=0}^k X(i) X(k - i)$. This is only nonzero when $i = k - i = 1$, which happens only when $i = 1$ and $k = 2$.
+
+Suppose now that it's true for $X^{n-1}$. Then $X^n = X^{n-1} X$, so $X^n(k) = \sum_{i=0}^k X^{n-1}(i) X(k - i)$. This is only nonzero when $i = n-1$ and $k - i = 1$, so $k = n$.
+
+
+## Writing formal polynomials as sums of monomials
+If $p \in \mathbb{F}[x]$ with $n = deg p$, then $p = \sum_0^n p(k) X^k$.
+
+*Proof:* Obvious given the last proposition about what polynomial $X^k$ is.
 
 
 ## Polynomial division and roots
-If $p$ is a formal polynomial over $\mathbb{F}$, $deg p > 0$ and $a$ is a root of $p$, then there is a $q \in \mathbb{F}[x]$ with $deg q = (deg p) - 1$ such that $p = (x - a) \ast q$.
+If $p$ is a formal polynomial over $\mathbb{F}$, $deg p > 0$ and $c$ is a root of $p$, then there is a $q \in \mathbb{F}[x]$ with $deg q = (deg p) - 1$ such that $p = (X - c) \ast q$.
 
-TODO: redo this using formal polynomials.
+*Proof:* Let $m = deg p$.  Define $a_k = p(k)$ for all $k$, so that $p = \sum_0^m a_k X^k$. By definition of roots, we know $\sum_0^n p(k) c^k = 0 \in \mathbb{F}$.
 
-*Proof:* Let $m = deg p$.  Also suppose that $p(x) := \sum_0^m a_k x^k$. If $a = 0$ and $a_0 \neq 0$, then $p(a) = a_0 e \neq 0$, a contradiction. So $p(x) = \sum_1^m a_k x_k = x (\sum_0^{m-1} a_{k+1} x^k$.
+If $c = 0$, then $\sum_0^m p(k) c^k = p(0) c^0 = p(0) = 0$, so $p = \sum_1^m a_k X^k = X (\sum_0^{m-1} a_{k+1} X^k)$, and $q = \sum_0^{m-1} a_{k+1} X^k$.
 
-Now assume that $a \neq 0$. Then for $0 \leq k \leq m-2$, define $b_k = - \sum_{j=0}^k a_j / a^{k - j + 1}$ and define $b_{m-1} = a_m$. If $r$ is the polynomial $r(x) - (x - a)$, then 
+Now assume that $c \neq 0$. Then for $0 \leq k \leq m-2$, define $b_k = - \sum_{j=0}^k a_j / c^{k - j + 1}$ and define $b_{m-1} = a_m$. Define $q = \sum_0^{m-1} b_k X^k$. Then
 
-$$(q \ast r)(x) = (\sum_1^{m-1} b_k x^k)(x - a) = b_{m-1} x^m - a b_0 x^0 + \sum_{k=1}^{m-1} (b_{k-1} - a b_k) x^k$$
+$$
+\begin{aligned}
+(X - c) q & = (X - c) (\sum_1^{m-1} b_k X^k) \\
+          & = $\sum_1^{m-1} b_k X^{k+1} + \sum_1^{m-1} -c b_k X^k \\
+          & = b_{m-1} X^m - c b_0 X^0 + \sum_{k=1}^{m-1} (b_{k-1} - c b_k) X^k$$
+\end{aligned}
+$$
 
-But $-a b_k = \sum_{j=0}^k a_j / a^{k - j} = a_k + \sum_{j=0}^{k-1} a_j / a^{k-j} = a_k - b_{k-1}$, so $b_{k-1} - a b_k = a_k$. Hence
+But for all $k$ with $1 \leq k \leq m-2$, $-c b_k = \sum_{j=0}^k a_j / c^{k - j} = a_k + \sum_{j=0}^{k-1} a_j / c^{k-j} = a_k - b_{k-1}$, so $b_{k-1} - c b_k = a_k$. Hence
 
-$$(q \ast r)(x) = b_{m-1} x^m - a b_0 x^0 + \sum_{k=1}^{m-1} a_k x^k$$
+$$(X - c) q = b_{m-1} X^m - c b_0 X^0 + \sum_{k=1}^{m-1} a_k X^k$$
 
-Since $b_0 = - a_0 / a$ by definition, $-a b_0 = a_0$, so
+Since $b_0 = - a_0 / c$ by definition and $b_{m-1} = a_m$, we have:
 
-$$(q \ast r)(x) = \sum_{k=0}^{m} a_k x^k = p(x)$$
+$$(X - c) q = \sum_{k=0}^m a_k X^k = p$$
 
 
 ### Corollary
-If $p$ is a polynomial over an associative unital algebra $A$, $deg p > 0$, and $a$ is a root of $p$, then if $q$ is the polynomial such that $p(x) = (x - a) \ast q(x)$, then every root $b$ of $p$ with $b \neq a$ is a root of $q$.
+If $p \in \mathbb{F}[x]$ with $n = deg p$ and $c \in \mathbb{F}$ is a root of $p$, then if $q \in \mathbb{F}[x]$ is a polynomial such that $p = (X - c)q$, then every root $b$ of $p$ such that $b \neq c$ is a root of $q$.
 
-*Proof:* Let $e$ be the identity in $A$ under $\ast$. By hypothesis $p(b) = 0 = (b - a e) \ast q(b)$. By 
-If $
+*Proof:*  By hypothesis $\sum_0^n p(k) b^k = 0$. Letting $r = X - c$, we have by definition of multiplication, $p(k) = \sum_{i=0}^k r(i) q(k - i)$, so:
+
+$$\sum_0^n b^k \sum_{i=0}^k r(i) q(k-i) = 0$$
+
+but
+
+$$0 = \sum_0^n b^k \sum_{i=0}^k r(i) q(k-i) = (b - c) (\sum_0^{n-1} b^k q(k))$$
+
+Since $b \neq c$, by the cancellation law $\sum_0^{n-1} b^k q(k) = 0$, so $b$ is a root of $q$.
 
 
 
