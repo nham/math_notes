@@ -1,4 +1,4 @@
-# Notes on integral domains, principal ideal domains and Euclidean domains
+# Basic definitions for various classes of rings
 Original motivation is to lay this out for linear algebra
 
 ## Definition of ring
@@ -29,11 +29,30 @@ $S$ is a **right ideal** iff
  - $x, y \in S$ implies $x + y \in S$
  - for any $x \in S$ and for any $r \in R$, $xr \in S$
 
-
 $S$ is a **two-sided ideal** iff it is both a left ideal and a right ideal.
 
 ### Note
 Every one-sided ideal of a commutative ring is a two-sided ideal.
+
+
+## Definition of proper/improper ideals
+$\{0\}$ is an ideal of any ring $R$, as is the whole set $R$. These ideals are called **improper ideals**, and an ideal $I$ (one- or two-sided) is **proper** if it is not $\{0\}$ or $R$.
+
+
+## Fields and proper ideals
+A non-trivial commutative ring $R$ is a field iff it has no proper ideals.
+
+ 1. An ideal $I$ is the whole set $R$ iff $1 \in I$.
+
+    *Proof:* If $1 \in I$, for all $r \in R$, $r1 = r \in I$. The converse is immediate.
+
+ 2. If $R$ is a field, any ideal $I$ is improper.
+
+    *Proof:* If $I$ is an ideal of $R$ that is not $\{0\}$, then there is an $r \in R$, $r \neq 0$, with $r \in I$. But $r^{-1}r = 1 \in I$ as well by definition of ideals, so by (1) $I = R$.
+
+ 3. If $R$ is not a field, then there is a proper ideal of $R$.
+
+    *Proof:* By hypothesis there is a nonzero $s \in R$ which has no multiplicative inverse. So take the principal ideal of $s$, $I = \{rs : r \in R\}$. $1 \notin I$ (otherwise we would have a multiplicative inverse for $s$), so $I \neq R$ by (1).
 
 
 ## Definition of principal ideal
