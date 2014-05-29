@@ -238,8 +238,30 @@ If $S, T \in Hom(V)$ are conjugate linear operators, then $\chi_S = \chi_T$.
 *Proof:* By hypothesis, there is an invertible $R \in Hom(V)$ such that $S = R^{-1} T R$, so for any $a \in \mathbb{F}$, $R^{-1}(T - a I_n)R = R(R^{-1}T - a R^{-1})R = S - a I_n$. This proves that $det(S - a I_n) = det(R^{-1}) det(T - a I_n) det(R) = (det R)^{-1} det(T - a I_n) (det R) = det(T - a I_n)$. This proves that $S$ and $T$'s characteristic polynomials are the same.
 
 
+## Definition of a polynomials of an operator
+If $T: V \to V$ is a linear operator and $p \in \mathbb{F}[x]$ is a formal polynomial over $V$'s field, then we denote by $p(T)$ the operator $\sum_0^m p(k) T$, where $m = deg p$.
+
+
+## Invariant subspaces and polynomials of an operator
+If $V$ is a vector space, $T: V \to V$ is a linear operator, $W$ is a $T$-invariant subspace of $V$, and $p \in \mathbb{F}[x]$, then $W$ is a $p(T)$-invariant subspace of $V$.
+
+ 1. If $W$ is $T$-invariant, then it is $T^j$-invariant for all $j$
+
+    *Proof:* Clearly it is $T^0 = I_n$-invariant. If $W$ is $T^k$-invariant, then $T^k(W) \subseteq W$, so $T^{k+1}(W) = T(T^k(W)) \subseteq T(W) \subseteq W$.
+
+ 2. If $F, G \in Hom(V)$ and $W$ is both an $F$-invariant and $G$-invariant subspace, then if $c, d \in \mathbb{F}$, $W$ is $cF + dG$-invariant subspace.
+
+    *Proof:* If $w \in W$, $F(w)$ and $G(w)$ are in $W$, so certainly $(cF+dG)(w) = cF(w) + dG(w)$ is as well since $W$ is a subspace.
+
+ 3. Q.E.D.
+
+    *Proof:* By (1), $p(T)$ is a scalar multiple of operators that have $W$ as an invariant subspace, so by (2) $W$ is also $p(T)$-invariant.
+
+
 
 ## A collection of eigenvectors is independent
+TODO: should allow for multiplicities?
+
 If $S$ is a finite collection of eigenvectors of an operator $T: V \to V$ and $A$ is a collection of eigenvalues such that there is a bijection $A \to S$ that assigns to every eigenvalue one of its eigenvectors, then $S$ is independent.
 
 *Proof:* We can let $W = span S$. Then we can find a $R \subseteq S$ such that $R$ is a basis for $W$. So if $S$ is dependent, then $R \neq S$, or rather there is a $v \in S - R$ which is in the $span R$. That is, $v = \sum_{r \in R} c_r r$. Letting $a$ be the eigenvalue of $v$ and letting $f: S \to A$ be the bijection assigning eigenvectors in $S$ to their eigenvalues (so that $f(v) = a$), we have:
