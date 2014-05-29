@@ -41,7 +41,7 @@ files['prob'] = ['grimmett.md']
 files['rips'] = ['rips.md']
 files['reals'] = ['intro.md', 'derivatives.md']
 files['gibson_euclidean'] = ['1.md']
-files['rings'] = ['integral_pid_euclidean.md']
+files['rings'] = ['intro.md']
 
 
 for folder, lst in files.items():
