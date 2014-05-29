@@ -61,7 +61,7 @@ An **abelian group** is a group with a commutative group operation.
 A **subgroup** of a group $G$ is a subset $S$ which is a group when the group operation is restricted to $S$. 
 
 ## Definition of a field
-A **field** is a commutative division ring. FIXME
+A **field** is a commutative division ring. See the ring theory notes for details.
 
 
 ## A brief note on notation
