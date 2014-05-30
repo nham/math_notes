@@ -360,28 +360,27 @@ If $U \subseteq \mathbb{R}^n$, $V \subseteq \mathbb{R}^p$, $f: U \to V$, $g: V \
 
 *Proof:* For all $h \in diff(U, a)$, we have:
 
-$$(g \circ f)(a + h) - (g \circ f)(a) = g(f(a+h)) - g(f(a)) = g(b + t) - g(b)$$
+$$(g \circ f)(a + h) - (g \circ f)(a) = g(f(a+h)) - g(f(a)) = g(b + \Delta f(a;h)) - g(b)$$
 
-where $t = f(a + h) - f(a)$. $g(b + t)$ is well-defined since $f(a+h) \in f(U) \subseteq V$.
+But $g(b + \Delta f(a; h)) - g(b) = Dg(b)(\Delta f(a; h)) + \beta(\Delta f(a; h)) \|h\|$ for some $\beta(h) \to 0$ as $h \to 0$.
 
-But $g(b + t) - g(b) = Dg(b)(t) + \beta(t)$ for some $\beta \in o_0(1)$.
+Since $\Delta f(a; h) = Df(a)(h) + \alpha(h) \|h\|$ for some $\alpha(h) \to 0$ as $h \to 0$, we have:
 
-Since $t = Df(a)(h) + \alpha(h)$ for some $\alpha in o_0(1)$, we have:
+$$(g \circ f)(a + h) - (g \circ f)(a) = Dg(b)(Df(a)(h) + \alpha(h) \|h\|) + \beta(\Delta f(a;h)) \|h\|$$
 
-$$(g \circ f)(a + h) - (g \circ f)(a) = Dg(b)(f(a+h) - f(a))  + \beta(f(a+h) - f(a))$$
+Since our candidate for $D(g \circ f)(a)$ is $Dg(b) \circ Df(a)$, we would like to prove (by linearity):
 
-By definition of the derivative, $f(a+h) - f(a) = Df(a)(h) + \alpha(h)$, with $\alpha \in o_0(1)$, so by linearity of $Dg(b)$:
+$$Dg(b)(\alpha(h) \|h\|) + \beta(\Delta f(a;h)) \|h\|$$
 
-$$(g \circ f)(a + h) - (g \circ f)(a) - Dg(b)[Df(a)(h)] = Dg(b)[\alpha(h)] + \beta[f(a+h) - f(a)]$$
+is in $o(1)$. Using linearity of $Dg(b)$ again, we have to prove that
 
-So we need only prove that $h \mapsto \beta[f(a+h) - f(a)]$ is $o_0(1)$ and that $Dg(b) \circ \alpha$ is as well.
+$$h \mapsto Dg(b(\alpha(h)) + \beta(\Delta f(a; h))$$
 
-For any $h$ we can write $\alpha(h) = \sum_1^p a_i e_i$ since $\alpha(h) \in \mathbb{R}^p$. So $$\| Dg(b)[\alpha(h)] \| \leq \sum_1^p |a_i| Dg(b)[e_i] \leq \| \alpha(h) \| \sum_1^p \| Dg(b)[e_i] \|$. Let $M := \sum_1^p \| Dg(b)[e_i] \|$. We can find a $\delta$ such that for all $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\| / M$. So for the same $h$, we have $\| Dg(b)[\alpha(h)] \| < \epsilon \|h\|$. This proves that $Dg(b) \circ \alpha \in o_0(1)$.
+has a limit of $0$ as $h \to 0$.
 
-To prove the other, we first need a fact. We have by definition
+But we can apply composite function limit law to $Dg(b) \circ \alpha$ since $Dg(b)$ is continuous at $0$ (since $Dg(b)(h) \to 0$ as $h \to 0$ and because $Dg(b)(0) = 0$ since $Dg(b)$ is linear), and since $\alpha(h) \to 0$ as $h \to 0$, we have $Dg(b)(\alpha(h)) \to 0$ as $h \to 0$.
 
-$$\|f(a+h) - f(a)\| = \|Df(a)(h) + \alpha(h)\| \leq \|Df(a)(h) \| + \| \alpha(h)\|$$
+Also, $\beta(h) \to 0$ as $h \to 0$ and $\beta(0) = 0$, so $\beta$ is continuous at $0$. $h \mapsto \Delta f(a; h)$ has a limit of $0$ as $h \to 0$ also, so again by function composition limit law the composite has a limit of $0$ as $h \to 0$. Then we use the regular additive limit law to prove the whole function goes to zero.
 
-We know that $\|Df(a)(h)\| \leq \|h\| M$ from above, and that there is a $\delta$ such that for all $\|h\| < \delta$, $\| \alpha(h) \| < \|h\|$. So for the same $h$ we have $\|f(a+h) - f(a)\| \leq \|h\| (M + 1)$.
 
 For every $\epsilon$, there is a $\gamma$ such that for all $\|h\| < \gamma$, $\| \beta(h) \| < (\epsilon / (M+1)) \|h\|$. By continuity of $f$ at $a$, there is a $\phi$ such that for $\|h\| < \phi$, $\|f(a+h) - f(a)\| < \gamma$. Hence for $h$ such that $\|h\| < min \{ \phi, \delta \}$, we have $\beta(f(a+h) - f(a))\| < \epsilon \|f(a+h) - f(a)\| / (M+1)  \leq \epsilon \|h\|$. So $h \mapsto \beta(f(a+h) - f(a)) \in o_0(1)$.
