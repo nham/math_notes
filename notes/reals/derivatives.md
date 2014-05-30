@@ -6,14 +6,15 @@ If $v = (v_1, \ldots, v_n) \in \mathbb{R}^n$ and $\|v\| < \epsilon$, then $|v_i|
 *Proof:* $\|v\|_{\infty} < \|v\|_2$ for all $v$ is already known (see metric space notes).
 
 
-## Infinitesimal functions
-If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$, $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in B_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
+## Definition of infinitesimal w.r.t. identity 
+If $V$ and $W$ are normed vector spaces and $S \subseteq V, 0 \in S$, then $f: S \to W$ is **infinitesimal with respect to identity** iff for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $h \in S$ with $\|h\| < \delta$, $\|f(h)\| < \epsilon \|h\|$. We notate this by saying $f \in o(1)$.
 
-If $p: X \to V$ and $q: X \to W$ for some normed vector spaces $V$ and $W$, then we say that **$p$ is infinitesimal with respect to $q$ as $x \to a$** iff the functions $P, Q: X \to \mathbb{R}$ defined by $P(x) = \|p(x)\|$, $Q(x) = \|q(x)\|$ have $P$ infinitesimal with respect to $Q$ as $x \to a$.
+## Alternate representation of $o(1)$ functions
+If $V$ and $W$ are normed vector spaces and $S \subseteq V, 0 \in S$ and $f: S \to W$, then $f \in o(1)$ iff $f(h) = g(h) \|h\|$ for all $h \in S$ for some $g: S \to W$ such that $lim_{h \to 0} g(h) = 0$.
 
-If $f$ is infinitesimal w.r.t. $g$ as $x \to a$, we write $f \in o_a(g)$.
+*Proof:* If $f(h) = g(h) \|h\|$ for some $g$ with $g(h) \to 0$ as $h \to 0$, then for every $\epsilon > 0$ there is a $\delta > 0$ such that for all $h \in S$ with $0 < \|h\| < \delta$, $\|g(h)\| < \epsilon$. So for all such $h$ we have $\|f(h)\| = \|g(h)\| \|h\| < \epsilon \|h\|$. For $h = 0$, $\|h\| = 0$, so $\|f(h)\| = 0$, proving $f \in o(1)$.
 
-As shorthand for being infinitesimal w.r.t the identity function on $\mathbb{R}^n$, we will write that a function is $o_a(1)$. So if $V, W$ are normed vector spaces and $S \subseteq V$, then $f: S \to W$ is $o_a(1)$ iff for all $\epsilon > 0$ there is a $\delta > 0$ such that for all $v \in $S$ with $\|v - a\| < \delta$, $\|f(v)\| < \epsilon \|v\|$.
+Conversely, if $f \in o(1)$, define $g: S \to W$ by $g(0) = 0$ and $g(h) = f(h) / \|h\|$ for $h \neq 0$. Then $clearly $f(h) = g(h) \|h\|$ by definition of $g$ for all $h \neq 0$. Also, we have $f(0) = 0$ by definition of $o(1)$, so $f(0) = g(0) \|0\|$. It remains to prove that $lim_{h \to 0} g(h) = 0$. But for all $\epsilon > 0$ there is a $\delta > 0$ such that for all $h$ with $\|h\| < \delta$, $\|f(h)\| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < \delta$, $\|g(h)\| = \|f(h)\| / \|h\| < \epsilon$, which proves it.
 
 
 ## Limit of a linear function as input goes to zero
@@ -37,7 +38,7 @@ has
 
 $$lim_{t \to 0} g_a(t) = c$$
 
-The $c$ is clearly uniqe since functional limits are uniqe and will be denoted $D_u f(a)$.
+The $c$ is clearly unique since functional limits are uniqe and will be denoted $D_u f(a)$.
 
 
 ## Definition of partial derivatives
@@ -48,9 +49,14 @@ If $f: A \to \mathbb{R}^p$ for $A \subseteq \mathbb{R}^n$, then letting $\{e_1, 
 ## Definition of derivative (Zorich-influenced)
 If $A \subseteq \mathbb{R}^n$, then $f: A \to \mathbb{R}^p$ has a **derivative** at $a \in int(A)$ iff for all $h \in diff(A, a)$, there is an $L \in Hom(\mathbb{R}^n, \mathbb{R}^p)$ such that
 
-$$f(a+h) - f(a) = L(h) + \alpha(h)$$
+$$f(a+h) - f(a) = L(h) + \alpha(h) \|h\|$$
 
-where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $\alpha \in o_0(1)$, where $h$ is shorthand for the identity function on $diff(A,a)$.
+where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $lim_{h \to 0} \alpha(h) = 0$. 
+
+
+### Remark
+We will often blur the line between the derivative of a single-variable function and a scalar/vector. If we say that the derivative is a vector $v$, we mean that it is the function which maps $t \mapsto t \cdot v$.
+
 
 
 ## Directional derivatives are derivatives
@@ -62,12 +68,14 @@ $$lim_{t \to 0} \frac{\phi(t) - \phi(0) - t D_u f(a)}{t}$$
 
 So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o_0(1)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
 
+TODO: revisit, generalize
+
 
 
 ## Lemma for functions infinitesimal wrt identity
-If $\alpha \in o_a(1)$, then $lim_{h \to a} \alpha(h) = 0$.
+If $f \in o(1)$, then $lim_{h \to 0} f(h) = 0$.
 
-*Proof:* By hypothesis, for every $\epsilon > 0$ there is a $\delta$ such that for all $h \in dom \alpha$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < min(\delta, 1)$, $\| \alpha(h) \| < \epsilon$, which proves the statement
+*Proof:* We know that $f(h) = g(h) \|h\|$ for some $g$ with $lim_{h \to 0} g(h) = 0$, so for every $\epsilon > 0$ there is some $\delta$ such that for all $h$ with $0 < \|h\| < \delta$, $\|g(h)\| < \epsilon$. So for all $h$ with $0 < \|h\| < min \{ \delta, 1 \}$, $\|f(h)\| = \|g(h)\| \|h\| < \epsilon$.
 
 
 ## Linear combination of functions infinitesimal wrt identity
@@ -79,7 +87,7 @@ Also there is a $\gamma$ such that for all $x \in B(a; \gamma)$, $\|f(x)\| < \ep
 
 
 ## Lemma for the limit of a parameterized multivariable function
-$f: A \to \mathbb{R}^p$ is a function, $a \in acc(A)$ and $lim_{x \to a} f(x) = c$, then for any $0 \neq u \in \mathbb{R}^n$,
+If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$ is a function, $a \in acc(A)$ and $lim_{x \to a} f(x) = c$, then for any $0 \neq u \in \mathbb{R}^n$,
 
 $$lim_{t \to 0} f(a + tu) = c$$
 
@@ -93,56 +101,54 @@ $$lim_{t \to 0} f(a + tu) = c$$
 
     *Proof:* For any $\epsilon$, we can make $\|a + tu - a \| = |t| \|u \| < \epsilon$ by choosing any $t$ such that $|t| < \epsilon / \|u\|$.
 
-
  3. Q.E.D.
 
     *Proof:* By (1) and (2), we can use composition of function limits to obtain the result.
 
 
 
-## Derivative is unique
-If $L$ and $M$ are derivatives of $f: A \to \mathbb{R}^p$ at $a \in $A$, then $L = M$. Also for any $u \neq 0$, $L(u) = D_u f(a)$.
+## Derivative is unique, directional derivatives exist
+If $L$ and $M$ are derivatives of $f: A \subseteq \mathbb{R}^n \to \mathbb{R}^p$ at $a \in $A$, then $L = M$. Also for any $u \neq 0$, $L(u) = D_u f(a)$.
 
 *Proof:* By hypothesis for all $h \in diff(A, a)$, we have
 
-$$L(h) = f(a+h) - f(a) - \alpha(h)$$
+$$L(h) = f(a+h) - f(a) - \alpha(h) \|h\|$$
 
 and
 
-$$M(h) = f(a+h) - f(a) - \beta(h)$$
+$$M(h) = f(a+h) - f(a) - \beta(h) \|h\|$$
 
-for some $\alpha, \beta$ both in $o_0(1)$.
+for some $\alpha, \beta$ such that $\alpha(h) \to 0$ and $\beta(h) \to 0$ as $h \to 0$.
 
 For any $u \neq 0$, and for every $t \in \mathbb{R} - 0$ such that $tu \in diff(A, a)$, we have
 
-$$L(h) = t L(u) = f(a + tu) - f(a) - \alpha(tu)$$
+$$L(h) = t L(u) = f(a + tu) - f(a) - \alpha(tu) \|tu\|$$
 
-$$M(h) = t L(u) = f(a + tu) - f(a) - \beta(tu)$$
+$$M(h) = t M(u) = f(a + tu) - f(a) - \beta(tu) \|tu\|$$
 
 So 
 
-$$
-\begin{aligned}
-L(u) & = lim_{t \to 0} L(u) \\
-     & = lim_{t \to u} \frac{1}{t}(f(a + tu) - f(a) - \alpha(tu)) \\
-     & = D_u f(a) - lim_{t \to 0} \frac{\alpha(tu)}{t}
-\end{aligned}
-$$
+$$L(u) = \frac{1}{t}(f(a + tu) - f(a) - \alpha(tu) \|tu\|)$$
 
-Similarly,
+$$M(u) = \frac{1}{t}(f(a + tu) - f(a) - \beta(tu) \|tu\|)$$
 
-$$
-\begin{aligned}
-M(u) & = D_u f(a) - lim_{t \to 0} \frac{\beta(tu)}{t}
-\end{aligned}
-$$
+This implies
 
+$$L(u) - M(u) = \frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))$$
 
-It suffices to prove that $lim_{t \to 0} \frac{\gamma(tu)}{t} = 0$ for any $\gamma \in o_0(1)$.
+Taking the limit of both sides, (which is allowed since the expression on the right hand side is defined for all $\{t \in \mathbb{R} - 0 : a + tu \in A\}$), we see that:
 
-We know that $lim_{t \to 0} \gamma(tu) / \|tu\| = 0$ by hypothesis, but by limit laws, $lim_{t \to 0} \gamma(tu) / |t| = 0 * lim_{t \to 0} \|u\| = 0$.
+$$L(u) - M(u) = lim_{t \to 0} \frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))$$
 
-This proves that $L(u) = D_u f(a) = M(u)$. Since $u$ was arbitrary, $L = M$.
+But for all such $t$, we have 
+
+$$\|\frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))\| = \frac{|t|}{|t|} \|u\| \| \beta(tu) - \alpha(tu) \|$$
+
+By hypothesis, for any $\epsilon > 0$, there are $\delta_1$ and $\delta_2$ such that $0 < \|h\| < \delta_1$ implies $\| \beta(h) \| < \frac{\epsilon}{2 \|u\|}$, and $0 < \|h\| < \delta_2$ implies $\| \alpha(h) \| < \frac{\epsilon}{2 \|u\|}$. So for any $t$ such that $0 < |t| < min \{ \delta_1, \delta_2 \} / \|u\|$, we have $\|tu\|$ less than both $\delta_1$ and $\delta_2$. Hence $\|u\| \| \beta(tu) - \alpha(tu) \| \leq \|u\|(\| \beta(tu) \| + \| \alpha(tu) \|) < \epsilon$.
+
+This proves that $L(u) - M(u) = 0$, or that $L(u) = M(u)$ for all $u \neq 0$. Since $L(0) = 0 = M(0)$, $L = M$.
+
+TODO: this proof seems uglier than is necessary, but not completely clear how to generalize. Need to use limit laws somehow.
 
 
 ## Corollary
@@ -154,7 +160,7 @@ For any $f: A \to \mathbb{R}^p$ and $h \in \mathbb{R}^n$ such that $a \in A$ and
 
 $$\Delta f(a; h) = f(a + h) - f(a)$$
 
-Then $\Delta f(a;h) = Df(a) + \alpha(h)$ for some $\alpha$ which is $o_0(1)$.
+Then $\Delta f(a;h) = Df(a) + \alpha(h) \|h\|$ for some $\alpha$ which has $\alpha(h) \to 0$ as $h \to 0$.
 
 
 ## Differentiable implies continuous
@@ -164,7 +170,7 @@ If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $
 
  1. $lim_{h \to 0} f(a + h) - f(a) = 0$
 
-    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha in o_0(1)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
+    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha in o(1)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
 
  2. Q.E.D.
 
@@ -371,11 +377,7 @@ To go along with this, $f$ is said to be $C^0$ iff it is continuous.
 ## Chain rule
 If $U \subseteq \mathbb{R}^n$, $V \subseteq \mathbb{R}^p$, $f: U \to V$, $g: V \to \mathbb{R}^q$, $a \in U$, $f$ is differentiable at $a$, $g$ is differentiable at $b = f(a)$, then $g \circ f$ is differentiable at $a$ and $D(g \circ f)(a) = $D g(b) \circ D f(a)$.
 
-TODO: generalize this so the domains don't have to be open sets?
-
-*Proof:*
-
-For all $h \in diff(U, a)$, we have:
+*Proof:* For all $h \in diff(U, a)$, we have:
 
 $$(g \circ f)(a + h) - (g \circ f)(a) = g(f(a+h)) - g(f(a)) = g(b + t) - g(b)$$
 
