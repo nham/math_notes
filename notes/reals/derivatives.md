@@ -79,11 +79,9 @@ If $f \in o(1)$, then $lim_{h \to 0} f(h) = 0$.
 
 
 ## Linear combination of functions infinitesimal wrt identity
-If $f, g: X \to V$ for some metric space $X$ and some normed vector space $V$ and $f, g \in o_a(1)$, then for $c \in \mathbb{F}$, $f + g \in o_a(1)$ and $cf \in o_a(1)$.
+If $f, g: S \subseteq V \to W$ for some normed vector spaces $V$ and $W$ and $f, g \in o(1)$, then for $c \in \mathbb{F}$, $f + g \in o(1)$ and $cf \in o(1)$.
 
-*Proof:* By hypothesis for all $\epsilon > 0$ there is a $\delta_1$ such that $d(x, a) < \delta_1$ implies $\|f(x)\| < \epsilon \|x\| / 2$. There is also a $\delta_2$ such that for all $x$ with $d(x, a) < \delta_2$, $\|g(x)\| < \epsilon \|x\| / 2$. So for all $x$ with $d(x, a < min\{ \delta_1, \delta_2 \}$, \|f(x) + g(x)\| \leq \|f(x)\| + \|g(x)\| < \epsilon \|x\|$.
-
-Also there is a $\gamma$ such that for all $x \in B(a; \gamma)$, $\|f(x)\| < \epsilon \|x\| / |c|$, so for the same $x$ we have $\|cf(x)\| = |c| \|f(x)\| < \epsilon \|x\|$.
+*Proof:* By the alternate characterization, there are $\alpha, \beta$ such that $f(h) = \alpha(h) \|h\|$ and $g(h) = \beta(h) \|h\|$ for all $h \in S$ and such that $\alpha(h), \beta(h) \to 0$ as $h \to 0$. But by function limit laws, $(\alpha + \beta)(h) \to 0$ and $h \to 0$ and $(c \alpha)(h) \to 0$ and $h \to 0$, which proves the statement.
 
 
 ## Lemma for the limit of a parameterized multivariable function
@@ -120,35 +118,18 @@ $$M(h) = f(a+h) - f(a) - \beta(h) \|h\|$$
 
 for some $\alpha, \beta$ such that $\alpha(h) \to 0$ and $\beta(h) \to 0$ as $h \to 0$.
 
-For any $u \neq 0$, and for every $t \in \mathbb{R} - 0$ such that $tu \in diff(A, a)$, we have
+So $(L - M)(h) = [\beta(h) - \alpha(h)] \|h\|$.
 
-$$L(h) = t L(u) = f(a + tu) - f(a) - \alpha(tu) \|tu\|$$
+Since we know $(\beta - \alpha)(h) \to 0$ as $h \to 0$, and $L - M$ is linear, it suffices to prove that if $D: Hom(\mathbb{R}^n, \mathbb{R}^p)$ and $\gamma(h) \to 0$ and $h \to 0$ and $D(h) = \gamma(h) \|h\|$ for all $h$, then $D$ is the zero function. This will prove that $L = M$.
 
-$$M(h) = t M(u) = f(a + tu) - f(a) - \beta(tu) \|tu\|$$
+For any $u \neq 0$, and for every $t > 0$, we have
 
-So 
+$$D(u) = \gamma(tu) \|u\|$$
 
-$$L(u) = \frac{1}{t}(f(a + tu) - f(a) - \alpha(tu) \|tu\|)$$
+Since $lim_{t \to 0} \gamma(tu) = 0$, we have
 
-$$M(u) = \frac{1}{t}(f(a + tu) - f(a) - \beta(tu) \|tu\|)$$
+$$D(u) = \|u\| lim_{t \to 0} \gamma(tu) = 0$$
 
-This implies
-
-$$L(u) - M(u) = \frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))$$
-
-Taking the limit of both sides, (which is allowed since the expression on the right hand side is defined for all $\{t \in \mathbb{R} - 0 : a + tu \in A\}$), we see that:
-
-$$L(u) - M(u) = lim_{t \to 0} \frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))$$
-
-But for all such $t$, we have 
-
-$$\|\frac{\|tu\|}{t} (\beta(tu) - \alpha(tu))\| = \frac{|t|}{|t|} \|u\| \| \beta(tu) - \alpha(tu) \|$$
-
-By hypothesis, for any $\epsilon > 0$, there are $\delta_1$ and $\delta_2$ such that $0 < \|h\| < \delta_1$ implies $\| \beta(h) \| < \frac{\epsilon}{2 \|u\|}$, and $0 < \|h\| < \delta_2$ implies $\| \alpha(h) \| < \frac{\epsilon}{2 \|u\|}$. So for any $t$ such that $0 < |t| < min \{ \delta_1, \delta_2 \} / \|u\|$, we have $\|tu\|$ less than both $\delta_1$ and $\delta_2$. Hence $\|u\| \| \beta(tu) - \alpha(tu) \| \leq \|u\|(\| \beta(tu) \| + \| \alpha(tu) \|) < \epsilon$.
-
-This proves that $L(u) - M(u) = 0$, or that $L(u) = M(u)$ for all $u \neq 0$. Since $L(0) = 0 = M(0)$, $L = M$.
-
-TODO: this proof seems uglier than is necessary, but not completely clear how to generalize. Need to use limit laws somehow.
 
 
 ## Corollary
