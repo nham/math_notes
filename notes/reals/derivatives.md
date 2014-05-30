@@ -7,14 +7,13 @@ If $v = (v_1, \ldots, v_n) \in \mathbb{R}^n$ and $\|v\| < \epsilon$, then $|v_i|
 
 
 ## Infinitesimal functions
-If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$ is said to be **infinitesimal** as $x \to a \in X$ if $lim_{x \to a} f(x) = 0$. If $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in B_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
+If $(X, d)$ is a metric space, $f: X \to \mathbb{R}$, $g: X \to \mathbb{R}$, then $f$ is **infinitesimal with respect to $g$ as $x \to a$** iff for every $\epsilon > 0$, there is a $\delta$ such that for all $x \in B_X(a; \delta)$, $|f(x)| < \epsilon |g(x)|$.
 
 If $p: X \to V$ and $q: X \to W$ for some normed vector spaces $V$ and $W$, then we say that **$p$ is infinitesimal with respect to $q$ as $x \to a$** iff the functions $P, Q: X \to \mathbb{R}$ defined by $P(x) = \|p(x)\|$, $Q(x) = \|q(x)\|$ have $P$ infinitesimal with respect to $Q$ as $x \to a$.
 
 If $f$ is infinitesimal w.r.t. $g$ as $x \to a$, we write $f \in o_a(g)$.
 
-As shorthand for being infinitesimal w.r.t. the identity function on $\mathbb{R}^n$, we will often write $o_a(h)$ or $o_a(t)$ if $h$ or $t$ are vectors in $\mathbb{R}^n$.
-
+As shorthand for being infinitesimal w.r.t the identity function on $\mathbb{R}^n$, we will write that a function is $o_a(1)$.
 
 ## Limit of a linear function as input goes to zero
 If $L \in Hom(\mathbb{R}^n, \mathbb{R}^p)$, then $lim_{h \to 0} L(h) = 0$
@@ -50,7 +49,7 @@ If $A \subseteq \mathbb{R}^n$, then $f: A \to \mathbb{R}^p$ has a **derivative**
 
 $$f(a+h) - f(a) = L(h) + \alpha(h)$$
 
-where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $\alpha \in o_0(h)$, where $h$ is shorthand for the identity function on $diff(A,a)$.
+where $\alpha: diff(A, a) \to \mathbb{R}^p$ has $\alpha \in o_0(1)$, where $h$ is shorthand for the identity function on $diff(A,a)$.
 
 
 ## Directional derivatives are derivatives
@@ -60,12 +59,12 @@ If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $D_u f(a)$ exists fo
 
 $$lim_{t \to 0} \frac{\phi(t) - \phi(0) - t D_u f(a)}{t}$$
 
-So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o_0(t)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
+So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o_0(1)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
 
 
 
 ## Lemma for functions infinitesimal wrt identity
-If $\alpha \in o_a(h)$, then $lim_{h \to a} \alpha(h) = 0$.
+If $\alpha \in o_a(1)$, then $lim_{h \to a} \alpha(h) = 0$.
 
 *Proof:* By hypothesis, for every $\epsilon > 0$ there is a $\delta$ such that for all $h \in dom \alpha$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < min(\delta, 1)$, $\| \alpha(h) \| < \epsilon$, which proves the statement
 
@@ -103,7 +102,7 @@ and
 
 $$M(h) = f(a+h) - f(a) - \beta(h)$$
 
-for some $\alpha, \beta$ both in $o_0(h)$.
+for some $\alpha, \beta$ both in $o_0(1)$.
 
 For any $u \neq 0$, and for every $t \in \mathbb{R} - 0$ such that $tu \in diff(A, a)$, we have
 
@@ -130,7 +129,7 @@ M(u) & = D_u f(a) - lim_{t \to 0} \frac{\beta(tu)}{t}
 $$
 
 
-It suffices to prove that $lim_{t \to 0} \frac{\gamma(tu)}{t} = 0$ for any $\gamma \in o_0(h)$.
+It suffices to prove that $lim_{t \to 0} \frac{\gamma(tu)}{t} = 0$ for any $\gamma \in o_0(1)$.
 
 We know that $lim_{t \to 0} \gamma(tu) / \|tu\| = 0$ by hypothesis, but by limit laws, $lim_{t \to 0} \gamma(tu) / |t| = 0 * lim_{t \to 0} \|u\| = 0$.
 
@@ -146,7 +145,7 @@ For any $f: A \to \mathbb{R}^p$ and $h \in \mathbb{R}^n$ such that $a \in A$ and
 
 $$\Delta f(a; h) = f(a + h) - f(a)$$
 
-Then $\Delta f(a;h) = Df(a) + \alpha(h)$ for some $\alpha$ which is $o_0(h)$.
+Then $\Delta f(a;h) = Df(a) + \alpha(h)$ for some $\alpha$ which is $o_0(1)$.
 
 
 ## Differentiable implies continuous
@@ -156,7 +155,7 @@ If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $
 
  1. $lim_{h \to 0} f(a + h) - f(a) = 0$
 
-    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha in o_0(h)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
+    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha in o_0(1)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
 
  2. Q.E.D.
 
@@ -172,7 +171,7 @@ $$Df(a)_i := \pi_i \circ Df(a)$$
 
 $$\alpha_i := \pi_i \circ \alpha$$
 
-Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(h)$ as well since $\alpha \in o_0(h)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
+Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(1)$ as well since $\alpha \in o_0(1)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
 
 Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $\|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $\|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
 
@@ -186,14 +185,14 @@ If $D_u f(a)$ exists, then we already know from a previous proposition that $D_u
 
 $$\phi_i(t) - \phi_i(0) = t D \phi_i(0) + \alpha(t)$$
 
-such that $\alpha \in o_0(t)$. This implies that
+such that $\alpha \in o_0(1)$. This implies that
 
 $$lim_{t \to 0} \frac{\phi_t(t) - \phi_i(0)}{t} = D \phi_i(0)$$
 
 However, $\phi_i(t) = f_i(a + tu)$, so $D \phi_i(0) = D_u f_i(a)$.
 
 
-Conversely, (TODO: prove this?) $\alpha: B \to \mathbb{R}$ defined by $\alpha(t) = f_i(a + tu) - f(a) - D_u f_i(a) t$ has $\alpha \in o_0(t)$. So the function which assigns $t \mapsto f(a + tu) - f(a) - D_u f(a) t$ has each component function in $o_0(t)$. TODO: prove that this means the function is in $o_0(h)$, hence $D_u f(a) = (D_u f_1(a), \ldots, D_u f_p(a)$.
+Conversely, (TODO: prove this?) $\alpha: B \to \mathbb{R}$ defined by $\alpha(t) = f_i(a + tu) - f(a) - D_u f_i(a) t$ has $\alpha \in o_0(1)$. So the function which assigns $t \mapsto f(a + tu) - f(a) - D_u f(a) t$ has each component function in $o_0(1)$. TODO: prove that this means the function is in $o_0(1)$, hence $D_u f(a) = (D_u f_1(a), \ldots, D_u f_p(a)$.
 
 TODO: is there a cleaner proof? This is supposed to be a corollary, not a completely distinct proof.
 
@@ -217,9 +216,9 @@ This establishes the statement.
 ## Linearity of the derivative
 If $f, g : A \to \mathbb{R}^p$, $A \subseteq \mathbb{R}^n$, $a \in int(A)$, $c \in \mathbb{R}$, then if $Df(a)$ and $Dg(a)$ exist, then $D(f+g)(a)$ and $D(cf)(a)$ also exist.
 
-*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o_0(h)$. For any $\epsilon > 0$, there are $\delta_1$, $\delta_2$ such that for all $h$, $\|h\| < \delta_1$, $\| \alpha(h) \| < \epsilon \|h \| / 2$ and also for all $h$, $\|h\| < \delta_2$, $\| \beta(h) \| < \epsilon \|h \| / 2$. So for all $h with $\|h\| < min \{ \delta_1, \delta_2 \}$, \| (\alpha + \beta)(h) \| \leq \| \alpha(h) \| + \| \beta(h) \| < \epsilon \|h\|$. So $\alpha + \beta \in o_0(h)$ as well, hence $Df(a) + Dg(a) = D(f+g)(a)$.
+*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o_0(1)$. For any $\epsilon > 0$, there are $\delta_1$, $\delta_2$ such that for all $h$, $\|h\| < \delta_1$, $\| \alpha(h) \| < \epsilon \|h \| / 2$ and also for all $h$, $\|h\| < \delta_2$, $\| \beta(h) \| < \epsilon \|h \| / 2$. So for all $h with $\|h\| < min \{ \delta_1, \delta_2 \}$, \| (\alpha + \beta)(h) \| \leq \| \alpha(h) \| + \| \beta(h) \| < \epsilon \|h\|$. So $\alpha + \beta \in o_0(1)$ as well, hence $Df(a) + Dg(a) = D(f+g)(a)$.
 
-Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(h)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
+Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(1)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
 
 
 ## Derivative of a restriction
@@ -239,11 +238,11 @@ If $f: [a, b] \to \mathbb{R}$ has a local extremum at $c \in (a, b)$ and is diff
 
 $$\psi(h) := \Delta f(c; h) - Df(c)h$$
 
-has $\psi o_0(h)$. Hence for all $\epsilon > 0$ there is a $\gamma$ such that for all $0 < |h| < min \{ \delta, \gamma \}$, $| \psi(h) | < \epsilon |h|$ and $\Delta f(c; h) \leq 0$. 
+has $\psi o_0(1)$. Hence for all $\epsilon > 0$ there is a $\gamma$ such that for all $0 < |h| < min \{ \delta, \gamma \}$, $| \psi(h) | < \epsilon |h|$ and $\Delta f(c; h) \leq 0$. 
 
-If $Df(c) > 0$, then for all $h$ with $0 < h < \delta $, | \psi(h) | \geq |Df(c)| |h|$ since $Df(c)h > 0$. This contradicts $\psi$ being $o_0(h)$.
+If $Df(c) > 0$, then for all $h$ with $0 < h < \delta $, | \psi(h) | \geq |Df(c)| |h|$ since $Df(c)h > 0$. This contradicts $\psi$ being $o_0(1)$.
 
-If $Df(c) < 0$, then for all $h$ with $0 > h > - \delta $, | \psi(h) | \geq |Df(c)| |h|$ since, once again, $Df(c)h > 0$. This again contradicts $\psi$ being $o_0(h)$.
+If $Df(c) < 0$, then for all $h$ with $0 > h > - \delta $, | \psi(h) | \geq |Df(c)| |h|$ since, once again, $Df(c)h > 0$. This again contradicts $\psi$ being $o_0(1)$.
 
 Hence $Df(c) = 0$.
 
@@ -318,7 +317,7 @@ then $f$ is differentiable at $a$.
      *Proof:* $f(a+h) - f(a) = \sum_1^n f(p_k(h)) - f(p_{k-1}(h))$ holds by (3), so by (7) and the definition of the $\psi_j^h$'s it holds.
 
 
-Recall the definition of the derivative, if it exists: $f(a + h) - f(a) = Df(a)(h) + \alpha(h)$, where $\alpha \in o_0(h)$.
+Recall the definition of the derivative, if it exists: $f(a + h) - f(a) = Df(a)(h) + \alpha(h)$, where $\alpha \in o_0(1)$.
 
 We know that $Df(a)$ should be defined such that $Df(a)(e_j) = D_j f(a)$. So our candidate for the derivative is $Df(a)(h) = \sum_1^n D_j f(a) h_j$.
 
@@ -326,7 +325,7 @@ To prove that this is the derivative, we must prove that $\alpha$ defined by
 
 $$\alpha(h) = \sum_1^n D_k f(q_k(h)) h_k - D_k f(a) h_k$$
 
-is such that $\alpha \in o_0(h)$.
+is such that $\alpha \in o_0(1)$.
 
 But $p_k(h) \to a$ as $h \to 0$, and $c_k(h) \to 0$ as $h \to 0$, so $q_k(h) \to a$ as $h \to 0$. 
 
@@ -371,9 +370,9 @@ $$(g \circ f)(a + h) - (g \circ f)(a) = g(f(a+h)) - g(f(a)) = g(b + t) - g(b)$$
 
 where $t = f(a + h) - f(a)$. $g(b + t)$ is well-defined since $f(a+h) \in f(U) \subseteq V$.
 
-But $g(b + t) - g(b) = Dg(b)(t) + \beta(t)$ for some $\beta \in o_0(t)$.
+But $g(b + t) - g(b) = Dg(b)(t) + \beta(t)$ for some $\beta \in o_0(1)$.
 
-Since $t = Df(a)(h) + \alpha(h)$ for some $\alpha in o_0(h)$, we have:
+Since $t = Df(a)(h) + \alpha(h)$ for some $\alpha in o_0(1)$, we have:
 
 $$(g \circ f)(a + h) - (g \circ f)(a) = Dg(b)(f(a+h) - f(a))  + \beta(f(a+h) - f(a))$$
 
@@ -382,3 +381,5 @@ By definition of the derevative, $f(a+h) - f(a) = Df(a)(h) + \alpha(h)$, with $\
 $$(g \circ f)(a + h) - (g \circ f)(a) - Dg(b)[Df(a)(h)] = Dg(b)[Df(a)(h) + \alpha(h)] - Dg(b)[Df(a)(h)] + \beta[f(a+h) - f(a)]$$
 
 We knoe $lim_{h \to 0} f(a+h) - f(a) = 0$ and $lim_{h \to 0} \beta(h) = 0$
+
+TODO
