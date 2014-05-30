@@ -66,7 +66,7 @@ If $A \subseteq \mathbb{R}^n$, $f: A \to \mathbb{R}^p$, and $D_u f(a)$ exists fo
 
 $$lim_{t \to 0} \frac{\phi(t) - \phi(0) - t D_u f(a)}{t}$$
 
-So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o_0(1)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
+So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_u f(a)$ is $o(1)$. Also, the function $t \mapsto t D_u f(a)$ is linear, so by considering $D_u f(a)$ not as a vector in $\mathbb{R}^p$ but as a linear function $\mathbb{R} \to \mathbb{R}^p$, we have established the statement.
 
 TODO: revisit, generalize
 
@@ -167,7 +167,7 @@ $$Df(a)_i := \pi_i \circ Df(a)$$
 
 $$\alpha_i := \pi_i \circ \alpha$$
 
-Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o_0(1)$ as well since $\alpha \in o_0(1)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
+Then if $Df(a)$ exists, then $f_i(a + h) - f_i(a) = Df(a)_i(h) + \alpha_i(h)$ for all $i$. $\alpha_i \in o(1)$ as well since $\alpha \in o(1)$ implies that for all $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h \|$, hence $| \alpha_i(h) | < \epsilon \|h\|$ as well. Since $\pi_i$ is linear, $Df(a)_i$ is linear as well. Hence $Df(a)_i = D f_i(a)$, so each $f_i$ is differentiable at $a$.
 
 Conversely, if $D f_i(a)$ exists for all $i$, then each $D f_i(a) \in Hom(\mathbb{R}^n, \mathbb{R})$, so the "cartesian product" defined by $L(h) = (D f_1(a)(h), \ldots, D f_p(a)(h))$ is linear as well. If we can prove that the cartesian product $\alpha(h) := (\alpha_1(h), \ldots, \alpha_p(h))$ is infinitesimal w.r.t. $h$, then we will have that $Df(a) = L$ exists. But we can find a $\delta$ such that for all $h$ with $\|h\| < \delta_i$, $| \alpha_i(h) | < \epsilon \|h\| / \sqrt{p}$. So for all $h$ with $\|h\| < \delta = min \{\delta_1, \ldots, \delta_p\}$, $\| \alpha(h) \| = \sqrt{\sum_1^p | \alpha_i(h) |^2} \leq \epsilon \|h\|$, proving that $L = Df(a)$.
 
@@ -181,14 +181,14 @@ If $D_u f(a)$ exists, then we already know from a previous proposition that $D_u
 
 $$\phi_i(t) - \phi_i(0) = t D \phi_i(0) + \alpha(t)$$
 
-such that $\alpha \in o_0(1)$. This implies that
+such that $\alpha \in o(1)$. This implies that
 
 $$lim_{t \to 0} \frac{\phi_t(t) - \phi_i(0)}{t} = D \phi_i(0)$$
 
 However, $\phi_i(t) = f_i(a + tu)$, so $D \phi_i(0) = D_u f_i(a)$.
 
 
-Conversely, (TODO: prove this?) $\alpha: B \to \mathbb{R}$ defined by $\alpha(t) = f_i(a + tu) - f(a) - D_u f_i(a) t$ has $\alpha \in o_0(1)$. So the function which assigns $t \mapsto f(a + tu) - f(a) - D_u f(a) t$ has each component function in $o_0(1)$. TODO: prove that this means the function is in $o_0(1)$, hence $D_u f(a) = (D_u f_1(a), \ldots, D_u f_p(a)$.
+Conversely, (TODO: prove this?) $\alpha: B \to \mathbb{R}$ defined by $\alpha(t) = f_i(a + tu) - f(a) - D_u f_i(a) t$ has $\alpha \in o(1)$. So the function which assigns $t \mapsto f(a + tu) - f(a) - D_u f(a) t$ has each component function in $o(1)$. TODO: prove that this means the function is in $o(1)$, hence $D_u f(a) = (D_u f_1(a), \ldots, D_u f_p(a)$.
 
 TODO: is there a cleaner proof? This is supposed to be a corollary, not a completely distinct proof.
 
@@ -210,11 +210,11 @@ This establishes the statement.
 
 
 ## Linearity of the derivative
-If $f, g : A \to \mathbb{R}^p$, $A \subseteq \mathbb{R}^n$, $a \in int(A)$, $c \in \mathbb{R}$, then if $Df(a)$ and $Dg(a)$ exist, then $D(f+g)(a)$ and $D(cf)(a)$ also exist.
+If $f, g : A \to \mathbb{R}^p$, $A \subseteq \mathbb{R}^n$, $a \in int(A)$, $c \in \mathbb{R}$, then if $Df(a)$ and $Dg(a)$ exist, $D(f+g)(a)$ and $D(cf)(a)$ also exist. and $D(f+g)(a) = Df(a) + Dg(a)$ and $D(cf)(a) = c Df(a)$.
 
-*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o_0(1)$. For any $\epsilon > 0$, there are $\delta_1$, $\delta_2$ such that for all $h$, $\|h\| < \delta_1$, $\| \alpha(h) \| < \epsilon \|h \| / 2$ and also for all $h$, $\|h\| < \delta_2$, $\| \beta(h) \| < \epsilon \|h \| / 2$. So for all $h with $\|h\| < min \{ \delta_1, \delta_2 \}$, \| (\alpha + \beta)(h) \| \leq \| \alpha(h) \| + \| \beta(h) \| < \epsilon \|h\|$. So $\alpha + \beta \in o_0(1)$ as well, hence $Df(a) + Dg(a) = D(f+g)(a)$.
+*Proof:* We know that $Df(a) + Dg(a)$ is linear. By hypothesis there are $\alpha, \beta: Diff(a, a) \to \mathbb{R}^p$ such that $\alpha, \beta \in o(1)$.  But $\alpha + \beta \in o(1)$ as well, which along with $(f+g)(a + h) - (f+g)(a) = Df(a)(h) + Dg(a)(h) + \alpha(h) + \beta(h)$ proves that $Df(a) + Dg(a) = D(f+g)(a)$.
 
-Also, for any $\epsilon > 0$ there is a $\delta$ such that for all $h$ with $\|h\| < \delta$, \| \alpha(h) \| < \epsilon \|h\| / |c|$, so for the same $h$ we have $\| c \alpha(h) \| = |c| \| \alpha(h) \| < \epsilon \|h\|$. Hence $(c \alpha) \in o_0(1)$. We know $c Df(a)$ is linear, so this proves that $c Df(a) = D (cf)(a)$.
+Also, $cf(a+h) - cf(a) = c Df(a)(h) + c \alpha(h)$, and since $c \alpha \in o(1)$, we have $c Df(a) = D (cf)(a)$.
 
 
 ## Derivative of a restriction
