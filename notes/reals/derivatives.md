@@ -13,7 +13,8 @@ If $p: X \to V$ and $q: X \to W$ for some normed vector spaces $V$ and $W$, then
 
 If $f$ is infinitesimal w.r.t. $g$ as $x \to a$, we write $f \in o_a(g)$.
 
-As shorthand for being infinitesimal w.r.t the identity function on $\mathbb{R}^n$, we will write that a function is $o_a(1)$.
+As shorthand for being infinitesimal w.r.t the identity function on $\mathbb{R}^n$, we will write that a function is $o_a(1)$. So if $V, W$ are normed vector spaces and $S \subseteq V$, then $f: S \to W$ is $o_a(1)$ iff for all $\epsilon > 0$ there is a $\delta > 0$ such that for all $v \in $S$ with $\|v - a\| < \delta$, $\|f(v)\| < \epsilon \|v\|$.
+
 
 ## Limit of a linear function as input goes to zero
 If $L \in Hom(\mathbb{R}^n, \mathbb{R}^p)$, then $lim_{h \to 0} L(h) = 0$
@@ -67,6 +68,14 @@ So $\alpha: B \to \mathbb{R}^p$ defined by $\alpha(t) = \phi(t) - \phi(0) - t D_
 If $\alpha \in o_a(1)$, then $lim_{h \to a} \alpha(h) = 0$.
 
 *Proof:* By hypothesis, for every $\epsilon > 0$ there is a $\delta$ such that for all $h \in dom \alpha$ with $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\|$. So for all $h$ with $0 < \|h\| < min(\delta, 1)$, $\| \alpha(h) \| < \epsilon$, which proves the statement
+
+
+## Linear combination of functions infinitesimal wrt identity
+If $f, g: X \to V$ for some metric space $X$ and some normed vector space $V$ and $f, g \in o_a(1)$, then for $c \in \mathbb{F}$, $f + g \in o_a(1)$ and $cf \in o_a(1)$.
+
+*Proof:* By hypothesis for all $\epsilon > 0$ there is a $\delta_1$ such that $d(x, a) < \delta_1$ implies $\|f(x)\| < \epsilon \|x\| / 2$. There is also a $\delta_2$ such that for all $x$ with $d(x, a) < \delta_2$, $\|g(x)\| < \epsilon \|x\| / 2$. So for all $x$ with $d(x, a < min\{ \delta_1, \delta_2 \}$, \|f(x) + g(x)\| \leq \|f(x)\| + \|g(x)\| < \epsilon \|x\|$.
+
+Also there is a $\gamma$ such that for all $x \in B(a; \gamma)$, $\|f(x)\| < \epsilon \|x\| / |c|$, so for the same $x$ we have $\|cf(x)\| = |c| \|f(x)\| < \epsilon \|x\|$.
 
 
 ## Lemma for the limit of a parameterized multivariable function
@@ -360,7 +369,9 @@ To go along with this, $f$ is said to be $C^0$ iff it is continuous.
 
 
 ## Chain rule
-If $U$ open in $\mathbb{R}^n$, $V$ open in $\mathbb{R}^p$, $f: U \to V$, $g: V \to \mathbb{R}^q$, $a \in U$, $f$ is differentiable at $a$, $g$ is differentiable at $b = f(a)$, then $g \circ f$ is differentiable at $a$ and $D(g \circ f)(a) = $D g(b) \circ D f(a)$.
+If $U \subseteq \mathbb{R}^n$, $V \subseteq \mathbb{R}^p$, $f: U \to V$, $g: V \to \mathbb{R}^q$, $a \in U$, $f$ is differentiable at $a$, $g$ is differentiable at $b = f(a)$, then $g \circ f$ is differentiable at $a$ and $D(g \circ f)(a) = $D g(b) \circ D f(a)$.
+
+TODO: generalize this so the domains don't have to be open sets?
 
 *Proof:*
 
@@ -376,10 +387,18 @@ Since $t = Df(a)(h) + \alpha(h)$ for some $\alpha in o_0(1)$, we have:
 
 $$(g \circ f)(a + h) - (g \circ f)(a) = Dg(b)(f(a+h) - f(a))  + \beta(f(a+h) - f(a))$$
 
-By definition of the derevative, $f(a+h) - f(a) = Df(a)(h) + \alpha(h)$, with $\alpha \in o_0(h)$, so
+By definition of the derivative, $f(a+h) - f(a) = Df(a)(h) + \alpha(h)$, with $\alpha \in o_0(1)$, so by linearity of $Dg(b)$:
 
-$$(g \circ f)(a + h) - (g \circ f)(a) - Dg(b)[Df(a)(h)] = Dg(b)[Df(a)(h) + \alpha(h)] - Dg(b)[Df(a)(h)] + \beta[f(a+h) - f(a)]$$
+$$(g \circ f)(a + h) - (g \circ f)(a) - Dg(b)[Df(a)(h)] = Dg(b)[\alpha(h)] + \beta[f(a+h) - f(a)]$$
 
-We knoe $lim_{h \to 0} f(a+h) - f(a) = 0$ and $lim_{h \to 0} \beta(h) = 0$
+So we need only prove that $h \mapsto \beta[f(a+h) - f(a)]$ is $o_0(1)$ and that $Dg(b) \circ \alpha$ is as well.
 
-TODO
+For any $h$ we can write $\alpha(h) = \sum_1^p a_i e_i$ since $\alpha(h) \in \mathbb{R}^p$. So $$\| Dg(b)[\alpha(h)] \| \leq \sum_1^p |a_i| Dg(b)[e_i] \leq \| \alpha(h) \| \sum_1^p \| Dg(b)[e_i] \|$. Let $M := \sum_1^p \| Dg(b)[e_i] \|$. We can find a $\delta$ such that for all $\|h\| < \delta$, $\| \alpha(h) \| < \epsilon \|h\| / M$. So for the same $h$, we have $\| Dg(b)[\alpha(h)] \| < \epsilon \|h\|$. This proves that $Dg(b) \circ \alpha \in o_0(1)$.
+
+To prove the other, we first need a fact. We have by definition
+
+$$\|f(a+h) - f(a)\| = \|Df(a)(h) + \alpha(h)\| \leq \|Df(a)(h) \| + \| \alpha(h)\|$$
+
+We know that $\|Df(a)(h)\| \leq \|h\| M$ from above, and that there is a $\delta$ such that for all $\|h\| < \delta$, $\| \alpha(h) \| < \|h\|$. So for the same $h$ we have $\|f(a+h) - f(a)\| \leq \|h\| (M + 1)$.
+
+For every $\epsilon$, there is a $\gamma$ such that for all $\|h\| < \gamma$, $\| \beta(h) \| < (\epsilon / (M+1)) \|h\|$. By continuity of $f$ at $a$, there is a $\phi$ such that for $\|h\| < \phi$, $\|f(a+h) - f(a)\| < \gamma$. Hence for $h$ such that $\|h\| < min \{ \phi, \delta \}$, we have $\beta(f(a+h) - f(a))\| < \epsilon \|f(a+h) - f(a)\| / (M+1)  \leq \epsilon \|h\|$. So $h \mapsto \beta(f(a+h) - f(a)) \in o_0(1)$.
