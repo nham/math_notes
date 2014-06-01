@@ -175,11 +175,89 @@ Equivalently, $(f, \mathcal{S}, \mathcal{T})$ is continuous iff for all $x \in X
 *Proof:* Let  $B \in N_Y(f(x))$. Then if $f^{pre}(B) \in N_X(x)$, $f(f^{pre}(B)) = B$. Conversely, if $M \in N_X(x)$ with $f(M) \subseteq B$, then $M \subseteq f^{pre}(B)$, so $f^{pre}(B) \in N_X(x)$.
 
 
+## Open set characterization of continuity
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces and $f: X \to Y$, then $f$ is a continuous map iff for every open $V \subseteq Y$, $f^{pre}(V)$ is open in $X$.
+
+*Proof:* If $f$ is continuous, then for any open $V subseteq Y$, for all $x \in f^{pre}(V)$, $f(x) \in V$, so $V \in N_Y(f(x))$ (since $V$ is open), so $f^{pre}(V) \in N_x(x)$ by continuity, hence $f^{pre}(V)$ is open in $X$. Conversely if the inverse image of every open set is open, then for any $x \in X$ and any $M \in N_Y(f(x))$, there is a $V$ open in $Y$ such that $f(x) \in V \subseteq M$, so $x \in f^{pre}(V) \subseteq f^{pre}(M)$. Since $f^{pre}(V)$ is open in $X$ by hypothesis, $f^{pre}(M) \in N_X(x)$.
+
+
+
 ## Definition of subspaces
-TODO
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **subspace topology** on $A$ is defined to be $\mathcal{S} := \{ A \cap T : T \in \mathcal{T} \}$. This is a topology on $A$, and under this topology $A$ is called a **subspace**.
+
+*Proof:* $A \cap \emptyset = \emptyset \in \mathcal{S}$, $A \cap X = A \in \mathcal{S}$. If $U, V \in \mathcal{S}$, then there are $S, T \in \mathcal{T}$ such that $U = S \cap A$, $V = T \cap A$, $U \cap V = S \cap T \cap A$. But $S \cap T \in \mathcal{T}$, so $U \cap V \in \mathcal{S}$. Finally, if $\mathcal{B} \subseteq \mathcal{S}$, then by definition, if $I$ indexes $\mathcal{B}$, we can construct another collection $\mathcal{C} \subseteq \mathcal{T}$ indexed by $I$ such that $B_i = A \cap C_i$ for all $i \in I$. Hence $\bigcup \mathcal{B} = \bigcup_{i \in I} A \cap C_i = A \cap \bigcup \mathcal{C}$. But $\mathcal{T}$ is closed under arbitrary union, so $\bigcup \mathcal{C} \in \mathcal{T}$, proving $\bigcup \mathcal{B} \in \mathcal{S}$.
+
+
+## Notation
+For the neighborhood function $N$ and the sets $clo A$, $int A$, $acc A$, etc., it will often be necessary to specify which topological space we mean, especially when working with subspaces. So $clo_X Y$ will mean the closure of $A$ with respect to the topological space $X$. And so on for the other constructs.
 
 
 ## Restrictions of continuous maps are continuous
-If $f: X \to Y$ is a continuous map between some topological spaces $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, then if $A \subseteq X$, the restriction $f|A: A \to Y$ is also continuous.
+If $f: X \to Y$ is a continuous map between some topological spaces $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, then if $A \subseteq X$, the restriction $f|A: A \to Y$ is also continuous (where the topology on $A$ is the subspace topology).
 
-*Proof:* TODO
+*Proof:* By hypothesis for any open $U \subseteq Y$, $f^{pre}(U)$ open in $X$, so $V = f^{pre}(U) \cap A$ is open in $A$. It remains to prove that $(f|A)^{pre}(U) = V$, but this is true by inspection.
+
+
+## Constant, identity functions are continuous
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then any function $f: X \to Y$ defined by $f(x) = y$ for all $x \in X$ and some $y \in Y$ is continuous, as is the identity function $id_X: X \to X$.
+
+*Proof:* $f^pre(V)$ for any open $V \subseteq Y$ is either $X$ or $\emptyset$ based on whether $y \in V$. In either case, the pre-image is open. Also, $id_X^{pre}(V) = V$, so it is clearly continuous.
+
+
+## Composition of continuous maps is continuous
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, $(Z, \mathcal{U})$ are topological spaces, $f: X \to Y$ and $g: Y \to Z$ are continuous maps, then $g \circ f$ is a continuous map.
+
+*Proof:* If $W$ is open in $Z$, then $g^{pre}(W) is open in $Y$, hence $f^{pre}(g^{pre}(W))$ is open in $X$. But $(g \circ f)^{pre}(W) = \{x \in X : f(x) \in g^{pre}(W) \} = f^{pre}(g^{pre}(W))$.
+
+
+## Neighborhoods and subspaces
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then for any $a \in A$, $S \in N_A(a)$ iff $\exists M \in N_X(a)$, $S = M \cap A$.
+
+*Proof:*
+
+ 1. If $S \in N_A(a)$, then $\exists M \in N_X(a)$, $S = M \cap A$.
+
+    1. There is a $U$ open in $A$ such that $x \in U \subseteq S$. 
+
+       *Proof:* $B \in N_A(x)$
+
+    2. There is a $V$ open in $X$ such that $U = V \cap A$
+
+       *Proof:* Definition of open subsets in a subspace.
+
+    3. Q.E.D.
+
+       *Proof:* $V$ contains $a$, so $V \in N_X(a)$. Then $S \cup V \in N_X(a)$ as well and $S = (S \cup V) \cap A = (S \cap A) \cup (V \cap A) = S \cup U = S$.
+
+ 2. If $\exists M \in N_X(a)$, $S = M \cap A$, then $S \in N_A(a)$.
+
+    *Proof:* There is a $V$ open in $X$ such that $a \in V \subseteq M$, so $U := V \cap A$ is open in $A$, $a \in U$ (since $a \in V$ and $a \in A$) and $U \subseteq S$.Thus $S \in N_A(a)$.
+
+
+## Neighborhoods and subspaces lemma
+If $(X, \mathcal{T})$ is a topological space and $x \in X$, $M \in N_X(x)$, then any $B \in N_M(x)$ has $B \in N_X(x)$ as well.
+
+*Proof:* We know that $B = C \cap M$ for some $C \in N_X(x)$. But since $M \in N_X(x)$ as well, so is $C \cap M = B$.
+
+
+## Local criterion for continuity
+If $f: X \to Y$ is a function between some topological spaces $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, then $f$ is continuous iff every $x \in X$ has some $B \in N(x)$ with $f|B$ is continuous.
+
+*Proof:* If $f$ is continuous, every restriction to a subset is also continuous. So pick any neighborhood for every $x \in X$. 
+
+Conversely, let $x \in X$ and $M \in N_Y(x)$. There is some $B \in N_X(x)$ such that $f|B$ is continuous, meaning that $(f|B)^{pre}(M) \in N_B(x)$. But $(f|B)^{pre}(M) = f^{pre}(M) \cap B$, so $(f|B)^{pre}(M) \subseteq f^{pre}(M)$ and $(f|B)^{pre}(M) \in N_X(x)$ by the lemma. Thus $f^{pre}(M) \in N_X(x)$ as well.
+
+
+## Definition of coarser/finer topologies
+If $\mathcal{S}$ and $\mathcal{T}$ are two topologies on a set $X$, then $\mathcal{S}$ is said to be **coarser** than $\mathcal{T}$ (and $\mathcal{T}$ **finer** than $\mathcal{S}$) iff $\mathcal{S} \subseteq \mathcal{T}$.
+
+## Alternative characterization of coarser/finer topologies
+If $X$ is a set and $\mathcal{S}$, $\mathcal{T}$ are two topologies on $X$, then $\mathcal{S}$ is coarser than $\mathcal{T}$ iff the identity function on $X$ is a continuous function $(X, \mathcal{T}, \mathcal{S})$
+
+*Proof:* $id_X$ is a continuous map $(X, \mathcal{T}, \mathcal{S})$ iff every set open under $\mathcal{S}$ is also open under $\mathcal{T}$, which is true iff $\mathcal{S}$ is coarser than $\mathcal{T}$.
+
+
+## Definition of discrete, trivial topologies
+If $X$ is a set, the **discrete topology** on $X$ is the powerset of $X$ and the **trivial topology** on $X$ is $\{ \emptyset, X\}$. The discrete topology is the finest possible topology on $X$ and the trivial topology the coarsest possible topology.
+
+*Proof:* Every topology on $X$ contains $\emptyset$ and $X$ and is a subcollection of the powerset.
