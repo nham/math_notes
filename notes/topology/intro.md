@@ -261,3 +261,39 @@ If $X$ is a set and $\mathcal{S}$, $\mathcal{T}$ are two topologies on $X$, then
 If $X$ is a set, the **discrete topology** on $X$ is the powerset of $X$ and the **trivial topology** on $X$ is $\{ \emptyset, X\}$. The discrete topology is the finest possible topology on $X$ and the trivial topology the coarsest possible topology.
 
 *Proof:* Every topology on $X$ contains $\emptyset$ and $X$ and is a subcollection of the powerset.
+
+
+## "Is coarser than" is a partial order
+If $X$ is a set and $\mathcal{R}, \mathcal{S}, \mathcal{T}$ are topologies on $X$, then if we write $\mathcal{S} \sim \mathcal{T}$ exactly when $\mathcal{S}$ is coarser than $\mathcal{T}$, we have $\sim$ is a partial order.
+
+*Proof:* $\sim$ is reflexive since the identity map from a space to itself is continuous. If $id_X$ is a continuous map $(id_X, \mathcal{T}, \mathcal{S})$ and $(id_X, \mathcal{S}, \mathcal{R})$, then $id_X \circ id_X = id_X$ is a continuous map $(id_X, \mathcal{T}, \mathcal{R})$ since the composition of continuous functions is continuous. This establishes transitivity.
+
+Finally, if $\mathcal{S} \sim \mathcal{T}$ and $\mathcal{T} \sim \mathcal{S}$, then they are the same topologies.
+
+
+## Definition of homeomorphism
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is a **homeomorphism** iff it is bijective, continuous, and its inverse is continuous.
+
+
+## Alternative characterization of homemorphism (neighborhoods)
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is a homeomorphism iff for all $x \in X$ and $M \subseteq X$, $M \in N_X(x)$ iff $f(M) \in N_Y(f(x))$.
+
+*Proof:* Let $g := f^{-1}$.
+
+If $f$ is a homeomorphism, then for all $x \in X$, every $B \in N_Y(f(x))$ has $f^{pre}(B) \in N_X(x)$ and for every $y \in Y$, every $A \in N_X(g(y))$ has $g^{pre}(A) \in N_Y(y)$.
+
+The latter statement is equivalent to: for all $x \in X$, every $A \in N_X(x)$ has $g^{pre}(A) \in N_Y(f(x))$.
+
+But $g^{pre}(Z) = f(Z)$ for all $Z \subseteq X$, so we have that $f$ is a homeomorphism iff for all $x \in X$, every $B \in N_Y(f(x)) has $f^{pre}(B) \in N_X(x)$ and every $A \in N_X(x)$ has $f(A) \in N_Y(f(x))$
+
+But $f^{pre}(f(M)) = M$ since $f$ is injective, so the statement holds.
+
+
+## Composition of homeomorphisms is a homeomorphism
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, $(Z, \mathcal{U})$ are topological spaces, $f: X \to Y$ and $g: Y \to Z$ are homeomorphisms, then $g \circ f$ is a homeomorphism.
+
+*Proof:* The composition of bijective functions is bijective and the composition of continuous functions is continuous.
+
+
+## Definition of an embedding
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is an **embedding** iff it is injective, continuous, and when we consider $g: X \to f(X)$, we obtain a homeomorphism between $X$ and $f(X)$ considered as a subspace of $Y$.
