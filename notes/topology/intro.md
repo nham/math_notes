@@ -157,14 +157,26 @@ If $U \subset A$ is open, $A$ is a neighborhood for all points in $U$, so $U \su
 For the other half, $S \in C(A)$ iff $X - S \in O(X - A)$, so $X - clo A = int(X - A) = \bigcup O(X - A) = X - \bigcap_{S \in O(X - A)} (X - S) = X - \bigcap C(A)$, hence $clo A = \bigcap C(A)$.
 
 
-## Definition of closure point, interior point, isolated point, accumulation point
-If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then $x \in X$ is an **interior point** of $A$ iff $x \in int A$, and is a **closure point** of $A$ iff $x \in clo A$. $x$ is an **accumulation point** of $A$ iff each neighborhood of $x$ intersects $A - x$, and an **isolated point** of $A$ iff $x \in A$ and some neighborhood $B$ of $x$ does not intersect $A - x$.
+## Definition of boundary
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **boundary** of $A$ in $(X, \mathcal{T})$ is defined to be $\partial A := clo A - int A$.
+
+## Definition of exterior
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **exterior** of $A$ in $(X, \mathcal{T})$ is defined to be $ext A := int X - A$.
+
+
+## Definition of closure point, interior point, boundary point, isolated point, accumulation point
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then $x \in X$ is an **interior point** of $A$ iff $x \in int A$, a **closure point** of $A$ iff $x \in clo A$, and a **boundary point** iff $x \in \partial A$. $x$ is an **accumulation point** of $A$ iff each neighborhood of $x$ intersects $A - x$, and an **isolated point** of $A$ iff $x \in A$ and some neighborhood $B$ of $x$ does not intersect $A - x$.
 
 The set of all accumulation points of $A$ is denoted $acc A$.
 
 
 ## Definition of dense subset
 If $(X, \mathcal{T})$ is a topological space, $A \subseteq X$ is **dense** in $X$ iff $clo A = X$.
+
+
+## Definition of separable space
+If $(X, \mathcal{T})$ is a topological space, $X$ is **separable** iff it has a subset $S$ which is both countable and dense in $X$.
+
 
 
 ## Definition of continuity
