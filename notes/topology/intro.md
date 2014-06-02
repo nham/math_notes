@@ -3,11 +3,11 @@
 ## Definition of topological space (neighborhood topology)
 A **neighborhood topology** on any set $X$ is a map $N: X \to \mathcal{P}(\mathcal{P} X)$ such that, for all $x \in X$:
 
- - $N(x) \neq \emptyset$
- - for all $U \in N(x)$, $x \in U$ (every neighborhood of $x$ contains $x$)
- - for all $U \in N(x)$ and all $S \in \mathcal{P}(X)$ such that $U \subseteq S$, $S \in N(x)$ (every superset of a neighborhood of $x$ is a neighborhood of $x$)
- - for all $U, V \in N(x)$, $U \cap V \in N(x)$ (every intersection of two neighborhoods of $x$ is a neighborhood of $x$)
- - for all $U \in N(x)$, there is a $S \subseteq U$, $S \in N(x)$ such that for all $y \in S$, $S \in N(y)$. (something something open subset?)
+ 0. $N(x) \neq \emptyset$
+ 1. for all $U \in N(x)$, $x \in U$ (every neighborhood of $x$ contains $x$)
+ 2. for all $U \in N(x)$ and all $S \in \mathcal{P}(X)$ such that $U \subseteq S$, $S \in N(x)$ (every superset of a neighborhood of $x$ is a neighborhood of $x$)
+ 3. for all $U, V \in N(x)$, $U \cap V \in N(x)$ (every intersection of two neighborhoods of $x$ is a neighborhood of $x$)
+ 4. for all $U \in N(x)$, there is a $S \subseteq U$, $S \in N(x)$ such that for all $y \in S$, $S \in N(y)$. (something something open subset?)
 
 A set $X$ equipped with a neighborhood topology $N$ is called a **topological space**.
 
@@ -88,7 +88,7 @@ If $A, B \in N(x)$, there are $U, V \in \mathcal{U}$ such that $x \in U \subsete
 Finally, if $A \in N(x)$, by definition there is a $U \in \mathcal{U}$ such that $x \in U \subseteq A$. So $U \in N(x)$. But for all $y \in U$, $U \in N(y)$ by definition ($y \in U \subseteq U$).
 
 
-### Corollary
+### Remark
 We say that $(X, \mathcal{U})$ from the hypothesis of the last proposition is an **open set topological space**, and that the original definition of "topological space" is a **neighborhood topological space**. The previous proposition proves that any neighborhood topological space gives rise to an open set topological space, and vice versa.
 
 It is more convenient to work with the open set topological space, so from now on a topological space will use the open set topological space definition.
@@ -98,6 +98,13 @@ It is more convenient to work with the open set topological space, so from now o
 If $(X, \mathcal{U})$ is an open set topological space, then $\mathcal{U}$ is the collection of open sets of $(X, N)$
 
 *Proof:* If $U \in \mathcal{U}$, for all $x \in U$, $U \in N(x)$ by definition of $N(x)$. So $U$ is open. Conversely, if $V$ is open for some $V \subseteq X$, then for all $x \in V$, $V \in N(x)$, so there is a $U_x \in \mathcal{U}$ such that $x \in U_x \subseteq V$. Hence $V = \bigcup_{x \in V} U_x \in \mathcal{U}$ by the union property of $\mathcal{U}$.
+
+
+## Definition of metric topology
+If $(X, d)$ is a metric space, we say that the **metric topology** on $X$ is the collection of open sets in the metric space. 
+
+## Definition of usual topology on $\mathbb{R}$
+The **usual topology on $\mathbb{R}$** is the metric topology from the metric $d(x, y) := |x - y|$.
 
 
 ## Definition of closed set
@@ -160,6 +167,14 @@ For the other half, $S \in C(A)$ iff $X - S \in O(X - A)$, so $X - clo A = int(X
 ## Definition of boundary
 If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **boundary** of $A$ in $(X, \mathcal{T})$ is defined to be $\partial A := clo A - int A$.
 
+
+## Characterizing the boundary
+For a topological space $(X, \mathcal{T})$ and subset $A$ of $X$, $\partial A$ is the collection of points for which every neighborhood intersects both $A$ and $X - A$.
+
+*Proof:* $clo A = X - int(X - A)$, do $\partial A = X - int(X - A) - int A$. In other words, the boundary is exactly those elments not in the interior of $A$ or $X - A$. But this could only be true for an element $x$ of $X$ iff no neighborhood of $x$ is contained entirely in $A$ or in $X - A$.
+
+
+
 ## Definition of exterior
 If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **exterior** of $A$ in $(X, \mathcal{T})$ is defined to be $ext A := int X - A$.
 
@@ -202,6 +217,40 @@ If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **sub
 
 ## Notation
 For the neighborhood function $N$ and the sets $clo A$, $int A$, $acc A$, etc., it will often be necessary to specify which topological space we mean, especially when working with subspaces. So $clo_X Y$ will mean the closure of $A$ with respect to the topological space $X$. And so on for the other constructs.
+
+
+## Definition of product spaces
+If $(X, M)$ and $(Y, N)$ are neighborhood topological spaces, then $(X \times Y, P)$ is a **product space** iff $P(x, y) = \{ S \subseteq X \times Y : \exists B \in M(x), C \in N(x), B \times C \subseteq S \}$. $(X \times Y, P)$ is a bona fide topological space, and $P$ is called the **product topology**.
+
+In words, the neighborhoods of a point $(x, y) \in X \times Y$ when $X \times Y$ is a product space are the supersets of products of a neighborhood of $x$ and a neighborhood of $y$.
+
+### Every neighborhood contains a product of open neighborhoods
+If $(x,y) \in X \times Y$ and $S \in P(x,y)$, then there are $U$ open in $X$, $V$ open in $Y$, $U \in M(x)$, $V \in N(y)$ such that $U \times V \subseteq S$.
+
+*Proof:* By definition of $P$, there are $B \in M(x)$ and $C \in N(y)$ such that $B \times C \subseteq S$. By definition of $M$ and $N$, there are open $U$ in X$ and open $V$ in $Y$ with $U \in M(x)$, $V \in N(y)$, such that $U \subseteq B$ and $V \subseteq C$. So $U \times V \subseteq B \times C \subseteq S$.
+
+
+### Proof that $(X \times Y, P)$ is a topological space
+
+*Proof:* We must prove that $P$ obeys the neighborhood axioms. Clearly $P(x,y) \neq \emptyset$ since $M(x) \neq \emptyset \neq N(y)$. For all $A \in P(x,y)$, there is $B \in M(x)$, $C \in N(y)$ such that $B \times C \subseteq A$. But $(x, y) \in B \times C$ by definition of $B$ and $C$, so the first neighborhood axiom holds. The second axiom holds since by definition of $P(x,y)$, every superset of a neighborhood of $(x,y)$ is again a neighborhood of $(x,y)$.
+
+If $S, T \in P(x, y)$, then there are $B_1, B_2 \in M(x)$ and $C_1, C_2 \in N(y)$ such that $B_1 \times C_1 \subseteq S$, $B_2 \times C_2 \subseteq T$, then because $B_1 \cap B_2 \subseteq B_1, B_2$ and $C_1 \cap C_2 \subseteq C_1, C_2$, we have $(B_1 \cap B_2) \cap (C_1 \cap C_2) \subseteq S \cap T$, so $S \cap T \in P(x,y)$.
+
+Finally, for any $S \in P(x,y)$, by the lemma there are $U$ open in X$ and $V$ open in $Y$ with $U \in M(x)$, $V \in N(y)$, such that $U \times V \subseteq S$. We also know (since $U \in M(x)$, $V \in N(y)$) that $U \times V \in P(x,y)$.
+
+Now for any $(u, v) \in U \times V$, $U \in M(u)$ and $V \in N(v)$, so $U \times V \in P(u,v)$. Hence $U \times V$ is open in $X \times Y$, which proves that the fourth neighborhood axiom holds.
+
+
+## Product of open sets is open in product space
+If $(X, M)$ and $(Y, N)$ are neighborhood topological spaces and $(X \times Y, P)$ is a product space, then if $U$ is open in $X$ and $V$ open in $Y$, then $U \times V$ is open in $X \times Y$.
+
+*Proof:* For all $(u, v) \in U \times V$, since $U \in M(u)$ and $V \in N(v)$, $U \times V \in P(u, v)$ (by the definition of $P$).
+
+
+## Open set characterization of product space
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $(X \times Y, \mathcal{U})$ is a product space iff $\mathcal{U} = \{ \bigcup_{i \in I} S_i \times T_i : \exists \{S_i : i \in I\} \subseteq \mathcal{S}, \exists \{T_i : i \in I\} \subseteq \mathcal{T} \}$
+
+*Proof:* We know that each product of open sets is open in $X \times Y$ (from the last proposition), so clearly arbitrary unions of products of open sets will be open as well in $X \times Y$ (since a topology is closed under arbitrary union). To prove that these are the only open sets, consider an arbitrary open set $W \in \mathcal{U}$. Then $int W = W$ by definition, so for all $(x,y) \in W$, $W \in P(x,y)$. This means that (by a previous lemma) there are $U_x \in M(x)$, $V_y \in N(y)$, $U_x$ open in $X$ and $V_y$ open in $Y$ such that $(x,y) \in U_x \times V_y \subseteq W$. Since each $U_x \times V_y$ is open, $\bigcup_{(x,y) \in W} U_x \times V_y = W$.
 
 
 ## Restrictions of continuous maps are continuous
@@ -309,3 +358,16 @@ If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, $(Z, \mathcal{U})$ are topological
 
 ## Definition of an embedding
 If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is an **embedding** iff it is injective, continuous, and when we consider $g: X \to f(X)$, we obtain a homeomorphism between $X$ and $f(X)$ considered as a subspace of $Y$.
+
+
+## Definition of Hausdorff space
+A topological space $(X, \mathcal{T})$ is **Hausdorff** iff any two distinct points have disjoint neighborhoods around them.
+
+
+
+## Examples
+TODO
+ - every open ball in R is homeomorphic to every other open ball
+ - every open ball in R^n is homeomorphic to every other open ball
+ - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
+ - R^n is separable
