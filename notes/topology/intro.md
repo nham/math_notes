@@ -9,7 +9,7 @@ A **neighborhood topology** on any set $X$ is a map $N: X \to \mathcal{P}(\mathc
  3. for all $U, V \in N(x)$, $U \cap V \in N(x)$ (every intersection of two neighborhoods of $x$ is a neighborhood of $x$)
  4. for all $U \in N(x)$, there is a $S \subseteq U$, $S \in N(x)$ such that for all $y \in S$, $S \in N(y)$. (something something open subset?)
 
-A set $X$ equipped with a neighborhood topology $N$ is called a **topological space**.
+A set $X$ equipped with a neighborhood topology $N$ is called a **topological space**. All the sets in $N(x)$ are called **neighborhoods of $x$**.
 
 
 ## Example: metric space
@@ -56,6 +56,10 @@ Alternatively, a set $U$ is open iff $U$ is a neighborhood of all of its element
 If $(X, N)$ is a topological space, then for all $x \in X$, $B \in N(x)$ iff there is an open $U$ such that $x \in U \subseteq B$.
 
 *Proof:* For any $B \in N(x)$, $int B$ is an open set, $x \in int B$ (since $B$ is a neighborhood of $x$) and $int B \subseteq B$. Conversely, if $U$ is an open set and $x \in U \subseteq B$, then $B \in N(x)$ since it is a superset of $U$, which is a neighborhood of $x$ because it is open.
+
+
+## Definition of an open neighborhood
+If $X$ is a space and $x \in X$, any neighborhood $U \in N(x)$ such that $U$ is open is called an **open neighborhood** of $x$.
 
 
 ## Open set facts
@@ -253,10 +257,23 @@ If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $(X \t
 *Proof:* We know that each product of open sets is open in $X \times Y$ (from the last proposition), so clearly arbitrary unions of products of open sets will be open as well in $X \times Y$ (since a topology is closed under arbitrary union). To prove that these are the only open sets, consider an arbitrary open set $W \in \mathcal{U}$. Then $int W = W$ by definition, so for all $(x,y) \in W$, $W \in P(x,y)$. This means that (by a previous lemma) there are $U_x \in M(x)$, $V_y \in N(y)$, $U_x$ open in $X$ and $V_y$ open in $Y$ such that $(x,y) \in U_x \times V_y \subseteq W$. Since each $U_x \times V_y$ is open, $\bigcup_{(x,y) \in W} U_x \times V_y = W$.
 
 
+## Definition of $n$-product spaces
+If $(X_i, \mathcal{T}_i)$ are topological spaces for $1 \leq i \leq n$, then we define inductively $\prod_1^k X_i$ to be the product space of $\prod_1^{k-1} X_i$ and $X_n$. If $X_i = X$ for all $i$, then we denote the product space simply by $X^n$.
+
+
+## Definition of the usual topology on $\mathbb{R}^n$
+The **usual topology** on $\mathbb{R}^n$ is the product space $\mathbb{R}^n$ where the topology on $\mathbb{R}$ is the usual topology.
+
+
 ## Restrictions of continuous maps are continuous
 If $f: X \to Y$ is a continuous map between some topological spaces $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, then if $A \subseteq X$, the restriction $f|A: A \to Y$ is also continuous (where the topology on $A$ is the subspace topology).
 
 *Proof:* By hypothesis for any open $U \subseteq Y$, $f^{pre}(U)$ open in $X$, so $V = f^{pre}(U) \cap A$ is open in $A$. It remains to prove that $(f|A)^{pre}(U) = V$, but this is true by inspection.
+
+### Corollary
+If $f: X \to Y$ is a continuous map between some topological spaces $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, then if $A \subseteq X$, the restriction $f|A,f(A): A \to f(A)$ is also continuous (where the topology on $A$ is the subspace topology).
+
+*Proof:* We know $f|A: A \to Y$ is continuous. So if $V$ open in $f(A)$, $V = U \cap f(A)$ for $U$ open in $Y$, so $(f|A)^{pre}(U)$ is open in $A$. but $(f|A)^{pre}(V) = (f|A)^{pre}(U)$ since if $u \in U - f(A)$, it has no pre-image. Also, $(f|A)^{pre}(V) = (f|A,f(A))^{pre}(V)$, so $f|A,f(A)$ is continuous.
 
 
 ## Constant, identity functions are continuous
@@ -350,24 +367,66 @@ But $g^{pre}(Z) = f(Z)$ for all $Z \subseteq X$, so we have that $f$ is a homeom
 But $f^{pre}(f(M)) = M$ since $f$ is injective, so the statement holds.
 
 
+## Definition of an embedding
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is an **embedding** iff it is injective, continuous, and when we consider $g: X \to f(X)$, we obtain a homeomorphism between $X$ and $f(X)$ considered as a subspace of $Y$.
+
+
 ## Composition of homeomorphisms is a homeomorphism
 If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$, $(Z, \mathcal{U})$ are topological spaces, $f: X \to Y$ and $g: Y \to Z$ are homeomorphisms, then $g \circ f$ is a homeomorphism.
 
 *Proof:* The composition of bijective functions is bijective and the composition of continuous functions is continuous.
 
 
-## Definition of an embedding
-If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is an **embedding** iff it is injective, continuous, and when we consider $g: X \to f(X)$, we obtain a homeomorphism between $X$ and $f(X)$ considered as a subspace of $Y$.
+## Definition of a local homeomorphism
+If $X$ and $Y$ are spaces and $f: X \to Y$ is a **local homeomorphism** iff it is continuous and for every $x \in X$, there is an open neighborhood $U$ of $x$ such that $f(U)$ is open and the restriction $f|U,f(U): U \to f(U)$ is a homeomorphism.
+
+
+## Every homeomorphism is a local homeomorphism
+If $X$ and $Y$ are spaces and $f: X \to Y$ is a homeomorphism, then it is also a local homeomorphism.
+
+*Proof:* Since $f$ is bijective, for every $x \in X$, we can find an open neighborhood $V$ of $f(x)$ in $Y$. Since $f$ is continuous, $f^{pre}(V)$ is an open neighborhood of $x$. If we define $U := f^{pre}(V)$, then $f(U) = V$ since $f$ is injective.
+
+the restriction to $f|U, f(U): U \to f(U)$ is also a bijection. It is also continuous, as was previously proved. It remains to prove that $(f|U,f(U))^{-1}$ is continuous. Let $g = f^{-1}$. Then $(g|f(U),U) = (f|U,f(U))^{-1}$ clearly, which is continuous because it is the restriction of a continuous map.
+
+
+## Restriction of a homeomorphism is a homeomorphism
+If $f: X \to Y$ is a homeomorphism between two spaces $X$ and $Y$, then the restriction of $f$ $f|A,f(A): A \to f(A)$ for any $A \subseteq X$ is also a homeomorphism.
+
+*Proof:* $f$ is continuous, so $f|A: A \to Y$ is continuous as well since restrictions of continuous functions are continuous. But $f|A$ is injective since it is the restriction of an injective function, so the further restriction $f|A,f(A): A \to f(A)$ is a continuous bijection. Letting $g = f|A, f(A)$,
+
+
+
+## Examples
+### Stretching $\mathbb{R}$ is a homeomorphism
+The map $f: \mathbb{R} \to \mathbb{R}$ defined by $x \mapsto cx$ for $c \neq 0$ is a homeomorphism on $\mathbb{R}$.
+
+*Proof:* It suffices to prove that $f$ is continuous, since each such $f$ is bijective and its inverse is also a stretching map. Let $A \subseteq \mathbb{R}$ is open in $\mathbb{R}$. Then $f^{pre}(A) = \{ c^{-1} a : a \in A \}$ is open in $\mathbb{R}$ since for all $b \in f^{pre}(A)$, $b = c^{-1} a$, for some $a \in A$. But by definition of open sets in a metric space, there is an $\epsilon > 0$ such that for all $x \in \mathbb{R}$ with $|x - a| < \epsilon$, $x \in A$.  So for all $y \in $f^{pre}(A)$ such that $|y - b| < |c^{-1}| \epsilon$, we have $|y - b| = |c^{-1}| |yc - a| < |c^{-1}| \epsilon$, or $|yc - a| < \epsilon$. Thus $yc \in A$, so $y \in f^{pre}(A)$.
+
+### Translation of $\mathbb{R}$ is a homeomorphism
+The map $f: \mathbb{R} \to \mathbb{R}$ defined by $x \mapsto x + z$ for $z \in \mathbb{R}$ is a homeomorphism on $\mathbb{R}$.
+
+*Proof:* It suffices to prove that $f$ is continuous, since each such $f$ is bijective and its inverse is also a translation map. Let $A \subseteq \mathbb{R}$ is open in $\mathbb{R}$. Then $f^{pre}(A) = \{ a - z : a \in A \}$ is open in $\mathbb{R}$ since for all $b \in f^{pre}(A)$, $b = a - z$, for some $a \in A$. But by definition of open sets in a metric space, there is an $\epsilon > 0$ such that for all $x \in \mathbb{R}$ with $|x - a| < \epsilon$, $x \in A$.  So for all $y \in $B$ such that $|y - b| < \epsilon$, we have $|y - b| = |y - a + z|  \leq \epsilon$, so $y+z \in A$, hence $y \in f^{pre}(A)$.
+
+
+### Any two open balls in $\mathbb{R}$ are homeomorphic
+For any $a, b \in \mathbb{R}$ and any $\epsilon, \delta > 0$, $B(a; \epsilon)$ and $B(b; \delta)$ are homeomorphic.
+
+*Proof:* It suffices to prove that $B(a; \epsilon)$ is homeomorphic to $B(0; 1)$. Via a restriction of the translation map (using local homeomorphism), $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic. Via a restriciton of the stretching map, if $x \in B(0; 1)$, then $\epsilon x \in B(0; \epsilon)$ and vice versa, so $B(0;1)$ and $B(0; \epsilon)$ are homeomorphic as well. Since the composition of homeomorphisms is a homeomorphism, it is proven.
+
+
+ - every open ball in R^n is homeomorphic to every other open ball
+ - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
+ - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
+ - R^n is separable
+
+TODO
+
 
 
 ## Definition of Hausdorff space
 A topological space $(X, \mathcal{T})$ is **Hausdorff** iff any two distinct points have disjoint neighborhoods around them.
 
 
+## Definition of locally Euclidean
+A topological space $(X, \mathcal{T})$ is **locally Euclidean of dimension $n$** iff every $x \in X$ has an open neighborhood which is homeomorphic to an open subset of $\mathbb{R}^n$. Any such neighborhood is called a **Euclidean neighborhood** of $x$
 
-## Examples
-TODO
- - every open ball in R is homeomorphic to every other open ball
- - every open ball in R^n is homeomorphic to every other open ball
- - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
- - R^n is separable
