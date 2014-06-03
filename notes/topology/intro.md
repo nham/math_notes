@@ -349,6 +349,58 @@ If $X$ is a set and $\mathcal{R}, \mathcal{S}, \mathcal{T}$ are topologies on $X
 Finally, if $\mathcal{S} \sim \mathcal{T}$ and $\mathcal{T} \sim \mathcal{S}$, then they are the same topologies.
 
 
+## Definition of a basis
+If $X$ is a set and $\mathcal{B}$ is a collection of subsets of $X$ such that 
+
+ 1. $X = \bigcup \mathcal{B}$
+ 2. If $U, V \in \mathcal{B}$, then for all $x \in U \cap V$ there is a $W \in \mathcal{B}$ such that $x \in W \subseteq U \cap V$.
+
+Then $\mathcal{B}$ is a **basis**.
+
+
+## A basis generates a topology
+If $X$ is a set and $\mathcal{B}$ a basis for $X$, then $\mathcal{T} = \{\bigcup \mathcal{A} : \mathcal{A} \subseteq \mathcal{B}\}$ is a topology for $X$.
+
+ 1. Let $Z = \{ U \subseteq X : \forall x \in U \exists B \in \mathcal{B} x \in B \subseteq U\}$
+
+ 2. $\mathcal{T} \subseteq Z$
+
+    *Proof:* For any $\mathcal{A} \subseteq \mathcal{B}$, if $x \in \bigcup \mathcal{A}$, \exists A \in \mathcal{A}$ such that $a \in X$. But $A \in \mathcal{B}$, and since $A \subseteq \bigcup \mathcal{A}$, $\bigcup \mathcal{A}$ is in $Z$.
+
+ 3. $Z \subseteq \mathcal{T}$
+
+    *Proof:* For $M \in Z$, for all $x \in M$, there is a $B_x \in \mathcal{B}$, $x \in B_x \subseteq M$. So $M = \bigcup_{x \in X} B_x$.
+
+ 4. $\mathcal{T}$ is a topology on $X$
+
+    1. $\emptyset, X \in \mathcal{T}$
+
+       *Proof:* $\emptyset = \bigcup \emptyset$ and $\emptyset \subseteq \mathcal{B}$, obviously. Also, $X = \bigcup \mathcal{B}$ since $\mathcal{B}$ is a basis.
+
+    2. If $U, V \in \mathcal{T}$, $U \cap V$ is too.
+
+       *Proof:*  If $x \in U \cap V$, there are $A, B \in \mathcal{B}$ such that $x \in A \subseteq U$ and $x \in B \subseteq V$. Since $\mathcal{B}$ is a basis, there is a $C \in \mathcal{B}$ such that $x \in C \subseteq A \cap B$. Also, $C \subseteq U \cap V$ since $A \ cap B \subseteq U \cap V$, so $U \cap V \in \mathcal{T}$ as well by (2) and (3).
+
+    3. If $\mathcal{S} \subseteq \mathcal{T}$, $\bigcup \mathcal{S}$ is too.
+
+       *Proof:* Each $S \in \mathcal{S}$ is a union of basis elements, so $\bigcup \mathcal{S}$ is too.
+
+
+## Definition of equivalent bases
+Two bases are **equivalent** iff the topologies they generate are identical.
+
+
+## Characterization of equivalent bases
+Two bases $\mathcal{B}$, $\mathcal{C}$ for $X$ are equivalent iff every $B \in \mathcal{B}$ has a $C \in \mathcal{C}$ such that $C \subseteq B$ and every $C \in \mathcal{C}$ has a $B \in \mathcal{B}$ such that $B \subseteq C$.
+
+*Proof:* TODO
+
+
+## Definition of topologically equivalent metrics
+Two metrics $d$ and $e$ on the same set $X$ are **topologically** equivalent iff their corresponding metric topologies are identical.
+
+
+
 ## Definition of homeomorphism
 If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is a **homeomorphism** iff it is bijective, continuous, and its inverse is continuous.
 
@@ -416,6 +468,7 @@ For any $a, b \in \mathbb{R}$ and any $\epsilon, \delta > 0$, $B(a; \epsilon)$ a
 
  - every open ball in R^n is homeomorphic to every other open ball
  - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
+ - metric topology, product topology on R^n are the same
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
  - R^n is separable
 
