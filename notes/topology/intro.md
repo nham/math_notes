@@ -352,6 +352,16 @@ The function $p: \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}$ defined by $p(
 To prove that the topologies are identical, we can find bases for each topology and prove them equivalent. But $\mathcal{B} = \{ \prod_1^n (a_i, b_i) : a_i, b_i \in \mathbb{R}, a_i < b_i \}$ is a basis for the product topology on $\mathbb{R}^n$ since the collection of open intervals is a basis for the usual topology on $\mathbb{R}$. Also, $B_p(a; \epsilon) = \{(x_1, \ldots, x_n) \in \mathbb{R}^n : \forall i |a - x_i| < \epsilon\} = \prod_1^n (a_i - \epsilon, a_i + \epsilon)$. Hence $\mathcal{B}$ is exactly the collection of open balls under the metric $p$. So the bases are in fact identical.
 
 
+## The product topology and the euclidean metric topology on $\mathbb{R}^n$ are the same
+The topology induced by the Euclidean metric on $\mathbb{R}^n$ is the same as the product topology.
+
+*Proof:* The previous theorem shows that the product topology is the metric topology induced by the "sup metric" $p(u, v) = max \{ | \pi_i(u) - \pi_i(v) | : 1 \leq i \leq n \}$. To prove that Euclidean metric and the sup metric are topologically equivalent, it suffices to prove that the bases are equivalent. We know that for every open ball, every point in the open ball has an open ball centered at that point contained in the original ball, so to prove basis equivalence it suffices to prove (letting $d$ be the Euclidean metric):
+
+For any $a \in \mathbb{R}^n$ and any $\epsilon > 0$, there are $\delta, \gamma > 0$ such that $B_p(a; \delta) \subseteq B_d(a; \epsilon)$ and $B_d(a; \gamma) \subseteq B_p(a; \epsilon)$.
+
+If $x \in B_d(a; \epsilon)$, $\sqrt{\sum_1^n (a_i - x_i)^2} < \epsilon$. If any $|a_i - x_i| \geq \epsilon$, then $x \notin B_d(a; \epsilon)$. So $B_d(a; \epsilon) \subseteq B_p(a; \epsilon)$.
+
+Conversely, if $x \in B_p(a; \epsilon / \sqrt n)$, then $|a_i - x_i| < \epsilon / n$, by definition, so $\sum_1^n (a_i - x_i)^2 < n (\epsilon / \sqrt n)^2$, hence $\sqrt{\sum_1^n (a_i - x_i)^2} < \epsilon$.
 
 
 ## Restrictions of continuous maps are continuous
@@ -500,12 +510,11 @@ The map $f: \mathbb{R} \to \mathbb{R}$ defined by $x \mapsto x + z$ for $z \in \
 ### Any two open balls in $\mathbb{R}$ are homeomorphic
 For any $a, b \in \mathbb{R}$ and any $\epsilon, \delta > 0$, $B(a; \epsilon)$ and $B(b; \delta)$ are homeomorphic.
 
-*Proof:* It suffices to prove that $B(a; \epsilon)$ is homeomorphic to $B(0; 1)$. Via a restriction of the translation map (using local homeomorphism), $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic. Via a restriciton of the stretching map, if $x \in B(0; 1)$, then $\epsilon x \in B(0; \epsilon)$ and vice versa, so $B(0;1)$ and $B(0; \epsilon)$ are homeomorphic as well. Since the composition of homeomorphisms is a homeomorphism, it is proven.
+*Proof:* It suffices to prove that $B(a; \epsilon)$ is homeomorphic to $B(0; 1)$. Via a restriction of the translation map (using local homeomorphism), $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic. Via a restriction of the stretching map, if $x \in B(0; 1)$, then $\epsilon x \in B(0; \epsilon)$ and vice versa, so $B(0;1)$ and $B(0; \epsilon)$ are homeomorphic as well. Since the composition of homeomorphisms is a homeomorphism, it is proven.
 
 
  - every open ball in R^n is homeomorphic to every other open ball
  - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
- - metric topology, product topology on R^n are the same
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
  - R^n is separable
 
