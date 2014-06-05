@@ -577,11 +577,23 @@ If $a, b \in \mathbb{R}^n$ and $\epsilon, \delta > 0$, then $B(a; \epsilon)$ and
     *Proof:* (3) Proves that every open ball is homeomorphic to the open ball of radius 1 around 0.
 
 
- - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
+### Every open ball in $\mathbb{R}^n$ is homeomorphic to $\mathbb{R}^n
+$B(0; 1)$ in $\mathbb{R}^n$ is homeomorphic to $\mathbb{R}^n$.
+
+*Proof:* Define $f: B(0; 1) \to \mathbb{R}^n$ by $f(x) = x/(1 - |x|)$, where $| \cdot |$ denotes the norm on $\mathbb{R}^n$. Then for any $x, y \in B(0; 1)$, $|f(y) - f(x)| = |y/(1 - |y|) - x/(1 - |x|)|$. If we let $X = 1 - |x|$ and $Y = 1 - |y|$, we can rewrite this as $|y/Y - x/X| = |Xy - Yx| / XY$ since $X, Y > 0$. But this equals $|Xy - Xx + Xx - Yx| / XY \leq |y - x| / Y + (X - Y) |x| / XY$. $X - Y = 1 - |x| - 1 + |y| = |y| - |x| \leq |y - x|$, so $|f(y) - f(x)| \leq |y - x| / Y + |y - x| |x| / XY = |y - x| / XY$.
+
+Now, supposing $\delta > 0$ and $|x - y| < \delta$, we have $|y| \leq |x| + |x - y| < |x| + \delta$, so $Y > 1 - |x| - \delta = X - \delta$. Thus for all $y$ with $|x - y| < \delta$, $|f(y) - f(x)| < \delta / X(X - \delta)$. If we further restrict $\delta$ so that $\delta < \epsilon X^2 / (1 + \epsilon X)$ for any $\epsilon > 0$, then $X - \delta > (X(1 + \epsilon X) - \epsilon X^2) / (1 + \epsilon X) = X / (1 + \epsilon X)$, so $|f(y) - f(x)| < \epsilon X^2 (1 + \epsilon X) / [ X^2 (1 + \epsilon X)] = \epsilon$.
+
+This proves that $f$ is continuous. To prove it is a bijection, define $g: \mathbb{R}^n \to B(0; 1)$ by $g(x) = x / (1 + |x|)$. Then $g(f(x)) = [x/(1 - |x|)] / (1 + |x| / (1 - |x|)) = [x/(1 - |x|)] / (1 / (1 - |x|)) = x$ and $f(g(x)) = [x/(1 + |x|)] / (1 - |x| / (1 + |x|)) = x$, so they are inverses.
+
+Finally, we must prove that $g$ is continuous. But for any $y$, letting $X = 1 + |x|$ and $Y = 1 + |y|$, we have $|g(y) - g(x)| = |y/Y - x/X| = |Xy - Yx| / XY$. This is the same expression as for $f$, so $|g(y) - g(x)| \leq |y - x| / XY$. Here, however, $1 / Y < 2$ for all $y$ since $|y|$ is always positive, so $|g(y) - g(x)| < 2 |y - x| / X$. So for all $y$ with $|y - x| < \epsilon X / 2$, $|g(y) - g(x)| < \epsilon$.
+
+
+TODO
+
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
  - R^n is separable
 
-TODO
 
 
 
