@@ -513,6 +513,50 @@ For any $a, b \in \mathbb{R}$ and any $\epsilon, \delta > 0$, $B(a; \epsilon)$ a
 *Proof:* It suffices to prove that $B(a; \epsilon)$ is homeomorphic to $B(0; 1)$. Via a restriction of the translation map (using local homeomorphism), $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic. Via a restriction of the stretching map, if $x \in B(0; 1)$, then $\epsilon x \in B(0; \epsilon)$ and vice versa, so $B(0;1)$ and $B(0; \epsilon)$ are homeomorphic as well. Since the composition of homeomorphisms is a homeomorphism, it is proven.
 
 
+### Homeomorphism between $\mathbb{R}$ and $B(0; 1)$
+$\mathbb{R}$ and $B(0; 1) \subseteq \mathbb{R}$ are homeomorphic.
+
+*Proof:* 
+
+ 1. Let $f: B(0; 1) \to \mathbb{R}$ defined by $f(x) := x/(1 - |x|)$. Let $g: \mathbb{R} \to B(0;1)$ be defined by $g(x) = x/(1 + |x|)$. 
+
+ 2. $f$ and $g$ are inverses, which implies $f$ is a bijection.
+
+    *Proof:* Then $(g \circ f)(x) = \frac{x/(1 - |x|)}{1 + |x / (1 - |x|)|} = \frac{x/(1 - |x|}{1 + |x|/(1 - |x|)} = x$ and $(f \circ g)(x) = \frac{x/(1 + |x|)}{1 - |x / (1 + |x|)|} = \frac{x/(1+|x|)}{1 - |x| / (1 + |x|)} = x$.
+
+ 3. $f$ is continuous at $0$ 
+
+    *Proof:* For any $\epsilon > 0$, when $|x| < \epsilon/(1 + \epsilon)$, since $|f(x)| = |x|/(1 - |x|)$, so we have $1 - |x| > 1/(1 + \epsilon)$, so $|f(x)| < \epsilon/(1 + \epsilon) / (1 + \epsilon) = \epsilon$.
+
+ 4. If $x, y \in B(0;1)$ and $x, y > 0$ or $x, y < 0$, then $|f(x) - f(y)| = \frac{|x - y|}{(1 - |x|)(1 - |y|)}$
+
+    *Proof:* We have $|f(x) - f(y)| = \frac{|x - x|y| - y + y|x||}{(1 - |x|)(1 - |y|} \leq \frac{|x - y|}{(1 - |x|)(1 - |y|} + \frac{-x|y| + y|x||}{(1 - |x|)(1 - |y|)}$. If $x$ and $y$ are the same sign, then $-x|y| + y|x| = 0$, so in such circumstances $|f(x) - f(y)| \leq \frac{|x-y|}{(1 - |x|)(1 - |y|)$.
+
+ 5. If $x > 0$ and $0 < \epsilon < |x|$, then $|f(x) - f(x - \epsilon)| < |f(x + \epsilon) - f(x)|$
+
+    *Proof:* Since $\epsilon < x$, $0 < x - \epsilon < x < x + \epsilon$, so (4) applies and $|f(x) - f(x - \epsilon)| = |\epsilon| / (1 - |x|)(1 - |x - \epsilon)$ and $|f(x + \epsilon) - f(x)| = |\epsilon| / (1 - |x|)(1 - |x + \epsilon|)$. Since $|x - \epsilon| < |x + \epsilon|$, $1/(1 - |x - \epsilon| < 1/(1 - |x + \epsilon)$, so multiplying both sides by $|\epsilon| / (1 - |x|)$ establishes the statement.
+
+ 6. If $x < 0$ and $0 < \epsilon < |x|$, then $|f(x) - f(x - \epsilon)| > |f(x + \epsilon) - f(x)|$
+
+    *Proof:* Since $\epsilon < |x|$, $x - \epsilon < x < x + \epsilon < 0$, so (4) applies and $|f(x) - f(x - \epsilon)| = |\epsilon| / (1 - |x|)(1 - |x - \epsilon)$ and $|f(x + \epsilon) - f(x)| = |\epsilon| / (1 - |x|)(1 - |x + \epsilon|)$. Since $|x - \epsilon| > |x + \epsilon|$, $1/(1 - |x - \epsilon| > 1/(1 - |x + \epsilon)$, so multiplying both sides by $|\epsilon| / (1 - |x|)$ establishes the statement.
+
+ 7. If $x, y \in B(0; 1)$ and $x < y$, then $f(x) < f(y)$
+
+    *Proof:* First, if $0 < x < y$ or $x < y < 0$, then $|x| < |y|$, so $1 - |x| > 1 - |y|$, so $1/(1 - |x|) < 1 / (1 - |y|)$, hence $f(x) = x / (1 - |x|) < y / (1 - |y|) = f(y)$. If $x < 0 < y$, then $f(x)$ is negative and $f(y)$ is positive. If one or both of $x$ or $y$ is zero, then it holds since $f(0) = 0$.
+
+ 8. $f$ is continuous at every $x \in (0, 1)$.
+
+    *Proof:* By (5) it suffices to prove that for every $\epsilon > 0$ there is a $0 < \delta < |x|$ such that for all $y \in (0, 1)$ with $x < y < x + \delta$, $f(y) - f(x) < \epsilon$. We know by (4) that $f(y) - f(x) = (y - x)/(1 - y)(1 - x)$. Let $\delta < \epsilon (1 - x)^2 / (1 + \epsilon(1 - x))$. Then since $y < x + \delta$, $1 - y > 1 - x - \delta$, so $f(y) - f(x) < (y - x)/(1 - x - \delta)(1 - x) = \delta / (1 - x - \delta)(1 - x). If we define $a = 1- x$, then we have $f(y) - f(x) < \delta  (a - \delta) \delta$ and $\delta < \epsilon a^2 / (1 + \epsilon a)$, so this can be simplified to $f(y) - f(x) < \epsilon$.
+
+ 9. $f$ is continuous at every $x \in (-1, 0)$.
+
+    *Proof:* $f(x) = - f(x)$, so the same should be true by symmetry. The above argument should be adaptable.
+
+ 10. $g$ is continuous
+
+     *Proof:* If $x, y > 0$ or $x, y < 0$, by similar arguments as above, we have $|g(y) - g(x)| = |y - x| / (1 + |x|) (1 + |y|)$. However, $1 / (1 + |y|) < 2$ since $|y|$ is always positive for all $y$, so for any $x$, for all $y$ with $|y - x| < \epsilon (1 + |x|), we have $|g(y) - g(x)| < \epsilon /2 < \epsilon$, so $g$ is continuous at all $x$.
+
+
  - every open ball in R^n is homeomorphic to every other open ball
  - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
