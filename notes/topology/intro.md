@@ -557,7 +557,26 @@ $\mathbb{R}$ and $B(0; 1) \subseteq \mathbb{R}$ are homeomorphic.
      *Proof:* If $x, y > 0$ or $x, y < 0$, by similar arguments as above, we have $|g(y) - g(x)| = |y - x| / (1 + |x|) (1 + |y|)$. However, $1 / (1 + |y|) < 2$ since $|y|$ is always positive for all $y$, so for any $x$, for all $y$ with $|y - x| < \epsilon (1 + |x|), we have $|g(y) - g(x)| < \epsilon /2 < \epsilon$, so $g$ is continuous at all $x$.
 
 
- - every open ball in R^n is homeomorphic to every other open ball
+## Every open ball in $\mathbb{R}^n$ is homeomorphic to every other open ball in $\mathbb{R}^n$.
+If $a, b \in \mathbb{R}^n$ and $\epsilon, \delta > 0$, then $B(a; \epsilon)$ and $B(b; \delta)$ (considered as subspaces of the product topology on $\mathbb{R}^n$) are homeomorphic.
+
+ 1. $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic
+
+    *Proof:* $f: B(a; \epsilon) \to B(0; \epsilon)$ defined by $f(x) = x - a$ is clearly bijective. Also, $\|f(y) - f(x) \| = \|y - a - x + a\| = \|y - x\|$, so $\|f(y) - f(x)\| < \epsilon$ when $\|y - x\| < \epsilon$. g: B(0; \epsilon) \to B(a; \epsilon)$ defined by g(x) = x + a$ is continuous for the same reason, so $f$ is a homeomorphism.
+
+ 2. $B(0; \epsilon)$ and $B(0; 1)$ are homeomorphic
+
+    *Proof:* $f: B(0; \epsilon) \to B(0; 1)$ defined by $f(x) = x / \epsilon$ is clearly bijective. $\|f(y) - f(x)\| = \|y - x\| / | \epsilon |$, so for all $x$ and all $y$ such that $\|y - x\| < \epsilon^2$, we have $\|f(y) - f(x)\| < \epsilon$. Also $g(x) := \epsilon x$ is continuous for the same reason.
+
+ 3. $B(a; \epsilon)$ and $B(0; 1)$ are homeomorphic
+
+    *Proof:* Composition of the homeomorphisms in (1) and (2) yield such a homeomorphism.
+
+ 4. Q.E.D.
+
+    *Proof:* (3) Proves that every open ball is homeomorphic to the open ball of radius 1 around 0.
+
+
  - every open ball in R^n is homeomorphic to $\mathbb{R}^n$
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
  - R^n is separable
