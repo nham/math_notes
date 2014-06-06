@@ -1,5 +1,9 @@
 # Topology
 
+## Definition of countable
+A set $X$ is **countable** iff it is bijective with a subset of $\mathbb{N}$. That is, $X$ is countable iff it is finite or countably infinite.
+
+
 ## Definition of topological space (neighborhood topology)
 A **neighborhood topology** on any set $X$ is a map $N: X \to \mathcal{P}(\mathcal{P} X)$ such that, for all $x \in X$:
 
@@ -595,12 +599,49 @@ TODO
  - R^n is separable
 
 
+## Definition of sequence convergence in a topological space
+If $(X, \mathcal{T})$ is a topological space, then a sequence $(x_n)$ in $X$ **converges** to $a \in X$ iff for every open neighborhood $U$ around $a$, there is some tail sequence of $(x_n)$ that is contained in $U$.
+
+
+
+## Definition of locally Euclidean
+A topological space $(X, \mathcal{T})$ is **locally Euclidean of dimension $n$** iff every $x \in X$ has an open neighborhood which is homeomorphic to an open subset of $\mathbb{R}^n$. Any such neighborhood is called a **Euclidean neighborhood** of $x$
+
+
+## Characterization of locally Euclidean space
+A space $(X, \mathcal{T})$ is locally Euclidean iff every $x \in X$ has an open neighborhood homeomorphic to an open ball of $\mathbb{R}^n$.
+
+*Proof:* First, clearly each point having an open neighborhood homeomorphic to an open ball implies that the space is locally Euclidean since open balls are open. Conversely, supposing each $x \in X$ has some homeomorphism $f: U \to V$, where $V$ is open in $\mathbb{R}^n$ and $U$ is an open neighborhood of $x$, then $f(x)$ has some open ball $B$ centered at $f(x)$ and contained in $V$, so $f^{pre}(B)$ is also an open neighborhood of $x$. Since $f$ is a bijection, $f[f^{pre}(B)] = B$, so we have a homeomorphism between $f^{pre}(B)$ and $B$, an open ball of $\mathbb{R}^n$.
+
+
+## Definition of a coordinate chart
+If $X$ is a space that is locally Euclidean of dimension $n$, then a **coordinate chart** is a homeomorphism between $U$ and $V$, where $U$ is open in $X$ and $V$ is open in $\mathbb{R}^n$
 
 
 ## Definition of Hausdorff space
 A topological space $(X, \mathcal{T})$ is **Hausdorff** iff any two distinct points have disjoint neighborhoods around them.
 
 
-## Definition of locally Euclidean
-A topological space $(X, \mathcal{T})$ is **locally Euclidean of dimension $n$** iff every $x \in X$ has an open neighborhood which is homeomorphic to an open subset of $\mathbb{R}^n$. Any such neighborhood is called a **Euclidean neighborhood** of $x$
+## Hausdorff space properties
+If a topological space $(X, \mathcal{T})$ is Hausdorff, then
 
+ - the limit of any convergent sequence is unique
+ - every singleton is closed
+
+*Proof:* Since the space is Hausdorff, any two distinct points have disjoint open neighborhoods, so a tail sequence can't be contained in both of them, hence any sequence could not converge to two different points.
+
+Also, for any $x \in X$, for every $y \in X - x$, we can find an open neighborhood $U_y$ of $y$ that does not contain $x$. Unioning up all of these we get an open set that contains every element of $X$ except for $x$. Hence $\{ x \}$ is closed.
+
+
+## Definition of a second countable space
+A space $(X, \mathcal{T})$ is **second countable** iff there is a countable basis which generates the topology
+
+
+## Definition of a Lindelöf space
+A space $(X, \mathcal{T})$ is **Lindelöf** if every open cover has a countable subcover.
+
+
+## Every second countable space is Lindelöf
+If $(X, \mathcal{T})$ is second countable, then it is Lindelöf.
+
+*Proof:* Let $\mathcal{U}$ be an open cover for $X$ and $\mathcal{B}$ a countable basis for $(X, \mathcal{T})$. Let $\mathcal{B}' := \{ B \in \mathcal{B} : \exists U \in \mathcal{U} B \subseteq U\}$. Since for every $U \in \mathcal{U}$ and every $x \in U$ there is a $B \in \mathcal{B}$ such that $x \in B \subseteq U$, $\mathcal{B}'$ covers $X$ (since $\mathcal{U}$ does). Define for each $C \in \mathcal{B}'$ a $U_C \in \mathcal{U}$ such that $C \subseteq U_C$. Then $\{U_C : C \in \mathcal{B}' \}$ is a subcollection of $\mathcal{U}$ that also covers $X$ (since it is a collection of sets that are supersets of the sets from a cover). This subcover is countable since $\mathcal{B}'$, being a subset of a countable set, is also countable.
