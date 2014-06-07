@@ -227,6 +227,12 @@ If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **sub
 For the neighborhood function $N$ and the sets $clo A$, $int A$, $acc A$, etc., it will often be necessary to specify which topological space we mean, especially when working with subspaces. So $clo_X Y$ will mean the closure of $A$ with respect to the topological space $X$. And so on for the other constructs.
 
 
+## Inclusion map from a subspace is continuous
+If $X$ is a space and $A$ a subspace, then the inclusion map $i: A \to X$ is continuous.
+
+*Proof:* If $V$ is open in $X$, $i^{pre}(V) = V \cap A$ is open in $A$ by definition of the subspace topology, so $i$ is continuous.
+
+
 ## Definition of a basis
 If $X$ is a set and $\mathcal{B}$ is a collection of subsets of $X$ such that 
 
@@ -470,6 +476,14 @@ But $g^{pre}(Z) = f(Z)$ for all $Z \subseteq X$, so we have that $f$ is a homeom
 But $f^{pre}(f(M)) = M$ since $f$ is injective, so the statement holds.
 
 
+## Alternative characterization of homemorphism
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is a homeomorphism iff for all $U \subseteq X$, $U \in \mathcal{S}$ iff $f(U) \in \mathcal{T}$.
+
+*Proof:* Since $f$ is bijective, for any $M \subseteq X$, $f(M) = \{ y \in Y : \exists m \in M f(m) = y \} = \{ y \in Y : f^{-1}(y) \in M\} = (f^{-1})^{pre}(M)$.
+
+If $U \in \mathcal{S}$, then $(f^{-1})^{pre}(U) = f(U) \in \mathcal{S}$. Also if $V \subseteq X$ and $f(V) \in \mathcal{T}$, $f^{pre}(f(V)) = V \in \mathcal{S}$.
+
+
 ## Definition of an embedding
 If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces, then $f: X \to Y$ is an **embedding** iff it is injective, continuous, and when we consider $g: X \to f(X)$, we obtain a homeomorphism between $X$ and $f(X)$ considered as a subspace of $Y$.
 
@@ -645,3 +659,6 @@ A space $(X, \mathcal{T})$ is **Lindelöf** if every open cover has a countable 
 If $(X, \mathcal{T})$ is second countable, then it is Lindelöf.
 
 *Proof:* Let $\mathcal{U}$ be an open cover for $X$ and $\mathcal{B}$ a countable basis for $(X, \mathcal{T})$. Let $\mathcal{B}' := \{ B \in \mathcal{B} : \exists U \in \mathcal{U} B \subseteq U\}$. Since for every $U \in \mathcal{U}$ and every $x \in U$ there is a $B \in \mathcal{B}$ such that $x \in B \subseteq U$, $\mathcal{B}'$ covers $X$ (since $\mathcal{U}$ does). Define for each $C \in \mathcal{B}'$ a $U_C \in \mathcal{U}$ such that $C \subseteq U_C$. Then $\{U_C : C \in \mathcal{B}' \}$ is a subcollection of $\mathcal{U}$ that also covers $X$ (since it is a collection of sets that are supersets of the sets from a cover). This subcover is countable since $\mathcal{B}'$, being a subset of a countable set, is also countable.
+
+## Definition of topological manifold
+An **$n$-dimensional topological manifold** is a second countable Hausdorff space that is locally Euclidean of dimension $n$.
