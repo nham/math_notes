@@ -14,6 +14,9 @@
 # Rings 
  - [basic definitions](rings/intro.html)
 
+# Topology
+ - [basics up to topological manifolds](topology/intro.html)
+
 # Probability
  - [notes from grimmett and stirzaker](prob/grimmett.html)
 

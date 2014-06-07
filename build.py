@@ -42,6 +42,7 @@ files['rips'] = ['rips.md']
 files['reals'] = ['intro.md', 'derivatives.md']
 files['gibson_euclidean'] = ['1.md']
 files['rings'] = ['intro.md']
+files['topology'] = ['intro.md']
 
 
 for folder, lst in files.items():
