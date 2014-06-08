@@ -233,6 +233,14 @@ If $X$ is a space and $A$ a subspace, then the inclusion map $i: A \to X$ is con
 *Proof:* If $V$ is open in $X$, $i^{pre}(V) = V \cap A$ is open in $A$ by definition of the subspace topology, so $i$ is continuous.
 
 
+## Characterization of subspaces (universal property?)
+If $X$ is a subspace, $A$ is a subspace of $X$, then for any topological space $Y$, a map $f: Y \to A$ is continuous iff $i \circ f$ is, where $i: A \to X$ is the inclusion map.
+
+*Proof:* If $f$ is continuous, $f \circ i$ is since we know $i$ is continuous from a previous proposition and since composition of continuous maps is continuous. 
+
+Conversely, by hypothesis every open $V$ in $X$ has $(i \circ f)^{pre}(V)$ open as well. But $(i \circ f)^{pre}(V) = f^{pre}(i^{pre}(V))$.  If $U$ is open in $A$, there is a $V$ open in $X$ such that $U = V \cap A$. $i^{pre}(V) = U$, so $f^{pre}(U) = f^{pre}(i^{pre}(V))$, which is open. So $f$ is continuous.
+
+
 ## Definition of a basis
 If $X$ is a set and $\mathcal{B}$ is a collection of subsets of $X$ such that 
 
@@ -645,6 +653,12 @@ If a topological space $(X, \mathcal{T})$ is Hausdorff, then
 *Proof:* Since the space is Hausdorff, any two distinct points have disjoint open neighborhoods, so a tail sequence can't be contained in both of them, hence any sequence could not converge to two different points.
 
 Also, for any $x \in X$, for every $y \in X - x$, we can find an open neighborhood $U_y$ of $y$ that does not contain $x$. Unioning up all of these we get an open set that contains every element of $X$ except for $x$. Hence $\{ x \}$ is closed.
+
+
+## Every metric topology is Hausdorff
+If $(X, d)$ is a metric space and $\mathcal{T}$ is the metric topology on $X$, then $(X, \mathcal{T})$ is Hausdorff.
+
+*Proof:* If $x \neq y \in X$, consider $\epsilon = d(x,y)/2$. $B(x; \epsilon)$ and $B(y; \epsilon)$ is disjoint from the triangle inequality.
 
 
 ## Definition of a second countable space
