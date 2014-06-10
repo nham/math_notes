@@ -241,6 +241,28 @@ If $X$ is a subspace, $A$ is a subspace of $X$, then for any topological space $
 Conversely, by hypothesis every open $V$ in $X$ has $(i \circ f)^{pre}(V)$ open as well. But $(i \circ f)^{pre}(V) = f^{pre}(i^{pre}(V))$.  If $U$ is open in $A$, there is a $V$ open in $X$ such that $U = V \cap A$. $i^{pre}(V) = U$, so $f^{pre}(U) = f^{pre}(i^{pre}(V))$, which is open. So $f$ is continuous.
 
 
+## Properties of the subspace topology
+If $A$ is a subspace of $X$, then:
+
+ 1. The inclusion $i: A \to X$ is a topological embedding
+ 2. If $f:X \to Y$ is continuous, then $f|A$ is also.
+ 3. If $B \subseteq A$ is a subspace of $A$, then $B$ is a subspace of $X$ as well.
+
+*Proof:*
+
+ 1. The inclusion $i: A \to X$ is a topological embedding
+
+    *Proof:* It's clearly injective and a bijection when restricted to $i|A, f(A): A \to A = i(A)$. In fact, the restriction is the identity on $A$, so it is its own inverse. It suffices to prove that $i$ is continuous. But if $V$ is open in $X$, then $V \cap A = i^{pre}(V)$ is open in $A$.
+
+ 2. If $f:X \to Y$ is continuous, then $f|A$ is also.
+    
+    *Proof:* If $V$ is open in $Y$, then $f^{pre}(V)$ is open in $X$ by hypothesis. $(f|A)^{pre}(V) = f^{pre}(V) \cap A$, so $(f|A)^{pre}(V)$ is open in $A$.
+
+ 3. If $B \subseteq A$ is a subspace of $A$, then $B$ is a subspace of $X$ as well.
+
+    *Proof:* If $B$ is a subspace of $A$, then $U \subseteq B$ is open in $B$ iff $\exists V \subseteq A$, $V$ open in $A$ such that $U = V \cap B$. But since $A$ is a subspace of $X$, $V$ is open in $A$ iff $\exists W \subseteq X$ such that $V = W \cap A$. Since $U = W \cap A \cap B = W \cap B$, we've established that $B$ is a subspace of $X$
+
+
 ## Definition of a basis
 If $X$ is a set and $\mathcal{B}$ is a collection of subsets of $X$ such that 
 
