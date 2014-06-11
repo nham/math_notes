@@ -263,6 +263,17 @@ If $A$ is a subspace of $X$, then:
     *Proof:* If $B$ is a subspace of $A$, then $U \subseteq B$ is open in $B$ iff $\exists V \subseteq A$, $V$ open in $A$ such that $U = V \cap B$. But since $A$ is a subspace of $X$, $V$ is open in $A$ iff $\exists W \subseteq X$ such that $V = W \cap A$. Since $U = W \cap A \cap B = W \cap B$, we've established that $B$ is a subspace of $X$
 
 
+## Further subspace properties
+If $X$ is a space, then
+
+ 1. If $X$ is Hausdorff, any subspace of $X$ is Hausdorff
+ 2. If $X$ is second countable, any subspace of $X$ is second countable
+
+*Proof:* For (1), for any $x, y \in X$ with $x \neq y$, there are open neighborhoods $U$ and $V$ of $x$ and $y$, respectively, that are disjoint. So if $A$ is a subspace of $X$ and $a, b \in A$ and $a \neq b$, then we can find $U, V \subseteq X$ that are open neighborhoods of $a, b$ respectively and disjoint. Hence $B = U \cap A$ and $C = V \cap A$ are disjoint open neighborhoods of $a$ and $b$, respectively, so $A$ is Hausdorff.
+
+For (2), if $A$ is a subspace of $X$, then if $\mathcal{B}$ is a countable basis for $X$, $\mathcal{C} = \{ B \cap A : B \in \mathcal{B} \}$ is a basis for $A$ (by a previous proposition), and it is countable by definition.
+
+
 ## Definition of a basis
 If $X$ is a set and $\mathcal{B}$ is a collection of subsets of $X$ such that 
 
@@ -378,6 +389,12 @@ If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are spaces, $\mathcal{B}$ and $\mat
  2. The topology that $\mathcal{D}$ generates is the product topology
 
     *Proof:* We already know that the open sets of the product topology are unions of products of open sets. So it suffices to prove that for every $U$ open in $X$ and $V$ open in $Y$, $U \times V$ is the union of products of basis elements from $\mathcal{D}$. But we know that $U = \bigcup_i B_i$ and $V = \bigcup_j C_j$ for some $\{B_i : i \in I\} \subseteq \mathcal{B}$ and $\{C_j : j \in J\} \subseteq \mathcal{C}$. So if $(u, v) \in U \times V$, there is a $B_i$ and a $C_j$ such that $u \in B_i$ and $v \in C_j$, So clearly $(u, v) \in \bigcup_{(i, j) \in I \times J} B_i \times C_j$. Also if $(x,y) \in \bigcup_{(i, j) \in I \times J} B_i \times C_j$, then $(x,y) \in B_i \times C_j$ for some $i$ and $j$, so $(x,y) \in U \times V$.
+
+
+## The basis of a subspace topology
+If $(X, \mathcal{T})$ is a space and $\mathcal{B}$ is a basis for $X$, then if $A$ is a subspace of $X$, the collection $\mathcal{C} = \{ A \cap B : B \in \mathcal{B} \}$ is a basis for the subspace topology on $A$.
+
+*Proof:* First, every element of $\mathcal{C}$ is open in $A$ by definition of the subspace topology. To prove that every open subset of $A$ is a union of elements from $\mathcal{C}$, let $U$ be open in $A$. Then there exists a $V \subset X$ which is open in $X$ and for which $U = V \cap A$. But $V = \bigcup \mathcal{S}$ for some subcollection $\mathcal{S}$ of $\mathcal{B}$. So $U = \bigcup_{S \in \mathcal{S}} S \cap A$. Each such $S \cap A$ is an element of $\mathcal{C}$, which proves the statement.
 
 
 ## Definition of $n$-product spaces
