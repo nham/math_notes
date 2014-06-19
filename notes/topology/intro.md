@@ -98,7 +98,7 @@ If $(X, N)$ is a topological space, then for all $x \in X$, $B \in N(x)$ iff the
 
 
 ## Definition of an open neighborhood
-If $X$ is a space and $x \in X$, any neighborhood $U \in N(x)$ such that $U$ is open is called an **open neighborhood** of $x$.
+If $X$ is a space and $x \in X$, any neighborhood $U \in N(x)$ such that $U$ is open is called an **open neighborhood** of $x$. The collection of all open neighborhoods of $x$ will be denoted $O(x)$.
 
 
 ## Open set facts
@@ -165,6 +165,13 @@ In a topological space $(X, \mathcal{T})$:
 
 ## Definition of closure
 If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then the **closure** of $A$ in $(X, \mathcal{T})$ is defined to be $clo A := \{ x \in X : \forall S \in N(x), S \cap A \neq \emptyset \}$
+
+
+## Equivalent characterization of closure
+If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then $clo A := \{ x \in X : \forall S \in O(x), S \cap A \neq \emptyset \}$
+
+*Proof*: Let $Z = \{ x \in X : \forall S \in O(x), S \cap A \neq \emptyset \}$. Then If $y \in clo A$, $y \in Z$ as well, since $O(x) \subseteq N(x)$. Conversely, if $y \in Z$, for every $M \in N(y)$, $int M \in O(y)$. By hypothesis, $int M$ intersects $A$, so clearly $M$ does as well. Hence $y \in clo A$.
+
 
 
 ## Compliment of the closure is the interior of the complement
@@ -234,6 +241,12 @@ If $(X, \mathcal{T})$ is a topological space, $A \subseteq X$ is **dense** in $X
 
 ## Definition of separable space
 If $(X, \mathcal{T})$ is a topological space, $X$ is **separable** iff it has a subset $S$ which is both countable and dense in $X$.
+
+
+## The reals are separable
+$\mathbb{Q}$ is dense in $\mathbb{R}$.
+
+*Proof:* We already know $\mathbb{Q}$ is countable. It is a well-known theorem of real analysis that between any two reals there is a rational. Hence every open ball around a real number contains a rational, which means every open set around any real number also contains a rational, proving reals are closure points of the rationals.
 
 
 
