@@ -59,6 +59,25 @@ For any $x, y, z \in \mathbb{F}$ for ordered field $(\mathbb{F}, \leq)$, we have
 ## The reals
 The $\mathbb{R}$ are an ordered field which obeys the **least upper bound property**: every subset of $\mathbb{R}$ bounded above has a least upper bound. It is easy to prove (or we can alternatively assume) that every non-empty subset bounded below also has a greatest lower bound. We assume that there is such an ordered field. It can apparently be proved that it is unique, but we don't really care about that.
 
+
+## The Archimedean property
+The naturals are unbounded in $\mathbb{R}$, i.e. for every $x \in \mathbb{R}$, there is an $n \in \mathbb{N}$ such that $n > x$.
+
+*Proof:* If not then $\mathbb{N}$ is bounded above in $\mathbb{R}$, so $c = lub \mathbb{N}$ exists, hence we can find a natural $n$ such that $c - 1 < n < c$. However, this implies $c < n + 1 \in \mathbb{N}$, contradicting $c$ being an upper bound. So $\mathbb{N}$ is not bounded above.
+
+
+### Corollary
+For every $x > 0$, there is an $\n \in \mathbb{N}$ such that $1/n < x$.
+
+*Proof:* We can find an $n$ such that $1/x < n$ by the Archimedean property.
+
+
+## Density of rationals in reals
+For any $a, b \in \mathbb{R}$ with $a < b$, there is a $q \in \mathbb{Q}$ such that $a < q < b$.
+
+*Proof:* Without loss of generality we assume $0 \leq a$ (If $a < 0$, then either $b \leq 0$, in which case we apply the theorem to $-b$ and $-a$, or $0 < b$, in which case $q = 0$).  We can then find an $n \in \mathbb{N}$ such that $1/n < b - a$. Let $S = \{m \in \mathbb{N} : m/n \geq a\}$. By the Archimedean property $S$ is non-empty, so $k = min S$ exists. If $k/n = a$, $(k+1)/n = a + 1/n < a + b-a = b$, so $a < (k+1)/n < b$. Otherwise, $k/n > a$, and since $(k-1)/n < a$, we must have $k/n = (k-1)/n + 1/n < a + b - a = b$.
+
+
 ## Definition of absolute value
 We can define a function $\mathbb{R} \to \mathbb{R}$ called **absolute value**, denoted $| \cdot |$, by $|x| = x$ if $x \geq 0$ and $|x| = -x$ if $x < 0$.
 
