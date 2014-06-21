@@ -173,6 +173,11 @@ If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then $clo A :=
 *Proof*: Let $Z = \{ x \in X : \forall S \in O(x), S \cap A \neq \emptyset \}$. Then If $y \in clo A$, $y \in Z$ as well, since $O(x) \subseteq N(x)$. Conversely, if $y \in Z$, for every $M \in N(y)$, $int M \in O(y)$. By hypothesis, $int M$ intersects $A$, so clearly $M$ does as well. Hence $y \in clo A$.
 
 
+## Equivalent characterization of closure with a basis
+If $(X, \mathcal{T})$ is a topological space and $\mathcal{B}$ is a basis for this space, then $clo A = \{ x \in X : \forall B \in \mathcal{B}, x \in B \implies B \cap A \neq \emptyset\}$.
+
+*Proof:* Let $Z = \{ x \in X : \forall B \in \mathcal{B}, x \in B \implies B \cap A \neq \emptyset\}$. We know from the last proposition that every $x \in clo A$ has all of its open neighborhoods intersecting $A$. Since basis elements are open, $clo A \subseteq Z$. Conversely, every open neighborhood of $x$ contains a basis element that contains $x$, and since all of the latter intersect $A$, the open neighborhood must as well.
+
 
 ## Compliment of the closure is the interior of the complement
 $int(X - S) = X - clo S$
@@ -760,6 +765,22 @@ A space $(X, \mathcal{T})$ is **Lindelöf** if every open cover has a countable 
 If $(X, \mathcal{T})$ is second countable, then it is Lindelöf.
 
 *Proof:* Let $\mathcal{U}$ be an open cover for $X$ and $\mathcal{B}$ a countable basis for $(X, \mathcal{T})$. Let $\mathcal{B}' := \{ B \in \mathcal{B} : \exists U \in \mathcal{U} B \subseteq U\}$. Since for every $U \in \mathcal{U}$ and every $x \in U$ there is a $B \in \mathcal{B}$ such that $x \in B \subseteq U$, $\mathcal{B}'$ covers $X$ (since $\mathcal{U}$ does). Define for each $C \in \mathcal{B}'$ a $U_C \in \mathcal{U}$ such that $C \subseteq U_C$. Then $\{U_C : C \in \mathcal{B}' \}$ is a subcollection of $\mathcal{U}$ that also covers $X$ (since it is a collection of sets that are supersets of the sets from a cover). This subcover is countable since $\mathcal{B}'$, being a subset of a countable set, is also countable.
+
+
+## Separable metric space is second countable
+If $(X,d)$ is a metric space whose metric topological space $(X, \mathcal{T})$ has an $S \subseteq X$ dense in $X$, then $X$ is second countable.
+
+*Proof:* Define $\mathcal{B} = \{ B(s; q) : s \in S, q \in \mathbb{Q} \}$. We aim to prove that $\mathcal{B}$ is a basis for $X$. It is certainly a collection of open sets in $X$, and it is countable since it is the countable union of countable sets. Let $U$ be open in $X$. For all $x \in U$, there is an $\epsilon > 0$ such that $B(x; \epsilon) \subseteq U$.  We can find an $n \in \mathbb{N}$ such that $2/n < \epsilon$. By density of $S$, $B(x; 1/n)$ intersects $S$, meaning some $s \in B(x; 1/n) \cap S$. So $x \in B(s; 1/n)$, and if $z \in B(s; 1/n)$, then $d(z, x) \leq d(z, s) + d(s, x) < 2/n$, so $B(s; 1/n) \subseteq B(x; 2/n) \subseteqq B(x; \epsilon)$. So $U$ is a union of open balls with rational radii centered at elements of $S$.
+
+### Corollary: $\mathbb{R}$ is second countable
+The reals are second countable.
+
+*Proof:* The standard topology on $\mathbb{R}$ is the metric topology, and we have proved above that it is separable. So the theorem applies
+
+
+### Corollary: $\mathbb{R}^n$ is second countable.
+
+TODO
 
 ## Definition of topological manifold
 An **$n$-dimensional topological manifold** is a second countable Hausdorff space that is locally Euclidean of dimension $n$.
