@@ -240,20 +240,6 @@ If $(X, \mathcal{T})$ is a topological space and $A \subseteq X$, then $x \in X$
 The set of all accumulation points of $A$ is denoted $acc A$.
 
 
-## Definition of dense subset
-If $(X, \mathcal{T})$ is a topological space, $A \subseteq X$ is **dense** in $X$ iff $clo A = X$.
-
-
-## Definition of separable space
-If $(X, \mathcal{T})$ is a topological space, $X$ is **separable** iff it has a subset $S$ which is both countable and dense in $X$.
-
-
-## The reals are separable
-$\mathbb{Q}$ is dense in $\mathbb{R}$.
-
-*Proof:* We already know $\mathbb{Q}$ is countable. It is a well-known theorem of real analysis that between any two reals there is a rational. Hence every open ball around a real number contains a rational, which means every open set around any real number also contains a rational, proving reals are closure points of the rationals.
-
-
 
 ## Definition of continuity
 If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces and $f: X \to Y$, then $(f, \mathcal{S}, \mathcal{T})$ is a **continuous map** iff for all $x \in X$, for all $B \in N_Y(f(x))$, $f^{pre}(B) \in N_X(x)$.
@@ -710,7 +696,6 @@ Finally, we must prove that $g$ is continuous. But for any $y$, letting $X = 1 +
 TODO
 
  - the map between the 2-sphere and the unit cube in R^3 is a homeomorphism
- - R^n is separable
 
 
 ## Definition of sequence convergence in a topological space
@@ -767,20 +752,40 @@ If $(X, \mathcal{T})$ is second countable, then it is Lindelöf.
 *Proof:* Let $\mathcal{U}$ be an open cover for $X$ and $\mathcal{B}$ a countable basis for $(X, \mathcal{T})$. Let $\mathcal{B}' := \{ B \in \mathcal{B} : \exists U \in \mathcal{U} B \subseteq U\}$. Since for every $U \in \mathcal{U}$ and every $x \in U$ there is a $B \in \mathcal{B}$ such that $x \in B \subseteq U$, $\mathcal{B}'$ covers $X$ (since $\mathcal{U}$ does). Define for each $C \in \mathcal{B}'$ a $U_C \in \mathcal{U}$ such that $C \subseteq U_C$. Then $\{U_C : C \in \mathcal{B}' \}$ is a subcollection of $\mathcal{U}$ that also covers $X$ (since it is a collection of sets that are supersets of the sets from a cover). This subcover is countable since $\mathcal{B}'$, being a subset of a countable set, is also countable.
 
 
+## Definition of dense subset
+If $(X, \mathcal{T})$ is a topological space, $A \subseteq X$ is **dense** in $X$ iff $clo A = X$.
+
+
+## Definition of separable space
+If $(X, \mathcal{T})$ is a topological space, $X$ is **separable** iff it has a subset $S$ which is both countable and dense in $X$.
+
+
+## The reals are separable
+$\mathbb{Q}$ is dense in $\mathbb{R}$.
+
+*Proof:* We already know $\mathbb{Q}$ is countable. It is a well-known theorem of real analysis that between any two reals there is a rational. Hence every open ball around a real number contains a rational, which means every open set around any real number also contains a rational, proving reals are closure points of the rationals.
+
+## $\mathbb{R}^n$ is separable
+$\mathbb{Q}^n$ is dense in $\mathbb{R}^n$.
+
+*Proof:* We know that $\mathbb{Q}^n$ is countable. To prove it is dense in $\mathbb{R}^n$, we must prove that for all $x \in \mathbb{R}^n$ and for some basis $\mathbb{B}$ for $\mathbb{R}^n$, every basis element containing $x$ intersects $\mathbb{Q}^n$. But one basis for the product topology is the collection of $n$-fold products of open intervals in $\mathbb{R}$. Every such basis element $B = \prod_1^n B(x_i; \epsilon_i)$ for some $x_i$'s, so for each $i$ there is a $q_i \in B(x_i; \epsilon_i)$ since $\mathbb{Q}$ is dense in $\mathbb{R}$. So $(q_1, \ldots, q_n) \in B$, proving the statement.
+
+
 ## Separable metric space is second countable
 If $(X,d)$ is a metric space whose metric topological space $(X, \mathcal{T})$ has an $S \subseteq X$ dense in $X$, then $X$ is second countable.
 
 *Proof:* Define $\mathcal{B} = \{ B(s; q) : s \in S, q \in \mathbb{Q} \}$. We aim to prove that $\mathcal{B}$ is a basis for $X$. It is certainly a collection of open sets in $X$, and it is countable since it is the countable union of countable sets. Let $U$ be open in $X$. For all $x \in U$, there is an $\epsilon > 0$ such that $B(x; \epsilon) \subseteq U$.  We can find an $n \in \mathbb{N}$ such that $2/n < \epsilon$. By density of $S$, $B(x; 1/n)$ intersects $S$, meaning some $s \in B(x; 1/n) \cap S$. So $x \in B(s; 1/n)$, and if $z \in B(s; 1/n)$, then $d(z, x) \leq d(z, s) + d(s, x) < 2/n$, so $B(s; 1/n) \subseteq B(x; 2/n) \subseteqq B(x; \epsilon)$. So $U$ is a union of open balls with rational radii centered at elements of $S$.
 
 ### Corollary: $\mathbb{R}$ is second countable
-The reals are second countable.
+The reals (with the standard topology) are second countable.
 
 *Proof:* The standard topology on $\mathbb{R}$ is the metric topology, and we have proved above that it is separable. So the theorem applies
 
-
 ### Corollary: $\mathbb{R}^n$ is second countable.
+$\mathbb{R}^n$ under the product topology is second countable
 
-TODO
+*Proof:* The product topology on $\mathbb{R}^n$ is separable and is the metric topology induced by the euclidean metric, so the theorem can be applied once again.
+
 
 ## Definition of topological manifold
 An **$n$-dimensional topological manifold** is a second countable Hausdorff space that is locally Euclidean of dimension $n$.
