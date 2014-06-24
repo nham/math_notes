@@ -1,3 +1,6 @@
+# Set theory
+ - [stuff](set_theory/set_theory.html)
+
 # Linear algebra
 
  - [basic linear algebra up to dimension theorem](linalg/dim.html)
@@ -15,7 +18,8 @@
  - [basic definitions](rings/intro.html)
 
 # Topology
- - [basics up to topological manifolds](topology/intro.html)
+ - [intro](topology/intro.html)
+ - [notes on subspaces, product spaces and topological manifolds](topology/subspaces_product_spaces.html)
 
 # Probability
  - [notes from grimmett and stirzaker](prob/grimmett.html)
