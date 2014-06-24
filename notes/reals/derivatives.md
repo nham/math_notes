@@ -151,7 +151,7 @@ If $f: A \to \mathbb{R}^p$ is differentiable at $a$, then $f$ is continuous at $
 
  1. $lim_{h \to 0} f(a + h) - f(a) = 0$
 
-    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha in o(1)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
+    *Proof:* $f(a+h) - f(a) = Df(a)(h)  + \alpha(h)$ for some $\alpha \in o(1)$. So the statement holds by previous proved propositions showing $lim_{h \to 0} Df(a)(h) = 0$ (since $Df(a)$ is linear) and $lim_{h \to 0} \alpha(h) = 0$.
 
  2. Q.E.D.
 
@@ -260,6 +260,11 @@ If $f: [a, b] \to \mathbb{R}$ for $a < b$ is continuous and differentiable on $(
 
 
 
+TODO: factor out part of the proof below? if the line segment $[a, b] \subseteq \mathbb{R}^n$ is such that for $f: A \subseteq \mathbb{R}^n \to \mathbb{R}^p$ and $A$ is open and the directional derivative for $b - a$ exists everywhere on $A$,
+
+hmm, only useful for applying MVT. how many times do we need to do this?
+
+
 
 ## Continuous partial derivatives implies differentiable
 If
@@ -296,7 +301,7 @@ then $f$ is differentiable at $a$.
 
  6. Each $\psi_j^h$ is continuous on $[0, h_j]$ and differentiable on $(0, h_j)$
 
-    *Proof:*  Since $p_{j-1}(h)$, $p_j(h)$ are in $B(a; \epsilon)$ by (2), we can find $\delta$ and $\gamma$ such that $p_{j-1} - \delta e_j$ and $p_j + (h_j + \gamma) e_j$ are in $B(a; \epsilon)$ as well. So the function $[- \delta, h_j + \gamma] \to \mathbb{R}$ defined by $t \mapsto f(p_{j-1} + t e_j)$ is differentiable on $[0, h_j]$ since its derivative at $t$ is $D_j f(a + t e_j)$, which exists everywhere in $B(a; \epsilon)$. So this function is continuous on that interval since it is differentiable, and $\psi_j^h is a restriction of this function to $[0, h_j]$, so it is continuous on its domain and differentiable on $(0, h_j)$.
+    *Proof:*  Since $p_{j-1}(h)$, $p_j(h)$ are in $B(a; \epsilon)$ by (2), we can find $\delta$ and $\gamma$ such that $p_{j-1} - \delta e_j$ and $p_j + (h_j + \gamma) e_j$ are in $B(a; \epsilon)$ as well. So the function $[- \delta, h_j + \gamma] \to \mathbb{R}$ defined by $t \mapsto f(p_{j-1} + t e_j)$ is differentiable on $[0, h_j]$ since its derivative at $t$ is $D_j f(a + t e_j)$, which exists everywhere in $B(a; \epsilon)$. So this function is continuous on that interval since it is differentiable, and $\psi_j^h$ is a restriction of this function to $[0, h_j]$, so it is continuous on its domain and differentiable on $(0, h_j)$.
 
  7. For each $h \in B(0; \epsilon)$ and each $j$, there is a $c_j \in \mathbb{R}$ such that  $D \psi_j^h(c_j) h_j = \psi_j^h(h_j) - \psi_j^h(0)$.
 
@@ -339,7 +344,7 @@ So for the same $h$, $| \alpha(h)| < \epsilon \|h\|$.
 
 
 ### Corollary
-If $f: A \to \mathbb{R}^p$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $\g_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $\g_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
+If $f: A \to \mathbb{R}^p$ with $A \subseteq \mathbb{R}^n$ and $a \in int(A)$, then if there is some $\epsilon > 0$ such that for all $x \in B(a; \epsilon)$, $D_i f(x)$ exists for all $i$, $1 \leq i \leq n$, and if each function $g_i: B(a; \epsilon) \to \mathbb{R}^p$ defined by $g_i(x) = D_i f(x)$ is continuous at $a$, then $f$ is differentiable at $a$.
 
 *Proof:* Previous propositions show that each component function $f_i: A \to \mathbb{R}$ has every partial derivative existing at every point of $B(a; \epsilon)$. To use the previous theorem, we just need to prove that for every $j$,
 
@@ -383,4 +388,11 @@ But we can apply composite function limit law to $Dg(b) \circ \alpha$ since $Dg(
 Also, $\beta(h) \to 0$ as $h \to 0$ and $\beta(0) = 0$, so $\beta$ is continuous at $0$. $h \mapsto \Delta f(a; h)$ has a limit of $0$ as $h \to 0$ also, so again by function composition limit law the composite has a limit of $0$ as $h \to 0$. Then we use the regular additive limit law to prove the whole function goes to zero.
 
 
-For every $\epsilon$, there is a $\gamma$ such that for all $\|h\| < \gamma$, $\| \beta(h) \| < (\epsilon / (M+1)) \|h\|$. By continuity of $f$ at $a$, there is a $\phi$ such that for $\|h\| < \phi$, $\|f(a+h) - f(a)\| < \gamma$. Hence for $h$ such that $\|h\| < min \{ \phi, \delta \}$, we have $\beta(f(a+h) - f(a))\| < \epsilon \|f(a+h) - f(a)\| / (M+1)  \leq \epsilon \|h\|$. So $h \mapsto \beta(f(a+h) - f(a)) \in o_0(1)$.
+
+## Definition of a line segment
+For $a, b \in \mathbb{R}^n$, the **line segment** $[a, b]$ is the set $\{ a + t(b - a) : t \in [0, 1] \}$.
+
+## Multivariable mean value theorem
+If $A$ open in $\mathbb{R}^n$, $f: A \to \mathbb{R}$ is differentiable, $A$ contains the line segment $[a, b]$, then there is a $t_0 \in \mathbb{R}$, $0 < t_0 < 1$ such that $c := a + t_0 (b - a)$ has $f(b) - f(a) = Df(c)(b-a)$.
+
+*Proof:* By letting $\phi: (- \epsilon, 1 + \delta) \to \mathbb{R}$ be defined by $\phi(t) = f(a + t(b-a))$ where $\epsilon$ and $\delta$ are such that $a - \epsilon (b - a)$ and $a + \delta(b - a)$ are in $A$, we see that $\phi = f \circ g$, where $g: (- \epsilon, 1 + \delta) \to A$ defined by $g(t) = a + t(b-a)$. $g$ is of course differentiable, and $Dg(t) = b-a$ for all $t$. By the chain rule, $D \phi (t) = Df(a + t(b-a)) \circ D g(t)$ for all $t \in (- \epsilon, 1 + \delta)$. So the restriction of $\phi$ to $[0, 1]$, call it $\psi$, is continuous and differentiable on $(0, 1)$. We can apply the mean value theorem for functions $\mathbb{R} \to \mathbb{R}$ to obtain a $t_0 \in (0, 1)$ such that $D \psi(t_0) = f(b) - f(a) = Df(a + t_0(b-a)) [b - a]$.
