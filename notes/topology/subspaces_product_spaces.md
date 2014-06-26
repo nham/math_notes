@@ -116,13 +116,10 @@ If $f: X \to Y$ is a function between some topological spaces $(X, \mathcal{S})$
 
  1. $f$ is continuous
  2. every $x \in X$ has some $B \in N(x)$ with $f|B$ is continuous.
- 3. for every $x \in X$ and every $V \in O_Y(f(x))$, there is a $U \in O_X(x)$ such that $f(U) \subseteq V$.
 
-*Proof:* First we establish the equivalence of (1) and (2). If $f$ is continuous, every restriction to a subset is also continuous. So pick any neighborhood for every $x \in X$. 
+*Proof:* If $f$ is continuous, every restriction to a subset is also continuous. So pick any neighborhood for every $x \in X$. 
 
 Conversely, let $x \in X$ and $M \in N_Y(x)$. There is some $B \in N_X(x)$ such that $f|B$ is continuous, meaning that $(f|B)^{pre}(M) \in N_B(x)$. But $(f|B)^{pre}(M) = f^{pre}(M) \cap B$, so $(f|B)^{pre}(M) \subseteq f^{pre}(M)$ and $(f|B)^{pre}(M) \in N_X(x)$ by the lemma. Thus $f^{pre}(M) \in N_X(x)$ as well.
-
-Now, we establish the equivalence of (1) and (3). If (1) holds, then for any $x \in X$ and $V \in O_Y(f(x))$, $f^{pre}(V)$ is open $X$ and contains $x$, so $f^{pre}(V) \in O_X(x)$. Conversely, If $V$ is open in $Y$, pick any $x \in f^{pre}(V)$. By hypothesis there is a $U \in O_X(x)$ such that $f(U) \subseteq V$. This means that $U \subseteq f^{pre}(V)$. Since $x$ was an arbitrary element of $f^{pre}(V)$, it must be open.
 
 
 

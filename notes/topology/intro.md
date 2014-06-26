@@ -238,6 +238,16 @@ If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces and $f: X \t
 *Proof:* If $f$ is continuous, then for any open $V subseteq Y$, for all $x \in f^{pre}(V)$, $f(x) \in V$, so $V \in N_Y(f(x))$ (since $V$ is open), so $f^{pre}(V) \in N_x(x)$ by continuity, hence $f^{pre}(V)$ is open in $X$. Conversely if the inverse image of every open set is open, then for any $x \in X$ and any $M \in N_Y(f(x))$, there is a $V$ open in $Y$ such that $f(x) \in V \subseteq M$, so $x \in f^{pre}(V) \subseteq f^{pre}(M)$. Since $f^{pre}(V)$ is open in $X$ by hypothesis, $f^{pre}(M) \in N_X(x)$.
 
 
+## Equivalent characterizations of continuity
+If $(X, \mathcal{S})$ and $(Y, \mathcal{T})$ are topological spaces and $f: X \to Y$, then the following are equivalent:
+
+ 1. $f$ is continuous 
+ 2. for every $x \in X$ and every $V \in O_Y(f(x))$, there is a $U \in O_X(x)$ such that $f(U) \subseteq V$.
+ 3. If $\mathcal{B}$ and $\mathcal{C}$ are bases for $X$ and $Y$, respectively, then for every $x \in X$ and every $C \in \mathcal{C}$ such that $f(x) \in C$, there is a $B \in \mathcal{B}$ such that $x \in B$ and $f(B) \subseteq C$.
+
+*Proof:* First we establish the equivalence of (1) and (2). If (1) holds, then for any $x \in X$ and $V \in O_Y(f(x))$, $f^{pre}(V)$ is open $X$ and contains $x$, so $f^{pre}(V) \in O_X(x)$. Conversely, If $V$ is open in $Y$, pick any $x \in f^{pre}(V)$. By hypothesis there is a $U \in O_X(x)$ such that $f(U) \subseteq V$. This means that $U \subseteq f^{pre}(V)$. Since $x$ was an arbitrary element of $f^{pre}(V)$, it must be open.
+
+Now since each basis element is open in its topological space, (2) clearly implies (3). Conversely, for any $x \in X$ and any $V \in O_Y(f(x))$, there is a $C \in \mathcal{C}$ such that $f(x) \in C \subseteq V$. By hypothesis there is a $B \in \mathcal{B}$ such that $x \in B$ and $f(B) \subseteq C \subseteq V$, which proves (2) since basis elements are open.
 
 
 ## Definition of a basis
