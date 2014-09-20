@@ -1,3 +1,9 @@
+# Affine spaces
+
+## Note
+We use postfix function notation throughout.
+
+## Definition of affine space
 An **affine space** is a tuple $(X, V, \theta)$ where
 
  - $X$ is some set
@@ -6,8 +12,8 @@ An **affine space** is a tuple $(X, V, \theta)$ where
 
 such that
 
- - for any $a \in X$, $\theta_a: X \to V$ defined by $\theta_a(b) = \theta(a, b)$ is a bijection
- - for all $a, b, c \in X$, $\theta(a, b) + \theta(b, c) = \theta(a, c)$
+ - for any $a \in X$, $\theta_a: X \to V$ defined by $(b)\theta_a = (a, b)\theta$ is a bijection
+ - for all $a, b, c \in X$, $(a, b)\theta + (b, c)\theta = (a, c)\theta$
 
 The first axiom says that if we "pick an origin" in $X$, we can recover a vector space by taking the difference. The second axiom ensures that the interaction between $X$ and $V$ behaves like one might intuitively expect: it implies, for example, after picking an origin at $a$, that the vector assigned to $a$ is the zero vector. It also implies that the vector going from $a$ to $b$ is the inverse of the vector going from $b$ to $a$.
 
@@ -16,17 +22,17 @@ Since each $\theta_a$ is a bijection, we can define its inverse $\phi_a$.
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
 
- - define $b + c := \phi_a(\theta_a(b) + \theta_a(c))$
- - define $\alpha \cdot b := \phi_a(\alpha \cdot \theta_a(b))$.
+ - define $b + c := (b \theta_a + c \theta_a) \phi_a$
+ - define $\alpha \cdot b := (\alpha \cdot (b)\theta_a) \phi_a$.
 
  1. $\theta_a$ is "linear"
 
     For all $b, c \in X$, $\lambda \in \mathbb{F}$,
 
-      - $\theta_a(b + c) = \theta_a(b) + \theta_a(c)
-      - $\theta_a(\lambda b) = \lambda \theta_a(b)
+      - $(b + c)\theta_a = b \theta_a + c \theta_a
+      - $(\lambda b)\theta_a = \lambda (b \theta_a)
 
-    *Proof:* Since $b + c = \phi_a(\theta_a(b) + \theta_a(c))$, $\theta_a(b+c) = \theta_a(b) + \theta_a(c)$. Also, since $\lambda b = \phi_a(\lambda \theta_a(b))$, the second property (homogeneity) follows.
+    *Proof:* Since $b + c = (b \theta_a + c \theta_a) \phi_a$, $(b+c)\theta_a = b \theta_a + c \theta_a$. Also, since $\lambda b = (\lambda (b \theta_a)) \phi_a$ by definition, the second property (homogeneity) follows.
 
  2. associativity of $+$
 
@@ -34,10 +40,10 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    (b + c) + d & = \phi_a(\theta_a(b+c) + \theta_a(d)) \\
-                & = \phi_a((\theta_a(b) + \theta_a(c)) + \theta_a(d)) \\
-                & = \phi_a(\theta_a(b) + (\theta_a(c) + \theta_a(d))) \\
-                & = \phi_a(\theta_a(b) + \theta_a(c+d)) \\
+    (b + c) + d & = ((b+c)\theta_a + d \theta_a) \phi_a \\
+                & = ((b \theta_a + c \theta_a) + \theta_a(d)) \phi_a \\
+                & = (b \theta_a + (c \theta_a + d \theta_a)) \phi_a \\
+                & = (b \theta_a + (c+d) \theta_a) \phi_a \\
                 & = b + (c + d)
     \end{aligned}
     $$
@@ -52,21 +58,22 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    a + b &= \phi_a(\theta_a(a) + \theta_a(b))
-          &= \phi_a(0 + \theta_a(b))
+    a + b &= (a \theta_a + b \theta_a) \phi_a \\
+          &= (0 + b \theta_a) \phi_a \\
+          &= (b \theta_a) \phi_a \\
           &= b
     \end{aligned}
     $$
 
  5. additive inverses
 
-    *Proof:* For any $b \in X$, $-b := \phi_a(- \theta_a(b))$, so
+    *Proof:* For any $b \in X$, $-b := (- (b \theta_a)) \phi_a$, so
 
     $$
     \begin{aligned}
-    b + (-b) &= \phi_a(\theta_a(b) + \theta_a(\phi_a(- \theta_a(b))))
-             &= \phi_a(\theta_a(b) + - \theta_a(b))
-             &= \phi_a(0)
+    b + (-b) &= (b \theta_a + ((- (b \theta_a)) \phi_a) \theta_a) \phi_a
+             &= (b \theta_a + -(b \theta_a)) \phi_a
+             &= 0 \phi_a
              &= a
     \end{aligned}
     $$
@@ -77,9 +84,9 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    (\lambda + \mu) b &= \phi_a((\lambda + \mu) \theta_a(b))
-                      &= \phi_a(\lambda \theta_a(b) + \mu \theta_a(b))
-                      &= \phi_a(\theta_a(\lambda b) + \theta_a(\mu b))
+    (\lambda + \mu) b &= (\lambda + \mu) (b \theta_a) \phi_a
+                      &= (\lambda (b \theta_a) + \mu (b \theta_a)) \phi_a
+                      &= ((\lambda b) \theta_a + (\mu b) \theta_a) \phi_a
                       &= \lambda b + \mu b
     \end{aligned}
     $$
@@ -90,10 +97,10 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    \lambda (b + c) &= \phi_a(\lambda \theta_a(b+c))
-                    &= \phi_a(\lambda (\theta_a(b) + \theta_a(c)))
-                    &= \phi_a(\lambda \theta_a(b) + \lambda \theta_a(c))
-                    &= \phi_a(\theta_a(\lambda b) + \theta_a(\lambda c))
+    \lambda (b + c) &= (\lambda ((b+c) \theta_a)) \phi_a
+                    &= (\lambda (b \theta_a + c \theta_a)) \phi_a
+                    &= (\lambda (b \theta_a) + \lambda (c \theta_a)) \phi_a
+                    &= ((\lambda b \theta_a) + (\lambda c \theta_a)) \phi_a
                     &= \lambda b + \lambda c
     \end{aligned}
     $$
@@ -104,8 +111,8 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    1 b &= \phi_a(1 \theta_a(b))
-        &= \phi_a(\theta_a(b))
+    1 b &= 1 (b \theta_a) \phi_a
+        &= (b \theta_a) \phi_a
         &= b
     \end{aligned}
     $$
@@ -116,10 +123,10 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
 
     $$
     \begin{aligned}
-    \lambda (\mu b) &= \phi_a(\lambda \theta_a(\mu b))
-                    &= \phi_a(\lambda (\mu \theta_a(b)))
-                    &= \phi_a((\lambda \mu) \theta_a(b))
-                    &= \phi_a(\theta_a((\lambda \mu) b))
+    \lambda (\mu b) &= (\lambda (\mu b \theta_a)) \phi_a
+                    &= (\lambda (\mu (b \theta_a))) \phi_a
+                    &= (\lambda \mu) (b \theta_a) \phi_a
+                    &= ((\lambda \mu) b \theta_a) \phi_a
                     &= (\lambda \mu) b
     \end{aligned}
     $$
