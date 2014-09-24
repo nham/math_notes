@@ -132,6 +132,16 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
     $$
 
 
+## Every vector space is an affine space
+If $V$ is a vector space over $\mathbb{F}$, then $(V, V, \theta)$ is an affine space, where $\theta$ is defined by:
+
+$$(u, v) \theta = v - u$$
+
+*Proof:* For any $u \in V$, $\theta_u$ is injective since $v \theta_u = w \theta_u$ implies $v - u = w - u$, or $v = w$. $\theta_u$ is also surjective because for any $v \in V$, $(u+v) \theta_u = v$.
+
+Also, $(u, v) \theta + (v, w) \theta = v - u + w - v = w - u = (u, w) \theta$.
+
+
 ## Translations
 If $(X, V, \theta)$ is an affine space, for every $v \in V$ we can define the **translation** $\tau_v: X \to X$ by $a \tau_v = v \phi_a$. In words, $a \tau_v$ is the unique $b \in X$ such that $\theta(a, b) = v$.
 
@@ -199,3 +209,27 @@ But:
 $$(c f^{-1}, d f^{-1}) \theta L = (c f^{-1} f, d f^{-1} f) \xi = (c, d) \xi$$
 
 So the statement holds by applying $L^{-1}$ to both sides.
+
+
+## When an affine map between vector spaces is linear
+An affine map $f: X \to Y$ between two vector spaces (as affine spaces) $(X, X, \theta)$ and $(Y, Y, \xi)$ is linear iff $0f = 0$.
+
+*Proof:* One direction is immediate since a linear map must send $0$ to $0$. For the other direction, if $0f = 0$, then we have:
+
+$$
+\begin{aligned}
+(u+v)f & = (0, (u+v)f) \xi
+       & = (0, u+v) \theta L
+       & = (u+v) L
+       & = uL + vL
+       & = (0, u) \theta L + (0, v) \theta L
+       & = (0, uf) \xi + (0, vf) \xi
+       & = uf + vf
+\end{aligned}
+$$
+
+### Corollary
+If $(X, V, \theta)$ and $(Y, W, \xi)$ are affine spaces and $f: X \to Y$ is a map, then $f$ is a affine iff for some choice $a \in X$, $g: X_a \to Y_{af}$ is linear, where $X_a$ is the induced vector space on $X$ at $a$, $Y_{af}$  is the induced vector space on $Y$ at $af$ and $bg := bf$ for all $b \in X$.
+
+*Proof:* If $f$ is affine, it clearly holds with any choice of $a \in X$. Conversely, if there is an $a \in X$ such that all that stuff holds, then $f$ which is $g$, is affine since it is linear.
+
