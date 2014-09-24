@@ -160,3 +160,42 @@ If $(X, V, \theta)$ and $(Y, W, \xi)$ are affine spaces, then a map $f: X \to Y$
 $$(a, b) \theta L = (af, ab) \xi$$
 
 for all $a, b \in X$.
+
+## Composition of affine maps is affine
+If $(X, V_X, \theta_X), (Y, V_Y, \theta_Y), (Z, V_Z, \theta_Z)$ are all affine spaces, and $f: X \to Y$ and $g: Y \to Z$ are affine maps, then $fg: X \to Z$ is an affine map.
+
+*Proof:* By definition, there are linear maps $L: V_X \to V_Y$ and $M: V_Y \to V_Z$ such that
+
+$$(a, b) \theta_X L = (af, bf) \theta_Y$$
+
+for all $a, b \in X$ and
+
+$$(c, d) \theta_Y M = (cg, dg) \theta_Z$$
+
+for all $c, d \in Y$. From this we have
+
+$$(a, b) \theta_X (LM) = (af, bf) \theta_Y M = (afg, afg) \theta_Z$$
+
+Since $LM$ is a linear map $V_X \to V_Z$, $fg$ meets the criteria for an affine map.
+
+## Definition of affine isomorphism
+An **affine isomorphism** is a bijective affine map.
+
+## Inverse of an affine isomorphism is affine
+If $f: X \to Y$ is an affine isomorphism between two affine spaces $(X, V, \theta), (Y, W, \xi)$, with linear map $L: V \to W$, then $f^{-1}$ is affine and its associated linear map is $M = L^{-1}$.
+
+*Proof:* First we need to prove that $L$ is actually a linear isomorphism. If $L$ is not injective, then there is some $u \neq 0$ such that $uL = 0$. Since we know for any $a \in X$, there is some $b \neq 0$ such that $(a, b) \theta = u$, so $(a, b) \theta L = u L = 0 = (af, bf) \xi$, which implies that $af = bf$, contradicting $f$ being a bijection. So $L$ must be injective.
+
+To prove $L$ is surjective, let $w \in W$. For any $c \in Y$, there is some $d \in Y$ such that $(c, d) \xi = w$. Then $(c f^{-1}, d f^{-1}) \theta L = (c, d) \xi = w$, so $v := (c f^{-1}, d f^{-1}) \theta$ gets mapped by $L$ to $w$, proving $L$ is surjective.
+
+For $c, d \in Y$, there is a unique pair $(a, b) \in X^2$ such that $(af, bf) = (c, d)$. So $(c f^{-1}, d f^{-1}) = (a, b)$ and $(a, b) \theta_Y M
+
+Now for any $c, d \in Y$, We need to prove that
+
+$$(c, d) \xi L^{-1} = (c f^{-1}, d f^{-1}) \theta$$
+
+But:
+
+$$(c f^{-1}, d f^{-1}) \theta L = (c f^{-1} f, d f^{-1} f) \xi = (c, d) \xi$$
+
+So the statement holds by applying $L^{-1}$ to both sides.
