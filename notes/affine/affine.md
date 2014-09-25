@@ -25,6 +25,8 @@ An affine space allows us to define a vector space on $X$ itself as follows: for
  - define $b + c := (b \theta_a + c \theta_a) \phi_a$
  - define $\alpha \cdot b := (\alpha \cdot (b)\theta_a) \phi_a$.
 
+The vector space induced on affine space $X$ at $a$ will be denoted $X @ a$.
+
  1. $\theta_a$ is "linear"
 
     For all $b, c \in X$, $\lambda \in \mathbb{F}$,
@@ -229,7 +231,25 @@ $$
 $$
 
 ### Corollary
-If $(X, V, \theta)$ and $(Y, W, \xi)$ are affine spaces and $f: X \to Y$ is a map, then $f$ is a affine iff for some choice $a \in X$, $g: X_a \to Y_{af}$ is linear, where $X_a$ is the induced vector space on $X$ at $a$, $Y_{af}$  is the induced vector space on $Y$ at $af$ and $bg := bf$ for all $b \in X$.
+If $(X, V, \theta)$ and $(Y, W, \xi)$ are affine spaces and $f: X \to Y$ is a map, then $f$ is a affine iff for some choice $a \in X$, $f$ is a linear map $X @ a \to Y @ af$.
 
-*Proof:* If $f$ is affine, it clearly holds with any choice of $a \in X$. Conversely, if there is an $a \in X$ such that all that stuff holds, then $f$ which is $g$, is affine since it is linear.
+*Proof:* Both directions follow immediately from the proposition.
 
+
+## Characterizing an affine map between vector spaces
+If $X$ and $Y$ are vector spaces and $f: X \to Y$ an affine map, then $xf = 0f + xL$, where $L$ is the underlying linear map of $f$.
+
+*Proof:*
+By the property of affine maps, $xL = (0, x) \theta L = (0f, xf) \xi = xf - 0f$.
+
+
+## Definition of affine subspace
+If $(X, V, \theta)$ is an affine space, then $(A, U, \xi)$ is an **affine subspace** of $X$ provided that $A \subseteq X$, $U$ is a vector subspace of $V$, and the inclusion $A \to X$ is an affine map.
+
+I think I'd also like to say, equivalently, an affine subspace is some subset A such that, when you pick an origin a \in A, the induced vector space on A is a subspace of the induced vector space on X.
+
+
+## Alternative definition of affine subspace
+If $(A, U, \xi)$ and $(X, V, \theta)$ are affine spaces. then $A$ is an affine subspace of $X$ iff for some $a \in A$, then $A @ a$ is a subspace of $X @ a$.
+
+*Proof:* If $A$ is an affine subspace of $X$ then by definition the inclusion $i: A \to X$ is an affine map, so by a previous proposition there is an $a \in A$ such that $i$ is a linear map $A @ a \to X @ a$, which is a defining characteristic of a subspace. Conversely, if there is some $a \in A$ such that $A @ a$  is a subspace of $X @ a$, then the inclusion $i$ is a linear map, so it is affine as well.
