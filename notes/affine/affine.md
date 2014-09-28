@@ -3,6 +3,33 @@
 ## Note
 We use postfix function notation throughout.
 
+## Definition of group actions
+If $G$ is a group, a **group action** of $G$ on a set $X$ is a homomorphism $G \to Sym X$, where $Sym X$ is the symmetric group on $X$.
+
+One specific map from which a group action may be recovered is a function $\phi: X \times G \to X$ obeying:
+
+ - $\forall x \in X (x, e) \phi = x$, where $e$ is the group identity for $G$
+ - $\forall x \in X$, $\forall $g, h \in G$, $((x, g) \phi, h) \phi = (x, gh) \phi$
+
+Then $\theta: G \to Sym X$ is defined by, for all $g \in G$, $g \theta$ mapping $x \mapsto (x, g) \phi$.
+
+This is a legit map since, by the first axiom, $g \theta$ and $g^{-1} \theta$ are inverses. It is a homomorphism since:
+
+
+$$
+\begin{aligned}
+x (gh \theta) &= (x, gh) \phi \\
+              &= ((x, g) \phi), h) \phi \\
+              &= (x (g \theta), h) \phi \\
+              &= (x (g \theta)) (h \theta) \\
+              &= x (g \theta h \theta)
+\end{aligned}
+$$
+
+## Definition of simply transitive group action
+If $\phi: G \to Sym X$ is a group action, then $\phi$ is **simply transitive** iff for all $(x, y) \in X^2$, there is exactly one $g \in G$ such that $x (g \phi) = y$.
+
+
 ## Definition of affine space
 An **affine space** is a tuple $(X, V, \theta)$ where
 
@@ -18,6 +45,39 @@ such that
 The first axiom says that if we "pick an origin" in $X$, we can recover a vector space by taking the difference. The second axiom ensures that the interaction between $X$ and $V$ behaves like one might intuitively expect: it implies, for example, after picking an origin at $a$, that the vector assigned to $a$ is the zero vector. It also implies that the vector going from $a$ to $b$ is the inverse of the vector going from $b$ to $a$.
 
 Since each $\theta_a$ is a bijection, we can define its inverse $\phi_a$.
+
+## Equivalent definition of affine space
+
+### Definition of eniffa space
+Let's temporarily define an **eniffa space** as a tuple $(X, V, \alpha)$ where
+
+ - $X$ is some set
+ - $V$ is a vector space over some field $\mathbb{F}$
+ - $\alpha: X \times V \to X$
+
+is such that (letting $x \to v$ denote $(x, v) \alpha$):
+
+ - for any $x \in X$, $x \to 0 = x$
+ - for any $x \in X$, $v, w \in V$, $(x \to v) \to w) = x \to (v + w)$
+ - for any $x, y \in X$, there is a unique $v \in V$ such that $x \to v = y$.
+
+The last axiom allows us to define a map $\omega: X \times X \to V$, so that for all $x, y \in X$, $x \to ((x, y) \omega) = y$.
+
+### Proof of equivalence
+For every eniffa space $E = (X, V, \alpha)$, there is an affine space $E_{affine} = (X, V, \omega)$. Also, for every affine space $A = (X, V, \theta)$, there is an eniffa space $A_{eniffa} = (X, V, (x, v) \mapsto v \phi_x)$. For every affine space $A$, $A = (A_{eniffa})_{affine}$, and for every eniffa space $E$, $E = (E_{affine})_{eniffa}$.
+
+*Proof:*
+First we prove that for every eniffa space $E$, $E_{affine}$ is affine. For every $x \in X$, $\omega_x$ defined by $y \omega_x = (x, y) \omega$ is surjective because for all $v \in V$, (x, (x \to v)) \omega = v$. It is also injective since $y \omega_x = z \omega_x$ implies $(x, y) \omega = (x, z) \omega$, implying some $v \in V$ has $x \to v = z$ and $x \to v = y$. So $z = y$.
+
+For the second affine space axiom, we must prove that $(x, y) \omega + (y, z) \omega = (x, z) \omega$ for all $x, y, z \in X$. If we let $u := (x, y) \omega$, $v := (y, z) \omega$, $w := (x, z) \omega$, then $x \to w = z$, $x \to u = y$, y \to v = z$, so $(x \to u) \to v = z$. By the eniffa axioms, $z = x \to (u + v) = x \to w$, proving that $u + v = w$.
+
+Next we prove that for every affine space $A$, $A_{eniffa}$ is an eniffa space. For the first axiom, $0 \phi_x = 0$. For the second, let $x \in X$ and $u, v \in V$, and let $y := u \phi_x$, $z := v \phi_y$.  Then $(x \to u) \to v = z$. By the axioms for $\theta$, $u + v = (x, z) \theta$, so $(u+v) \phi_x = z$, which establishes axiom 2 for eniffa spaces. For the third axiom, let $x, y \in X$. We need to prove that there is exactly one $v \in V$ such that $v \phi_x = y$, but that's true, because $v = (x, y) \theta$.
+
+I don't feel like proving the rest. TODO.
+
+### Remark
+This says that an affine space is a group action is a vector space $V$, a set $X$, and a simply transitive group action of $V$'s additive group on $X$.
+
 
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
