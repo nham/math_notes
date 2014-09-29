@@ -76,7 +76,64 @@ Next we prove that for every affine space $A$, $A_{eniffa}$ is an eniffa space. 
 I don't feel like proving the rest. TODO.
 
 ### Remark
-This says that an affine space is a group action is a vector space $V$, a set $X$, and a simply transitive group action of $V$'s additive group on $X$.
+This says that an affine space is a vector space $V$, a set $X$, and a simply transitive group action of $V$'s additive group on $X$. We are justified in assuming that an affine space possesses either $\theta: X \times X \to V$ or $\alpha: X \times V \to X$, and also justified that both are present.
+
+
+## Basic properties of affine spaces
+
+ - $(P, Q) \theta = 0$ iff $P = Q$
+ - $(P, Q) \theta = - (Q, P) \theta$
+ - $(P, Q) \theta = (R, S) \theta$ implies $(P, R) \theta = (Q, S) \theta$
+ - $(P, (P \to v)) \theta = v$
+ - $P \to ((P, Q) \theta) = Q$
+
+*Proof:* The first 2 hold directly from the axioms on $\theta$. For the third, assuming $(P, Q) \theta = (R, S) \theta$, we have
+
+$$
+\begin{aligned}
+(P, R) \theta &= (P, Q) \theta + (Q, R) \theta
+              &= (R, S) \theta + (Q, S) \theta + (S, R) \theta
+              &= (Q, S) \theta
+\end{aligned}
+$$
+
+The remaining properties hold since $(P \to v) = v \phi_P$.
+
+
+## Every vector space is an affine space
+If $V$ is a vector space over $\mathbb{F}$, then $(V, V, \theta)$ is an affine space, where $\theta$ is defined by:
+
+$$(u, v) \theta = v - u$$
+
+*Proof:* For any $u \in V$, $\theta_u$ is injective since $v \theta_u = w \theta_u$ implies $v - u = w - u$, or $v = w$. $\theta_u$ is also surjective because for any $v \in V$, $(u+v) \theta_u = v$.
+
+Also, $(u, v) \theta + (v, w) \theta = v - u + w - v = w - u = (u, w) \theta$.
+
+
+## Translations
+If $(X, V, \theta)$ is an affine space, for every $v \in V$ we can define the **translation** $\tau_v: X \to X$ by $a \tau_v = v \phi_a$. In words, $a \tau_v$ is the unique $b \in X$ such that $\theta(a, b) = v$.
+
+
+## Every translation is a permutation on $X$
+For every $v \in V$, $\tau_v$ is a permutation on $X$.
+
+*Proof:* We prove that $\tau_{-v}$ is an inverse for $\tau_v$. For any $a \in X$, $a \tau_v \tau_{-v} = (v \phi_a) \tau_{-v} = (-v) \phi_b$, where we are letting $b = v \phi_a$, meaning $b$ is the unique element of $X$ such that $\theta(a, b) = v$. But $(-v) \phi_b$ is the unique $c \in X$ such that $\theta(b, c) = -v$, and by the affine space axioms we have $c = a$, so $a \tau_v \tau_{-v} = a$. A similar proof shows that $a \tau_{-v} \tau_v = a$, so $\tau_v$ has a two-sided inverse, proving it is a bijection.
+
+## Translation injection
+The map $\tau: V \to Sym X$, where $Sym X$ is the symmetric group on $X$, defined by $v \tau = \tau_v$, is an injective group homomorphism.
+
+*Proof:* To prove that it's a homomorphism, we must show $\tau_{v+w} = \tau_v \tau_w$, or that $(v+w) \phi_a = (v \phi_a) \tau_w = w \phi_{v \phi_a}$ for any $a \in X$. If we let $b = v \phi_a$ and $c = w \phi_b$, then because $v + w = (a, b) \theta + (b, c) \theta = (a, c) \theta$, it is proved.
+
+To prove injectivity, by the properties of group homomorphisms it suffices to prove that the only $v \in V$ for which $\tau_v = id_X$ is $v = 0$. But if $a \tau_v = a$ for any $a \in X$, then $v \phi_a = a$, so $v = 0$ by the properties of $\theta$.
+
+## Alternate representation for a translation
+If $a, b \in X$ and $v = (a,b) \theta$, then $\tau_v = \theta_a \phi_b$.
+
+*Proof:* Let $y = x \tau_v$. Then $(a, x) \theta + (x, y) \theta = (a, b) \theta + (b, y) \theta$. But since by definition of $y$, $(a, b) \theta = (x, y) \theta$, we have $x \theta_a = (a, x) \theta = (b, y) \theta$. So $x \theta_a \phi_b = y$.
+
+
+## Definition of affine subspace
+If $(X, V, \alpha: X \times V \to X)$ is an affine space, then $(Y, W, \beta: Y \times W \to Y)$ is an **affine subspace** of $(X, V)$ iff it is an affine space and $Y \subseteq X$, $W$ is a subspace of $V$, and $(y, w) \beta = (y, w) \alpha$ for all $(y, w) \in Y \times W$.
 
 
 ## The vector space on $X$
@@ -194,36 +251,6 @@ The vector space induced on affine space $X$ at $a$ will be denoted $X @ a$.
     $$
 
 
-## Every vector space is an affine space
-If $V$ is a vector space over $\mathbb{F}$, then $(V, V, \theta)$ is an affine space, where $\theta$ is defined by:
-
-$$(u, v) \theta = v - u$$
-
-*Proof:* For any $u \in V$, $\theta_u$ is injective since $v \theta_u = w \theta_u$ implies $v - u = w - u$, or $v = w$. $\theta_u$ is also surjective because for any $v \in V$, $(u+v) \theta_u = v$.
-
-Also, $(u, v) \theta + (v, w) \theta = v - u + w - v = w - u = (u, w) \theta$.
-
-
-## Translations
-If $(X, V, \theta)$ is an affine space, for every $v \in V$ we can define the **translation** $\tau_v: X \to X$ by $a \tau_v = v \phi_a$. In words, $a \tau_v$ is the unique $b \in X$ such that $\theta(a, b) = v$.
-
-
-## Every translation is a permutation on $X$
-For every $v \in V$, $\tau_v$ is a permutation on $X$.
-
-*Proof:* We prove that $\tau_{-v}$ is an inverse for $\tau_v$. For any $a \in X$, $a \tau_v \tau_{-v} = (v \phi_a) \tau_{-v} = (-v) \phi_b$, where we are letting $b = v \phi_a$, meaning $b$ is the unique element of $X$ such that $\theta(a, b) = v$. But $(-v) \phi_b$ is the unique $c \in X$ such that $\theta(b, c) = -v$, and by the affine space axioms we have $c = a$, so $a \tau_v \tau_{-v} = a$. A similar proof shows that $a \tau_{-v} \tau_v = a$, so $\tau_v$ has a two-sided inverse, proving it is a bijection.
-
-## Translation injection
-The map $\tau: V \to Perm X$, where $Perm X$ is the group of permutations on $X$, defined by $v \tau = \tau_v$, is an injective group homomorphism.
-
-*Proof:* To prove that it's a homomorphism, we must show $\tau_{v+w} = \tau_v \tau_w$, or that $(v+w) \phi_a = (v \phi_a) \tau_w = w \phi_{v \phi_a}$ for any $a \in X$. If we let $b = v \phi_a$ and $c = w \phi_b$, then because $v + w = (a, b) \theta + (b, c) \theta = (a, c) \theta$, it is proved.
-
-To prove injectivity, by the properties of group homomorphisms it suffices to prove that the only $v \in V$ for which $\tau_v = id_X$ is $v = 0$. But if $a \tau_v = a$ for any $a \in X$, then $v \phi_a = a$, so $v = 0$ by the properties of $\theta$.
-
-## Alternate representation for a translation
-If $a, b \in X$ and $v = (a,b) \theta$, then $\tau_v = \theta_a \phi_b$.
-
-*Proof:* Let $y = x \tau_v$. Then $(a, x) \theta + (x, y) \theta = (a, b) \theta + (b, y) \theta$. But since by definition of $y$, $(a, b) \theta = (x, y) \theta$, we have $x \theta_a = (a, x) \theta = (b, y) \theta$. So $x \theta_a \phi_b = y$.
 
 
 ## Definition of affine map
@@ -305,9 +332,6 @@ By the property of affine maps, $xL = (0, x) \theta L = (0f, xf) \xi = xf - 0f$.
 
 ## Definition of affine subspace
 If $(X, V, \theta)$ is an affine space, then $(A, U, \xi)$ is an **affine subspace** of $X$ provided that $A \subseteq X$, $U$ is a vector subspace of $V$, and the inclusion $A \to X$ is an affine map.
-
-I think I'd also like to say, equivalently, an affine subspace is some subset A such that, when you pick an origin a \in A, the induced vector space on A is a subspace of the induced vector space on X.
-
 
 ## Alternative definition of affine subspace
 If $(A, U, \xi)$ and $(X, V, \theta)$ are affine spaces. then $A$ is an affine subspace of $X$ iff for some $a \in A$, then $A @ a$ is a subspace of $X @ a$.
