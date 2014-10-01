@@ -136,6 +136,30 @@ If $a, b \in X$ and $v = (a,b) \theta$, then $\tau_v = \theta_a \phi_b$.
 If $(X, V, \alpha: X \times V \to X)$ is an affine space, then $(Y, W, \beta: Y \times W \to Y)$ is an **affine subspace** of $(X, V)$ iff it is an affine space and $Y \subseteq X$, $W$ is a subspace of $V$, and $(y, w) \beta = (y, w) \alpha$ for all $(y, w) \in Y \times W$.
 
 
+## Sufficient conditions for affine subspace
+If $(X, V, \alpha)$ is an affine space and $Y \subseteq X$ and $W$ is a subspace of $V$, then if 
+
+ - $(P \to w) \in Y$ for all $P \in Y, w \in W$
+ - for all $P, Q \in Y$, $(P, Q) \theta \in W$
+
+Then $(Y, W)$ forms an affine space under the restriction of $\alpha$ to $Y \times W \to Y$.
+
+*Proof:* The only other properties we need to prove to hold are
+
+ - $P \to 0 = P$ for all $P \in Y$
+ - $P \to (v + w) = (P \to v) \to w$ for all $P \in Y$, $v, w \in W$
+
+But these hold automatically since they hold for $\alpha$ and we are restricting $\alpha$ to $Y \times W \to Y$.
+
+
+## Concrete affine subspaces
+If $(X, V, \alpha)$ is an affine space and $P \in X$ and $W$ is a subspace of $V$, then $P + [W] := \{Q \in X: (P, Q) \theta \in W\}$ is an affine subspace of $X$. Furthermore, if $(Y, W)$ is an affine subspace of $(X, V)$ and $P \in Y$, then $Y = P + [W]$.
+
+*Proof:* By definition, $P + [W]$ is, by definition, closed under "jumps", meaning for all $P \in Y, w \in W$, $(P \to w) \in P + [W]$. The vector space is also closed under "gaps", meaning for all $Q, R \in Y$, $(Q, R) \theta \in W$. This is true since $Q = P \to v$, $R = P \to w$ for some $v, w \in W$, and since $R = Q \to (w - v)$, and since $w - v$ must also be in $W$ since $W$ is a subspace, it is true.
+
+Finally, if $(Y, W)$ is an affine subspace of $(X, V)$, and $P \in Y$, then for all $Q \in Y$, $(P, Q) \theta \in W$, so $P \to (P, Q) \theta = Q$. Also clearly $P \to w \in Y$ for all $w \in W$, so $Y = P + [W]$.
+
+
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
 
