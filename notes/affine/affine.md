@@ -159,6 +159,41 @@ If $(X, V, \alpha)$ is an affine space and $P \in X$ and $W$ is a subspace of $V
 
 Finally, if $(Y, W)$ is an affine subspace of $(X, V)$, and $P \in Y$, then for all $Q \in Y$, $(P, Q) \theta \in W$, so $P \to (P, Q) \theta = Q$. Also clearly $P \to w \in Y$ for all $w \in W$, so $Y = P + [W]$.
 
+### Remark
+This implies that no matter what point of an affine subspace is considered to be the origin, you always get the same space. The space $P + [W]$ is said to be the affine space through $P$ with orientation $W$.
+
+
+## Non-empty intersections of affine subspaces
+If $(A, U, \alpha)$ is an affine space and $P+[V]$, $Q+[W]$ are subspaces of $A$, then $(P+[V]) \cap (Q+[W]) != \emptyset$ iff $(P, Q) \theta \in V + W$.
+
+*Proof:* If $R$ is in the intersection, $R = P \to v = Q \to w$ for some $v \in V, w \in W$, so $R \to (-w) = Q$, hence $(P, Q) \theta = v - w \in V + W$. Conversely, if $u := (P, Q) \theta \in V + W$, then $u = v + w$ for some $v \in V, w \in W$. So $X := P \to v = Q \to (-w)$ is in the intersection.
+
+## Characterizing the non-empty intersection of affine subspaces
+If $(A, U, \alpha)$ is an affine space and $P+[V]$, $Q+[W]$ are subspaces of $A$, and if $R \in (P+[V]) \cap (Q+[W])$, then
+
+$$(P+[V]) \cap (Q+[W]) = R + [V \cap W]$$
+
+*Proof:* We know that we can write $P+[V] = R + [V]$ and $Q + [W] = R + [W]$. Clearly $R + [V \cap W] \subseteq (R+[V]) \cap (R+[W])$. Conversely, if $Q = R \to v = R \to w$ for $v \in V, w \in W$, then $v = w \in V \cap W$.
+
+## General intersections of affine subspaces
+If $Z$ is a collection of affine subspaces $\{P_i + [V_i] : i \in I \}$ of some affine space $A$, and if $\bigcap Z \neq \emptyset$, then $\bigcap Z$ is an affine subspace, with $\bigcap_i P_i + [V_i] = X + [\bigcap_i V_i]$, where $X \in \bigcap Z$.
+
+*Proof:* Same strategy as in the case of two subspaces: We can represent each $P_i + [V_i]$ as $X + [V_i]$. Clearly $X + [\bigcap_i V_i] \subseteq \bigcap_i (X + [V_i])$. Also, if $Q \in \bigcap (X + [V_i])$, then for all $i$, $Q = X \to v_i$ for some $v_i \in V_i$. This implies $v_i = v_j$ for all $i, j$, so $Q \in X + [\bigcap_i V_i]$.
+
+
+## Generated affine subspaces
+If $(A, U, \alpha)$ is an affine space and $S \subseteq A$, then $(S, A) gen$ is defined to be the intersection of all affine subspaces of $A$ that contain $S$. By the above, this is an affine subspace of $A$.
+
+
+## Definition of affine subspace sums
+If $(A, U, \alpha)$ is an affine space and $L_1, L_2$ are affine subspaces of $A$, then the **sum of subspaces** $L_1 + L_2$ is defined to be $(L_1 \cup L_2, A) gen$
+
+
+## Characterization of affine sums
+If $A$ is an affine space and $P + [V]$, $Q + [W]$ are affine subspaces, then $(P + [V]) + (Q + [W]) = P + [V+W + (P, Q) \theta span]$.
+
+*Proof:* Let $L = P + [V + W + (P, Q) \theta span])$. It is not too hard to see that $L$ contains both $P + [V]$ and $Q + [W]$. If $M$ is an affine subspace of $A$ containing $P + [V]$ and $Q + [W]$, there is some vector subspace $Z$ such that $M = P + [Z] = Q + [Z]$. Let $u := (P, Q) \theta$. We need to prove that $L \subseteq M$, or equivalently, for all $v \in V$, $w \in W$, $\lambda \in \mathbb{F}$, that $P \to (v + w + \lambda u) \in M$. But $V$, $W$ and $u span$ must all be contained in $Z$.
+
 
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
