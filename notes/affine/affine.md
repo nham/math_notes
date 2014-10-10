@@ -195,6 +195,32 @@ If $A$ is an affine space and $P + [V]$, $Q + [W]$ are affine subspaces, then $(
 *Proof:* Let $L = P + [V + W + (P, Q) \theta span])$. It is not too hard to see that $L$ contains both $P + [V]$ and $Q + [W]$. If $M$ is an affine subspace of $A$ containing $P + [V]$ and $Q + [W]$, there is some vector subspace $Z$ such that $M = P + [Z] = Q + [Z]$. Let $u := (P, Q) \theta$. We need to prove that $L \subseteq M$, or equivalently, for all $v \in V$, $w \in W$, $\lambda \in \mathbb{F}$, that $P \to (v + w + \lambda u) \in M$. But $V$, $W$ and $u span$ must all be contained in $Z$.
 
 
+## Definition of affine dimension
+The **dimension** of an affine space is the dimension of the underlying vector space.
+
+## Grassmann formulas
+If $L_1 = P + [V]$ and $L_2 = Q + [W]$ are affine subspaces of some space $A$, then if $L_1 \cap L_2 \neq \emptyset$, we have
+
+$$dim(L_1 + L_2) = dim L_1 + dim L_2 - dim(L_1 \cap L_2)$$
+
+On the other hand, if $L_1 \cap L_2 = \emptyset$, then
+
+$$dim(L_1 + L_2) = dim L_1 + dim L_2 - dim(V \cap W) + 1$$
+
+
+*Proof:* If $L_1 \cap L_2 \neq \emptyset$, then $(P, Q) \theta \in V + W$, so $L_1 + L_2 = P + [V+W]$. We also have $L_1 \cap L_2 = R + [V \cap W]$ for some $R$, so
+
+$$dim(L_1 + L_2) = dim(V + W) = dim V + dim W - dim(V \cap W) = dim L_1 + dim L_2 - dim(L_1 \cap L_2)$$
+
+If we have $L_1 \cap L_2 = \emptyset$ instead, then $L_1 + L_2 = P + [V + W + (P, Q) \theta span]$, so letting $z = (P, Q) \theta$, we have:
+
+$$dim(L_1 + L_2) = dim(V + W + z span) = dim(V+W) + 1 = dim V + dim W - dim(V \cap W) + 1 = dim L_1 + dim L_2 - dim(V \cap W) + 1$$
+
+
+## Definition of parallel subspaces
+Two affine subspaces $L_1 = P + [V]$ and $L_2 = Q + [W]$ are **parallel** if $V$ is a subspace of $W$ or $W$ is a subspace of $V$.
+
+
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
 
