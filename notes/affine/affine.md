@@ -221,6 +221,42 @@ $$dim(L_1 + L_2) = dim(V + W + z span) = dim(V+W) + 1 = dim V + dim W - dim(V \c
 Two affine subspaces $L_1 = P + [V]$ and $L_2 = Q + [W]$ are **parallel** if $V$ is a subspace of $W$ or $W$ is a subspace of $V$.
 
 
+## Intersecting parallel subspaces
+If $L_1 = P + [V]$ and $L_2 = Q + [W]$ are parallel affine subspaces of some affine space $A$ they meet in some point $R$, then one is contained in the other.
+
+*Proof:* Without loss of generality we assume $V$ is a subspace of $W$. Then $L_1 = R + [V]$ and $L_2 = R + [W]$, so clearly $L_1 \subseteq L_2$.
+
+
+## Definition of barycenter
+If $P_1, \ldots, P_k$ are distinct points in some affine space, the **barycenter** is the point
+
+$$P_1 \to \frac{1}{k} \sum_{j=2}^k (P_1, P_j) \theta$$
+
+## Characterizing the barycenter
+The barycenter of a collection $P_1, \ldots, P_k$ of points is the unique point $G$ such that
+
+$$\sum_{j=1}^k (G, P_j) \theta = 0$$
+
+*Proof:* Let $G$ be the barycenter as defined above. To prove that it is such a point, note that $\sum_{j=1}^k (G, P_j) \theta = k (G, P_1) \theta + \sum_{j=2}^k (P_1, P_j) \theta = 0$ by definition of $G$. To prove that it's the only one, if $X$ is a point such that
+
+$$\sum_{j=1}^k (X, P_j) \theta = 0$$
+
+then since $\sum_{j=1}^k (G, P_j) \theta = \sum_{j=1}^k (P_j, G) \theta = 0$, we can find that
+
+$$k (X, G) \theta = \sum_{j=1}^k (X, P_j) \theta + (P_j, G) \theta = 0$$
+
+This proves that $X = G$.
+
+
+## Definition of simple ratio
+If $P, Q, R$ are collinear points in some affine space, then we define $(P, Q, R)$ to be the scalar $\lambda$ such that $(P, Q) \theta = \lambda (P, R) \theta$.
+
+
+## Simple ratios, real affine spaces and segments
+This seems like an important fact to keep in mind. If $A$'s underlying vector space is a real vector space, we can define the **segment** between any distinct points $P$ and $Q$ to be $[P, Q] := \{P \to \lambda (P, Q) \theta : 0 \leq \lambda \leq 1\}$. The points in the segment are exactly those points $X$ such that $0 \leq (P, X, Q) \leq 1$, since $[P, Q] = \{X : \exists \lambda, 0 \leq \lambda \leq 1 (P, X) \theta = (P, Q) \theta \}$.
+
+
+
 ## The vector space on $X$
 An affine space allows us to define a vector space on $X$ itself as follows: for any fixed $a \in X$ and any $b, c \in X$, $\alpha \in \mathbb{F}$:
 
