@@ -1,0 +1,93 @@
+\documentclass[a4paper,14pt]{article}
+\title{Tensor Products of Vector Spaces}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{xy}
+\newtheorem*{prop}{Proposition}
+\newtheorem*{remark}{Remark}
+\newtheorem*{defn}{Definition}
+\newtheorem*{homomorphism-thm}{Homomorphism Theorem}
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Quotient Spaces}
+If $V$ is a vector space over $\mathbb{F}$ and $W$ is a subspace of $V$, a \textbf{coset} of $W$ is a set $v + W := \{v + w : w \in W\}$. 
+
+\begin{prop}
+The collection of cosets is a partition of $V$.
+\begin{proof}
+If $z$ is in both $u + W$ and $v + W$, then $u + w_1 = z = v + w_2$, so $v = u + (w_1 - w_2) \in u + W$. Similarly, $u \in v + W$. If $y \in u + W$, then $y - u \in W$, so $y \in v + W$. Similarly every $z \in v + W$ is in $u + W$, so $u + W = v + W$.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+For any vector space $V$ and subspace $W$, you can define addition between cosets and scalar multiplication on cosets such that collection of cosets becomes a vector space over $\mathbb{F}$.
+\end{prop}
+
+\begin{remark}
+The vector space of cosets of $W$ in $V$ is called the \textbf{quotient space}, and is denoted $V/W$.
+\end{remark}
+
+\begin{prop}
+The map $\pi: V \to V/W$ defined by $v \mapsto v + W$ is a linear map.
+\end{prop}
+
+\begin{remark}
+The function $\pi$ is called the \textbf{canonical map}.
+\end{remark}
+
+\begin{prop}
+The kernel of any linear map $f: V \to W$ is a subspace of $V$, so $V / ker f$ is a quotient space.
+\end{prop}
+
+\begin{homomorphism-thm}
+If $f: V \to W$ is linear, then there is a unique linear map $\phi: V / ker f \to W$ such that $\pi ; \phi = f$, where $\pi$ is the canonical map.
+
+\begin{proof}
+    Define $\phi$ by $v + ker f \mapsto vf$. Routine verification shows that it's well-defined, linear and satisfies $\pi ; \phi = f$. $\phi$ is unique because any other candidate $\psi$ must have $(v + ker f)\phi = vf = (v \pi) \psi = (v + ker f) \psi$, meaning $\phi = \psi$.
+\end{proof}
+\end{homomorphism-thm}
+\section{Vector space of scalar-valued functions}
+\begin{prop}
+If $\mathbb{F}$ is any field and $X$ is any set, you can form a vector space by considering the collection of all functions $X \to \mathbb{F}$. 
+
+\begin{proof}
+If $f, g: X \to \mathbb{F}$, we define addition by $x(f + g) := xf + xg$ and scalar multiplication by $x(\alpha f) = \alpha (x f)$. That this is a vector space is a routine verification.
+\end{proof}
+\end{prop}
+
+\begin{remark}
+This vector space is denoted $\mathbb{F}^X$.
+
+You are probably familiar with the vector space $\mathbb{F}^n$. If you think about it, $\mathbb{F}^n$ is actually a special case of a space $\mathbb{F}^X$, where $X = \{1, \ldots, n\}$. The general idea, then, is that a function $X \to \mathbb{F}$ is a bag of scalars labeled by elements of $X$ There is exactly one scalar for each label. We can add two bags $B_1$ and $B_2$ of labeled scalars: the result is another bag of labeled scalars where for each label $x \in X$, the associated scalar is the sum of the scalars labeled by $x$ in $B_1$ and $B_2$. Scalar multiplication of a bag $B$ by $\alpha$ is just the bag where each scalar in $B$ is multiplied by $\alpha$.
+\end{remark}
+
+\begin{defn}
+A function $f: X \to \mathbb{F}$ is said to have \textbf{finite support} when the set $\{x \in X : xf \neq 0\}$ is finite.
+\end{defn}
+
+\begin{prop}
+The subset of $\mathbb{F}^X$ of functions with finite support is a subspace of $\mathbb{F}^X$.
+\end{prop}
+
+\section{Free vector spaces}
+\begin{defn}
+    For any set $X$, the \textbf{free vector space} on $X$ with respect to some field $\mathbb{F}$, is any pair $(V, i)$ where $V$ is a vector space on $\mathbb{F}$ and $i: X \to V$ is a function such that for any vector space $W$ over $\mathbb{F}$ and any function $f: X \to W$, there is a unique linear map $T: V \to W$ such that $i;T = f$.
+\end{defn}
+
+\begin{prop}
+    If a free vector space of a set $X$ over a field $\mathbb{F}$ exists, it is ``unique up to unique isomorphism'': if $(V, f: X \to V)$ and $(W, g: X \to W)$ are free vector spaces for $X$ over $\mathbb{F}$, there is a unique linear isomorphism $T: V \to W$ such that $f;T = g$.
+
+\begin{proof}
+    Since $(V, f)$ is a free vector space, by the universal property there is a linear map $r: V \to W$ such that $f;r = g$. Similarly there is a linear map $s: W \to V$ such that $g;s = f$. This implies $g;s;r = g$ and $f;r;s = f$. But we can apply the universal properties to $f$ and $g$ themselves: there is a unique linear map $p: V \to V$ such that $f = f;p$, and similarly a unique linear map $q: W \to W$ such that $g = g;q$. Since the identity maps $id_V$ and $id_W$ on $V$ and $W$ work for $p$ and $q$, respectively, and since $s;r$ and $r;s$ also fit the criteria, we must have $r;s = id_V$ and $s;r = id_W$. So $r$ and $s$ are inverses of each other, hence bijective, hence linear isomorphisms.
+
+To prove that $r$ is the unique linear isomorphism $L: V \to W$ such that $f;L = g$, note that $f = g;s$, so $g;s;L = g$. $s;L$, being the composition of linear maps, is linear, so we must have $s;L = id_W$. So $L$ is a post-inverse for $s$, implying $L = r$.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+There is a free vector space for every set $X$ and every field $\mathbb{F}$.
+\begin{proof}
+    The pair $(V, f)$ works, where $V$ is the subspace of $\mathbb{F}^X$ of functions of finite support and $f: X \to V$ is defined by $xf$ being the function that maps $x$ to $1 \in \mathbb{F}$ and $y \neq x$ to $0 \in \mathbb{F}$.
+\end{proof}
+\end{prop}
+\end{document}
