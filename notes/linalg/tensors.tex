@@ -1,15 +1,14 @@
 \documentclass[a4paper,14pt]{article}
 \title{Tensor Products of Vector Spaces}
 \usepackage{amsmath, amssymb, amsthm}
-\usepackage{xy}
+\usepackage{tikz-cd}
 \newtheorem*{prop}{Proposition}
 \newtheorem*{remark}{Remark}
 \newtheorem*{defn}{Definition}
 \newtheorem*{homomorphism-thm}{Homomorphism Theorem}
 \begin{document}
 \maketitle
-\tableofcontents
-\section{Quotient Spaces}
+\section{Quotient spaces}
 If $V$ is a vector space over $\mathbb{F}$ and $W$ is a subspace of $V$, a \textbf{coset} of $W$ is a set $v + W := \{v + w : w \in W\}$. 
 
 \begin{prop}
@@ -71,14 +70,33 @@ The subset of $\mathbb{F}^X$ of functions with finite support is a subspace of $
 
 \section{Free vector spaces}
 \begin{defn}
-    For any set $X$, the \textbf{free vector space} on $X$ with respect to some field $\mathbb{F}$, is any pair $(V, i)$ where $V$ is a vector space on $\mathbb{F}$ and $i: X \to V$ is a function such that for any vector space $W$ over $\mathbb{F}$ and any function $f: X \to W$, there is a unique linear map $T: V \to W$ such that $i;T = f$.
+For any set $X$, a \textbf{free vector space} on $X$ with respect to some field $\mathbb{F}$, is any pair $(V, f)$ where $V$ is a vector space on $\mathbb{F}$ and $f: X \to V$ is a function such that for any vector space $W$ over $\mathbb{F}$ and any function $g: X \to W$, there is a unique linear map $T: V \to W$ such that $f;T = g$.
+
+In other words, for every $W$ and every function $g: X \to W$ there is a unique linear $T: V \to W$ such that this diagram commutes:
+
+\begin{center}
+\begin{tikzcd}[row sep=large]
+    X \arrow[rd, "g"] \arrow[r, "f"] 
+    & V \arrow[d, dashed, "\exists! \> T"] \\
+                                   & W
+\end{tikzcd}
+\end{center}
 \end{defn}
 
 \begin{prop}
     If a free vector space of a set $X$ over a field $\mathbb{F}$ exists, it is ``unique up to unique isomorphism'': if $(V, f: X \to V)$ and $(W, g: X \to W)$ are free vector spaces for $X$ over $\mathbb{F}$, there is a unique linear isomorphism $T: V \to W$ such that $f;T = g$.
 
 \begin{proof}
-    Since $(V, f)$ is a free vector space, by the universal property there is a linear map $r: V \to W$ such that $f;r = g$. Similarly there is a linear map $s: W \to V$ such that $g;s = f$. This implies $g;s;r = g$ and $f;r;s = f$. But we can apply the universal properties to $f$ and $g$ themselves: there is a unique linear map $p: V \to V$ such that $f = f;p$, and similarly a unique linear map $q: W \to W$ such that $g = g;q$. Since the identity maps $id_V$ and $id_W$ on $V$ and $W$ work for $p$ and $q$, respectively, and since $s;r$ and $r;s$ also fit the criteria, we must have $r;s = id_V$ and $s;r = id_W$. So $r$ and $s$ are inverses of each other, hence bijective, hence linear isomorphisms.
+    Since $(V, f)$ is a free vector space, by the universal property there is a linear map $r: V \to W$ such that $f;r = g$. Similarly there is a linear map $s: W \to V$ such that $g;s = f$. This implies $g;s;r = g$ and $f;r;s = f$.
+
+\begin{center}
+\begin{tikzcd}[row sep=large]
+    & X \arrow[ld, "f"swap] \arrow[rd, "g"] \\
+    V \arrow[rr, yshift=0.7ex, "r"] & & W \arrow[ll, yshift=-0.7ex, "s"]
+\end{tikzcd}
+\end{center}
+
+ But we can apply the universal properties to $f$ and $g$ themselves: there is a unique linear map $p: V \to V$ such that $f = f;p$, and similarly a unique linear map $q: W \to W$ such that $g = g;q$. Since the identity maps $id_V$ and $id_W$ on $V$ and $W$ work for $p$ and $q$, respectively, and since $s;r$ and $r;s$ also fit the criteria, we must have $r;s = id_V$ and $s;r = id_W$. So $r$ and $s$ are inverses of each other, hence bijective, hence linear isomorphisms.
 
 To prove that $r$ is the unique linear isomorphism $L: V \to W$ such that $f;L = g$, note that $f = g;s$, so $g;s;L = g$. $s;L$, being the composition of linear maps, is linear, so we must have $s;L = id_W$. So $L$ is a post-inverse for $s$, implying $L = r$.
 \end{proof}
@@ -88,6 +106,39 @@ To prove that $r$ is the unique linear isomorphism $L: V \to W$ such that $f;L =
 There is a free vector space for every set $X$ and every field $\mathbb{F}$.
 \begin{proof}
     The pair $(V, f)$ works, where $V$ is the subspace of $\mathbb{F}^X$ of functions of finite support and $f: X \to V$ is defined by $xf$ being the function that maps $x$ to $1 \in \mathbb{F}$ and $y \neq x$ to $0 \in \mathbb{F}$.
+\end{proof}
+\end{prop}
+
+\section{Multilinear maps}
+If $V_1, \ldots, V_n$ are some vector spaces over a field $\mathbb{F}$, then for any integer $i$, $1 \leq i \leq n$, and for any $v = (v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in \prod_{j=1, j \neq i}^n V_j$, we can define the function $\iota_i[v]: V_i \to \prod_1^n V_j$ by $z \iota_i[v] := (v_1, \ldots, v_{i-1}, z, v_{i+1}, \ldots, v_n)$. It is routine to prove that each such function is a linear map $V_i \to \prod_1^n V_j$.
+
+For any vector space $W$ over $\mathbb{F}$, a function $\phi: \prod_1^n V_j$ is said to be \textbf{multilinear} when for every $i$ and every $v \in \prod_{j=1, j \neq i}^n V_j$, the composite function $\iota_i[v];\phi$ is a linear map $V_i \to W$.
+
+\begin{prop}
+Denote the collection of all multilinear maps $\prod_1^n V_i \to W$ by $ML(V_1, \ldots, V_n; W)$. By the usual definition of function addition and function scalar multiplication, this is a vector space over $\mathbb{F}$.
+\end{prop}
+
+\section{Tensor products}
+A tensor product of vector spaces $(V_1, \ldots, V_n)$ is a vector space $Z$ and a multilinear map $\iota$ such that $\iota$ is, in some sense, the most general multilinear map on $\prod_1^n V_i$. We give a universal property that defines the tensor product (similar to what was done for free vector spaces), prove some general properties about it, and then explicitly construct one of the tensor products.
+
+\begin{defn}
+    For any vector spaces $V_1, \ldots, V_n$ over a common field $\mathbb{F}$, a \textbf{tensor product} of $(V_1, \ldots, V_n)$ is a pair $(Z, \iota)$ where $Z$ is a vector space and $\iota$ is a multilinear map $\prod_1^n V_i \to Z$ such that for every vector space $W$ over $\mathbb{F}$ and every multilinear map $f: \prod_1^n V_i \to W$, there is a unique linear map $T: Z \to W$ such that $f = \iota;T$.
+
+In other words, for every vector space $W$ and every multilinear map $f: \prod_1^n V_i \to W$ there is a unique linear $T: Z \to W$ such that this diagram commutes:
+
+\begin{center}
+\begin{tikzcd}[row sep=large]
+    \prod_1^n V_i \arrow[rd, "f"] \arrow[r, "\iota"] 
+    & Z \arrow[d, dashed, "\exists! \> T"] \\
+                                   & W
+\end{tikzcd}
+\end{center}
+\end{defn}
+
+\begin{prop}
+If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$, then it is unique up to unique isomorphism.
+\begin{proof}
+This has the same form as the "unique up to unique isomorphism" proof for free vector spaces, so it is omitted here.
 \end{proof}
 \end{prop}
 \end{document}
