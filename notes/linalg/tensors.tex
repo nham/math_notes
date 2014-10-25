@@ -3,11 +3,17 @@
 \usepackage{amsmath, amssymb, amsthm}
 \usepackage{tikz-cd}
 \newtheorem*{prop}{Proposition}
+\newtheorem*{corollary}{Corollary}
 \newtheorem*{remark}{Remark}
 \newtheorem*{defn}{Definition}
 \newtheorem*{homomorphism-thm}{Homomorphism Theorem}
 \begin{document}
 \maketitle
+\section{Hom spaces, dual spaces}
+If $V$ and $W$ are two vector spaces over the same field $\mathbb{F}$, then the set of all linear maps $T: V \to W$ is denoted by $Hom(V, W)$. Under the usual definition of function addition and scalar multiplication, $Hom(V, W)$ is a vector space.
+
+Since any field can be considered as a vector space over itself, we can in particular form the space $Hom(V, \mathbb{F})$. This space is called the \textbf{dual space} of $V$, and will be denoted $V^{\ast}$.
+
 \section{Quotient spaces}
 If $V$ is a vector space over $\mathbb{F}$ and $W$ is a subspace of $V$, a \textbf{coset} of $W$ is a set $v + W := \{v + w : w \in W\}$. 
 
@@ -112,7 +118,7 @@ There is a free vector space for every set $X$ and every field $\mathbb{F}$.
 \section{Multilinear maps}
 If $V_1, \ldots, V_n$ are some vector spaces over a field $\mathbb{F}$, then for any integer $i$, $1 \leq i \leq n$, and for any $v = (v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in \prod_{j=1, j \neq i}^n V_j$, we can define the function $\iota_i[v]: V_i \to \prod_1^n V_j$ by $z \iota_i[v] := (v_1, \ldots, v_{i-1}, z, v_{i+1}, \ldots, v_n)$. It is routine to prove that each such function is a linear map $V_i \to \prod_1^n V_j$.
 
-For any vector space $W$ over $\mathbb{F}$, a function $\phi: \prod_1^n V_j$ is said to be \textbf{multilinear} when for every $i$ and every $v \in \prod_{j=1, j \neq i}^n V_j$, the composite function $\iota_i[v];\phi$ is a linear map $V_i \to W$.
+For any vector space $W$ over $\mathbb{F}$, a function $\phi: \prod_1^n V_j$ is said to be \textbf{multilinear} when for every $i$ and every $v \in \prod_{j=1, j \neq i}^n V_j$, the composite function $\iota_i[v];\phi$ is a linear map $V_i \to W$. When $W = \mathbb{F}$ (that is, the vector space over $\mathbb{F}$, then $\phi$ is said to be a \textbf{multilinear form}.
 
 \begin{prop}
 Denote the collection of all multilinear maps $\prod_1^n V_i \to W$ by $ML(V_1, \ldots, V_n; W)$. By the usual definition of function addition and function scalar multiplication, this is a vector space over $\mathbb{F}$.
@@ -141,4 +147,14 @@ If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$, then it is unique u
 This has the same form as the "unique up to unique isomorphism" proof for free vector spaces, so it is omitted here.
 \end{proof}
 \end{prop}
+
+\begin{prop}
+If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$ and $W$ isa ny vector space over the same field as the $V_i$'s, then $Hom(Z, W)$ is isomorphic to $ML(V_1, \ldots, V_n; W)$.
+\begin{proof}
+    The universal property induces a map $\phi: ML(V_1, \ldots, V_n; W) \to Z$. If $T: Z \to W$ is any linear map, then $\iota;T$ is multilinear since $\iota$ is, so $(\iota;T) \phi = T$, hence $\phi$ is surjective. It must also be injective: if $T = f \phi = g \phi$, then $f = \iota;T = g$.
+\end{proof}
+\end{prop}
+\begin{corollary}
+For any tensor product $(Z, \iota)$ of $(V_1, \ldots, V_n)$, the space of all multilinear forms on $\prod_1^n V_i$ is isomorphic to $Z^{\ast}$.
+\end{corollary}
 \end{document}
