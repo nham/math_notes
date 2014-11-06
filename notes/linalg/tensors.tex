@@ -227,4 +227,11 @@ For any spaces $V$ and $W$ over a field $\mathbb{F}$, $V \otimes W$ is isomorphi
     The multilinear maps $\phi: V \times W \to W \otimes V$ and $\psi: W \times V \to V \otimes W$ defined by $(v, w) \phi := w \otimes v$ and $(w, v) \psi := v \otimes w$ induce, respectively, linear maps $S: V \otimes W \to W \otimes V$ and $T: W \otimes V \to V \otimes W$. We have that $(v \otimes w) ST = v \otimes w$ and $(w \otimes v) TS = w \otimes v$ for all $v \in V$, $w \in W$. Since these generate $V \otimes W$ and $W \otimes V$, $S$ and $T$ are isomorphisms.
 \end{proof}
 \end{prop}
+
+\end{prop}
+
+\section{Tensor spaces}
+\begin{defn}
+    If we $V$ is any vector space, and if we define $V_1 := V$ and $V_{-1} := V^{\ast}$, then any tensor product $V_{\epsilon_1} \otimes \cdots \otimes V_{\epsilon_n}$ with each $\epsilon_i \in \{1, -1\}$, is isomorphic to $V^{\otimes p} \otimes (V^{\ast})^{\otimes q}$ for some $p, q \in \mathbb{N}$, by commutativity and associativity of the tensor product. We call such a product the \textbf{tensor space of type $(p, q)$} and denote it by $T_q^p(V)$. Elements of $T_q^p(V)$ are called \textbf{tensors of type $(p, q)$}. Such tensors are said to be \textbf{contravariant of degree $p$} and \textbf{covariant of degree q}. When $q = 0$, the tensors are said to be \textbf{contravariant}, and similary when $p = 0$ they are said to be \textbf{covariant}.
+\end{defn}
 \end{document}
