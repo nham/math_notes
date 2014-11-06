@@ -6,7 +6,7 @@
 \newtheorem*{corollary}{Corollary}
 \newtheorem*{remark}{Remark}
 \newtheorem*{defn}{Definition}
-\newtheorem*{homomorphism-thm}{Homomorphism Theorem}
+\newtheorem*{thm}{Theorem}
 \begin{document}
 \maketitle
 \section{Hom spaces, dual spaces}
@@ -44,13 +44,14 @@ The function $\pi$ is called the \textbf{canonical map}.
 The kernel of any linear map $f: V \to W$ is a subspace of $V$, so $V / ker f$ is a quotient space.
 \end{prop}
 
-\begin{homomorphism-thm}
-If $f: V \to W$ is linear, then there is a unique linear map $\phi: V / ker f \to W$ such that $\pi ; \phi = f$, where $\pi$ is the canonical map.
+\begin{thm}
+If $f: V \to W$ is linear and $U$ is a subspace of $V$ such that $U \subseteq ker f$, then there is a unique linear map $\phi: V / U \to W$ such that $\pi ; \phi = f$, where $\pi$ is the canonical map.
 
 \begin{proof}
-    Define $\phi$ by $v + ker f \mapsto vf$. Routine verification shows that it's well-defined, linear and satisfies $\pi ; \phi = f$. $\phi$ is unique because any other candidate $\psi$ must have $(v + ker f)\phi = vf = (v \pi) \psi = (v + ker f) \psi$, meaning $\phi = \psi$.
+    Define $\phi$ by $v + U \mapsto vf$. Routine verification shows that it's well-defined, linear and satisfies $\pi ; \phi = f$. $\phi$ is unique because any other candidate $\psi$ must have $(v + U)\phi = vf = (v \pi) \psi = (v + U) \psi$, meaning $\phi = \psi$.
 \end{proof}
-\end{homomorphism-thm}
+\end{thm}
+
 \section{Vector space of scalar-valued functions}
 \begin{prop}
 If $\mathbb{F}$ is any field and $X$ is any set, you can form a vector space by considering the collection of all functions $X \to \mathbb{F}$. 
@@ -87,6 +88,8 @@ In other words, for every $W$ and every function $g: X \to W$ there is a unique 
                                    & W
 \end{tikzcd}
 \end{center}
+
+This property is called the "universal property" for free vector spaces.
 \end{defn}
 
 \begin{prop}
@@ -115,26 +118,33 @@ There is a free vector space for every set $X$ and every field $\mathbb{F}$.
 \end{proof}
 \end{prop}
 
-\section{Multilinear maps}
-If $V_1, \ldots, V_n$ are some vector spaces over a field $\mathbb{F}$, then for any integer $i$, $1 \leq i \leq n$, and for any $v = (v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in \prod_{j=1, j \neq i}^n V_j$, we can define the function $\iota_i[v]: V_i \to \prod_1^n V_j$ by $z \iota_i[v] := (v_1, \ldots, v_{i-1}, z, v_{i+1}, \ldots, v_n)$. It is routine to prove that each such function is a linear map $V_i \to \prod_1^n V_j$.
+\begin{prop}
+If $(V, f)$ is a free vector space for $X$, then $f$ is injective.
+\begin{proof}
+If $xf = yf$ for some $x \neq y \in X$, then any function $g: X \to W$ which has $xg \neq yg$ will not have a factorization through $f$, contradicting the universal property.
+\end{proof}
+\end{prop}
 
-For any vector space $W$ over $\mathbb{F}$, a function $\phi: \prod_1^n V_j$ is said to be \textbf{multilinear} when for every $i$ and every $v \in \prod_{j=1, j \neq i}^n V_j$, the composite function $\iota_i[v];\phi$ is a linear map $V_i \to W$. When $W = \mathbb{F}$ (that is, the vector space over $\mathbb{F}$, then $\phi$ is said to be a \textbf{multilinear form}.
+\section{Multilinear maps}
+If $V_1, \ldots, V_n$ are some vector spaces over a field $\mathbb{F}$, then for any integer $i$, $1 \leq i \leq n$, and for any $v = (v_1, \ldots, v_{i-1}, v_{i+1}, \ldots, v_n) \in \prod_{j=1, j \neq i}^n V_j$, we can define the function $\lambda_i[v]: V_i \to \prod_1^n V_j$ by $z \lambda_i[v] := (v_1, \ldots, v_{i-1}, z, v_{i+1}, \ldots, v_n)$. It is routine to prove that each such function is a linear map $V_i \to \prod_1^n V_j$.
+
+For any vector space $W$ over $\mathbb{F}$, a function $\phi: \prod_1^n V_j$ is said to be \textbf{multilinear} when for every $i$ and every $v \in \prod_{j=1, j \neq i}^n V_j$, the composite function $\lambda_i[v];\phi$ is a linear map $V_i \to W$. When $W = \mathbb{F}$ (that is, the vector space over $\mathbb{F}$, then $\phi$ is said to be a \textbf{multilinear form}.
 
 \begin{prop}
 Denote the collection of all multilinear maps $\prod_1^n V_i \to W$ by $ML(V_1, \ldots, V_n; W)$. By the usual definition of function addition and function scalar multiplication, this is a vector space over $\mathbb{F}$.
 \end{prop}
 
 \section{Tensor products}
-A tensor product of vector spaces $(V_1, \ldots, V_n)$ is a vector space $Z$ and a multilinear map $\iota$ such that $\iota$ is, in some sense, the most general multilinear map on $\prod_1^n V_i$. We give a universal property that defines the tensor product (similar to what was done for free vector spaces), prove some general properties about it, and then explicitly construct one of the tensor products.
+A tensor product of vector spaces $(V_1, \ldots, V_n)$ is a vector space $Z$ and a multilinear map $\otimes$ such that $\otimes$ is, in some sense, the most general multilinear map on $\prod_1^n V_i$. We give a universal property that defines the tensor product (similar to what was done for free vector spaces), prove some general properties about it, and then explicitly construct one of the tensor products.
 
 \begin{defn}
-    For any vector spaces $V_1, \ldots, V_n$ over a common field $\mathbb{F}$, a \textbf{tensor product} of $(V_1, \ldots, V_n)$ is a pair $(Z, \iota)$ where $Z$ is a vector space and $\iota$ is a multilinear map $\prod_1^n V_i \to Z$ such that for every vector space $W$ over $\mathbb{F}$ and every multilinear map $f: \prod_1^n V_i \to W$, there is a unique linear map $T: Z \to W$ such that $f = \iota;T$.
+    For any vector spaces $V_1, \ldots, V_n$ over a common field $\mathbb{F}$, a \textbf{tensor product} of $(V_1, \ldots, V_n)$ is a pair $(Z, \otimes)$ where $Z$ is a vector space and $\otimes$ is a multilinear map $\prod_1^n V_i \to Z$ such that for every vector space $W$ over $\mathbb{F}$ and every multilinear map $f: \prod_1^n V_i \to W$, there is a unique linear map $T: Z \to W$ such that $f = \otimes;T$.
 
 In other words, for every vector space $W$ and every multilinear map $f: \prod_1^n V_i \to W$ there is a unique linear $T: Z \to W$ such that this diagram commutes:
 
 \begin{center}
 \begin{tikzcd}[row sep=large]
-    \prod_1^n V_i \arrow[rd, "f"] \arrow[r, "\iota"] 
+    \prod_1^n V_i \arrow[rd, "f"] \arrow[r, "\otimes"]
     & Z \arrow[d, dashed, "\exists! \> T"] \\
     & W
 \end{tikzcd}
@@ -142,45 +152,77 @@ In other words, for every vector space $W$ and every multilinear map $f: \prod_1
 \end{defn}
 
 \begin{prop}
-If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$, then it is unique up to unique isomorphism.
+If $(Z, \otimes)$ is a tensor product of $(V_1, \ldots, V_n)$, then it is unique up to unique isomorphism.
 \begin{proof}
 This has the same form as the "unique up to unique isomorphism" proof for free vector spaces, so it is omitted here.
 \end{proof}
 \end{prop}
 
 \begin{prop}
-If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$ and $W$ is any vector space over the same field as the $V_i$'s, then $Hom(Z, W)$ is isomorphic to $ML(V_1, \ldots, V_n; W)$.
+If $(Z, \otimes)$ is a tensor product of $(V_1, \ldots, V_n)$ and $W$ is any vector space over the same field as the $V_i$'s, then $Hom(Z, W)$ is isomorphic to $ML(V_1, \ldots, V_n; W)$.
 \begin{proof}
-    The universal property induces a map $\phi: ML(V_1, \ldots, V_n; W) \to Z$. If $T: Z \to W$ is any linear map, then $\iota;T$ is multilinear since $\iota$ is, so $(\iota;T) \phi = T$, hence $\phi$ is surjective. It must also be injective: if $T = f \phi = g \phi$, then $f = \iota;T = g$.
+    The universal property induces a map $\phi: ML(V_1, \ldots, V_n; W) \to Z$. If $T: Z \to W$ is any linear map, then $\otimes;T$ is multilinear since $\otimes$ is, so $(\otimes;T) \phi = T$, hence $\phi$ is surjective. It must also be injective: if $T = f \phi = g \phi$, then $f = \otimes;T = g$.
 \end{proof}
 \end{prop}
 \begin{corollary}
-For any tensor product $(Z, \iota)$ of $(V_1, \ldots, V_n)$, the space of all multilinear forms on $\prod_1^n V_i$ is isomorphic to $Z^{\ast}$.
+For any tensor product $(Z, \otimes)$ of $(V_1, \ldots, V_n)$, the space of all multilinear forms on $\prod_1^n V_i$ is isomorphic to $Z^{\ast}$.
 \end{corollary}
 
 \begin{prop}
-If $(Z, \iota)$ is a tensor product of $(V_1, \ldots, V_n)$, then $img \iota$ generates $Z$.
+If $(Z, \otimes)$ is a tensor product of $(V_1, \ldots, V_n)$, then $img \otimes$ generates $Z$.
 \begin{proof}
-Let $Y$ be the subspace of $Z$ generated by $img \iota$. Consider $\iota': \prod_1^n V_i \to Y$, defined to be $\iota$ but with its codomain restricted to $Y$. $\iota'$ is clearly multilinear since $\iota$ is, so we have some $T: Z \to Y$, linear, such that $\iota; T = \iota'$. But also, if we let $j: Y \to Z$ be the inclusion of $Y$ into $Z$, it is linear and $\iota'; j = \iota$. 
+Let $Y$ be the subspace of $Z$ generated by $img \otimes$. Consider $\otimes': \prod_1^n V_i \to Y$, defined to be $\otimes$ but with its codomain restricted to $Y$. $\otimes'$ is clearly multilinear since $\otimes$ is, so we have some $T: Z \to Y$, linear, such that $\otimes; T = \otimes'$. But also, if we let $j: Y \to Z$ be the inclusion of $Y$ into $Z$, it is linear and $\otimes'; j = \otimes$. 
 
 \begin{center}
 \begin{tikzcd}
-    \prod_1^n V_i \arrow[rd, "\iota'"] \arrow[r, "\iota"] \arrow[rdd, "\iota"]
+    \prod_1^n V_i \arrow[rd, "\otimes'"] \arrow[r, "\otimes"] \arrow[rdd, "\otimes"]
     & Z \arrow[d, "T"] \arrow[dd, bend left=45, "id_Z"] \\
     & Y \arrow[d, hook, "j"] \\
     & Z
 \end{tikzcd}
 \end{center}
 
-By combining these two, we get: $\iota;T;j = \iota$. But $T;j$ is linear, and by the universal property $id_Z$ is the unique linear map such that $\iota; id_Z = \iota$. So $T;j = id_Z$, implying $j$ is surjective. So $Y = Z$.
+By combining these two, we get: $\otimes;T;j = \otimes$. But $T;j$ is linear, and by the universal property $id_Z$ is the unique linear map such that $\otimes; id_Z = \otimes$. So $T;j = id_Z$, implying $j$ is surjective. So $Y = Z$.
 
 \end{proof}
 \end{prop}
 
 \begin{prop}
-For any vector spaces $(V_1, \ldots, V_n)$ over a common field $\mathbb{F}$, there is a tensor product. The vector space is denoted $\bigotimes_1^n V_i$ (or $V_1 \otimes V_2$ in the case of $n = 2$) and the multilinear map $\prod_1^n V_i \to \bigotimes_1^n V_i$ is usually denoted by, for all $(v_1, \ldots, v_n) \in \prod_1^n V_i$, $(v_1, \ldots, v_n) \mapsto v_1 \otimes \cdots \otimes v_n$.
+For any vector spaces $(V_1, \ldots, V_n)$ over a common field $\mathbb{F}$, there is a tensor product. The vector space is denoted $\bigotimes_1^n V_i$ (or $V_1 \otimes V_2$ in the case of $n = 2$) and the multilinear map is denoted $\otimes: \prod_1^n V_i \to \bigotimes_1^n V_i$, where usually infix notation is used: for all $(v_1, \ldots, v_n) \in \prod_1^n V_i$, $(v_1, \ldots, v_n) \mapsto v_1 \otimes \cdots \otimes v_n$.
 \begin{proof}
-TODO
+    Let $(F(\prod_1^n V_i), \iota)$ be any free vector space on $\prod_1^n V_i$. If $W$ is any vector space and $\phi: \prod_1^n V_i \to W$ is any multilinear map, by the universal property of the free vector space we have a unique linear map $T: F(\prod_1^n V_i) \to W$ such that $\iota;T = \phi$.
+
+\begin{center}
+\begin{tikzcd}
+    \prod_1^n V_i \arrow[d, "\phi"] \arrow[r, "\iota"]
+    & F(\prod_1^n V_i) \arrow[dl, "T"] \\
+    W
+\end{tikzcd}
+\end{center}
+
+For all $(v_1, \ldots, v_n) \in \prod_1^n V_i$, let us denote $(v_1, \ldots, v_n) \iota$ by $[v_1, \ldots, v_n]$. $\iota$ is not multilinear since the zero of $F(\prod_1^n V_i)$ is not in the image of $\iota$, but we can make it multilinear by composing it with another map.
+
+Consider the subspace $Z$ generated by all vectors of the form:
+
+$$[v_1, \dots, v_{i-1}, \alpha v, v_{i+1}, \dots, v_n] - [v_1, \dots, v_{i-1}, v, v_{i+1}, \dots, v_n]$$
+
+and
+
+$$[v_1, \dots, v_{i-1}, v + w, v_{i+1}, \dots, v_n] - [v_1, \dots, v_{i-1}, v, v_{i+1}, \dots, v_n] - [v_1, \dots, v_{i-1}, w, v_{i+1}, \dots, v_n]$$
+
+for some $i$, $1 \leq i \leq n$ and some $\alpha \in \mathbb{F}$, $v, w \in V_i$. If we let $\pi: F(\prod_1^n V_i) \to F(\prod_1^n V_i) / Z$ be the canonical map from $F(\prod_1^n V_i)$ to the quotient space induced by $Z$, the claim is that $(F(\prod_1^n V_i), \iota; \pi)$ is a tensor product. If we denote $(v_1, \dots, v_n) \iota \pi$ by $\langle v_1, \dots, v_n \rangle$, then, for example, $\langle v + w, v_2, \dots, v_n \rangle = \langle v, v_2, \dots, v_n \rangle + \langle w, v_2, \dots, v_n \rangle$ since the difference of the two sides is an element of $Z$. So $\iota ; \pi$ is multilinear.
+
+Now, $Z$ is a subset of $ker T$ because $\phi$ is multilinear. Also, by the property of the quotient space, there is a unique linear $f: F(\prod_1^n V_i) / Z \to W$ such that $\pi; f = T$.
+
+\begin{center}
+\begin{tikzcd}
+    \prod_1^n V_i \arrow[d, "\phi"] \arrow[r, "\iota"]
+    & F(\prod_1^n V_i) \arrow[dl, "T"] \arrow[d, "\pi"] \\
+    W & F(\prod_1^n V_i) / Z \arrow[l, "f"]
+\end{tikzcd}
+\end{center}
+
+So $(F(\prod_1^n V_i)/Z, \iota;\pi)$ is a tensor product for $(V_1, \ldots, V_n)$.
 \end{proof}
 \end{prop}
 
@@ -191,7 +233,7 @@ For any vector spaces $X, Y, Z$ over a common field, we have $(X \otimes Y) \oti
 
 \begin{center}
 \begin{tikzcd}[row sep=large]
-    X \times Y \arrow[rd, "\phi_z"] \arrow[r, "\iota"] 
+    X \times Y \arrow[rd, "\phi_z"] \arrow[r, "\otimes"] 
     & X \otimes Y \arrow[d, "T_z"] \\
     & X \otimes Y \otimes Z
 \end{tikzcd}
@@ -226,8 +268,6 @@ For any spaces $V$ and $W$ over a field $\mathbb{F}$, $V \otimes W$ is isomorphi
 \begin{proof}
     The multilinear maps $\phi: V \times W \to W \otimes V$ and $\psi: W \times V \to V \otimes W$ defined by $(v, w) \phi := w \otimes v$ and $(w, v) \psi := v \otimes w$ induce, respectively, linear maps $S: V \otimes W \to W \otimes V$ and $T: W \otimes V \to V \otimes W$. We have that $(v \otimes w) ST = v \otimes w$ and $(w \otimes v) TS = w \otimes v$ for all $v \in V$, $w \in W$. Since these generate $V \otimes W$ and $W \otimes V$, $S$ and $T$ are isomorphisms.
 \end{proof}
-\end{prop}
-
 \end{prop}
 
 \section{Tensor spaces}
