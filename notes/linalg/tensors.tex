@@ -270,6 +270,41 @@ For any spaces $V$ and $W$ over a field $\mathbb{F}$, $V \otimes W$ is isomorphi
 \end{proof}
 \end{prop}
 
+\section{Finite dimensional facts}
+
+\begin{prop}
+    If $V_1, \ldots, V_n$ are all finite dimensional vector spaces with $V_i$ having dimension $d_i$, and, for all $i$, $\beta_i = \{v_{i,1}, \dots, v_{i,d_i}\}$ is a basis for $V_i$, then if $f: \prod_1^n \beta_i \to \mathbb{F}$ is any function, $f$ can be extended to exactly one multilinear form $g: \prod_1^n V_i \to \mathbb{F}$.
+
+Furthermore, $dim ML(V_1, \ldots, V_n; \mathbb{F}) = \prod_1^n dim V_i$.
+
+\begin{proof}
+    If $\phi: \prod_1^n V_i \to \mathbb{F}$ is any multilinear form, then for all $z \in \prod_1^n V_i$, $z = (z_1, \dots, z_n) = (\sum_j \alpha_{1,j} v_{1,j}, \dots, \sum_j \alpha_{n,j} v_{n,j})$, so
+    
+$$z \phi = \sum_{j \in \prod_1^n [d_i]} \alpha_{1,j_1} \cdots \alpha_{n,j_n} (v_{1,j_1}, \ldots, v_{n,j_n}) \phi$$
+
+where $[n] := \{1, \ldots, n\}$ for any $n$. This shows that any multilinear map is completely determined by how the "basis tuples" $(v_{1,j_1}, \ldots, v_{n,j_n})$ get mapped, which proves the first statement.
+
+For any $I \in \prod_1^n [d_i]$ we define $f_I: \prod_1^n V_i \to \mathbb{F}$ to be the multilinear form that maps the basis tuple $(v_{I_1}, \ldots, v_{I_n})$ to $1$ and all other basis tuples to $0$. Then the collection of these functions is a basis for $ML(V_1, \ldots, V_n; \mathbb{F})$.
+\end{proof}
+\end{prop}
+
+\begin{prop}
+If $V_1, \ldots, V_n$ are all finite dimensional vector spaces, then $dim(\otimes_1^n V_i) = \prod_1^n dim V_i$.
+\begin{proof}
+The previous proposition establishes that $dim ML(V_1, \ldots, V_n; \mathbb{F}) = \prod_1^n dim V_i$. But we know that $ML(V_1, \ldots, V_n; \mathbb{F})$ and $(\otimes_1^n V_i)^{\ast} = Hom(\otimes_1^n V_i, \mathbb{F}$ are isomorphic. If we could establish that $\otimes_1^n V_i$ is finite-dimensional, then the result would be proved since every finite dimensional vector space is isomorphic with its dual.
+
+But we know the set of elements $v_1 \otimes \dots \otimes v_n$ generates $\otimes_1^n V_i$, and we know that $v_1 \otimes \dots \otimes v_n$ is a linear combination of "basis tensors" $e_1 \otimes \dots \otimes e_n$, where each $e_i$ is an element of a basis $\beta_i$ for $V_i$. So the collection of "basis tensors" generates $\otimes_1^n V_i$, hence it is finitely-generated, so finite dimensional.
+\end{proof}
+\end{prop}
+
+
+\begin{prop}
+If $V$ and $W$ are finite dimensional, then $Hom(V, W) \cong V^{\ast} \otimes W$.
+\begin{proof}
+    This can be seen from the two spaces having the same dimension. We know $dim(V^{\ast} \otimes W) = dim V^{\ast} dim W = dim V dim W$. To complete the proof, if $\{v_1, \ldots, v_m\}$ and $\{w_1, \ldots, w_n\}$ are bases for $V$ and $W$, respesctively, then the collection of maps $g_{ij}: V \to W$ defined by $v_k g_{ij} = \delta_{ik} w_j$ (where $\delta$ is the Kronecker delta) is a basis for $Hom(V, W)$. So $dim Hom(V, W) = dim V dim W$.
+\end{proof}
+\end{prop}
+
 \section{Tensor spaces}
 \begin{defn}
     If we $V$ is any vector space, and if we define $V_1 := V$ and $V_{-1} := V^{\ast}$, then any tensor product $V_{\epsilon_1} \otimes \cdots \otimes V_{\epsilon_n}$ with each $\epsilon_i \in \{1, -1\}$, is isomorphic to $V^{\otimes p} \otimes (V^{\ast})^{\otimes q}$ for some $p, q \in \mathbb{N}$, by commutativity and associativity of the tensor product. We call such a product the \textbf{tensor space of type $(p, q)$} and denote it by $T_q^p(V)$. Elements of $T_q^p(V)$ are called \textbf{tensors of type $(p, q)$}. Such tensors are said to be \textbf{contravariant of degree $p$} and \textbf{covariant of degree q}. When $q = 0$, the tensors are said to be \textbf{contravariant}, and similary when $p = 0$ they are said to be \textbf{covariant}.
