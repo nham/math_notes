@@ -86,45 +86,6 @@ If $x \in B_d(a; \epsilon)$, $\sqrt{\sum_1^n (a_i - x_i)^2} < \epsilon$. If any 
 Conversely, if $x \in B_p(a; \epsilon / \sqrt n)$, then $|a_i - x_i| < \epsilon / n$, by definition, so $\sum_1^n (a_i - x_i)^2 < n (\epsilon / \sqrt n)^2$, hence $\sqrt{\sum_1^n (a_i - x_i)^2} < \epsilon$.
 
 
-
-## Examples
-### Stretching $\mathbb{R}$ is a homeomorphism
-The map $f: \mathbb{R} \to \mathbb{R}$ defined by $x \mapsto cx$ for $c \neq 0$ is a homeomorphism on $\mathbb{R}$.
-
-*Proof:* It suffices to prove that $f$ is continuous, since each such $f$ is bijective and its inverse is also a stretching map. Let $A \subseteq \mathbb{R}$ is open in $\mathbb{R}$. Then $f^{pre}(A) = \{ c^{-1} a : a \in A \}$ is open in $\mathbb{R}$ since for all $b \in f^{pre}(A)$, $b = c^{-1} a$, for some $a \in A$. But by definition of open sets in a metric space, there is an $\epsilon > 0$ such that for all $x \in \mathbb{R}$ with $|x - a| < \epsilon$, $x \in A$.  So for all $y \in $f^{pre}(A)$ such that $|y - b| < |c^{-1}| \epsilon$, we have $|y - b| = |c^{-1}| |yc - a| < |c^{-1}| \epsilon$, or $|yc - a| < \epsilon$. Thus $yc \in A$, so $y \in f^{pre}(A)$.
-
-### Translation of $\mathbb{R}$ is a homeomorphism
-The map $f: \mathbb{R} \to \mathbb{R}$ defined by $x \mapsto x + z$ for $z \in \mathbb{R}$ is a homeomorphism on $\mathbb{R}$.
-
-*Proof:* It suffices to prove that $f$ is continuous, since each such $f$ is bijective and its inverse is also a translation map. Let $A \subseteq \mathbb{R}$ is open in $\mathbb{R}$. Then $f^{pre}(A) = \{ a - z : a \in A \}$ is open in $\mathbb{R}$ since for all $b \in f^{pre}(A)$, $b = a - z$, for some $a \in A$. But by definition of open sets in a metric space, there is an $\epsilon > 0$ such that for all $x \in \mathbb{R}$ with $|x - a| < \epsilon$, $x \in A$.  So for all $y \in $B$ such that $|y - b| < \epsilon$, we have $|y - b| = |y - a + z|  \leq \epsilon$, so $y+z \in A$, hence $y \in f^{pre}(A)$.
-
-
-### Any two open balls in $\mathbb{R}$ are homeomorphic
-For any $a, b \in \mathbb{R}$ and any $\epsilon, \delta > 0$, $B(a; \epsilon)$ and $B(b; \delta)$ are homeomorphic.
-
-*Proof:* It suffices to prove that $B(a; \epsilon)$ is homeomorphic to $B(0; 1)$. Via a restriction of the translation map (using local homeomorphism), $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic. Via a restriction of the stretching map, if $x \in B(0; 1)$, then $\epsilon x \in B(0; \epsilon)$ and vice versa, so $B(0;1)$ and $B(0; \epsilon)$ are homeomorphic as well. Since the composition of homeomorphisms is a homeomorphism, it is proven.
-
-
-## Every open ball in $\mathbb{R}^n$ is homeomorphic to every other open ball in $\mathbb{R}^n$.
-If $a, b \in \mathbb{R}^n$ and $\epsilon, \delta > 0$, then $B(a; \epsilon)$ and $B(b; \delta)$ (considered as subspaces of the product topology on $\mathbb{R}^n$) are homeomorphic.
-
- 1. $B(a; \epsilon)$ and $B(0; \epsilon)$ are homeomorphic
-
-    *Proof:* $f: B(a; \epsilon) \to B(0; \epsilon)$ defined by $f(x) = x - a$ is clearly bijective. Also, $\|f(y) - f(x) \| = \|y - a - x + a\| = \|y - x\|$, so $\|f(y) - f(x)\| < \epsilon$ when $\|y - x\| < \epsilon$. g: B(0; \epsilon) \to B(a; \epsilon)$ defined by g(x) = x + a$ is continuous for the same reason, so $f$ is a homeomorphism.
-
- 2. $B(0; \epsilon)$ and $B(0; 1)$ are homeomorphic
-
-    *Proof:* $f: B(0; \epsilon) \to B(0; 1)$ defined by $f(x) = x / \epsilon$ is clearly bijective. $\|f(y) - f(x)\| = \|y - x\| / | \epsilon |$, so for all $x$ and all $y$ such that $\|y - x\| < \epsilon^2$, we have $\|f(y) - f(x)\| < \epsilon$. Also $g(x) := \epsilon x$ is continuous for the same reason.
-
- 3. $B(a; \epsilon)$ and $B(0; 1)$ are homeomorphic
-
-    *Proof:* Composition of the homeomorphisms in (1) and (2) yield such a homeomorphism.
-
- 4. Q.E.D.
-
-    *Proof:* (3) Proves that every open ball is homeomorphic to the open ball of radius 1 around 0.
-
-
 ### Every open ball in $\mathbb{R}^n$ is homeomorphic to $\mathbb{R}^n
 $B(0; 1)$ in $\mathbb{R}^n$ is homeomorphic to $\mathbb{R}^n$.
 
@@ -157,14 +118,6 @@ If $X$ is a space that is locally Euclidean of dimension $n$, then a **coordinat
 
 
 
-## Definition of dense subset
-If $(X, \mathcal{T})$ is a topological space, $A \subseteq X$ is **dense** in $X$ iff $clo A = X$.
-
-
-## Definition of separable space
-If $(X, \mathcal{T})$ is a topological space, $X$ is **separable** iff it has a subset $S$ which is both countable and dense in $X$.
-
-
 ## The reals are separable
 $\mathbb{Q}$ is dense in $\mathbb{R}$.
 
@@ -175,22 +128,6 @@ $\mathbb{Q}$ is dense in $\mathbb{R}$.
 $\mathbb{Q}^n$ is dense in $\mathbb{R}^n$.
 
 *Proof:* We know that $\mathbb{Q}^n$ is countable. To prove it is dense in $\mathbb{R}^n$, we must prove that for all $x \in \mathbb{R}^n$ and for some basis $\mathbb{B}$ for $\mathbb{R}^n$, every basis element containing $x$ intersects $\mathbb{Q}^n$. But one basis for the product topology is the collection of $n$-fold products of open intervals in $\mathbb{R}$. Every such basis element $B = \prod_1^n B(x_i; \epsilon_i)$ for some $x_i$'s, so for each $i$ there is a $q_i \in B(x_i; \epsilon_i)$ since $\mathbb{Q}$ is dense in $\mathbb{R}$. So $(q_1, \ldots, q_n) \in B$, proving the statement.
-
-
-## Separable metric space is second countable
-If $(X,d)$ is a metric space whose metric topological space $(X, \mathcal{T})$ has an $S \subseteq X$ dense in $X$, then $X$ is second countable.
-
-*Proof:* Define $\mathcal{B} = \{ B(s; q) : s \in S, q \in \mathbb{Q} \}$. We aim to prove that $\mathcal{B}$ is a basis for $X$. It is certainly a collection of open sets in $X$, and it is countable since it is the countable union of countable sets. Let $U$ be open in $X$. For all $x \in U$, there is an $\epsilon > 0$ such that $B(x; \epsilon) \subseteq U$.  We can find an $n \in \mathbb{N}$ such that $2/n < \epsilon$. By density of $S$, $B(x; 1/n)$ intersects $S$, meaning some $s \in B(x; 1/n) \cap S$. So $x \in B(s; 1/n)$, and if $z \in B(s; 1/n)$, then $d(z, x) \leq d(z, s) + d(s, x) < 2/n$, so $B(s; 1/n) \subseteq B(x; 2/n) \subseteqq B(x; \epsilon)$. So $U$ is a union of open balls with rational radii centered at elements of $S$.
-
-### Corollary: $\mathbb{R}$ is second countable
-The reals (with the standard topology) are second countable.
-
-*Proof:* The standard topology on $\mathbb{R}$ is the metric topology, and we have proved above that it is separable. So the theorem applies
-
-### Corollary: $\mathbb{R}^n$ is second countable.
-$\mathbb{R}^n$ under the product topology is second countable
-
-*Proof:* The product topology on $\mathbb{R}^n$ is separable and is the metric topology induced by the euclidean metric, so the theorem can be applied once again.
 
 
 ## Definition of topological manifold
